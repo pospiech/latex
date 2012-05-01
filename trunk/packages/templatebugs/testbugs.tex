@@ -1,0 +1,72 @@
+\documentclass{scrbook}
+
+\usepackage[errorlevel=warning]{templatebugs}
+
+
+%\makeatletter
+%
+%\RequirePackage{xifthen}
+%\RequirePackage{xkeyval}
+%
+%\RequirePackage{kvoptions-patch}
+%\RequirePackage{kvoptions}
+%\RequirePackage{pdftexcmds}
+%\RequirePackage{etoolbox}
+%\RequirePackage{boolexpr}
+%
+%\RequirePackage{ltxcmds}
+%\providecommand{\IfPackageLoaded}[2]{\ltx@ifpackageloaded{#1}{#2}{}}
+%\providecommand{\IfPackageNotLoaded}[2]{\ltx@ifpackageloaded{#1}{}{#2}}
+%%\providecommand{\IfElsePackageLoaded}[3]{\ltx@ifpackageloaded{#1}{#2}{#3}}
+%%
+%%
+%\providecommand\packagename{templatebugs}
+%%
+%%\newcommand\isPackageLoaded[1]{%
+%%  \providebool{\tplbugs@idstring#1}
+%%  \IfElsePackageLoaded{#1}{%
+%%    \setboolean{\tplbugs@idstring#1}{true}%
+%%  }{%
+%%    \setboolean{\tplbugs@idstring#1}{false}
+%%  }%
+%%  \boolean{\tplbugs@idstring#1}%
+%%}
+%%
+%\newcommand\tplbugs@BugAction[1]{\PackageWarning{\packagename}{#1}{}}%
+%\providecommand{\tplbugs@idstring}{tplbugs@identifier@IfPackageLoaded@}
+%%
+%\newcommand\WarnBasicPackageNotLoaded[2]{%
+%      \tplbugs@BugAction
+%      {%
+%\MessageBreak
+%You have not loaded Package: '#1'
+%\MessageBreak
+%This Package is recommanded. It is used for:
+%\MessageBreak
+%#2
+%      }%
+%}%
+%
+%\AtBeginDocument{%
+%   %\ltx@ifpackageloaded{amsmath}{%
+%   \IfPackageLoaded{amsmath}{
+%     %\ifthenelse{\NOT\isPackageLoaded{mathtools}}{
+%     %\ltx@ifpackageloaded{mathtools}{%
+%     \IfPackageNotLoaded{mathtools}{%
+%        %\PackageWarning{mathtools}{%
+%        \WarnBasicPackageNotLoaded{mathtools}{%
+%enhances amsmath and fixes some bugs \MessageBreak
+%        }%
+%     }%
+%  }%
+%}%
+%\makeatother
+
+\usepackage{tocloft}
+\usepackage{sidecap}
+
+\listfiles
+
+\begin{document}
+Hello
+\end{document}

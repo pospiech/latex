@@ -1,0 +1,39 @@
+\RequirePackage{listings}
+
+\colorlet{demo@stringcolor}{green!40!black!100}
+\colorlet{demo@commentcolor}{green!50!black!100}
+\colorlet{demo@numbercolor}{white!50!black!100}
+\definecolor{demo@keywordcolor}{rgb}{0,0.47,0.80}
+\colorlet{demo@codebackcolor}{white}
+\definecolor{demo@rulecolor}{rgb}{0.5,0.5,0.5}
+%
+\lstdefinestyle{demostyle}{
+    columns=flexible,
+    keepspaces=true,    
+    numberstyle=\tiny\color{demo@numbercolor},
+	basicstyle=\small\ttfamily,
+	numbers=left,
+	stepnumber=1,
+	numbersep=5pt,
+	tabsize=2,
+	extendedchars=true,
+	breaklines=true,
+	stringstyle=\color{demo@stringcolor},
+	keywordstyle=\color{demo@keywordcolor},
+	commentstyle=\color{demo@commentcolor},
+	showspaces=false,
+	showtabs=false,
+	showstringspaces=false,
+	frame=single,
+	backgroundcolor=\color{demo@codebackcolor},
+	rulecolor=\color{demo@rulecolor},
+	language = [LaTeX]TeX,
+	morekeywords={setuptablefontsize, tablefontsize, setuptablestyle,
+	tablestyle,setuptablecolor, tablecolor, disablealternatecolors,
+	tablealtcolored,tbegin,tbody, tend, thead, theadstart,
+	tsubheadstart, tsubhead, theadrow, tsubheadrow, resettablestyle,
+	theadend, tsubheadend, tableitemize, PreserveBackslash,
+	newcolumntype,rowcolor,rowcolors,bottomrule,toprule,midrule,colorlet,
+	definecolor,DefineTemplateSection,BeginTemplateSection,EndTemplateSection},
+}
+\lstloadlanguages{[LaTeX]TeX}

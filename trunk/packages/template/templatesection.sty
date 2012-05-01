@@ -1,0 +1,159 @@
+% File:      templatesection.sty
+% Version:   2011/01/20 v0.1
+% Author:    Matthias Pospiech
+% Email:     <matthias.pospiech@gmx.de>
+%
+% Copyright: Copyright (C) 2011 Matthias Pospiech.
+%
+%            This program may be distributed and/or modified under
+%            the conditions of the LaTeX Project Public License,
+%            either version 1.2 of this license or (at your option)
+%            any later version. The latest version of this license
+%            is in
+%              http://www.latex-project.org/lppl.txt
+%            and version 1.2 or later is part of all distributions
+%            of LaTeX version 1999/12/01 or later.
+%
+% Function:  This packages provides an environment to switch a section
+%            within the preamble on or off. This can be used to create a 
+%            template were the executed code can be preselected.
+%
+% Base on:   The code is based in the verbatim.sty package and was 
+%            modified by Ulrich Diez to match the pure comment
+%            functionality.
+%
+% Use:       LaTeX: \usepackage{temlatesection}
+%
+
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\ProvidesPackage{templatesection}
+          [2011/01/20 v0.1 Template Section Environments]
+
+\RequirePackage{etoolbox}
+
+%----------------------------------------------------------------------
+% provide new if (\ifTemplateSection<name>) 
+% with definition \TemplateSection<name><true>
+% 
+\providecommand{\DefineTemplateSection}[2][true]{%
+  \expandafter\newif\csname ifTemplateSection#2\endcsname
+  \csname TemplateSection#2#1\endcsname
+}%
+%----------------------------------------------------------------------
+\newcommand\BeginTemplateSection[1]{%
+  \ifcsdef{ifTemplateSection#1}{}{%
+    \PackageError{templatesection}{Section #1 is unknown\MessageBreak}{}%
+  }
+  \csname ifTemplateSection#1\endcsname
+    \expandafter\@secondoftwo
+  \else
+    \expandafter\@firstoftwo
+  \fi
+  {% comment all code inside template section
+    \@bsphack
+    % open new group
+    \begingroup
+    % save current template section name
+    \def\@currtemplate{#1}%
+    \let\do\@makeother\dospecials
+    \catcode`\^^M\active
+    % enter main loop
+    \templateSection@
+  }%
+  {% execute all code inside template section
+   % = do nothing except trimming spaces
+    \@bsphack\@esphack%
+  }%
+}
+%----------------------------------------------------------------------
+%  The macros \@bsphack and  \@esphack are internal to LaTeX;
+%  they ensure that an entity like a marginal note or
+%  label definition does not introduce any extra space
+%  into a paragraph, independently of whether or not
+%  it is attached to a word.
+\newcommand\EndTemplateSection[1]{\@bsphack\@esphack}
+%----------------------------------------------------------------------
+% usage ???
+\@ifundefined{vrb@catcodes}{%
+  \def\vrb@catcodes{%
+     \catcode`\!12\catcode`\[12\catcode`\]12%
+  }%
+}{}%
+%----------------------------------------------------------------------
+\begingroup
+\vrb@catcodes
+\lccode`\!=`\\
+\lccode`\[=`\{
+\lccode`\]=`\}
+\catcode`\~=\active
+\lccode`\~=`\^^M
+\lccode`\C=`\C
+\lowercase{%
+%----------------------------------------------------------------------
+  \def\templateSection@#1{%
+    \endgroup
+    % ----
+    \def\templateSection@##1~{\templateSection@@##1!#1\@nil}%
+    % ----
+    \def\templateSection@@##1!#1{\futurelet\next\templateSection@@@}%
+    % ----
+    \def\templateSection@@@##1\@nil{%
+       \ifx\next\@nil
+         \let\next\templateSection@
+       \else
+         \def\@tempa####1!#1\@nil{####1}%
+         \def\next{\expandafter\templateSection@test\@tempa##1\@nil~}%
+       \fi
+       \next
+    }%
+    % ----
+    \def\templateSection@test##1{%
+      \let\next\templateSection@test
+      \if\noexpand##1\noexpand~\let\next\templateSection@
+      \else \if\noexpand##1
+      \else \if\noexpand##1\noexpand[\let\@tempc\@empty
+                                     \let\next\templateSection@testend
+      \else \def\next{\templateSection@##1}%
+      \fi\fi\fi
+      \next
+    }%
+    % ----
+    \def\templateSection@testend##1{%
+      \if\noexpand##1\noexpand~\let\next\templateSection@
+      \else \if\noexpand##1\noexpand]\let\next\templateSection@@testend
+      \else\if\noexpand##1\noexpand!\def\next{\templateSection@!}%
+      \else \expandafter\def\expandafter\@tempc\expandafter
+            {\@tempc##1}%
+      \fi\fi\fi
+      \next
+    }%
+    % ---- test if end statement belongs to current section
+    %      saved in \@currtemplate
+    \def\templateSection@@testend{%
+      \ifx\@tempc\@currtemplate
+         % end group and call rescan
+         \edef\next{\noexpand\endgroup\noexpand\@esphack
+                    \noexpand\templateSection@rescan{\@currtemplate}}%
+       \else 
+         % start loop gain
+         \let\next\templateSection@
+       \fi
+       \next
+    }%
+    % ---- does what ???
+    \def\templateSection@rescan##1##2~{%
+      \if\noexpand~\noexpand##2~%
+      \else
+        \@warning{%
+          Characters dropped after
+          `\string\EndTemplateSection{##1}'%
+        }%
+      \fi
+    }%
+  }%
+%----------------------------------------------------------------------  
+} % lowercase
+
+\templateSection@{EndTemplateSection}%
+%----------------------------------------------------------------------
+
