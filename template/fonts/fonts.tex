@@ -1,0 +1,95 @@
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Fonts Fonts Fonts
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% Make PDF files searchable and copyable
+% load before: fontenc
+\usepackage{cmap} 
+
+% T1 Schrift Encoding
+\usepackage[T1]{fontenc} 
+
+% Description: Additional Symbols (Text Companion font extension)
+% Doc: encguide.pdf
+\usepackage{textcomp}   
+
+% DO NOT LOAD ae Package as a font !
+
+%% ==== Font Families / Font Combinations  (Sans + Serif) ================
+
+%% - Latin Modern (LaTeX Standard)
+\usepackage{lmodern}
+%% sans math, use with '\mathversion{sans}'
+\input{fonts/fonts-lmodern-sansmath.tex}
+
+%% -------------------
+%
+%% - Times, Helvetica, Courier (Word Standard...)
+%\usepackage{mathptmx}                 %% --- Times (incl math)
+%\usepackage[scaled=.90]{helvet}       %% --- Helvetica (Arial)
+%\usepackage{courier}                  %% --- Courier
+%% -------------------
+%%
+%% - Palantino , Helvetica, Courier
+%\usepackage{mathpazo}                 %% --- Palantino (incl math)
+%\usepackage[scaled=.95]{helvet}       %% --- Helvetica (Arial)
+%\usepackage{courier}                  %% --- Courier
+%% -------------------
+%
+%% - Charter, Bera Sans
+%\usepackage{charter}\linespread{1.05} %% --- Charter
+%\renewcommand{\sfdefault}{fvs}        %% --- Bera Sans
+%\usepackage[charter]{mathdesign}      %% --- Charter (Math)
+%\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
+%% Note: There is a better Charter font by Linotype 
+%%       called 'ITC Charter'
+%% -------------------
+
+%% - URW Garamond
+%\renewcommand{\rmdefault}{ugm}         %% --- URW Garamond
+%\renewcommand{\sfdefault}{fvs}         %% --- Bera Sans
+%\usepackage[small]{eulervm}            %% --- EulerVM (MATH)
+%%%\usepackage[garamond]{mathdesign}      %% --- Garamond (Math) - error
+%\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
+%% Note:  If you can efford it, combine with commercial 
+%%        sans fonts like: Syntax, Frutiger or Thesis 
+%%        (but then also use the commercial Garamond ...)
+%% -------------------
+
+%% - MininPro/MyriadPro
+%\input{fonts/fonts-MinionPro.tex}  %% --- MinionPro
+%\input{fonts/fonts-MyriadPro.tex}  %% --- MyriadPro
+%\usepackage[scaled=0.85]{luximono} %% --- Luxi Mono (Typewriter)
+%% -------------------
+
+%% - Minion / Myriad
+%\renewcommand{\rmdefault}{pmnx}   % Minion
+%%\renewcommand{\rmdefault}{pmnj}  % Minion ()oldstyle digits)
+%\renewcommand{\sfdefault}{pmy}    % Myriad
+%% Minion Math Fonts 
+%\ExecuteAfterPackage{amsmath}{\usepackage{MnSymbol}}
+%% -------------------
+
+%%%% =========== Typewriter =============
+
+%\usepackage{courier}                   %% --- Courier
+%\renewcommand{\ttdefault}{cmtl}        %% --- CmBright Typewriter Font
+%\usepackage[scaled=0.9]{luximono}      %% --- Luxi Mono (Typewriter)
+%\usepackage{ulgothic}                  %% --- Letter Gothic 
+
+%%%% =========== Mathe ================
+
+%% Recommanded to use with fonts: Aldus, Garamond, Melior, Sabon
+%\usepackage[                           %% --- EulerVM (MATH)
+%   small,       %for smaller Fonts
+%  euler-digits % digits in euler fonts style
+%]{eulervm}
+
+%% combine with utopia, garamond or charter font
+%\usepackage[
+%%   utopia,
+%%   garamond,
+%%   charter
+%]{mathdesign}
+
+

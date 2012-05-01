@@ -1,0 +1,247 @@
+%!TeX encoding=utf8
+
+%% Bug fixes and other packages to be loaded before the class
+\RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
+\RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
+%
+%% Document Class (Koma Script) -----------------------------------------
+\documentclass[%
+   %draft,     % draft mode (no images, layout errors shown)
+   final,      % final mode 
+%%% --- Paper Settings ---
+   paper=a4,% [Todo: add alternatives]
+   paper=portrait, % landscape
+   pagesize=auto, % driver
+%%% --- Base Font Size ---
+   fontsize=11pt,%
+%%% --- Koma Script Version ---
+   version=last, %
+%%% --- Global Package Options ---
+   english, % language (passed to babel and other packages)
+            % (ngerman, english, french, ...)
+ ]{scrbook} % Classes: scrartcl, scrreprt, scrbook
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Must be loaded first!
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\usepackage[errorlevel=error]{../templatebugs/templatebugs}
+\usepackage{../packages/template/templatesection}
+\usepackage{../packages/template/templatetools}
+\usepackage{../packages/templatedemo/templatedemo}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% encoding
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% automatic selection of encoding
+% insert chars for umlaut a and sz
+\usepackage{selinput}
+\SelectInputMappings{adieresis={ä},germandbls={ß}} 
+
+% Encoding of _files and directories_
+% (ensures that any file can be loaded without problems)
+\usepackage[%
+   extendedchars, encoding, multidot, space,
+   filenameencoding=latin1, % Windows XP, Vista, 7
+   % filenameencoding=utf8,   % Linux, OS X
+]{grffile}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Preambel
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%% select/load fonts
+\input{fonts/fonts.tex}
+%\input{fonts/font-commercial.tex}
+%% load packages
+\input{preambel/packages.tex}
+%% apply style settings
+\input{preambel/style.tex}
+%% new commands / definitions
+\input{preambel/commands.tex}
+
+% display the layouts
+% \IfPackageLoaded{geometry}{\geometry{showframe}}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Configurations
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%% Switch between colored links (web) and black links (print)
+\IfDefined{UseDefinition}{%
+  %\UseDefinition{Target}{Print}
+  \UseDefinition{Target}{Web}
+}%
+
+\IfPackageLoaded{hyperref}{%
+%%% set layout of PDF pages
+\hypersetup{pdfpagelayout=OneColumn}
+  % options:
+  %  SinglePage     Displays a single page; advancing flips the page
+  %  OneColumn      Displays the document in one column; continuous scrolling.
+  %  TwoColumnLeft  Displays the document in two columns, 
+  %                 odd-numbered pages to the left.
+  %  TwoColumnRight Displays the document in two columns, 
+  %                 odd-numbered pages to the right.
+  %  TwoPageLeft    Displays two pages, odd-numbered pages to the left 
+  %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
+}%
+
+\IfPackageLoaded{biblatex}{%
+  \ExecuteBibliographyOptions{%
+%%--- Backend --- --- ---
+	backend=bibtex,   % (bibtex, biber)
+	bibwarn=true,     %
+	texencoding=auto, % auto-detect the input encoding
+	bibencoding=auto, % (auto (equal to tex), <encoding>)
+  }%
+}%
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% custom definitions
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\input{macros/newcommands.tex}
+
+%%% Silbentrennung
+\input{preambel/Hyphenation.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% execute necessary commands
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% (... if the according package is loaded or not)
+
+\input{preambel/makeCommands.tex}
+
+\listfiles % list all loaded files at end of document
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% bibliography (now in preamble !)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%% bibtex file(s)
+% add multiple files with comma separation
+% biblatex requires files before document
+\IfPackageLoaded{biblatex}{
+  % add all .bib files:
+  \addbibresource{bib/BibtexDatabase}
+  % \addbibresource{bib/BibtexData-anytopic}
+}%
+
+
+%% Dokument Beginn %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\includeonly{
+% content/Titel
+% content/0-Abstract
+%%content/0-Einleitung,
+%content/1-Grundlagen,
+%%content/2-Wellenleiter,
+%%content/3-WellenleiterStrukturen,
+%%content/4-Superaufloesung,
+%%content/5-Zusammenfassung,
+% content/Z-Anhang
+%}
+
+% Definition of acronyms
+\input{content/Z-Acronyms.tex}
+
+
+%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% required for hyperref (not displayed)
+\pagenumbering{alph}\setcounter{page}{1}%
+\pagestyle{empty}
+
+% -- title page --
+\include{content/title}
+\cleardoublepage
+
+% -- abstract --
+% (only in phd thesis)
+\include{content/0-Abstract} 
+\cleardoublepage
+% -- declaration --
+% (only in bachelor/master thesis)
+\input{content/Z-Erklaerung.tex}
+
+\frontmatter
+\IfPackageLoaded{scrpage2}{\pagestyle{scrheadings}}
+
+% -- table of contents --
+%
+% add table of contents to pdf bookmarks
+\IfPackageLoaded{hyperref}{\pdfbookmark[1]{\contentsname}{toc}}
+\tableofcontents
+
+\IfDefined{printglossary}{
+  \IfPackageLoaded{longtable}{% 
+    \clearpage
+    % print out acronym list 
+    \printglossary[type=\acronymtype,style=longtabuFancyHeader]
+    % print out symbol list 
+    \printglossary[type=symbolslist,style=longtabuFancyHeader]
+    % print out glossary
+    \printglossary[style=altlist]
+  }
+}
+
+% --- Main Document --- --- --- --- --- --- ---
+\mainmatter
+%
+%\include{content/demo/demo}
+\include{content/0-Einleitung}
+\include{content/1-Grundlagen}
+\include{content/2-Experimente}
+\include{content/3-Ergebnisse}
+\include{content/4-Zusammenfassung}
+
+% -- bibliography --
+% (must be placed _before_ appendix)
+\IfPackageLoaded{biblatex}{
+  \printbibliography[%
+    heading=bibintoc, % (bibintoc, bibnumbered)
+  ]	
+}
+
+%% -- list of figures and tables --
+\clearpage
+\listoffigures
+\listoftables
+%\IfDefined{lstlistoflistings}{\lstlistoflistings}
+
+% --- Appendix --- --- --- --- --- --- ---
+\cleardoublepage
+\appendix
+% Add `Appendix` to TOC
+\addcontentsline{toc}{part}{\appendixname}
+% must be _input_, otherwise the TOC entry is at the wrong place
+\input{content/Z-Anhang.tex}
+
+% -- only in phd thesis --->
+\input{content/Z-Publikationen}
+\input{content/Z-CV}
+% <------------------------
+\cleardoublepage
+\IfDefined{printindex}{\printindex}
+
+\input{content/Z-Danksagung}
+
+% add todo list (remove for final document!)
+% incompatible with ???
+%\IfPackageLoaded{todonotes}{
+%  \clearpage
+%  \IfPackageLoaded{hyperref}{\phantomsection}
+%  \todototoc   % add to toc 
+%  \listoftodos % print to document
+%}
+
+
+
+\typeout{time elapsed: \the\pdfelapsedtime/65536 s}
+
+%%% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

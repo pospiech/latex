@@ -1,0 +1,20 @@
+% --| Index |---------------------------------------------------------
+
+% prints 1st argument emphasized and indexes it
+\newcommand{\emphidx}[1]{\emph{#1}\index{#1}}
+
+% prints and indexes 1st argument
+\newcommand{\idx}[1]{#1\index{#1}}
+
+% --| Length |-------------------------------------------------------
+
+% define margin width variable
+\newlength{\marginwidth}
+\setlength{\marginwidth}{\marginparwidth}
+\addtolength{\marginwidth}{\marginparsep}
+
+% define text width and height
+\newlength{\doctextwidth}
+\setlength{\doctextwidth}{\textwidth}
+\newlength{\doctextheight}
+\setlength{\doctextheight}{\textheight}

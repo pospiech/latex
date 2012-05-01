@@ -1,0 +1,83 @@
+\IfElseDefined{chapter}{%
+   \pagestyle{scrheadings} % Seite mit Headern
+}{
+   \pagestyle{scrplain} % Seiten ohne Header
+}
+%\pagestyle{empty} % Seiten ohne Header
+%
+% loescht voreingestellte Stile
+\clearscrheadings
+\clearscrplain
+%
+% Was steht wo...
+\IfElseDefined{chapter}{
+   % Oben aussen: Kapitel und Section
+   % Unten aussen: Seitenzahl
+   % \ohead{\headmark} % Oben außen: Setzt Kapitel und Section automatisch
+   % \ofoot[\pagemark]{\pagemark}
+   % oder...
+   % Oben aussen: Seitenzahlen
+   % Oben innen: Kapitel und Section
+   \ohead{\pagemark}
+   \ihead{\headmark}
+   \ofoot[\pagemark]{} % Außen unten: Seitenzahlen bei plain
+}{
+   \cfoot[\pagemark]{\pagemark} % Mitte unten: Seitenzahlen bei plain
+}
+% Vollstaendige Liste der moeglichen Positionierungen
+% \lehead[scrplain-links-gerade]{scrheadings-links-gerade}
+% \cehead[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
+% \rehead[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
+% \lefoot[scrplain-links-gerade]{scrheadings-links-gerade}
+% \cefoot[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
+% \refoot[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
+% \lohead[scrplain-links-ungerade]{scrheadings-links-ungerade}
+% \cohead[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
+% \rohead[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
+% \lofoot[scrplain-links-ungerade]{scrheadings-links-ungerade}
+% \cofoot[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
+% \rofoot[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
+% \ihead[scrplain-innen]{scrheadings-innen}
+% \chead[scrplain-zentriert]{scrheadings-zentriert}
+% \ohead[scrplain-außen]{scrheadings-außen}
+% \ifoot[scrplain-innen]{scrheadings-innen}
+% \cfoot[scrplain-zentriert]{scrheadings-zentriert}
+% \ofoot[scrplain-außen]{scrheadings-außen}
+
+% Angezeigte Abschnitte im Header
+\IfElseDefined{chapter}{
+   \automark[section]{chapter} %[rechts]{links}
+}{
+   \automark[subsection]{section} %[rechts]{links}
+}
+%
+% Linien (moegliche Kombination mit Breiten)
+\IfDefined{chapter}{%
+   %\setheadtopline{}     % modifiziert die Parameter fuer die Linie ueber dem
+   							  %	 Seitenkopf
+   \setheadsepline{.4pt}[\color{black}]
+                         % modifiziert die Parameter fuer die Linie zwischen
+                         % Kopf und Textkörper
+   %\setfootsepline{}    % modifiziert die Parameter fuer die Linie zwischen
+   							 % Text und Fuß
+   %\setfootbotline{}    % modifiziert die Parameter fuer die Linie unter dem
+   							 % Seitenfuss
+}
+
+%% width of head and foot
+\setheadwidth[0pt]{text}
+\setfootwidth[0pt]{text}
+%   paper % width of paper
+%   page  % width of page (paper - BCOR)
+%   text  % \textwidth
+%   textwithmarginpar % width of text plus margin
+%   head  % current width of head
+%   foot  % current width of foot
+
+% set chapter pages with heading (or other) style
+%\renewcommand*{\chapterpagestyle}{scrheadings}
+
+%\renewcommand*{\partpagestyle}{empty}
+%\renewcommand*{\titlepagestyle}{empty}
+%\renewcommand*{\indexpagestyle}{empty}
+
