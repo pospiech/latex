@@ -1,0 +1,28 @@
+22.12.
+
+- demo: More Math example
+
+- biblatex: make style 
+
+- docu: Pakete, Vorlage allgemein
+
+10.01
+
+- make sure language specific commands are correct
+- demo of template specific commands
+
+18.01:
+- remove framed from demo.tex ?
+  -> requires additional code in templatedemo.sty for second input file
+
+24.04:
+- ensure pgf examples are running
+
+- package docu: create common files
+- update all docu 
+- create general docu for the template
+
+- improve templatedemo.sty documentation. Better text, full list of examples, docu of code
+
+01.05
+- remove BibtexDatabase.bib

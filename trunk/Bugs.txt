@@ -1,0 +1,13 @@
+Class scrbook Warning: Change of `\@footnotemark' detected!
+(scrbook) Use of `footnotes=multiple' may break
+(scrbook) another package!
+(scrbook) Maybe you should remove the usage of
+(scrbook) option `footnotes=multiple' on input line 1537.
+
+
+Class scrbook Warning: \float@addtolists detected!
+(scrbook) You should use the features of package `tocbasic'
+(scrbook) instead of \float@addtolists.
+(scrbook) Support for \float@addtolists may be removed from
+(scrbook) `scrbook' soon .
+
