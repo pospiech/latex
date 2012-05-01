@@ -1,0 +1,68 @@
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+%
+\usepackage{cmap} 
+\usepackage[T1]{fontenc} % T1 Schrift Encoding
+\usepackage{lmodern}
+%
+\RequirePackage{listings}
+\RequirePackage[table]{xcolor}
+\RequirePackage{enumitem}
+
+\input{preamble/listings-latex.tex}
+%
+\input{preamble/setup-hyperref.tex}
+
+\newcommand{\package}[1]{\texttt{#1}}
+
+\listfiles
+\begin{document}
+
+\changes{0.1}{2011/01/20}{Initial version.}
+
+\DoNotIndex{\newcommand,\newenvironment}
+
+\providecommand*{\url}{\texttt}
+\title{The \textsf{templatesection} package}
+\author{Matthias Pospiech \\ \url{matthias.pospiech@gmx.de}}
+\date{0.1~from \filedate}
+
+\maketitle
+\begin{abstract}\noindent
+This packages provides an environment to switch a section
+within the preamble on or off. This can be used to create a 
+template were the executed code can be preselected.
+\end{abstract}
+%\tableofcontents
+
+\section*{Origin of the code}
+The code is based in the verbatim.sty package and was 
+modified by Ulrich Diez to match the pure comment
+functionality. Further modifications are contributed by 
+Matthias Pospiech. 
+The code is the result of a discussion on \url{??}.
+
+
+\section*{Usage}
+Define code sections with (the default is \emph{true})
+\begin{itemize}
+\item\cs{DefineTemplateSection}\oarg{true/false}\marg{name}
+\end{itemize}
+%
+which are then inserted for example as 
+\begin{lstlisting}[style=demostyle]
+\DefineTemplateSection[true]{PackagesBugfixes}
+\BeginTemplateSection{PackagesBugfixes}
+  \usepackage{fixltx2e}
+\EndTemplateSection{PackagesBugfixes}
+\end{lstlisting}
+
+In this case the whole code in this section is executed. If the section would be defined as 
+\begin{lstlisting}[style=demostyle]
+\DefineTemplateSection[false]{PackagesBugfixes}
+\end{lstlisting}
+the whole code between \cs{BeginTemplateSection} and \cs{EndTemplateSection} would not be executed.
+
+\end{document}

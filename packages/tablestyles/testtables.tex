@@ -1,0 +1,588 @@
+%!TeX encoding=utf8
+ 
+%% Dokumentenklasse (Koma Script) -----------------------------------------
+\RequirePackage{fix-cm}
+\documentclass[%
+   %draft,     % draft mode (no images, layout errors shown)
+   final,      % final mode 
+%%% --- Paper Settings ---
+   paper=a4,% [Todo: add alternatives]
+   paper=portrait, % landscape
+   pagesize=auto, % driver
+%%% --- Base Font Size ---
+   fontsize=11pt,%
+%%% --- Koma Script Version ---
+   version=last, %
+%%% --- Global Package Options ---
+   ngerman, % language (passed to babel and other packages)
+            % (german, ngerman, english, french, ...)
+ ]{scrartcl} % Classes: scrartcl, scrreprt, scrbook
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{filecontents}
+
+%%% Doc: xcolor.pdf
+% Colors
+\usepackage[
+  dvipsnames, % Load a set of predefined colors 
+  table,      % Load the colortbl package
+  % fixpdftex,  % Load the pdfcolmk package (may be problematic)
+  hyperref,   % Support  the  hyperref  package
+  fixinclude, %Prevent dvips color reset before .eps ﬁle inclusion
+]{xcolor}
+
+%%% Doc: booktabs.pdf
+\usepackage{booktabs}
+
+\usepackage{ltxtable}
+
+% tabu
+\usepackage{tabu}
+  \tabulinesep=5pt
+
+\usepackage{float}
+
+\usepackage{tablestyles}
+
+\listfiles
+
+%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+\tablestyle
+%\begin{tabular}{|l|c|r|p{0.3\linewidth}|}
+\begin{tabular}{|l|l|l|p{0.3\linewidth}|}
+\theadstart
+\thead \centering header l &
+\thead \centering header c &   
+\thead \centering header r &   
+\thead \centering header p \tabularnewline
+\tbody
+left & center & right & 
+text which is considerably longer than the width of the column \\
+left & center & right & 
+text which is considerably longer than the width of the column \\
+left & center & right & 
+text which is considerably longer than the width of the column \\
+\tend
+\end{tabular}
+\caption{standard column types (lcrp)}
+\label{tab:ct:standard}
+\end{table}
+
+
+\begin{table}[H]
+%\tablestyle[sansbold]
+\begin{tabu} to 0.8\textwidth
+   {X[1,L]X[1,L]}
+%\theadstart
+\hline
+\rowcolor{\tablecolor{head}}
+\rowfont[l]{}%
+%head & head &
+ head & head \tabularnewline
+%\tbody
+\hline
+%text which is considerably longer than the width of the column &
+%text which is considerably longer than the width of the column &
+text which is considerably longer than the width of the column &
+text which is considerably longer than the width of the column \\
+%text which is considerably longer than the width of the column &
+%text which is considerably longer than the width of the column &
+%text which is considerably longer than the width of the column &
+%text which is considerably longer than the width of the column \\
+%text which is considerably longer than the width of the column &
+%text which is considerably longer than the width of the column &
+%text which is considerably longer than the width of the column &
+%text which is considerably longer than the width of the column \\
+%\tend
+\hline
+\end{tabu}
+\caption{standard column types (lcrp)}
+\label{tab:ct:standard}
+\end{table}
+
+
+%
+%\tableofcontents
+%
+%\section{tables styles}
+%
+%\subsection{table with no style applied}
+%
+%\begin{table}[H]
+%\begin{tabular}{lll}
+%header & header & header \tabularnewline
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%\end{tabular}
+%\end{table}
+%
+%\subsection{table with no style and lines}
+%
+%\begin{table}[H]
+%\begin{tabular}{lll}
+%\hline
+%header & header & header \tabularnewline
+%\hline
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%\hline
+%\end{tabular}
+%\end{table}
+%
+%
+%\subsection{table with lines in \emph{booktabs} style}
+%
+%\begin{table}[H]
+%\begin{tabular}{lll}
+%\toprule
+%header & header & header \tabularnewline
+%\midrule
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%\bottomrule
+%\end{tabular}
+%\end{table}
+%
+%
+%\subsection{table with \emph{tablestyle} commands (default)}
+%
+%\begin{table}[H]
+%\tablestyle
+%\begin{tabular}{lll}
+%\theadstart
+%\thead header &
+%\thead header &
+%\thead header \tabularnewline
+%\tbody
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%\tend
+%\end{tabular}
+%\end{table}
+%%
+%
+%\begin{table}[H]
+%\tablestyle
+%\begin{tabular}{lll}
+%\theadstart
+%\thead header &
+%\thead header &
+%\thead header \tabularnewline
+%\tbody
+%content & content  & content \tabularnewline
+%\tsubheadstart
+%\tsubhead subhead &
+%\tsubhead subhead &
+%\tsubhead subhead \tabularnewline
+%%
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%\tend
+%\end{tabular}
+%\end{table}
+%
+%\subsection{table with \emph{tablestyle} commands (roman style)}
+%
+%\begin{table}[H]
+%\tablestyle[roman]
+%\begin{tabular}{lll}
+%\theadstart
+%\thead header &
+%\thead header &
+%\thead header \tabularnewline
+%\tbody
+%content & content  & content \tabularnewline
+%%
+%\tsubheadstart
+%\tsubhead subhead &
+%\tsubhead subhead &
+%\tsubhead subhead \tabularnewline
+%%
+%content & content  & content \tabularnewline
+%content & content  & content \tabularnewline
+%\tend
+%\end{tabular}
+%\end{table}
+%
+%\subsection{table with tabularx (fixed width of table), sansbold style}
+%
+%%--------------------------------------------------------
+%\begin{table}[H]
+%\tablestyle[sansbold]
+%\disablealternatecolors
+%%
+%\captionabove{table with tabularx (lXXlX), style sansbold, no alternating colors}
+%\begin{tabularx}{\textwidth}{>{\itshape}lXXlX}
+%\theadstart
+%   \thead header &
+%   \thead header &
+%   \thead header &
+%   \thead header &
+%   \thead header \tabularnewline
+%\tbody
+%%
+%description & content & content & content & content \tabularnewline
+%description & content & content & content & content \tabularnewline
+%description & content & content & content & content \tabularnewline
+%\tend
+%\end{tabularx}
+%\end{table}
+%
+%%--------------------------------------------------------
+%\begin{table}[H]
+%\tablestyle[sansbold]
+%%
+%\captionabove{table with tabularx (lXXlX), style sansbold, with alternating colors and subheader}
+%\begin{tabularx}{\textwidth}{>{\itshape}lXXlX}
+%\theadstart
+%   \thead header &
+%   \thead header &
+%   \thead header &
+%   \thead header &
+%   \thead header \tabularnewline
+%\tbody
+%%
+%description & content & content & content & content \tabularnewline
+%description & content & content & content & content \tabularnewline
+%\tsubheadrow{5}{subheader} 
+%description & content & content & content & content \tabularnewline
+%description & content & content & content & content \tabularnewline
+%description & content & content & content & content \tabularnewline
+%\tend
+%\end{tabularx}
+%\end{table}
+%
+%
+%\subsection{table with sansboldbw style}
+%
+%\begin{table}[H]
+%\tablestyle[sansboldbw]
+%\captionabove{table with darker alternating colors}
+%\begin{tabular}{*{2}{v{0.45\textwidth}}}
+%   \theadstart
+%   \thead header &
+%   \thead header \tabularnewline
+%% Zwischenkopf
+%\tbody
+%\tsubheadrow{2}{subheader} 
+% content  & content \tabularnewline
+% content  & content \tabularnewline
+% content  & content \tabularnewline
+% content  & content \tabularnewline
+% content  & content \tabularnewline
+% content  & content \tabularnewline
+%\tsubheadrow{2}{subheader} 
+% content  & content \tabularnewline
+% content  & content \tabularnewline
+%\tend
+%   \end{tabular}
+%\end{table}
+%
+%\subsection{table across pages (longtable)}
+%
+%\begin{filecontents}{longtableexample}
+%\begin{longtable}{>{\itshape}l*{5}{Y}}
+%\captionabove{table across pages (longtable) with tabularx columns} \\
+%   \theadstart
+%   \thead header &
+%   \thead header &
+%   \thead header &
+%   \thead header &
+%   \thead header &
+%   \thead header \tabularnewline
+%\endfirsthead
+%   \tbody 
+%   \multicolumn{6}{r}{\emph{continued on next page \ldots{}}}
+%\endfoot
+%	\tend
+%\endlastfoot
+%\tbody
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%description   & content & content & content & content & content \tabularnewline
+%\end{longtable}
+%\end{filecontents}
+%
+%{
+%   \tablestyle[sansbold]
+%   \LTXtable{\textwidth}{longtableexample.tex}
+%}
+%
+%
+%\subsection{colored vertical lines}
+%
+%\begin{table}[H]
+%\tablestyle
+%\begin{tabularx}{0.8\textwidth}{%
+%l!{\color[gray]{0.7}\vline}
+%CC!{\color[gray]{0.7}\vline}
+%CC!{\color[gray]{0.7}\vline}
+%C
+%}
+%\theadstart
+%header & 
+%\multicolumn{2}{>{\columncolor{\tablecolor{head}}\thead}c!{\color[gray]{0.7}\vline}}
+%{header} & 
+%\multicolumn{2}{>{\columncolor{\tablecolor{head}}\thead}c!{\color[gray]{0.7}\vline}}
+%{header} & 
+%\multicolumn{1}{>{\columncolor{\tablecolor{head}}\thead}c}
+%{header} 
+%%
+%\tabularnewline
+%\tbody
+%%
+%description & 0,3 & 0,35 & 0,5 & 0,65 & 0,80\tabularnewline
+%%
+%description & 0,3 & 0,35 & 0,5 & 0,65 & 0,80\tabularnewline
+%%
+%description & 0,3 & 0,35 & 0,5 & 0,65 & 0,80\tabularnewline
+%%
+%description & 0,3 & 0,35 & 0,5 & 0,65 & 0,80\tabularnewline
+%\tend
+%\end{tabularx}
+%\end{table}
+%
+%\section{column types}
+%
+%\subsection{standard table}
+%%--------------------------------------------------------
+%\begin{table}[H]
+%\tablestyle
+%%
+%\captionabove{standard table (lcr)}
+%\begin{tabular}{|l|c|r|}
+%\theadstart
+%   \thead \centering header l &
+%   \thead \centering header c &   
+%   \thead \centering header r \tabularnewline
+%\tbody
+%%
+%left & center & right \tabularnewline
+%\tend
+%\end{tabular}
+%\end{table}
+%
+%\subsection{fixed width colummns}
+%%--------------------------------------------------------
+%\begin{table}[H]
+%\tablestyle
+%%
+%\captionabove{table with tabular (pmb)}
+%\begin{tabular}{|p{0.28\textwidth}|m{0.28\textwidth}|b{0.28\textwidth}|}
+%\theadstart
+%   \thead \centering header p &
+%   \thead \centering header m &   
+%   \thead \centering header b \tabularnewline
+%\tbody
+%%
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%&
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%&
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%\tabularnewline
+%\tend
+%\end{tabular}
+%\end{table}
+%
+%\subsection{table with tabularx und left, centered and right columns}
+%%--------------------------------------------------------
+%\begin{table}[H]
+%\tablestyle
+%%
+%\captionabove{table with tabularx (XCY)}
+%\begin{tabularx}{\textwidth}{|X|C|Y|}
+%\theadstart
+%   \thead \centering header X &
+%   \thead \centering header C &   
+%   \thead \centering header Y \tabularnewline
+%\tbody
+%%
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%&
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%&
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%\tabularnewline
+%\tend
+%\end{tabularx}
+%\end{table}
+%
+%\subsection{table with tabularx and fixed columns}
+%%--------------------------------------------------------
+%\begin{table}[H]
+%\tablestyle
+%%
+%\captionabove{table with tabularx and fixed columns (vXX) using improved ragged right}
+%\begin{tabularx}{\textwidth}{|v{0.2\textwidth}|X|X|}
+%\theadstart
+%   \thead \centering header v &
+%   \thead \centering header X &   
+%   \thead \centering header X \tabularnewline
+%\tbody
+%%
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%&
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%&
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%\tabularnewline
+%\tend
+%\end{tabularx}
+%\end{table}
+%
+%\section{itemize in tables}
+%
+%\begin{table}[H]
+%\tablestyle
+%%
+%\captionabove{table item list using \texttt{tableitemize}}
+%\begin{tabularx}{\textwidth}{|v{0.2\textwidth}|X|X|}
+%\theadstart
+%   \thead \centering header v &
+%   \thead \centering header items (X) &   
+%   \thead \centering header X \tabularnewline
+%\tbody
+%%
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%&
+%\tableitemize
+%\begin{itemize}
+%\item The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program.
+%%
+%\item \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting,
+%%
+%\item especially for mathematical text.
+%\end{itemize}
+%&
+%The \LaTeX{} document preparation 
+%system is a special version of Donald
+%Knuth's \TeX{} program. \TeX{} is a 
+%sophisticated program designed to 
+%produce high-quality typesetting, 
+%especially for mathematical text.
+%\tabularnewline
+%\tend
+%\end{tabularx}
+%\end{table}
+
+
+%%% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+--

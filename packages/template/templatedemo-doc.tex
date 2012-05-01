@@ -1,0 +1,185 @@
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+%
+\usepackage{cmap} 
+\usepackage[T1]{fontenc} % T1 Schrift Encoding
+\usepackage{lmodern}
+%
+%\RequirePackage{listings}
+\RequirePackage[table]{xcolor}
+\RequirePackage{enumitem}
+\RequirePackage{tabu}
+
+%\input{preamble/listings-latex.tex}
+%
+\input{preamble/setup-hyperref.tex}
+
+% color setup
+% table colors 
+\colorlet{tablebodycolor}{white!100}
+\colorlet{tablerowcolor}{gray!10}
+\colorlet{tableheadcolor}{gray!25}
+
+
+
+\usepackage{templatedemo}
+\usepackage{soul}
+
+
+\newcommand{\package}[1]{\texttt{#1}}
+\newcommand{\latex}{\LaTeX}
+
+\listfiles
+\begin{document}
+
+\changes{0.1}{2011/12/15}{Initial version.}
+
+\DoNotIndex{\newcommand,\newenvironment}
+
+\providecommand*{\url}{\texttt}
+\title{The \textsf{templatedemo} package}
+\author{Matthias Pospiech \\ \url{matthias.pospiech@gmx.de}}
+\date{0.1~from \filedate}
+
+\maketitle
+\begin{abstract}\noindent
+This package provides some commands to demonstrate the result and the originating code sequence with a single occurance of the code within the document.
+\end{abstract}
+%\tableofcontents
+
+\section{Introduction}
+This package provides some commands to demonstrate the result of \latex{} code together with the code, which the result is based on. The difference to other packages (such as \package{showexpl}) is the support of verbatim material inside a conditional sequence. 
+The consequence of this requirement is however that the commands of this package are more low level than origially intended.
+
+The commands provided by this package are based on the packages \package{listings}, \package{mdframed} and \package{filecontents}. 
+
+
+\section{Basic example}
+
+Below is a principle example (using \cs{ifcsdef} from etoolbox):
+
+\begin{lstlisting}[style=demostyle]
+\begin{filecontents*}{\democodefile}
+\so{letterspacing}, \\
+\ul{underlining},   \\
+\st{overstriking}   \\
+and \hl{highlighting}. 
+\end{filecontents*}
+
+\ifcsdef{so}{%
+\subsection*{package: soul}
+
+Commands of package \demopackage{soul}:
+\PrintCodeAndResultsParallel
+}{% 
+  \DemoError{Command \democs{so} of package% 
+  \demopackage{soul} not available.
+  Probably the package was not loaded.
+  }
+}%
+\end{lstlisting}
+
+which is shown as 
+
+% ------------------------------------------------------------
+\begin{filecontents*}{\democodefile}
+\so{letterspacing}, \\
+\ul{underlining},   \\
+\st{overstriking}   \\
+and \hl{highlighting}. 
+\end{filecontents*}
+
+\ifcsdef{so}{%
+% ------------------------------------------------------------
+\subsection*{package: soul}
+
+Commands of package \demopackage{soul}:
+\PrintCodeAndResultsParallel
+}{}%
+
+
+
+\section{Reference}
+
+\subsection{Setup}
+
+
+\begin{flushleft}
+% Style changes
+\small\rmfamily\renewcommand{\arraystretch}{1.4}  
+% tabu
+\begin{tabu} to 0.9\textwidth {X[1,l]>{a}X<{b}[1,l]X[2,l]}
+\hline
+\rowfont[l]{\bfseries}
+\taburowcolors 1{tableheadcolor .. tableheadcolor}
+command       &
+default value & 
+description  \\
+\hline
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+\cs{democodefile} & 
+\texttt{democode}  &
+temporary file required for code and results printing. \\
+% 
+\cs{democodeprefix} & 
+\texttt{Code: }  &
+Prefix text for output of code in \\
+% 
+\hline
+\end{tabu}
+\end{flushleft}	
+
+
+% better as table
+%\newcommand{\democodeprefix}{Code: }
+%\newcommand{\demoresultprefix}{\noindent Result:}
+
+\subsection{Output commands}
+%\newcommand{\democs}[1]{\democommand{#1}}
+%\newcommand{\democommand}[1]{\texttt{\bs{}#1}}
+%\newcommand{\demoenv}[1]{\texttt{#1}}
+%\newcommand{\demopackage}[1]{\texttt{\itshape#1}}
+%\DemoError
+\subsection{Print code and result}
+% Print code and result using the key-value syntax
+%\newcommand{\PrintDemo}[1]{%
+
+%  \ifnum\pdf@strcmp{\demo@style}{parallel}=0%
+%    \PrintCodeAndResultsParallel%
+%  \else\ifnum\pdf@strcmp{\demo@style}{stacked}=0%
+%    \PrintCodeAndResultsStacked%
+%  \else\ifnum\pdf@strcmp{\demo@style}{lines}=0%
+%    \PrintCodeAndResultsStackedLines%
+%  \else\ifnum\pdf@strcmp{\demo@style}{page}=0%
+%    \PrintCodeAndResultsPage%
+%  \else\ifnum\pdf@strcmp{\demo@style}{none}=0%
+
+\subsection{Low level commands}
+
+The printout of all examples shown in the previous section is based on the commands \cs{printlatexcode} and \cs{printlatexresult}, which are defined as:
+
+\begin{lstlisting}[style=demostyle]
+% Print code with prefix
+\newcommand{\printlatexcode}{%
+  \democodeprefix
+  \lstinputlisting[style=demostyle,nolol=true]{\democodefile}%
+}%
+\end{lstlisting}
+
+and 
+
+\begin{lstlisting}[style=demostyle]
+% Print result with standard box
+\newcommand{\printlatexresult}{%
+  \begin{latexresult}%
+    \IfFileExists{\democodefile}{\input{\democodefile}}{}%
+  \end{latexresult}%
+}%
+\end{lstlisting}
+
+The environment \demoenv{latexresult} itself includes the command \cs{demoresultprefix} and a frame based on \package{mdframed}.
+
+For all further commands used by the package and their imlementations please look at the code itsself. 
+\end{document}

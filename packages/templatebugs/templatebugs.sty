@@ -1,0 +1,396 @@
+%%
+%% This is file templatebugs.sty',
+%%
+%% Copyright (C) 2011 Matthias Pospiech (matthias@pospiech.eu)
+%%
+%% --------------------------------------------------------------------------
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%
+%% This work has the LPPL maintenance status 'maintained'.
+%%
+%% This Current Maintainer of this work is Matthias Pospiech
+%%
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{templatebugs}[2011/10/01 warns and corrects users who are loading replaced, depreciated, unnecessary or broken packages]
+
+\providecommand\packagename{templatebugs}
+
+%% --- required packages --- --- --- --- ---
+\RequirePackage{xifthen}
+%\RequirePackage{xkeyval}
+
+\RequirePackage{kvoptions-patch}
+\RequirePackage{kvoptions}
+\RequirePackage{pdftexcmds}
+\RequirePackage{etoolbox}
+
+%% --- processing of options --- --- --- --- ---
+\SetupKeyvalOptions{family=tplbugs,prefix=tplbugs@}
+
+\DeclareStringOption[warning]{errorlevel}
+
+\ProcessKeyvalOptions{tplbugs}
+
+%% check if errorlevel is of valid value
+\providecommand{\tplbugs@BugAction}[1]{}
+
+\ifnum\pdf@strcmp{\tplbugs@errorlevel}{info}=0%
+   \renewcommand\tplbugs@BugAction[1]{\PackageInfo{\packagename}{#1}{}}%
+\else\ifnum\pdf@strcmp{\tplbugs@errorlevel}{warning}=0%
+   \renewcommand\tplbugs@BugAction[1]{\PackageWarning{\packagename}{#1}{}}%
+\else\ifnum\pdf@strcmp{\tplbugs@errorlevel}{error}=0%
+   \renewcommand\tplbugs@BugAction[1]{\PackageError{\packagename}{#1}{}}%
+\else%
+   \PackageError{\packagename}{
+     \MessageBreak
+     value >\tplbugs@errorlevel< unkown \MessageBreak
+     possible values are: info,warning,error. \MessageBreak
+   }{}
+\fi\fi\fi%
+
+
+%% Inital Check %%%%%%%%%%%%%%%%%%%%
+\IfFileExists{scrlfile.sty}{%
+   \RequirePackage{scrlfile}%
+}{%
+  \PackageError{\packagename}
+   {%
+   \MessageBreak
+File 'scrlfile.sty' missing! \MessageBreak
+Package 'templatebugs' requires package 'scrlfile' from\MessageBreak
+Koma Script Bundle Version 3.x\MessageBreak
+   }{}
+   \endinput%
+}
+
+
+%% --- package commands --- --- --- --- --- --- 
+
+\providecommand{\tplbugs@idstring}{tplbugs@identifier@IfPackageLoaded@}
+
+%\newcommand\SetupIfPackageLoaded[1]{%
+%   \providebool{\tplbugs@idstring#1}
+%   \setboolean{\tplbugs@idstring#1}{false}
+%   \AfterPackage{#1}{%
+%      \setboolean{\tplbugs@idstring#1}{true}
+%   }%
+%}%
+
+%  \ifcsdef{tplbugs@idstring#1}{}{
+%  \PackageError{\packagename}%
+%   {%
+%   \MessageBreak
+%Identifier for package #1 unknown.\MessageBreak 
+%Probably you forgot to define tracking\MessageBreak
+%with the command \string\SetupIfPackageLoaded \MessageBreak
+%   }{}
+%  } 
+
+
+\RequirePackage{ltxcmds}
+\providecommand{\tplbugs@IfPackageLoaded}[2]{\ltx@ifpackageloaded{#1}{#2}{}}
+\providecommand{\tplbugs@IfPackageNotLoaded}[2]{\ltx@ifpackageloaded{#1}{}{#2}}
+\providecommand{\tplbugs@IfElsePackageLoaded}[3]{\ltx@ifpackageloaded{#1}{#2}{#3}}
+
+
+%% \@ifpackagelater{<pack>}{date}{if}{else}
+
+
+
+%% Packages replaced by newer ones (depreciated)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\CheckDepreciated[3][]{%
+   \BeforePackage{#2}{%
+      \tplbugs@BugAction
+      {%
+\MessageBreak
+You want to load Package: '#2'
+\MessageBreak
+This Package is DEPRECIATED!
+\MessageBreak
+Consider using  Package '#3' instead.
+\MessageBreak\MessageBreak
+#1
+      }%
+   }%
+}%
+
+\CheckDepreciated[%
+   Package 'caption' is Version 3.x or greater.
+]{caption2}{caption}
+%
+\CheckDepreciated[together with caption package]{subfigure}{subcaption}
+\CheckDepreciated[together with caption package]{subfig}{subcaption}
+\CheckDepreciated[]{scrlettr}{scrlttr2}
+\CheckDepreciated[Use Command \string\includegraphics]{epsf}{graphicx}
+\CheckDepreciated[]{epsfig}{graphicx}
+\CheckDepreciated[]{psfig}{graphicx}
+\CheckDepreciated[]{doublespace}{setspace}
+\CheckDepreciated[]{fancyheadings}{fancyhdr}
+\CheckDepreciated[]{scrpage}{scrpage2}
+\CheckDepreciated[]{isolatin}{inputenc}
+\CheckDepreciated[]{isolatin1}{inputenc}
+\CheckDepreciated[]{umlaut}{inputenc}
+\CheckDepreciated[]{umlaute}{inputenc}
+\CheckDepreciated[]{t1enc}{fontenc}
+\CheckDepreciated[]{natdin}{dinat}
+\CheckDepreciated[]{dinat}{natdin}
+\CheckDepreciated[In combination with helvet, courier]{times}{mathptmx}
+\CheckDepreciated[In combination with helvet, courier]{pslatex}{mathptmx}
+\CheckDepreciated[]{mathptm}{mathptmx}
+\CheckDepreciated[In combination with helvet, courier]{palatino}{mathpazo}
+\CheckDepreciated[]{mathpple}{mathpazo}
+\CheckDepreciated[]{euler}{eulervm}
+\CheckDepreciated[]{glossary}{glosseries}
+\CheckDepreciated[Alternative: typearea]{anysize}{geometry}
+\CheckDepreciated[or use the backref option of biblatex]{backrefx}{backref}
+\CheckDepreciated[]{bitfield}{bytefield}
+\CheckDepreciated[]{eurotex}{inputenc}
+\CheckDepreciated[]{here}{floatrow}
+\CheckDepreciated[]{nthm}{ntheorem}
+\CheckDepreciated[]{texdraw}{pgf/tikZ or pstricks}
+\CheckDepreciated[Use option 'german']{german}{babel}
+\CheckDepreciated[Use option 'ngerman']{ngerman}{babel}
+\CheckDepreciated[]{ps4pdf}{pst-pdf}
+\CheckDepreciated[]{raggedr}{ragged2e}
+\CheckDepreciated[]{csvtools}{datatool}
+\CheckDepreciated[]{floatfig}{floatflt}
+\CheckDepreciated[]{utopia}{fourier}
+\CheckDepreciated[]{SIunits}{siunitx}
+\CheckDepreciated[]{SIstyle}{siunitx}
+\CheckDepreciated[]{unitsdef}{siunitx}
+\CheckDepreciated[]{fancyunits}{siunitx}
+\CheckDepreciated[]{fancynum}{siunitx}
+\CheckDepreciated[]{dcolumn}{siunitx}
+\CheckDepreciated[combines tabularx and longtable]{longtable}{ltxtable}
+\CheckDepreciated[combines tabularx and longtable]{tabularx}{ltxtable}
+%
+\CheckDepreciated[%
+   The 'caption' package reimplements the \MessageBreak
+   'hypcap' possibilities in a superior way.
+]{hypcap}{caption}
+%
+\CheckDepreciated[%
+   Replace \string\captionof{figure} by \MessageBreak
+   \captionsetup{type=figure} \MessageBreak 
+   \caption{...} \MessageBreak
+   for correct hyperlink placement.%
+]{capt-of}{caption}
+%
+\CheckDepreciated[%
+or use alternatively the environment \MessageBreak
+`captionbeside' from koma script \MessageBreak
+]{sidecap}{floatrow}
+%
+\CheckDepreciated[]{rotfloat}{floatrow}
+\CheckDepreciated[]{enumerate}{enumitem}
+\CheckDepreciated[]{paralist}{enumitem}
+\CheckDepreciated[]{mdwlist}{enumitem}
+
+\CheckDepreciated[]{nomencl}{glossaries}
+\CheckDepreciated[]{acronym}{glossaries}
+
+%% Packages incompatible with others
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand\CheckInkompatible[3][]{%
+%   \SetupIfPackageLoaded{#2}
+%   \SetupIfPackageLoaded{#3}
+   \BeforePackage{#2}{%
+      \tplbugs@IfPackageLoaded{#3}
+      {
+         \tplbugs@BugAction
+         {%
+   \MessageBreak
+   You want to load Package: '#2'
+   \MessageBreak
+   This Package is INCOMPATIBLE
+   \MessageBreak
+   with package '#3'!
+   \MessageBreak\MessageBreak
+   #1
+         }%
+      }%
+   }%
+   \BeforePackage{#3}{%
+      \tplbugs@IfPackageLoaded{#2}
+      {
+         \tplbugs@BugAction
+         {%
+   \MessageBreak
+   You want to load Package: '#2'
+   \MessageBreak
+   Loaded Package '#3' is INCOMPATIBLE
+   \MessageBreak
+   with package '#2'!
+   \MessageBreak\MessageBreak
+   #1
+         }%
+      }%
+   }%
+}%
+
+\newcommand\CheckInkompatibleWithClass[3][]{%
+   \BeforePackage{#2}{%
+      \ltx@ifclassloaded{#3}
+      {
+         \tplbugs@BugAction
+         {%
+   \MessageBreak
+   You want to load Package: '#2'
+   \MessageBreak
+   This Package is INKOMPATIBLE
+   \MessageBreak
+   with class '#3'!
+   \MessageBreak\MessageBreak
+   #1
+         }%
+      }%
+   }%
+}%
+
+
+\CheckInkompatible[]{float}{floatrow}
+\CheckInkompatible[]{sidecap}{floatrow}
+\CheckInkompatible[]{MnSymbol}{exscale}
+\CheckInkompatible[]{MnSymbol}{mathcomp}
+\CheckInkompatible[]{enumerate}{enumitem}
+%
+\CheckInkompatible[]{ucs}{biblatex}
+\CheckInkompatible[]{babelbib}{biblatex}
+\CheckInkompatible[]{backref}{biblatex}
+\CheckInkompatible[]{bibtopic}{biblatex}
+\CheckInkompatible[]{bibunits}{biblatex}
+\CheckInkompatible[]{chapterbib}{biblatex}
+\CheckInkompatible[]{cite}{biblatex}
+\CheckInkompatible[]{citeref}{biblatex}
+\CheckInkompatible[]{inlinebib}{biblatex}
+\CheckInkompatible[]{jurabib}{biblatex}
+\CheckInkompatible[]{mcite}{biblatex}
+\CheckInkompatible[]{mciteplus}{biblatex}
+\CheckInkompatible[]{multibib}{biblatex}
+\CheckInkompatible[]{natbib}{biblatex}
+\CheckInkompatible[]{splitbib}{biblatex}
+
+\CheckInkompatible[]{capt-of}{caption}
+\CheckInkompatible[]{capt-of}{subfig}
+\CheckInkompatible[]{subcaption}{subfig}
+\CheckInkompatible[usage of marginnote is recommended instead]{mparhack}{pdfpages}
+\CheckInkompatible[]{mparhack}{marginfix}
+\CheckInkompatible[]{draftcopy}{isodate}
+\CheckInkompatible[]{fancyvrb}{fancybox}
+\CheckInkompatible[
+and all classes based on koma script.\MessageBreak
+It will very likely break your layout \MessageBreak
+of TOC and LOT/LOF pages.\MessageBreak
+\MessageBreak
+Package tocstyle is recommended instead.\MessageBreak
+]{tocloft}{scrbase}
+
+\CheckInkompatible{tocloft}{tocstyle}
+\CheckInkompatible{titletoc}{tocstyle}
+\CheckInkompatible{gmverb}{mdframed}
+
+
+
+%% Packages that are expected for a valid Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\WarnBasicPackageNotLoaded[2]{%
+      \tplbugs@BugAction
+      {%
+\MessageBreak
+You have not loaded Package: '#1'
+\MessageBreak
+This Package is recommanded. It is used for:
+\MessageBreak
+#2
+      }%
+}%
+
+
+%%% Packages that shall be loaded
+%\SetupIfPackageLoaded{inputenc}
+
+\AtBeginDocument{%
+  \ifpdftex{% only if pdftex 
+   \tplbugs@IfPackageNotLoaded{inputenc}{%
+      \WarnBasicPackageNotLoaded{inputenc}{%
+Character translation to LaTeX internals. You \MessageBreak
+can not use umlaute and other language specific \MessageBreak
+special characters without this package. \MessageBreak
+\MessageBreak
+Alternatively use package selinput. \MessageBreak
+      }%
+   }%
+  }{}
+}%
+
+
+\AtBeginDocument{%
+   \tplbugs@IfPackageLoaded{amsmath}{%
+     \tplbugs@IfPackageNotLoaded{mathtools}{%
+        \WarnBasicPackageNotLoaded{mathtools}{%
+enhances amsmath and fixes some bugs \MessageBreak
+        }
+     }%
+     \tplbugs@IfPackageNotLoaded{fixmath}{%
+        \WarnBasicPackageNotLoaded{fixmath}{%
+ensures that LaTeX mathematics does comply\MessageBreak
+with the International Standards \MessageBreak
+ISO31-0:1992 to ISO31-13:1992\MessageBreak
+        }
+     }%
+     \tplbugs@IfPackageNotLoaded{onlyamsmath}{%
+        \WarnBasicPackageNotLoaded{onlyamsmath}{%
+ensures that no incompatible TeX or \MessageBreak
+old LaTeX math commands are used.\MessageBreak
+        }
+     }%
+  }%
+}%
+
+
+
+
+
+\endinput
+
+
+%
+% % Aussehen des Inhaltsverzeichnisses: tocloft
+% % Laden mit Option subfigure in Abhängigkeit vom Paket subfigure und subfig
+% \tplbugs@IfElsePackageLoaded{subfig}
+%    % IF subfig
+%    {\usepackage[subfigure]{tocloft}}{
+%    % ELSE
+%    \tplbugs@IfElsePackageLoaded{subfigure}
+%       % IF subfigure
+%       {\usepackage[subfigure]{tocloft}}
+%       % Else (No subfig nor subfigure)
+%       {\usepackage{tocloft}}
+%    }
+%
+% Für tocbibind müsste jetzt noch eine Abfrage rein ob eine Koma Klasse und
+% tocbibind geladen wird, damit eine Warnung ausgegeben werden kann.
+%
+% Wenn diese Probleme nicht wären hätte ich auf meiner Homepage schon lange eine
+% neue Vorlage online gestellt. Aber da ich nicht garantieren kann, dass meine
+% Preambel immer fehlerfrei durchläuft gibt es seit über 2 Jahren keine
+% aktuelle Vorlage mehr von mir.
+
+
+
+%Wenn float
+%The float package has some caveats and limitations. Consider using the supperior possibilites of the 'caption' and 'floatrow' package.
+%
+%
+%WENN Koma Script DANN fancyhdr schlechte Wahl, weil \setkomafont nicht direkt unterst�tzt.
