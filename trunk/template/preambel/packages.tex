@@ -1,0 +1,912 @@
+\DefineTemplateSection[true]{PackagesBase}
+\DefineTemplateSection[true]{PackagesBugfixes}
+\DefineTemplateSection[true]{PackagesFonts}
+\DefineTemplateSection[true]{PackagesDiagrams}
+\DefineTemplateSection[true]{PackagesMath}
+\DefineTemplateSection[true]{PackagesScience}
+\DefineTemplateSection[true]{PackagesSymbols}
+\DefineTemplateSection[true]{PackagesTables}
+\DefineTemplateSection[true]{PackagesText}
+\DefineTemplateSection[true]{PackagesQuotes}
+\DefineTemplateSection[true]{PackagesCitation}
+\DefineTemplateSection[true]{PackagesFigures}
+\DefineTemplateSection[true]{PackagesCaptions}
+\DefineTemplateSection[true]{PackagesIndexes}
+\DefineTemplateSection[true]{PackagesMisc}
+\DefineTemplateSection[true]{PackagesVerbatim}
+\DefineTemplateSection[true]{PackagesFancy}
+\DefineTemplateSection[true]{PackagesLayout}
+\DefineTemplateSection[true]{PackagesHeadFoot}
+\DefineTemplateSection[true]{PackagesHeadings}
+\DefineTemplateSection[true]{PackagesTOC}
+\DefineTemplateSection[true]{PackagesPDF}
+\DefineTemplateSection[true]{PackagesAdditional}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% These packages must be loaded before all others
+% (primarily because they are required by other packages)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesBase}
+
+% Description: Calculation with LaTeX 
+% Doc: calc.pdf
+\usepackage{calc}
+
+% Description: Multi Language support for LaTeX
+% Doc: babel.pdf
+\usepackage{babel}
+% Description: support automatic translations
+% Doc: beameruserguide.pdf
+\usepackage{translator}
+
+
+% Description: Color support with color mixing modells
+% Doc: xcolor.pdf
+\usepackage[
+  dvipsnames, % Load a set of predefined colors 
+  table,      % Load the colortbl package
+  % fixpdftex,  % Load the pdfcolmk package (may be problematic)
+  hyperref,   % Support  the  hyperref  package
+  fixinclude, %Prevent dvips color reset before .eps ﬁle inclusion
+]{xcolor}
+
+% Description: Support for graphics in LaTeX
+% Doc: grfguide.pdf
+\usepackage[%
+  %final,
+  %draft % do not include images (faster)
+]{graphicx}
+
+
+% Description: If an eps image is detected, epstopdf is automatically 
+%              called to convert it to pdf format.
+% Requires: graphicx loaded
+% Doc: epstopdf.pdf
+\IfPackageLoaded{graphicx}{%
+  \usepackage{epstopdf}
+}
+
+
+% Description:  environments for setting ragged text 
+%               which allow hyphenation.
+% Provides: \Centering, \RaggedLeft, and \RaggedRight, ... 
+% Doc: ragged2e.pdf
+\usepackage{ragged2e}
+
+\EndTemplateSection{PackagesBase}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% latex bug fixing packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesBugfixes}
+
+% Description: Fix known LaTeX2e bugs
+% Doc: fixltx2e.pdf
+\usepackage{fixltx2e}
+
+% Description: This package implements a workaround for the LaTeX bug that
+%              marginpars sometimes appear on the wrong margin.
+% \usepackage{mparhack}
+% BUG: in some case this causes an error in the index together with package
+%      pdfpages the reason is unkown. Therefore I recommend to use the
+%      margins of marginnote
+% incompatible: marginfix
+
+% Description: marginnote allows a margin note, where \marginpar fails 
+% Doc: marginnote.pdf
+\usepackage{marginnote}
+
+% Description: Redefines implementations of 
+%              packages float, hyperref and listings
+% Doc: scrhack.pdf
+\usepackage{scrhack}
+
+%% Description: changes the \marginpar commands, such
+%%              that long margin notes work.
+%% Doc: marginfix.pdf (TODO: why not used)
+% \usepackage{marginfix}
+
+% Description: Used to define commands that don't eat spaces.
+% Doc: xspace.pdf
+\RequirePackage{xspace}
+
+\EndTemplateSection{PackagesBugfixes}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Fonts
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesFonts}
+
+%% Description: Set the font size relative to the current font size
+%% Doc: relsize-doc.pdf
+\usepackage{relsize}
+
+\EndTemplateSection{PackagesFonts}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Math Packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesMath}
+
+
+% Description: basic math package
+% Doc: amsldoc.pdf
+\usepackage[
+   centertags, % (default) center tags vertically
+   %tbtags,    % 'Top-or-bottom tags': For a split equation, place equation
+               % numbers level with the last (resp. first) line, if numbers
+               % are on the right (resp. left).
+   sumlimits,  %(default) Place the subscripts and superscripts of summation
+               % symbols above and below
+   %nosumlimits, % Always place the subscripts and superscripts of
+                 % summation-type symbols to the side, even in displayed
+                 % equations.
+   intlimits,  % Like sumlimits, but for integral symbols.
+   %nointlimits, % (default) Opposite of intlimits.
+   namelimits, % (default) Like sumlimits, but for certain 'operator names'
+               % such as det, inf, lim, max, min, that traditionally have
+               % subscripts placed underneath when they occur in a displayed
+               % equation.
+   %nonamelimits, % Opposite of namelimits.
+   %leqno,     % Place equation numbers on the left.
+   %reqno,     % Place equation numbers on the right.
+   fleqn,      % Position equations at a fixed indent from the left margin
+               % rather than centered in the text column.
+]{amsmath} %
+
+\IfPackageLoaded{amsmath}{
+
+% Description: The mathtools package is an extension package to amsmath. 
+%              Furthermore it  correct various bugs
+% Doc: mathtools.pdf
+\usepackage[fixamsmath,disallowspaces]{mathtools}
+
+% Description: Inhibits the usage of plain TeX and 
+%              of standard LaTeX math environments
+% Doc: onlyamsmath.pdf
+\usepackage[
+  all,
+  % warning
+  error
+]{onlyamsmath}
+
+} % end: IfPackageLoaded{amsmath}
+
+% Description: Macros for Dirac bra–ket notation and sets.
+% Doc: braket.pdf
+\usepackage{braket}
+
+% Description: strike out arguments in math mode
+% Doc: cancel.sty
+\usepackage{cancel}
+
+%% Description: Emphasize equations
+%% Doc: empheq.pdf
+\usepackage{empheq}  % Hervorheben
+
+% Description: scales math mode output in all environments correct
+% Doc: Mathmode.pdf
+\IfPackageNotLoaded{MnSymbol}{
+   \usepackage{exscale} 
+}
+
+% Description: fixes for the default Computer Modern math fonts
+% Doc: fixmath.pdf
+\IfPackageLoaded{lmodern}{%
+  \usepackage{fixmath}
+}
+
+% Description: Enables the correct use of the comma as 
+%              a decimal separator in math mode
+% Doc: icomma.pdf
+\usepackage{icomma}
+
+% Description: LaTeX 3 Package for nice inline fractions
+% Provides: \sfrac{1}{2}
+% Replaces: nicefrac
+% Doc: xfrac.pdf 
+\usepackage{xfrac} 
+
+\EndTemplateSection{PackagesMath}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% diagrams
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesDiagrams}
+
+\input{preambel/packages-tikzpgf.tex}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usetikzlibrary{pgfplots.patchplots}
+\usetikzlibrary{pgfplots.dateplot}
+\usetikzlibrary{pgfplots.colormaps}
+\usetikzlibrary{pgfplots.groupplots}
+\usetikzlibrary{pgfplots.polar}
+\usetikzlibrary{pgfplots.units}
+
+\EndTemplateSection{PackagesDiagrams}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% science packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesScience}
+ 
+% Description: upright symbols from euler package
+%              [Euler] or Adobe Symbols [Symbol]
+% Provides:    \upmu
+% Doc: upgreek.pdf
+%\usepackage[Symbolsmallscale]{upgreek} 
+% --> Use only if the original font does not provide
+%     the necessary upright symbols
+
+% Description: Commands/symbols for both math and text mode
+% Provides:    \degree, \celsius, \perthousand, \ohm, \micro
+% Incompatible: siunitx
+% Requires: Command \upmu
+% \IfDefined{upmu}{\usepackage[upmu]{gensymb}}
+
+% Description:  package for setting units in a 
+%               typographically correct way.
+% Incompatible: siunitx
+%\usepackage{units}
+
+% Description: siunitx aims to provide a unified method to
+%              typeset numbers and units correctly and easily.
+% Incompatible: gensymb, units
+\IfPackagesNotLoaded{gensymb, units}{
+  \usepackage{siunitx}
+}
+
+\EndTemplateSection{PackagesScience}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Symbole
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesSymbols}
+%%% General Doc: symbols-a4.pdf
+%
+%% Math symbols
+\IfPackagesNotLoaded{mathdesign,MnSymbol,MdSymbol}{
+  \usepackage{dsfont}   %% Double Stroke Fonts
+}{}
+% Futher Math symbols
+\IfPackagesNotLoaded{MnSymbol,MdSymbol}{
+  \usepackage{esint} % generate missing integrals for lmodern
+  % provides further symbols of the Text Companion (TC) fonts
+  % such as \tcmu, \tcperthousand, \tcdegree
+  \usepackage{mathcomp} 
+  \usepackage[mathcal]{euscript} %% adds euler mathcal font
+}{}
+
+%\usepackage[integrals]{wasysym}
+
+%% Common Symbols
+\usepackage{pifont}   %% ZapfDingbats
+
+\EndTemplateSection{PackagesSymbols}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Tables (Tabular)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesTables}
+
+% Description:  some additional commands to enhance
+%               the quality of tables
+% Provides:     \toprule, \midrule, \bottomrule, \cmidrule
+% Doc: booktabs.pdf
+\usepackage{booktabs}
+
+% Description: extends the standard tabular environment with cells
+%              spanning over multiple rows.
+% Doc: multirow.pdf
+\usepackage{multirow, bigstrut}
+
+% Description: Table spanning over many pages (from longtable package) 
+%              and with strechable columns (from tabularx package)
+% Doc: ltxtable.pdf 
+% -> load afer hyperref 
+\ExecuteAfterPackage{hyperref}{\usepackage{ltxtable}}
+
+% Description: defines a single environment tabu to make all kinds of tabulars
+%              It is more ﬂexible than tabular, tabular*, tabularx and array
+%              and extends the possibilities.
+% Doc: tabu.pdf
+\usepackage{tabu}
+
+% tablestyles
+\IfFileExists{../packages/tablestyles/tablestyles.sty}{
+  \usepackage{../packages/tablestyles/tablestyles}
+}{}
+
+
+\EndTemplateSection{PackagesTables}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% text related packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesText}
+
+% description: fixes bug in ellipsis (...) 
+% Doc: ellipsis.pdf
+% -> load after babel
+\usepackage[xspace]{ellipsis} 
+
+%%% Text-decoration ======================================
+%
+% Description: commands for underlining for emphasis
+% Provides: \ulin, \uuline, \sout, \xout, ...
+% Doc: ulem.pdf
+\usepackage[normalem]{ulem} 
+
+% Description: commands for for emphasis
+% Provides: \so, \ul, \st, ...
+% Doc: soulutf8.pdf (loads soul.sty)
+\usepackage{soulutf8}
+
+% Description: enable linebreaks for URLs
+% Provides: \url{}
+% Doc: url.pdf
+\usepackage{url}
+
+%%% footnotes/endnotes ===================================
+
+% Description: The footmisc package provides several different 
+%              customisations of the way foonotes are represented.
+%              Fixes a LaTeX bug with option 'bottom'
+%
+% Doc: footmisc.pdf
+% Load after: setspace 
+% Load before: hyperref
+\ExecuteAfterPackage{setspace}{% 
+%
+\usepackage[%
+   bottom,      % Footnotes appear always on bottom. This is necessary
+                % especially when floats are used
+   stable,      % Make footnotes stable in section titles
+   perpage,     % Reset on each page
+   %para,       % Place footnotes side by side of in one paragraph.
+   %side,       % Place footnotes in the margin
+   ragged,      % Use RaggedRight
+   %norule,     % suppress rule above footnotes
+   multiple,    % rearrange multiple footnotes intelligent in the text.
+   %symbol,     % use symbols instead of numbers
+]{footmisc}}
+
+%% Description: footnotes are normally reset at each page.
+%%              With this package they can be reset only at 
+%%              defined headings, such as chapters.
+%% Doc: chngcntr.pdf
+% \usepackage{chngcntr}
+% \counterwithout{footnote}{chapter}
+
+%% Description: provides the command \tablefootnote to be used in
+%%              a table or sidewaystable environment, 
+%%              where \footnote will not work.
+%% Doc: tablefootnote.pdf
+%% Bug: does not work as expected, bug not found so far 
+%% tablefootnote must be loaded after rotating
+%\ExecuteAfterPackage{rotating}{%
+% % and after hyperref
+% \IfPackageNotLoaded{hyperref}{%
+%  \ExecuteAfterPackage{hyperref}{%
+%   \usepackage{tablefootnote}%
+%  }%
+% }{}%
+%}%
+
+%%% Doc: endnotes.pdf
+% \usepackage{endnotes}
+
+%%% References ============================================
+%
+% Description:  provides \vref, which is similar to \ref but 
+%               adds an additional page reference, like 
+%               ‘on the facing page’ or ‘on page 27’
+% Doc: varioref.pdf
+\usepackage{varioref} 
+
+% Description:  enhances  the cross-referencing  features,
+%               allowing the format of cross-references to be determined
+%               automatically according to the “type” of cross-reference
+% Doc: cleveref.pdf
+% loading: must be loaded after hyperref and after varioref
+\ExecuteAfterPackage{hyperref}{
+% caption and cleveref incompatible in Versions before 2011/12/24
+  \usepackage{cleveref}[2011/12/24]
+}
+
+%%% Lists ================================================
+%
+% Description: Allows the custom lists of type item, enum 
+%              and description. It thereby replaces the packages
+%              paralist, enumerate, mdwlist. 
+% Incompatible: enumerate.
+% Doc: enumitem.pdf
+\IfPackageNotLoaded{enumerate}{
+  \usepackage{enumitem}
+}
+%
+\EndTemplateSection{PackagesText}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Quotes
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesQuotes}
+%
+% Description: Advanced features for clever quotations
+% Doc: csquotes.pdf
+\usepackage[%
+   babel,            % the style of all quotation marks will be adapted
+                     % to the document language as chosen by 'babel'
+   german=quotes,    % Styles of quotes in each language
+   english=british,
+   french=guillemets
+]{csquotes}
+
+\EndTemplateSection{PackagesQuotes}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Citations
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesCitation}
+
+% Description: Modern Bibliographie package with full customizability
+% Doc:  biblatex.pdf
+% Incompatible: ucs and every previous bibtex package
+\usepackage[
+  style=alphabetic, % Loads the bibliography and the citation style 
+  natbib=true, % define natbib compatible cite commands
+]{biblatex}  
+% Other options:
+%  style=numeric, % 
+%  style=numeric-comp,    % [1–3, 7, 8]
+%  style=numeric-verb,    % [2]; [5]; [6]
+%  style=alphabetic,      % [Doe92; Doe95; Jon98]
+%  style=alphabetic-verb, % [Doe92]; [Doe95]; [Jon98]
+%  style=authoryear,      % Doe 1995a; Doe 1995b; Jones 1998
+%  style=authoryear-comp, % Doe 1992, 1995a,b; Jones 1998
+%  style=authoryear-ibid,
+%  style=authoryear-icomp,
+%  style=authortitle,
+%  style=authortitle-comp,
+%  style=authortitle-ibid,
+%  style=authortitle-icomp,
+%  style=authortitle-terse,
+%  style=authortitle-tcomp,
+%  style=authortitle-ticomp,
+
+\EndTemplateSection{PackagesCitation}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% figures, placement, floats and captions
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesFigures}
+
+%% Description: provides new floats and enables H float modifier option
+%%             (in future incompatible with Koma Script)
+%% Doc: float.pdf
+%% ---> replaced by floatrow package!
+% \usepackage{float} 
+
+
+% Description: enables typesetting a narrow ﬂoat at the edge of the text,
+%              and making the text wrap around it. 
+% load after: float
+% load before: caption
+% Provides: wrapfigure and wrapfloat
+% Doc: wrapfig-doc.pdf
+\usepackage{wrapfig}   
+
+% Description: place floats after the reference
+% Doc: no documentation
+\usepackage{flafter}
+
+% Description: Defines a \FloatBarrier command, beyond which floats may not
+%              pass; useful, for example, to ensure all floats for a section
+%              appear before the next \section command.
+% Doc: placeins-doc.pdf
+\usepackage[
+  section    % "\section" command will be redefined with "\FloatBarrier"
+]{placeins}
+%
+
+%% Description: Floating figures as in wrapfloat
+%%              (old LaTeX2e package from 1996)
+%% Doc: floatflt.pdf
+% \usepackage{floatflt}
+
+\EndTemplateSection{PackagesFigures}
+
+%%% Captions ============================================
+
+\BeginTemplateSection{PackagesCaptions}
+
+
+% Description: extents the float mechanism of LaTeX and
+%              provides macros for precise placement of 
+%              figures, tables and captions.
+%              works well together with the caption pack.
+% load before: caption 
+% Doc: floatrow.pdf 
+\usepackage{floatrow, fr-fancy}
+
+% Description: The caption package offers customization
+%              of captions in ﬂoating environments such
+%              figure and table and cooperates with many 
+%              other packages.
+% Doc: caption.pdf (Required v3.2 or newer)
+\usepackage{caption}[2011/08/06]
+
+%% subfig ist NOT recommended, use subcaption instead
+%% Incompatible: 
+%% - loads package capt-of. Loading of 'capt-of' afterwards will fail therefor
+%% - subcaption
+%% loads: caption
+%% Doc: subfig.pdf
+%\usepackage{subfig} 
+
+
+% Description: subcaption supports typesetting of sub-captions
+%             (by using the the sub-caption feature of the caption package).
+% incompatible: subfig
+% Doc: subcaption.pdf
+\IfPackageNotLoaded{subfig}{
+  % load after caption package
+  \usepackage{subcaption}[2011/08/17]
+}
+
+% Description: provides a margincap environment for putting 
+%              captions into the outer document margin with 
+%              either a top or bottom alignment.
+% Doc: mcaption.pdf
+\usepackage[
+  top, %  vertical caption alignment (top, bottom)
+]{mcaption}
+
+% Description: provides two new environments, sidewaystable and sidewaysfigure,
+%              and further commands to rotate content.
+% Doc: rotating.pdf
+\usepackage[figuresright]{rotating}
+
+\EndTemplateSection{PackagesCaptions}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% misc packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesMisc}
+
+% Description: Modify printing of numbers
+%              --> use siunitx instead
+% Doc: numprint.pdf
+% \usepackage{numprint}
+
+% Description: adds line numbers to the main text
+% Doc: ulineno
+%\usepackage[
+%  ,left     %  margin placment (left, right, switch, switch*)
+%  ,pagewise %  Number the lines from 1 on each page (pagewise, running)
+%  ,modulo   %  Print line numbers only if they are multiples of five.
+%]{lineno}
+
+
+\EndTemplateSection{PackagesMisc}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Index and other lists
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesIndexes}
+
+
+%% Description makeindex package with shell-escape makeindex call
+%% Doc: imakeidx.pdf
+\usepackage{imakeidx}
+
+% Description: print text of \index{entry} to the margin
+% Doc: makeidx.pdf
+% --> load only in draft mode
+\IfDraft{
+  \usepackage{showidx}
+}
+
+% Description: Package for glossaries, nomenclatures and acronym lists
+% replaces: nomencl, acronym
+% load after: hyperref!, inputenc, babel and ngerman.
+\ExecuteAfterPackage{hyperref}{%
+\usepackage[
+  shortcuts,    % define shortcuts (\ac for acronym)
+  nonumberlist, % no page numbers
+  acronym,      % create a separate acronym list
+  % toc,        % Add entries to toc
+  section,      % add to toc on section level
+  sort = standard,    % (standard, def, use)
+]{glossaries}
+% further styles
+\usepackage{glossary-longragged}
+% Create a new list of symbols
+\newglossary[slg]{symbolslist}{syi}{syg}{List of Symbols}
+}
+
+
+
+\EndTemplateSection{PackagesIndexes}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% verbatim packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesVerbatim}
+%%% Doc: upquote.sty
+\usepackage{upquote} % Setzt "richtige" Quotes in verbatim-Umgebung
+
+% Description: Reimplemntation of the original verbatim enironment
+% Doc: verbatim.pdf
+\usepackage{verbatim} %
+
+% Description: This package provides many facilities for reading, writing and
+%              chaning the output style of verbatim code
+% Doc: fancyvrb.pdf
+% BUG: fails with "! Paragraph ended before \FV@BeginScanning was complete."
+\usepackage{fancyvrb} 
+% TODO : test
+
+% Description: The listings package is a source code printer for LaTeX.
+%              You can typeset stand alone files as well as listings with an 
+%              environment.
+%              If the Syntax Highlighting of the preferred  programming
+%              language is not already supported, you can make your own
+%              definition.
+% Doc: listings.pdf
+\usepackage{listings}
+
+\EndTemplateSection{PackagesVerbatim}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% fancy packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesFancy}
+
+% Description: Dropping capitals
+% Doc: lettrine.pdf
+\usepackage{lettrine}
+
+% Doc: boxedminipage.pdf
+\usepackage{boxedminipage}
+
+% Description: five 'fancy' boxes
+% Provides: shadowbox, doublebox, ovalbox, Ovalbox
+% incompatible: fancyvrb
+% Doc: fancybox.pdf
+% --> replaced by mdframed (take out ???)
+\IfPackageNotLoaded{fancyvrb}{
+  \usepackage{fancybox}
+}
+
+% Description: Create framed, shaded, or differently highlighted 
+%              regions that can break across pages. 
+% Doc: framed.pdf
+% --> replaced by mdframed (take out ???)
+\usepackage{framed}
+
+% Description: defines new environments where the user may choose 
+%              between several individual designs.
+% Doc: mdframed-doc-en.pdf
+\usepackage{mdframed}
+
+\EndTemplateSection{PackagesFancy}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% layout packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesLayout}
+
+
+%%% indentation =========================================
+
+% Description: Indent first paragraph after section header
+% Doc: indentfirst.pdf
+% \usepackage{indentfirst}
+
+%%% columns =============================================
+
+% Description: Environment for multicolumn text
+% Doc: multicol.pdf
+\usepackage{multicol}
+
+
+%% line spacing =========================================
+%
+% Description: configure line spacing
+% Provides: \onehalfspacing, \doublespacing
+% Doc: setspace.sty
+\usepackage{setspace}
+
+%% page layout ==========================================
+
+% Layout with 'geometry'
+% Doc: geometry.pdf
+% \usepackage{geometry}
+
+% Layout with 'typearea' 
+% -> loaded automatically if geometry not loaded
+% Doc: scrguide.pdf
+
+
+\EndTemplateSection{PackagesLayout}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% head and foot lines
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginTemplateSection{PackagesHeadFoot}
+
+%%% Doc: scrguide.pdf
+\usepackage[%
+%%% Lines
+   % headtopline,
+   % plainheadtopline,
+   % headsepline,
+   % plainheadsepline,
+   % footsepline,
+   % plainfootsepline,
+   % footbotline,
+   % plainfootbotline,
+   % ilines,
+   % clines,
+   % olines,
+% column titles (content, style)
+   automark,
+   % autooneside,% ignore optional argument in automark at oneside
+   komastyle,
+   % standardstyle,
+   % markuppercase,
+   % markusedcase,
+   nouppercase,
+]{scrpage2}
+
+
+% Description: provides total number of pages (ie. page 7 of 19)
+% Provides: \lastpageref{LastPage}
+% Doc: pageslts.pdf
+\usepackage{pageslts} 
+
+
+\EndTemplateSection{PackagesHeadFoot}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% layout of headings 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesHeadings}
+
+% Description: The titlesec package is essentially a replacement — partial or
+%              total—for the LaTeX macros related with sections — namely
+%              titles, headers and contents.
+%%% Doc: titlesec.pdf
+\usepackage{titlesec}
+
+
+\EndTemplateSection{PackagesHeadings}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% settings and layout of TOC
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesTOC}
+
+% Description: apply different styles for the formating of the 
+%              table of contents and lists of ﬂoats.
+%%% Doc: tocstyle.pdf (Koma Script)
+\usepackage[%
+  tocindentauto,     % all widths at the TOCs are calculated by tocindentauto
+%  tocindentmanual,  % opposite of auto
+%%% 
+  tocgraduated,      % standard
+%  tocflat,          % no intendation, text aligned
+%  tocfullflat,      % no intendation, no alignment
+%%%  
+  tocbreaksstrict,   % sets a lot of penalties before and after TOC entries 
+                     % to avoid page break between a TOC entry and it’s parent. 
+%  tocbreakscareless,% allow more page breaks.  
+%%%  
+%  toctextentriesindented, % unnumbered TOC entrie are indented only as wide 
+%                          % as the number of numbered TOC entries of the same 
+%level. 
+  toctextentriesleft,% indented as if they have an empty number.
+]{tocstyle}
+
+% Description: The appendix package provides some facilities for 
+%              modifying the typesetting of appendix titles.
+% Doc: appendix.pdf
+%\usepackage[
+% ,toc   % Put a header (e.g., ‘Appendices’) into the Table of Contents
+% %,page  % Puts a title  (e.g.,  ‘Appendices’) into the document at the 
+%        % beginning of the appendices environment
+% %,title % Adds a name (e.g., ‘Appendix’) before each appendix title in
+%        % the body of the document.
+% %,titletoc % Adds a name (e.g., ‘Appendix’) before each appendix listed 
+%        % in the ToC
+% %,header% Adds a name (e.g., ‘Appendix’) before each appendix in page headers.
+%]{appendix}
+%\renewcommand{\appendixtocname}{\appendixname}
+
+\EndTemplateSection{PackagesTOC}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% pdf packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesPDF}
+
+% Description: Include pages from external PDF documents in LaTeX documents
+% Doc: pdfpages.pdf
+\usepackage{pdfpages} 
+
+% Description: landscape orientation in PDF Format
+% Doc: pdflscape.pdf
+% load before footmisc
+%\usepackage{pdflscape}
+
+% Description: The microtype package provides a LaTeX interface to the  
+%              micro-typographic extensions of pdfTEX: most prominently,
+%              character protrusion and font expansion, furthermore
+%              the adjustment of interword spacing and additional kerning.
+% Provides:    Much better textformating and better typography, 
+%              but at the cost of a much larger PDF file.
+% Doc: microtype.pdf
+\ifpdf
+\usepackage{microtype}
+\fi
+
+% Description: add hyperlink support to LaTeX
+% load: after almost every package!
+% Doc: manual.pdf
+\usepackage[
+%%% Extension options
+  ,backref=page       % Adds backlink text to the end of each item in the
+                      % bibliography, as a list of section numbers.
+                      % (section, slide, page, none)
+  ,pagebackref=false  % Adds backlink text to the end of each item in the
+                      % bibliography, as a list of page numbers.
+  ,hyperindex=true    % Makes the page numbers of index entries into
+                      % hyperlinks.
+  ,hyperfootnotes=false % Makes the footnote marks into hyperlinks to the
+                        % footnote text (must be false if footmisc is loaded).
+%%% PDF-specific display options
+  ,bookmarks=true
+%%% PDF display and information options  
+  ,pdfpagelabels=true % set PDF page labels
+]{hyperref}
+
+% Description: This package implements a new bookmark (outline) organization
+%              for package  hyperref. In contrast to hyperref here only one 
+%              LaTeX run is required.
+% Doc: bookmark.pdf
+\IfNotDraft{%
+  \usepackage[]{bookmark}
+}
+
+\EndTemplateSection{PackagesPDF}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% additional packages 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\BeginTemplateSection{PackagesAdditional}
+
+% Description: enable hyphenation of typewriter text word (\texttt)
+% Doc:  hyphenat.pdf
+% Note: According to documentation the font warnings can be ignored
+\usepackage[htt]{hyphenat}
+
+\usepackage[%
+  % disable,
+]{todonotes}
+
+\usepackage[NoDate]{currvita}
+
+\EndTemplateSection{PackagesAdditional}
+
