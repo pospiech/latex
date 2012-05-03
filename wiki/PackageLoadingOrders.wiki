@@ -1,0 +1,52 @@
+# summary of required package loading orders and the handling in the template
+
+= package loading orders =
+
+If these packages are loaded in correct order it is signed with (ok) if they are not loaded by the template with (nl).
+
+
+% Doc: footmisc.pdf
+% Load after: setspace 
+% Load before: hyperref
+
+== Package footmisc==
+
+=== after footmisc ===
+
+ * hyperref(ok)
+
+=== before footmisc ===
+
+ * setspace (ok)
+
+== hyperref ==
+
+=== before hyperref ===
+
+ * footmisc (ok)
+
+=== after hyperref  ===
+
+ * cleveref (ok)
+ * bookmark (ok)
+ * glossaries (ok)
+ * geometry (ok)
+ * pageslts (ok)
+ * tabularx (ok)
+ * amsrefs (nl)
+ * chappg (nl)
+ * sidecap (nl)
+ * linguex (nl)
+ * robustindex (nl)
+ * hypdestopt (nl)
+ * hypcap (nl)
+ * hypbmsec (nl)
+ * uri (nl)
+ * regstats (nl)
+ * pgfpages (nl)
+
+= LaTeX Commands =
+The tabletools package provides most commands used in the template to handle these ordering problems. Below is a typical example:
+{{{
+\ExecuteAfterPackage{hyperref}{\usepackage{pageslts}}
+}}}
