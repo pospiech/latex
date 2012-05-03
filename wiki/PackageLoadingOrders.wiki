@@ -9,17 +9,16 @@ If these packages are loaded in correct order it is signed with (ok) if they are
 % Load after: setspace 
 % Load before: hyperref
 
-== Package footmisc==
+== Package: footmisc ==
 
-=== after footmisc ===
+load order: setspace (ok) -> footmisc -> hyperref (ok)
 
- * hyperref(ok)
+== Package: cleveref ==
 
-=== before footmisc ===
+load order: varioref(ok) -> hyperref -> cleveref (ok)
 
- * setspace (ok)
 
-== hyperref ==
+== Package: hyperref ==
 
 === before hyperref ===
 
