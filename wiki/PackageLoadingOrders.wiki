@@ -16,6 +16,7 @@ load order: varioref(ok) -> hyperref -> cleveref (ok)
 === before hyperref ===
 
  * footmisc (ok)
+ * ... and almost all other packages ...
 
 === after hyperref  ===
 
