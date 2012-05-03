@@ -1,13 +1,6 @@
-# summary of required package loading orders and the handling in the template
-
 = package loading orders =
 
 If these packages are loaded in correct order it is signed with (ok) if they are not loaded by the template with (nl).
-
-
-% Doc: footmisc.pdf
-% Load after: setspace 
-% Load before: hyperref
 
 == Package: footmisc ==
 
