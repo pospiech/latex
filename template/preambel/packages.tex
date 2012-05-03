@@ -728,7 +728,8 @@
 
 % Layout with 'geometry'
 % Doc: geometry.pdf
-% \usepackage{geometry}
+% load after: hyperref
+% \ExecuteAfterPackage{hyperref}{\usepackage{geometry}}
 
 % Layout with 'typearea' 
 % -> loaded automatically if geometry not loaded
@@ -769,8 +770,9 @@
 
 % Description: provides total number of pages (ie. page 7 of 19)
 % Provides: \lastpageref{LastPage}
+% load after: hyperref
 % Doc: pageslts.pdf
-\usepackage{pageslts} 
+\ExecuteAfterPackage{hyperref}{\usepackage{pageslts}}
 
 
 \EndTemplateSection{PackagesHeadFoot}
@@ -883,6 +885,7 @@
 % Description: This package implements a new bookmark (outline) organization
 %              for package  hyperref. In contrast to hyperref here only one 
 %              LaTeX run is required.
+% load: after hyperref
 % Doc: bookmark.pdf
 \IfNotDraft{%
   \usepackage[]{bookmark}
