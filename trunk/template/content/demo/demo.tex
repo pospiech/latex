@@ -264,7 +264,7 @@ The \demoenv{addmargin}-environment allows to enlarge or shrink the textwidth in
  \noindent
  Note that you need to define \democs{marginwidth} for this code. 
  This can be realized by 
- \lstinputlisting[style=demostyle]{\democodefile}
+ \lstinputlisting[style=demostyle,nolol=true]{\democodefile}
 } % ifbool
 }{} % ifcsdef
 
@@ -919,6 +919,7 @@ If the \demopackage{floatrow} package is loaded the standard \latex{} behaviour 
 }{}
 
 %% ------------------------------------------------------------
+\clearpage
 \begin{filecontents*}{\democodefile}
 \begin{wrapfigure}{r}{0.3\textwidth}
   \includegraphics[width=0.8\linewidth]{images/testimage.png}
@@ -1192,11 +1193,10 @@ adipiscing lorem. Pellentesque nulla augue, nonummy vel, tincidunt at, blandit
 
 \ifcslength{doctextwidth}{%
 
-This template defines the commands \democs{doctextwidth} and \democs{doctextheight} which maintain their size even if the surrounding \democs{textwidth} changes. \vspace{0.5\baselineskip} \\
-
+This template defines the commands \democs{doctextwidth} and \democs{doctextheight} which maintain their size even if the surrounding \democs{textwidth} changes. 
+\vspace{0.5\baselineskip} \\ \noindent
 These sizes can be used in figures to specify the width in fixed paper depended sizes.
-
-\noindent
+\vspace{0.5\baselineskip} \\ \noindent
 \fbox{\begin{minipage}{0.8\textwidth}
   0.8\bs{}textwidth \\[1em]
   \fbox{\begin{minipage}{0.38\doctextwidth}
@@ -1223,7 +1223,7 @@ These sizes can be used in figures to specify the width in fixed paper depended 
 %
 This section about tables is organized as follows:
 \begin{itemize}
-\item In section~\ref{sec:tableStylesIntro} different style to create a table are shown: 
+\item In section~\ref{sec:tableStylesIntro} different styles to create a table are shown: 
   \begin{itemize}
   \item using booktabs line commands (\ref{sec:tableStyleBooktabs1} and
         \ref{sec:tableStyleBooktabs2}),
@@ -1254,7 +1254,7 @@ This section about tables is organized as follows:
 \subsection{table styles}
 \label{sec:tableStylesIntro}
 
-There a many ways to design a table in terms of its lines (grid), sizes, fonts and colors. Most of this can be regarded as personal taste. However the simplest on, the grid design, is regarded as a style which should be avoided by any means, since it makes it difficult for the eye to read the table.
+There a many ways to design a table in terms of its lines (grid), sizes, fonts and colors. Most of these can be regarded as personal taste. However the simplest on, the grid design, is regarded as a style which should be avoided by any means, since it makes it difficult for the eye to read the table.
 Here some of the most common approaches to style a table are presented.
 
 %% ------------------------------------------------------------
@@ -1292,7 +1292,7 @@ Here some of the most common approaches to style a table are presented.
 \ifcsdef{toprule}{%
 \noindent
 Note that here the style of the table was further changed by the commands:
-\lstinputlisting[style=demostyle]{\democodefile}%
+\lstinputlisting[style=demostyle,nolol=true]{\democodefile}%
 
 }{}%
 
@@ -1380,20 +1380,20 @@ Here a custom style is applied
     \thead header &
     \thead header \\
 \tbody
- %
+%
  content  & content \\
  content  & content \\
  content  & content \\
  content  & content \\
  content  & content \\
- %
- \tsubheadstart
+%
+\tsubheadstart
  \tsubhead subhead &
  \tsubhead subhead \\
- %
+%
  content  & content \\
  content  & content \\
- \tend
+\tend
 \end{tabular}
 \end{table} 
 \end{filecontents*}
@@ -1401,7 +1401,7 @@ Here a custom style is applied
 \subsubsection{Tablestyles package}
 \label{sec:tableStylePackage}
 
-This package unifies the application of a style to a table. The following styles are predefined: default, roman (serif instead of sans fonts), sansbold (bold header), sansboldbw (white text on black background)
+This package unifies the application of a style to a table. The following styles are predefined: \texttt{default}, \texttt{roman} (serif instead of sans fonts), \texttt{sansbold} (bold header), \texttt{sansboldbw} (white text on black background)
 
 \IfMultDefined{captionabove,rowcolors,theadstart}{%
 
@@ -1652,7 +1652,7 @@ In this code the \texttt{!\{...\}} specifier is used to replace the cell separat
 \ifcsdef{si}{%
 \noindent
 Note that here the style of the table was further changed by the commands:
-\lstinputlisting[style=demostyle]{\democodefile}%
+\lstinputlisting[style=demostyle,nolol=true]{\democodefile}%
 
 }{}%
 
@@ -1867,7 +1867,7 @@ Knuth's \TeX{} program.
 
 \subsection{Item lists inside tabular cells}
 \label{sec:tableitemlists}
-List require a special correction to be not, or rather to be intended correct in a tabular cell. The same commands work in tabu tables, see section~\ref{sec:sec:tableitemliststabu}.
+List require a special correction to be not, or rather to be intended correct in a tabular cell. The same commands work in tabu tables, see section~\ref{sec:tableitemliststabu}.
 
 \IfMultDefined{tabularx,tableitemize}{%
 
@@ -2250,14 +2250,13 @@ This code demonstrates how to create columns which span over more than one page.
   { % start a group 
   % style
   \small\renewcommand{\arraystretch}{1.4}\sffamily
-  \rowcolors{1}{tablebodycolor}{tablerowcolor}
   % required if floatrow is loaded
   \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
   % the table
   \begin{longtabu} to \textwidth{>{\itshape}l*5{X[c]}}
 \captionabove{longtabu tabular with X columns} \\
   \hline
-  \rowcolor{tableheadcolor}
+  \taburowcolors 1{tableheadcolor .. tableheadcolor}
   \upshape
   \bfseries title &
   \bfseries title &
@@ -2276,10 +2275,12 @@ This code demonstrates how to create columns which span over more than one page.
   title \\ \hline
 \endhead
   \hline 
+  \taburowcolors 1{white .. white}
   \multicolumn{6}{r}{\emph{continued on next page \ldots}}
 \endfoot
   \hline
 \endlastfoot
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
 description   & content & content & content & content & content \\
 description   & content & content & content & content & content \\
 description   & content & content & content & content & content \\
