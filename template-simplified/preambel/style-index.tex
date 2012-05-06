@@ -1,0 +1,12 @@
+\IfPackageLoaded{imakeidx}{%
+
+\indexsetup{%
+  ,level=\chapter*%
+  ,toclevel=chapter % indicate the level at which the indices appear in TOC
+  ,noclearpage=false%
+  ,firstpagestyle=plain%
+  ,headers={\indexname}{\indexname}%
+  ,othercode={\label{sec:Index}}% will be executed at the beginning of index entries typesetting
+}%
+
+}% end if \IfPackageLoaded

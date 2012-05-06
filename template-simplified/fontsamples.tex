@@ -1,0 +1,338 @@
+%!TeX encoding=utf8
+
+%% Bug fixes and other packages to be loaded before the class
+\RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
+\RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
+%
+%% Document Class (Koma Script) -----------------------------------------
+\documentclass[%
+   %draft,     % draft mode (no images, layout errors shown)
+   final,      % final mode 
+%%% --- Paper Settings ---
+   paper=a4,% [Todo: add alternatives]
+   paper=portrait, % landscape
+   pagesize=auto, % driver
+%%% --- Base Font Size ---
+   fontsize=11pt,%
+%%% --- Koma Script Version ---
+   version=last, %
+%%% --- Global Package Options ---
+   english, % language (passed to babel and other packages)
+            % (german, ngerman, english, french, ...)
+ ]{scrbook} % Classes: scrartcl, scrreprt, scrbook
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Must be loaded first!
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{../packages/template/templatesection}
+\usepackage{../packages/template/templatetools}
+\usepackage{../packages/templatedemo/templatedemo}
+\RequirePackage{filecontents}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% encoding
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% Encoding of _text_% (required for special characters such as umlaute)
+% Recommended utf8%, except when using the packages: listings, soul, ?
+% In that case "latin1" is recommende instead.
+% -> set encoding of text using your text editor!
+
+% automatic selection of encoding
+% insert chars for umlaut a and sz
+\usepackage{selinput}
+\SelectInputMappings{adieresis={ä},germandbls={ß}} 
+
+% Encoding of _files and directories_
+% (ensures that any file can be loaded without problems)
+\usepackage[%
+   extendedchars, encoding, multidot, space,
+   filenameencoding=latin1, % Windows XP, Vista, 7
+   % filenameencoding=utf8,   % Linux, OS X
+]{grffile}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Fonts
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% select/load fonts
+
+% Make PDF files searchable and copyable
+% load before: fontenc
+\usepackage{cmap} 
+
+% T1 Schrift Encoding
+\usepackage[T1]{fontenc} 
+
+\newcommand{\fontcodefile}{fonts/fontcode.tex}
+\newcommand{\fontdesc}{}
+%% ==== Font Families / Font Combinations  (Sans + Serif) ================
+
+%% - Latin Modern (LaTeX Standard)
+%\usepackage{lmodern}
+%\input{fonts/fonts-lmodern-sansmath.tex}
+%\renewcommand{\fontdesc}{Latin Modern Family}
+%\begin{filecontents*}{\fontcodefile}
+%\usepackage{lmodern}
+%\input{fonts/fonts-lmodern-sansmath.tex}
+%\end{filecontents*}
+
+
+%% -------------------
+%
+%% - Times, Helvetica, Courier (Word Standard...)
+%\usepackage{mathptmx}                 %% --- Times (incl math)
+%\usepackage[scaled=.90]{helvet}       %% --- Helvetica (Arial)
+%\usepackage{courier}                  %% --- Courier
+%
+%\renewcommand{\fontdesc}{Times, Arial, Courier}
+%\begin{filecontents*}{\fontcodefile}
+%\usepackage{mathptmx}
+%\usepackage[scaled=.90]{helvet}
+%\usepackage{courier}
+%\end{filecontents*}
+
+%% -------------------
+%%
+%% - Palantino , Helvetica, Courier
+%\usepackage{mathpazo}                 %% --- Palantino (incl math)
+%\usepackage[scaled=.95]{helvet}       %% --- Helvetica (Arial)
+%\usepackage{courier}                  %% --- Courier
+%
+%\renewcommand{\fontdesc}{Palantino, Arial, Courier}
+%\begin{filecontents*}{\fontcodefile}
+%\usepackage{mathpazo}
+%\usepackage[scaled=.95]{helvet}
+%\usepackage{courier}
+%\end{filecontents*}
+
+%% -------------------
+%
+%% - Charter, Bera Sans
+%\usepackage{charter}\linespread{1.05} %% --- Charter
+%\renewcommand{\sfdefault}{fvs}        %% --- Bera Sans
+%\usepackage[charter]{mathdesign}      %% --- Charter (Math)
+%\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
+%
+%\renewcommand{\fontdesc}{Charter, Bera Sans, Luxi Mono}
+%\begin{filecontents*}{\fontcodefile}
+%\usepackage{charter}\linespread{1.05} %% --- Charter
+%\renewcommand{\sfdefault}{fvs}        %% --- Bera Sans
+%\usepackage[charter]{mathdesign}      %% --- Charter (Math)
+%\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
+%\end{filecontents*}
+
+%% Note: There is a better Charter font by Linotype 
+%%       called 'ITC Charter'
+%% -------------------
+
+%% - URW Garamond
+%\renewcommand{\rmdefault}{ugm}        %% --- URW Garamond
+%\renewcommand{\sfdefault}{fvs}        %% --- Bera Sans
+%\usepackage[small]{eulervm}           %% --- EulerVM (MATH)
+%\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
+%
+%\renewcommand{\fontdesc}{Garamond, Bera Sans, Luxi Mono}
+%\begin{filecontents*}{\fontcodefile}
+%\renewcommand{\rmdefault}{ugm}        %% --- URW Garamond
+%\renewcommand{\sfdefault}{fvs}        %% --- Bera Sans
+%\usepackage[garamond]{mathdesign}     %% --- Garamond (Math)
+%\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
+%\end{filecontents*}
+
+%% Note:  If you can efford it, combine with commercial 
+%%        sans fonts like: Syntax, Frutiger or Thesis 
+%%        (but then also use the commercial Garamond ...)
+%% -------------------
+
+% - MininPro/MyriadPro
+\input{fonts/fonts-MinionPro.tex}  %% --- MinionPro
+\input{fonts/fonts-MyriadPro.tex}  %% --- MyriadPro
+\usepackage[scaled=0.85]{luximono} %% --- Luxi Mono (Typewriter)
+
+\renewcommand{\fontdesc}{MyriadPro, MinionPro, Luxi Mono}
+\begin{filecontents*}{\fontcodefile}
+\input{fonts/fonts-MyriadPro.tex}  %% --- MyriadPro
+\input{fonts/fonts-MinionPro.tex}  %% --- MinionPro
+\usepackage[scaled=0.85]{luximono} %% --- Luxi Mono (Typewriter)
+\end{filecontents*}
+%% -------------------
+
+%%% - Minion / Myriad
+%\renewcommand{\rmdefault}{pmnx}    %% ---  Minion
+%%\renewcommand{\rmdefault}{pmnj}   %% ---  Minion (oldstyle digits)
+%\renewcommand{\sfdefault}{pmy}     %% ---  Myriad
+%% Minion Math Fonts 
+%\ExecuteAfterPackage{amsmath}{\usepackage{MnSymbol}}
+%\usepackage[scaled=0.85]{luximono} %% --- Luxi Mono (Typewriter)
+%
+%\renewcommand{\fontdesc}{Myriad, Minion, Luxi Mono}
+%\begin{filecontents*}{\fontcodefile}
+%\renewcommand{\rmdefault}{pmnx}    %% ---  Minion
+%\renewcommand{\sfdefault}{pmy}     %% ---  Myriad
+%% Minion Math Fonts 
+%\ExecuteAfterPackage{amsmath}{\usepackage{MnSymbol}}
+%\usepackage[scaled=0.85]{luximono} %% --- Luxi Mono (Typewriter)
+%\end{filecontents*}
+
+%% -------------------
+
+%%%% =========== Typewriter =============
+
+%\usepackage{courier}                   %% --- Courier
+%\renewcommand{\ttdefault}{cmtl}        %% --- CmBright Typewriter Font
+%\usepackage[scaled=0.9]{luximono}      %% --- Luxi Mono (Typewriter)
+%\usepackage{ulgothic}                  %% --- Letter Gothic 
+
+%%%% =========== Mathe ================
+
+%% Recommanded to use with fonts: Aldus, Garamond, Melior, Sabon
+%\usepackage[                           %% --- EulerVM (MATH)
+%   small,       %for smaller Fonts
+%  euler-digits % digits in euler fonts style
+%]{eulervm}
+
+%% combine with utopia, garamond or charter font
+%\usepackage[
+%%   utopia,
+%%   garamond,
+%%   charter
+%]{mathdesign}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Preambel
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% configure target document
+%\input{preambel/config/phd.tex} % phd, dissertation, master, bachelor
+
+
+% load packages
+\input{preambel/packages.tex}
+% apply style settings
+\input{preambel/style.tex}
+% new commands / definitions
+\input{preambel/commands.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% execute necessary commands
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\listfiles % list all loaded files at end of document
+
+\ifcsdef{url}{}{\newcommand\url[1]{\texttt{#1}}}
+
+\begin{document}
+
+% --- Main Document --- --- --- --- --- --- ---
+\IfPackageLoaded{scrpage2}{\pagestyle{scrheadings}}
+\mainmatter
+
+\chapter{\fontdesc}
+
+The text on these pages demonstrates the appearance of the used fonts for serif, sans serif, math and typewriter fonts. The font(s) used in this document are \textit{\fontdesc}.
+
+\section{About}
+
+This document uses the LaTeX template hosted at
+%
+\begin{center}
+\url{http://code.google.com/p/latexthesistemplate/}.
+\end{center}
+%
+The fonts for this document are loaded with
+\lstinputlisting[style=demostyle]{\fontcodefile}
+
+\section{Plain text}
+The following paragraph is text taken from \url{http://www.blindtextgenerator.de} to show the appearance of the text. It is a text without any meaning translated from the original german text into english text.
+
+Far away, behind the word mountains, far from the countries Vokalia Consonantia and live the blind texts. Separated they live in Bookmarksgrove on the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, flying in which roasted parts of sentences in the mouth. Even the all-powerful Pointing the blind texts be mastered - an almost unorthographic life. One day however a small line of blind text by the name of Lorem Ipsum decided to go out into the grammar. The big Oxmox advised her not to, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text did not listen. She packed her seven caps, put her initial into the belt and went on his way. As the first hills of the Italic Mountains, had reached, it threw a last glance at the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then continued on his way. The road she met a copy. The copy warned the Little Blind, where she came from it would
+
+\section{Math formulas}
+These math formulas are taken from \url{wikipedia.org}. They show well known formulas used in math and physics.
+
+\subsection{Green's theorem}
+%
+\begin{equation}
+  \underset{\mathcal{G}\quad}\iiint
+  \left[u\nabla^{2}v+\left(\nabla  u,\nabla  v\right)\right]\mathrm{d}^{3}V
+  =\underset{\mathcal{S}\quad}\oiint  u\,\frac{\partial v}{\partial n}
+  \,\,\mathrm{d}^{2}A
+\end{equation}
+%
+\subsection{Jacobian matrix}
+%
+\begin{equation}
+  J_f(a) := \frac{\partial {f}}{\partial {x}}(a) 
+         := \frac{\partial(f_1,  \ldots, f_m)}{\partial(x_1, \ldots, x_n)}(a)
+         := \left(\frac{\partial f_i(a)}{\partial x_j}\right)_{i=1,\ldots,m;\
+             j=1,\ldots,n}
+\end{equation}
+
+\section{Tables}
+The following table lists some properties of the material \emph{fused silica}. 
+
+
+%\begin{center}
+%% Style changes
+%\small\rmfamily\renewcommand{\arraystretch}{1.4}
+%% tabular
+%\captionsetup{type=table}
+%\captionabove{Properties of fused silica}
+%\begin{tabular}{l>{$}r<{$}!{$=$}>{$}l<{$}}
+%\hline
+%\rowcolor{tableheadcolor}
+%description  &
+%\multicolumn{2}{>{\columncolor{tableheadcolor}}l}{property} \\ 
+%\hline
+%density         &  \rho          &  \SI{2.2}{g/cm^3} \\
+%heat capacity   &  c_\text{p}  &  \SI{703}{J/gK}   \\
+%transmission    &  \multicolumn{2}{c}{185 - 2500\,\si{nm}} \\
+%\hline
+%\end{tabular}
+%\end{center}
+
+The left side in serif font, the right in sans serif font.
+\begin{center}
+% Style changes
+\small\rmfamily\renewcommand{\arraystretch}{1.4}
+\begin{minipage}{0.49\textwidth}
+\centering
+% tabular
+\captionsetup{type=table}
+\captionabove{Properties of fused silica}
+\begin{tabular}{l>{$}r<{$}!{$=$}>{$}l<{$}}
+\hline
+\rowcolor{tableheadcolor}
+description  &
+\multicolumn{2}{>{\columncolor{tableheadcolor}}l}{property} \\ 
+\hline
+density         &  \rho          &  \SI{2.2}{g/cm^3} \\
+heat capacity   &  c_\text{p}  &  \SI{703}{J/gK}   \\
+transmission    &  \multicolumn{2}{c}{185 - 2500\,\si{nm}} \\
+\hline
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}{0.49\textwidth}
+\centering\sffamily
+% tabular
+\captionsetup{type=table}
+\captionabove{Properties of fused silica}
+\mathversion{sans}
+\begin{tabular}{l>{$}r<{$}!{$=$}>{$}l<{$}}
+\hline
+\rowcolor{tableheadcolor}
+description  &
+\multicolumn{2}{>{\columncolor{tableheadcolor}}l}{property} \\ 
+\hline
+density         &  \rho          &  \SI{2.2}{g/cm^3} \\
+heat capacity   &  c_\text{p}  &  \SI{703}{J/gK}   \\
+transmission    &  \multicolumn{2}{c}{185 - 2500\,\si{nm}} \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{center}
+The sans serif variant is realized with
+\begin{lstlisting}[style=demostyle]
+\mathversion{sans}
+\end{lstlisting}
+\end{document}
