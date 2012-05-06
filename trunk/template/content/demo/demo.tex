@@ -3104,6 +3104,7 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 }{\DemoError{Command \democs{gls} not available.}}%
 }{\DemoError{Package \demopackage{glossaries} not loaded.}}%
 
+%% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \printglossary[type=symbolslist,style=altlist, title=altlist]
 \end{filecontents*}
@@ -3114,6 +3115,7 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 }{\DemoError{Command \democs{gls} not available.}}%
 }{\DemoError{Package \demopackage{glossaries} not loaded.}}%
 
+%% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \printglossary[type=symbolslist,style=long, title=long]
 \end{filecontents*}
@@ -3124,12 +3126,23 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 }{\DemoError{Command \democs{gls} not available.}}%
 }{\DemoError{Package \demopackage{glossaries} not loaded.}}%
 
+%% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \printglossary[type=symbolslist,style=longheader, title=longheader]
 \end{filecontents*}
 
-This template defines the following styles
+\IfElsePackageLoaded{glossaries}{%
+\ifcsdef{gls}{%
+  \PrintDemo{style=stacked}%
+}{\DemoError{Command \democs{gls} not available.}}%
+}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
 
+\IfPackageLoaded{glossaries}{%
+\ifcsdef{gls}{%
+This template defines the following styles
+}{}}%
+
+%% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \printglossary[type=symbolslist,style=longFancy,title=longFancy]
 \end{filecontents*}
@@ -3140,6 +3153,7 @@ This template defines the following styles
 }{\DemoError{Command \democs{gls} not available.}}%
 }{\DemoError{Package \demopackage{glossaries} not loaded.}}%
 
+%% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \printglossary[type=symbolslist,style=longFancyHeader,title=longFancyHeader]
 \end{filecontents*}
@@ -3150,6 +3164,7 @@ This template defines the following styles
 }{\DemoError{Command \democs{gls} not available.}}%
 }{\DemoError{Package \demopackage{glossaries} not loaded.}}%
 
+%% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \printglossary[type=symbolslist,style=longtabuFancy, 
                title=longtabuFancy]
@@ -3163,6 +3178,7 @@ This template defines the following styles
 }{\DemoError{Command \democs{gls} not available.}}%
 }{\DemoError{Package \demopackage{glossaries} not loaded.}}%
 
+%% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \printglossary[type=symbolslist,style=longtabuFancyHeader,
                title=longtabuFancyHeader]
