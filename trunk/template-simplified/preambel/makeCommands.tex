@@ -1,0 +1,25 @@
+%% Index (package imakeidx)
+\IfDefined{makeindex}{
+  \makeindex[%
+    ,title=\indexname%
+    ,program=makeindex% (makeindex,xindy,texindy)
+    ,intoc=true,%
+    ,columns=2%
+    ,columnsep=35pt%
+    ,columnseprule=false%
+  ]%
+}
+%% Glossary/Acronym list/list of symbols (glossaries package)
+\IfDefined{makeglossaries}{\makeglossaries}
+
+%% Glossary (depreciated glossary package - not supported by this template!)
+\IfDefined{makenomenclature}{\makenomenclature}
+
+%% Mini TOC (package minitoc - not supported by this template!)
+\IfPackageLoaded{minitoc}{\IfElseUndefined{chapter}{\dosecttoc}{\dominitoc}}
+
+%% Line numbers (package lineno)
+%\IfDefined{linenumbers}{\linenumbers}
+
+%% ??
+\IfDefined{showcols}{\showcols}

@@ -1,0 +1,34 @@
+% -- Section Aussehen veraendern --
+% --------------------------------
+%% -> Section mit Unterstrich
+% \titleformat{\section}
+%   [hang]%[frame]display
+%   {\usekomafont{sectioning}\Large}
+%  {\thesection}
+%   {6pt}
+%   {}
+%   [\titlerule \vspace{0.5\baselineskip}]
+% --------------------------------
+
+% -- Chapter Aussehen veraendern --
+% --------------------------------
+%--> Box mit (Kapitel + Nummer ) +  Name
+% \titleformat{\chapter}[display]     % {command}[shape]
+%   {\usekomafont{chapter}\filcenter} % format
+%   {                                 % label
+%   {\fcolorbox{black}{frameshadecolor}{
+%   {\huge\chaptertitlename\mbox{\hspace{1mm}}\thechapter}
+%   }}}
+%   {1pc}                             % sep (from chapternumber)
+%   {\vspace{1pc}}                    % {before}[after] (before chaptertitle and after)
+% --------------------------------
+
+%--> Kapitel + Nummer + Trennlinie + Name + Trennlinie
+\titleformat{\chapter}[display]	               % {command}[shape]
+  {\usekomafont{chapter}\Large \color{black}}	% format
+  {\LARGE\MakeUppercase{\chaptertitlename}%     % label
+   \Huge~\thechapter \filright}%  
+  {1pt}										            % sep (from chapternumber)
+  {\titlerule \vspace{0.9pc} % 
+   \filright \color{sectioncolor}}              % (before chaptertitle and after)
+  [\color{black} \vspace{0.9pc} \filright {\titlerule}] %

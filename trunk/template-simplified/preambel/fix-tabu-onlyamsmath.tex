@@ -1,0 +1,5 @@
+% -> switches $ back to its original definition
+\IfPackagesLoaded{onlyamsmath,tabu}{%
+  \RequirePackage{etoolbox}
+  \AtBeginEnvironment{tabu}{\catcode`$=3 } 
+}{}
