@@ -16,7 +16,6 @@
   -> requires additional code in templatedemo.sty for second input file
 
 24.04:
-- ensure pgf examples are running
 
 - package docu: create common files
 - update all docu 
