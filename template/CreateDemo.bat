@@ -2,12 +2,10 @@
 cls
 
 SET TEXFILE=TemplateDemo
-call:CleanUP
 
 pdflatex -shell-escape -interaction=nonstopmode %TEXFILE%
 makeglossaries %TEXFILE%
 biber %TEXFILE%
-pdflatex -shell-escape -interaction=nonstopmode %TEXFILE%
 pdflatex -shell-escape -interaction=nonstopmode %TEXFILE%
 pdflatex -shell-escape -interaction=nonstopmode %TEXFILE%
 
@@ -21,6 +19,7 @@ echo.&pause&goto:eof
 
 :: clean up
 :CleanUP
+del *.aux
 del *.dvi
 del *.acn
 del *acr
@@ -45,6 +44,7 @@ del *.table
 del *.xml
 del *.syg
 del *.toc
+del *.bcf
 del fit.log
 del plotdata.txt
 

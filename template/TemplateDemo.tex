@@ -9,8 +9,8 @@
 %
 %% Document Class (Koma Script) -----------------------------------------
 \documentclass[%
-   %draft,     % draft mode (no images, layout errors shown)
-   final,      % final mode 
+   %draft=true,     % draft mode (no images, layout errors shown)
+   draft=false,     % final mode 
 %%% --- Paper Settings ---
    paper=a4,% [Todo: add alternatives]
    paper=portrait, % landscape
@@ -93,7 +93,7 @@
 \IfPackageLoaded{biblatex}{%
   \ExecuteBibliographyOptions{%
 %%--- Backend --- --- ---
-	backend=bibtex,   % (bibtex, biber)
+	backend=biber,   % (bibtex, biber)
 	bibwarn=true,     %
 	texencoding=auto, % auto-detect the input encoding
 	bibencoding=auto, % (auto (equal to tex), <encoding>)
@@ -127,7 +127,7 @@
 % biblatex requires files before document
 \IfPackageLoaded{biblatex}{
   % add all .bib files:
-  \addbibresource{bib/demo}
+  \addbibresource{bib/demo.bib}
 }%
 
 \input{content/Z-Acronyms.tex}
