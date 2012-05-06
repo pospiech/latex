@@ -1,0 +1,96 @@
+% Kommentare für den Editor (TexWorks/TexMakerX)
+% !TeX encoding   = utf8
+% !TeX spellcheck = de-DE
+
+%
+%% Document Class (Koma Script) -----------------------------------------
+\documentclass[%
+   %draft=true,     % draft mode (no images, layout errors shown)
+   draft=false,     % final mode 
+%%% --- Paper Settings ---
+   paper=a4,% [Todo: add alternatives]
+   paper=portrait, % landscape
+   pagesize=auto, % driver
+%%% --- Base Font Size ---
+   fontsize=11pt,%
+%%% --- Koma Script Version ---
+   version=last, %
+%%% --- Global Package Options ---
+   ngerman, % language (passed to babel and other packages)
+            % (ngerman, english, french, ...)
+ ]{scrartcl} % Classes: scrartcl, scrreprt, scrbook
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% encoding
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% automatic selection of encoding
+% insert chars for umlaut a and sz
+\usepackage{selinput}
+\SelectInputMappings{adieresis={ä},germandbls={ß}} 
+
+% Encoding of _files and directories_
+% (ensures that any file can be loaded without problems)
+\usepackage[%
+   extendedchars, encoding, multidot, space,
+   filenameencoding=latin1, % Windows XP, Vista, 7
+   % filenameencoding=utf8,   % Linux, OS X
+]{grffile}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Preambel
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%% select/load fonts
+\input{fonts/fonts.tex}
+%% load packages
+\input{preambel/packages.tex}
+%% apply style settings
+\input{preambel/style.tex}
+%% new commands / definitions
+\input{preambel/commands.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% custom definitions
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\input{macros/newcommands.tex}
+
+%%% Silbentrennung
+\input{preambel/Hyphenation.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% execute commands
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\listfiles % list all loaded files at end of document
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% bibliography
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%% bibtex file(s)
+% add multiple files with comma separation
+% biblatex requires files before document
+% add all .bib files:
+\addbibresource{bib/BibtexDatabase.bib}
+
+
+
+%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{content/Titel.tex}
+
+\tableofcontents
+
+\input{content/demo/demo.tex}
+
+% in diese Datei gehört der Inhalt des Dokumentes:
+\input{content/Auswertung.tex}
+
+
+%%% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

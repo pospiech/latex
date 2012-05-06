@@ -1,4 +1,4 @@
-\IfDefined{sisetup}{%
+\ifcsdef{sisetup}{%
 
 %  detect-family,
 %  detect-weight,  
@@ -9,7 +9,7 @@
   separate-uncertainty=true,
 }
 
-\IfDefined{iflanguage}{%
+\ifcsdef{iflanguage}{%
   \iflanguage{ngerman}{%
     \sisetup{%
       exponent-product = \cdot,
@@ -17,7 +17,7 @@
       output-decimal-marker={\text{,}},
     }
   }
-}
+}{}
 
 \let\nicefrac\sfrac
 
@@ -33,4 +33,4 @@
     {\SI{#1}{\sfrac{#2}{#3}}}%
 }
 
-} % end: \IfDefined
+}{} %

@@ -1,4 +1,3 @@
-\IfPackageLoaded{caption} {%
 % Style of captions
 \DeclareCaptionStyle{captionStyleTemplateDefault}
 [ % single line captions
@@ -58,11 +57,11 @@
 \captionsetup[figure]{position=bottom}
 
 \newcommand\FigureAbbrevition{Fig.}
-\IfDefined{iflanguage}{%
+\ifcsdef{iflanguage}{%
   \iflanguage{ngerman}{%
     \renewcommand\FigureAbbrevition{Abb.}
   }{}
-}
+}{}
 
 \DeclareCaptionStyle{captionStyleTemplateShortDefault}{%
   style=captionStyleTemplateDefault,
@@ -72,43 +71,27 @@
 }
 
 % Short Names 
-\IfDefined{wrapfigure}{%
-  \captionsetup[wrapfigure]{style=captionStyleTemplateShortDefault}}
-\IfDefined{wrapfloat}{%
-  \captionsetup[wrapfloat]{style=captionStyleTemplateShortDefault}}
-\IfDefined{floatingfigure}{%
-  \captionsetup[floatingfigure]{style=captionStyleTemplateShortDefault}}
-\IfDefined{margincap}{%
-  \IfDefined{preto}{\preto\margincap{
-  \captionsetup{style=captionStyleTemplateShortDefault}}}}
+\ifcsdef{wrapfigure}{%
+  \captionsetup[wrapfigure]{style=captionStyleTemplateShortDefault}}{}
+\ifcsdef{wrapfloat}{%
+  \captionsetup[wrapfloat]{style=captionStyleTemplateShortDefault}}{}
+\ifcsdef{floatingfigure}{%
+  \captionsetup[floatingfigure]{style=captionStyleTemplateShortDefault}}{}
 
-} % end \IfPackageLoaded{caption}
 
 % options for subcaptions
-\IfPackageLoaded{subcaption}{
-  \captionsetup[sub]{ %
-    style = captionStyleTemplateDefault, % base
-    labelfont  = {footnotesize,bf},
-    textfont   = {footnotesize,rm},
-    justification = RaggedRight, %RaggedRight, justified, centering
-    skip=6pt,
-    margin=5pt,
-    labelformat = simple,% default, empty, simple, brace, parens
-    labelsep    = space,
-    list=false,
-    hypcap=false
-  }
-  % make subcaptions be referenced as 5.3(b)
-  \renewcommand\thesubfigure{(\alph{subfigure})} 
+
+\captionsetup[sub]{ %
+  style = captionStyleTemplateDefault, % base
+  labelfont  = {footnotesize,bf},
+  textfont   = {footnotesize,rm},
+  justification = RaggedRight, %RaggedRight, justified, centering
+  skip=6pt,
+  margin=5pt,
+  labelformat = simple,% default, empty, simple, brace, parens
+  labelsep    = space,
+  list=false,
+  hypcap=false
 }
-
-%\IfNotKomaScript{%
-%  % The position settings are overwritten by koma script
-%  \captionsetup{%
-%  {%
-%   % position=auto, % auto/top/bottom %
-%   figureposition=top, % auto/top/bottom %
-%   tableposition=bottom, % auto/top/bottom %
-%  }
-%}
-
+% make subcaptions be referenced as 5.3(b)
+\renewcommand\thesubfigure{(\alph{subfigure})} 
