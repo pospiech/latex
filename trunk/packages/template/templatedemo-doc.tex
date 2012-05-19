@@ -7,7 +7,6 @@
 \usepackage[T1]{fontenc} % T1 Schrift Encoding
 \usepackage{lmodern}
 %
-%\RequirePackage{listings}
 \RequirePackage[table]{xcolor}
 \RequirePackage{enumitem}
 \RequirePackage{tabu}
@@ -22,14 +21,14 @@
 \colorlet{tablerowcolor}{gray!10}
 \colorlet{tableheadcolor}{gray!25}
 
-
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
 
 \usepackage{templatedemo}
-\usepackage{soul}
+\usepackage{soulutf8}
 
-
-\newcommand{\package}[1]{\texttt{#1}}
-\newcommand{\latex}{\LaTeX}
+\input{preamble/setup-doc-commands.tex}
+\setcounter{secnumdepth}{2}
 
 \listfiles
 \begin{document}
@@ -45,20 +44,21 @@
 
 \maketitle
 \begin{abstract}\noindent
-This package provides some commands to demonstrate the result and the originating code sequence with a single occurance of the code within the document.
+This package provides some commands to demonstrate the result and the originating code sequence with a single occurrence of the code within the document.
 \end{abstract}
 %\tableofcontents
 
 \section{Introduction}
 This package provides some commands to demonstrate the result of \latex{} code together with the code, which the result is based on. The difference to other packages (such as \package{showexpl}) is the support of verbatim material inside a conditional sequence. 
-The consequence of this requirement is however that the commands of this package are more low level than origially intended.
+The consequence of this requirement is however that the commands of this package are more low level than originally intended.
 
 The commands provided by this package are based on the packages \package{listings}, \package{mdframed} and \package{filecontents}. 
 
 
 \section{Basic example}
-
-Below is a principle example (using \cs{ifcsdef} from etoolbox):
+\label{sec:example:basic}
+Below is a principle example (using \cs{ifcsdef} from etoolbox),
+which demonstrates some commands of the package \demopackage{soul}:
 
 \begin{lstlisting}[style=demostyle]
 \begin{filecontents*}{\democodefile}
@@ -69,10 +69,9 @@ and \hl{highlighting}.
 \end{filecontents*}
 
 \ifcsdef{so}{%
-\subsection*{package: soul}
-
-Commands of package \demopackage{soul}:
-\PrintCodeAndResultsParallel
+%
+\PrintDemo{style=parallel}
+%
 }{% 
   \DemoError{Command \democs{so} of package% 
   \demopackage{soul} not available.
@@ -93,68 +92,115 @@ and \hl{highlighting}.
 
 \ifcsdef{so}{%
 % ------------------------------------------------------------
-\subsection*{package: soul}
-
-Commands of package \demopackage{soul}:
-\PrintCodeAndResultsParallel
+\PrintDemo{style=parallel}
 }{}%
 
 
 
-\section{Reference}
+\section{Usage}
+
+\subsection{Define code}
+This package requires the example code to be written to an external file. The filename is saved in the command sequence \cs{democodefile}. The output is done with the \demoenv{filecontents} environment. See following code for the usage.
+
+\begin{lstlisting}[style=demostyle]
+\begin{filecontents*}{\democodefile}
+... code ...
+\end{filecontents*}
+\end{lstlisting}
+
+The requirement for an external file originates from the problem that verbatim content cannot be saved in normal tex macros since the line breaks and white spaces get lost. Furthermore any other complex solution fails finally because saving such contend can not be included in conditional code statements%
+\footnote{See discussion on: \url{http://tex.stackexchange.com/questions/29256/}}.
+
+The content in the file defined by \cs{democodefile} is further read for the printing of the code and the corresponding output.
+
+\subsection{Print code and result}
+
+\DescribeMacro{\PrintDemo\{style=\arg{option}\}}%
+is the macro for the output of code and result. The layout of both is defined with the style option. The following options are possible
+%
+\begin{Optionlist}
+parallel &  code and result side by side.  \\
+stacked  &  code and result with 100\,\% text width stacked.\\
+lines    &  like \texttt{stacked}, but with lines on 
+            top and bottom of the result instead of a surrounding box. \\
+none     &  like \texttt{stacked}, but with no nothing around the result. \\
+page     &  result on a single page.\\
+\end{Optionlist}
+
+You should use \option{parallel} for small examples and \option{stacked} otherwise.
+The options \option{lines} and \option{none} is primarily for those cases where a surrounding box is disturbing or impossible. The latter occurs for example in cases where content is written across the text width boundaries. \option{page} is obviously for those cases where the output is very large or written to another page anyway.
+
+\subsubsection{Examples}
+The following code is used in the examples
+\begin{lstlisting}[style=demostyle]
+\begin{filecontents*}{\democodefile}
+This code shows some basic math: $a^2 + b^2 = c^2$.
+\end{filecontents*}
+\end{lstlisting}
+
+\begin{filecontents*}{\democodefile}
+This code shows some basic math: $a^2 + b^2 = c^2$.
+\end{filecontents*}
+
+\begin{itemize}
+\item \cmd{\PrintDemo\{style=parallel\}}
+\PrintDemo{style=parallel}
+%
+\item \cmd{\PrintDemo\{style=stacked\}}
+\PrintDemo{style=stacked}
+%
+\item \cmd{\PrintDemo\{style=lines\}}
+\PrintDemo{style=lines}
+%
+\item \cmd{\PrintDemo\{style=none\}}
+\PrintDemo{style=none}
+\end{itemize}
+
+The prefix text for code and result and the filename can be changed. The commands are introduced in section~\ref{sec:setup}. Commands for the output of content such as the name of of a package, a command, an environment or a generalized error message are introduced in section~\ref{sec:commands:output}.
 
 \subsection{Setup}
+\label{sec:setup}
 
+The following commands define the name for the temporary file or the strings used for the printing of code or results. Use \cs{renewcommand} to change the definitions.
 
-\begin{flushleft}
-% Style changes
-\small\rmfamily\renewcommand{\arraystretch}{1.4}  
-% tabu
-\begin{tabu} to 0.9\textwidth {X[1,l]>{a}X<{b}[1,l]X[2,l]}
-\hline
-\rowfont[l]{\bfseries}
-\taburowcolors 1{tableheadcolor .. tableheadcolor}
-command       &
-default value & 
-description  \\
-\hline
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-\cs{democodefile} & 
-\texttt{democode}  &
-temporary file required for code and results printing. \\
-% 
-\cs{democodeprefix} & 
-\texttt{Code: }  &
-Prefix text for output of code in \\
-% 
-\hline
-\end{tabu}
-\end{flushleft}	
-
-
-% better as table
-%\newcommand{\democodeprefix}{Code: }
-%\newcommand{\demoresultprefix}{\noindent Result:}
+\DescribeMacro{\democodefile}%
+Filename for the temporary file required for code and results printing. 
+\Default{democode}
+%
+\DescribeMacro{\democodeprefix}%
+Prefix text for output of code.
+\Default{Code: }
+%
+\DescribeMacro{\demoresultprefix}%
+Prefix text for output of the result. 
+\Default{Result: }
 
 \subsection{Output commands}
-%\newcommand{\democs}[1]{\democommand{#1}}
-%\newcommand{\democommand}[1]{\texttt{\bs{}#1}}
-%\newcommand{\demoenv}[1]{\texttt{#1}}
-%\newcommand{\demopackage}[1]{\texttt{\itshape#1}}
-%\DemoError
-\subsection{Print code and result}
-% Print code and result using the key-value syntax
-%\newcommand{\PrintDemo}[1]{%
+\label{sec:commands:output}
 
-%  \ifnum\pdf@strcmp{\demo@style}{parallel}=0%
-%    \PrintCodeAndResultsParallel%
-%  \else\ifnum\pdf@strcmp{\demo@style}{stacked}=0%
-%    \PrintCodeAndResultsStacked%
-%  \else\ifnum\pdf@strcmp{\demo@style}{lines}=0%
-%    \PrintCodeAndResultsStackedLines%
-%  \else\ifnum\pdf@strcmp{\demo@style}{page}=0%
-%    \PrintCodeAndResultsPage%
-%  \else\ifnum\pdf@strcmp{\demo@style}{none}=0%
+The following commands are provided for the user to print out and format commands, environments, packages and errors.
+
+\DescribeMacro{\democs}%
+shortcut for \cs{democommand}
+\Example{\democs{foo}}
+%
+\DescribeMacro{\democommand}%
+formats the given command sequence name. Note that a parameter
+\parameter{foo} is printed as \cs{foo}.
+\Example{\democommand{foo}}
+%
+\DescribeMacro{\demopackage}%
+formats the given packagename.
+\Example{\demopackage{foo}}
+%
+\DescribeMacro{\demoenv}%
+formats the given environment name.
+\Example{\demoenv{foo}}
+%
+\DescribeMacro{\DemoError}%
+prints out the given error message
+\Example{\DemoError{foo}}
+%
 
 \subsection{Low level commands}
 
@@ -181,5 +227,5 @@ and
 
 The environment \demoenv{latexresult} itself includes the command \cs{demoresultprefix} and a frame based on \package{mdframed}.
 
-For all further commands used by the package and their imlementations please look at the code itsself. 
+For all further commands used by the package and their implementations please look at the code itself. 
 \end{document}
