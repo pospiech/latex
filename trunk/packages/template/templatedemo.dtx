@@ -1,0 +1,730 @@
+% \iffalse meta-comment
+% 
+% File:      templatedemo.sty
+% Version:   2012/06/01 v0.1
+% Author:    Matthias Pospiech
+% Email:     <matthias@pospiech.eu>
+%
+% Copyright (C) 2012 by Matthias Pospiech (matthias@pospiech.eu)
+% ---------------------------------------------------------------------------
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Matthias Pospiech.
+%
+% This work consists of the files templatedemo.dtx and templatedemo.ins
+% and the derived filebase templatedemo.sty.
+%
+% \fi
+% \newcommand\packagetext{templatedemo}
+% \newcommand\authortext{Matthias Pospiech}
+% \newcommand\emailtext{matthias@pospiech.eu} 
+% \newcommand\versiontext{v0.1} 
+% \newcommand\datetext{2012/06/01} 
+% \iffalse
+%<*driver>
+\ProvidesFile{templatedemo.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<package>\ProvidesPackage{templatedemo}
+%<*package>
+   [2012/05/20 v0.1 typeset code and resulting output]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\RequirePackage{templatedemo}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+%%% Font packages
+\usepackage{cmap} 
+\usepackage[T1]{fontenc} % T1 Schrift Encoding
+\usepackage{lmodern}
+%%% Additional packages
+\usepackage{soulutf8}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{tabu}
+%%% hyperref
+\input{preamble/setup-hyperref.tex}
+%%% color setup
+% table colors 
+\colorlet{tablebodycolor}{white!100}
+\colorlet{tablerowcolor}{gray!10}
+\colorlet{tableheadcolor}{gray!25}
+%%% Set document layout / variables
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+%%% doc commands
+\input{preamble/setup-doc-commands.tex}
+
+\listfiles
+
+\begin{document}
+  \DocInput{templatedemo.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{226}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v0.1}{2012/05/20}{initial version (converted to dtx file)}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+%
+% \providecommand*{\url}{\texttt}
+% \GetFileInfo{templatedemo.dtx}
+% \title{The \textsf{templatedemo} package}
+% \author{\authortext \\ \url{\emailtext}}
+% \date{\fileversion~from \filedate}
+%
+% \maketitle
+% \section{Introduction}
+% In order to demonstrate \latex{} code it is very usefull to have the code and
+% the resulting output together in the same document. \demopackage{\packagetext} 
+% is a package that provides configurable tools to print out \latex{} code and the
+% resulting output in the same document.
+%
+% The difference to other similar packages is the support of
+% verbatim material inside a conditional sequence and the consequence that each 
+% code must be written to an external file.
+%
+% The commands provided by this package are based on the packages 
+% \package{listings}, \package{mdframed} and \package{filecontents}. 
+%
+% \section{Basic example}
+% \label{sec:example:basic}
+% Below is a principle example (using \cs{ifcsdef} from etoolbox),
+% which demonstrates the usage of the package by showing some commands of a
+% package (\demopackage{soul}) with the resulting code side by side:
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=demostyle]
+\begin{filecontents*}{\democodefile}
+\so{letterspacing}, \\
+\ul{underlining},   \\
+\st{overstriking}   \\
+and \hl{highlighting}. 
+\end{filecontents*}
+
+\ifcsdef{so}{%
+%
+\PrintDemo{style=parallel}
+%
+}{% 
+  \DemoError{Command \democs{so} of package% 
+  \demopackage{soul} not available.
+  Probably the package was not loaded.
+  }
+}%
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% which is shown as 
+% \iffalse
+%<*example>
+% \fi
+\begin{filecontents*}{\democodefile}
+\so{letterspacing}, \\
+\ul{underlining},   \\
+\st{overstriking}   \\
+and \hl{highlighting}. 
+\end{filecontents*}
+% \iffalse
+%</example>
+% \fi
+%
+%\PrintDemo{style=parallel}
+%
+% \section{Usage}
+%
+% \subsection{Define code}
+% This package requires the example code to be written to an external file. The
+% filename is saved in the command sequence \cs{democodefile}. The output is done
+% with the \demoenv{filecontents} environment:
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=demostyle]
+\begin{filecontents*}{\democodefile}
+... code ...
+\end{filecontents*}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% The requirement for an external file originates from the problem that verbatim
+% content cannot be saved in normal tex macros since the line breaks and white
+% spaces get lost. Furthermore any solution which would solve this problem would
+% fails finally because saving such contend can not be included in conditional
+% code statements\footnote{See discussion on:
+%  \url{http://tex.stackexchange.com/questions/29256/}}.
+%
+% The content in the file defined by \cs{democodefile} is further read for the
+% printing of the code and the corresponding output.
+%
+% \subsection{Print code and result}
+%
+% \DescribeMacro{\PrintDemo\{style=\arg{option}\}}%
+% is the macro for the output of code and result. 
+% The layout of both is defined with the style option. 
+% The following options are possible
+%
+% \begin{Optionlist}
+%  parallel &  code and result side by side.  \\
+%  stacked  &  (default) code and result with 100\,\% text width stacked.\\
+%  lines    &  like \texttt{stacked}, but with lines on 
+%              top and bottom of the result instead of a surrounding box. \\
+%  none     &  like \texttt{stacked}, but with nothing around the result. \\
+%  page     &  result on a single page.\\
+% \end{Optionlist}
+%
+% You should use \option{parallel} for small examples and \option{stacked}
+% otherwise. The options \option{lines} and \option{none} is primarily 
+% for those cases where a surrounding box is disturbing or impossible. 
+% The latter occurs for example in cases where content is written across 
+% the text width boundaries. The option \option{page} is obviously for 
+% those cases where the output is very large or written to another page anyway.
+%
+% \subsubsection{Examples}
+% The following code is used in the examples
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=demostyle]
+\begin{filecontents*}{\democodefile}
+This code shows some basic math: $a^2 + b^2 = c^2$.
+\end{filecontents*}
+\end{lstlisting}
+%
+\begin{filecontents*}{\democodefile}
+This code shows some basic math: $a^2 + b^2 = c^2$.
+\end{filecontents*}
+% \iffalse
+%</example>
+% \fi
+%
+% \begin{itemize}
+% \item \cmd{\PrintDemo\{style=parallel\}}
+% \PrintDemo{style=parallel}
+%
+% \item \cmd{\PrintDemo\{style=stacked\}}
+% \PrintDemo{style=stacked}
+%
+% \item \cmd{\PrintDemo\{style=lines\}}
+% \PrintDemo{style=lines}
+%
+% \item \cmd{\PrintDemo\{style=none\}}
+% \PrintDemo{style=none}
+% \end{itemize}
+%
+% The prefix text for code and result and the filename can be changed. The
+% commands are introduced in section~\ref{sec:setup}. Commands for the output of
+% content such as the name of of a package, a command, an environment or a
+% generalized error message are introduced in section~\ref{sec:commands:output}.
+%
+% \subsection{Setup}
+% \label{sec:setup}
+%
+% The following commands define the name for the temporary file or the strings
+% used for the printing of code or results. Use \cs{renewcommand} to change the
+% definitions.
+%
+% \DescribeMacro{\democodefile}%
+% Filename for the temporary file required for code and results printing. 
+% \Default{democode}
+%
+% \DescribeMacro{\democodeprefix}%
+% Prefix text for output of code.
+% \Default{Code: }
+%
+% \DescribeMacro{\demoresultprefix}%
+% Prefix text for output of the result. 
+% \Default{Result: }
+%
+% \subsection{Output commands}
+% \label{sec:commands:output}
+%
+% The following commands are provided for the user to print out and format
+% commands, environments, packages and errors.
+%
+% \DescribeMacro{\democs}%
+% shortcut for \cs{democommand}
+% \Example{\democs{foo}}
+%
+% \DescribeMacro{\democommand}%
+% formats the given command sequence name. Note that a parameter
+% \parameter{foo} is printed as \cs{foo}.
+% \Example{\democommand{foo}}
+%
+% \DescribeMacro{\demopackage}%
+% formats the given packagename.
+% \Example{\demopackage{foo}}
+%
+% \DescribeMacro{\demoenv}%
+% formats the given environment name.
+% \Example{\demoenv{foo}}
+%
+% \DescribeMacro{\DemoError}%
+% prints out the given error message
+% \Example{\DemoError{foo}}
+%
+%
+% \StopEventually{}
+%
+% \section{Implementation}
+%
+% \iffalse
+%<*templatedemo.sty>
+% \fi
+%
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{templatedemo}[2012/05/20 v0.1 typeset code and resulting output]
+\RequirePackage{listings}
+% This code needs to be executed at the beginning
+% of the document because some packages (eg. xcolor)
+% could leed to option clashes otherwise
+%
+\AtBeginDocument{%
+%    \end{macrocode}
+% \subsection{Preamble}
+% \subsubsection{Packages}
+% 
+%    \begin{macrocode}
+%% Programming
+\RequirePackage{xspace}
+\RequirePackage{etoolbox}
+%% Write contents to files
+\RequirePackage{filecontents}
+%% Package for colors
+\RequirePackage{xcolor}
+%% Packages for frames
+\RequirePackage{mdframed}
+\RequirePackage{framed}
+%    \end{macrocode}
+%
+% \subsubsection{Colors}
+%
+%    \begin{macrocode}
+%% Colors
+\colorlet{demo@stringcolor}{green!40!black!100}
+\colorlet{demo@commentcolor}{green!50!black!100}
+\colorlet{demo@numbercolor}{white!50!black!100}
+\colorlet{demo@codebackcolor}{white!95!black!100}
+\colorlet{demo@resultbackcolor}{white}
+\definecolor{demo@keywordcolor}{rgb}{0,0.47,0.80}
+\definecolor{demo@rulecolor}{rgb}{0,0.4,0.5}
+\definecolor{demo@code@rulecolor}{rgb}{0.5,0.5,0.5}
+%    \end{macrocode}
+%
+% \subsection{Commands}
+%
+%    \begin{macrocode}
+%% === Simple Commands ===============================
+%    \end{macrocode}
+%
+% \begin{macro}{\bs}
+% Shortcut for \cs{textbackslash}.
+%    \begin{macrocode}
+\newcommand{\bs}{\textbackslash}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\democs}
+% Shortcut for \cs{democommand}.
+%    \begin{macrocode}
+\newcommand{\democs}[1]{\democommand{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\democommand}
+% Prints the argument with backslash in typewriter font. 
+% This is meant to be used for \latex{} commands.
+%    \begin{macrocode}
+\newcommand{\democommand}[1]{\texttt{\bs{}#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\demoenv}
+% Format an environment in typewriter font. 
+%    \begin{macrocode}
+\newcommand{\demoenv}[1]{\texttt{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\demopackage}
+% Format an package in typewriter font. 
+%    \begin{macrocode}
+\newcommand{\demopackage}[1]{\texttt{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\democodefile}
+% Saves the filename for temporary file output.
+%    \begin{macrocode}
+\newcommand{\democodefile}{democode}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\democodeprefix}
+% Prefix text for code output.
+%    \begin{macrocode}
+\newcommand{\democodeprefix}{Code: }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\demoresultprefix}
+% Prefix text for result output.
+%    \begin{macrocode}
+\newcommand{\demoresultprefix}{\noindent Result:}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\DemoError}
+% Output and formating of error messages.
+%    \begin{macrocode}
+%% Print Error
+\newcommand{\DemoError}[1]{
+  \ifcsdef{textcolor}
+    {\textcolor{red}{Error:~}}
+    {Error:~}
+  #1 \par\noindent
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Define keys}
+%
+%    \begin{macrocode}
+%% === Define Keys ===================================
+\RequirePackage{kvoptions-patch}
+\RequirePackage{kvoptions}  % options
+\RequirePackage{pdftexcmds} % string comparison
+\SetupKeyvalOptions{family=demo,prefix=demo@}
+%    \end{macrocode}
+% Define default option for style key: \emph{stacked}
+%    \begin{macrocode}
+\DeclareStringOption[stacked]{style}
+\ProcessKeyvalOptions{demo}
+%    \end{macrocode}
+%
+% \begin{macro}{\PrintDemoUsingKeys}
+% Evaluate key and execute corresponding commands
+%    \begin{macrocode}
+\newcommand{\PrintDemoUsingKeys}{%
+  \ifnum\pdf@strcmp{\demo@style}{parallel}=0%
+    \PrintCodeAndResultsParallel%
+  \else\ifnum\pdf@strcmp{\demo@style}{stacked}=0%
+    \PrintCodeAndResultsStacked%
+  \else\ifnum\pdf@strcmp{\demo@style}{lines}=0%
+    \PrintCodeAndResultsStackedLines%
+  \else\ifnum\pdf@strcmp{\demo@style}{page}=0%
+    \PrintCodeAndResultsPage%
+  \else\ifnum\pdf@strcmp{\demo@style}{none}=0%
+    \PrintCodeAndResultsNone%
+  \else%
+     \PackageError{templatedemo}{%
+       \MessageBreak%
+       value >\tplbugs@style< unkown \MessageBreak%
+     }{}%
+  \fi\fi\fi\fi\fi%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\PrintDemo}
+% Print code and result using the key-value syntax
+%    \begin{macrocode}
+\newcommand{\PrintDemo}[1]{%
+\begingroup
+  \setkeys{demo}{#1}%
+  \PrintDemoUsingKeys
+\endgroup
+}    
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{listings package style}
+%    \begin{macrocode}
+%% === Listings style ================================
+\lstdefinestyle{demostyle}{
+  columns=flexible,
+  keepspaces=true,    
+  numberstyle=\tiny\color{demo@numbercolor},%
+  basicstyle=\small\ttfamily,%
+  numbers=none,%
+  stepnumber=1,%
+  numbersep=5pt,%
+  tabsize=2,%
+  extendedchars=true,%
+  breaklines=true,%
+  stringstyle=\color{demo@stringcolor}, %
+  keywordstyle=\color{demo@keywordcolor}, %
+  commentstyle=\color{demo@commentcolor}, %
+  showspaces=false,%
+  showtabs=false,%
+  showstringspaces=false,%
+  frame=single,%
+  backgroundcolor=\color{demo@codebackcolor},%
+  rulecolor=\color{demo@code@rulecolor},%
+  language = [LaTeX]TeX,%
+  moretexcs={maketitle,tableofcontents,subsection,text,includegraphics,
+    chapter,tableofcontents,section,subsection,subsubsection,paragraph,si,SI,
+    textmu,newcolumntype,rowcolor,rowcolors,bottomrule,toprule,midrule,
+    mainmatter,frontmatter,geometry,KOMAoptions,enquote,blockquote,ding,mathds,
+    ifcsdef,mathcal,underset,operatorname,sfrac,Bra,Ket,Braket,setlength,
+    subcaption,sisetup,rowfont,taburowcolors,theadstart,tbody,tsubheadstart,
+    tsubhead,tend,unit,unitfrac,micro,gls,printglossary,glsadd,newglossaryentry,
+    lettrine,mdfsetup,democodefile,demopackage,democs,democommand,demoenv,
+    DemoError},
+}
+\lstloadlanguages{[LaTeX]TeX}
+%    \end{macrocode}
+% Create a new environment for listings
+%    \begin{macrocode}
+\lstnewenvironment{latexcode}{%
+\lstset{style=demostyle, inputencoding=latin1, escapeinside=!!}%
+\democodeprefix
+}{}
+%    \end{macrocode}
+%
+% \subsection{mdframed package style}
+%
+%    \begin{macrocode}
+%% === Mdframed style ================================
+\mdfdefinestyle{DemoStyleFrames}{
+  linecolor=demo@rulecolor,%
+  linewidth=0.8pt,
+  skipabove=0pt,
+  skipbelow=0.5\baselineskip,
+  leftmargin =-3.5pt,
+  rightmargin=-3.5pt,
+  innerleftmargin=3pt,
+  innerrightmargin=3pt,
+}% 
+%    \end{macrocode}
+%
+% \subsection{Commands for the formating}
+%
+% \begin{macro}{\preResultSkip}
+% Default skip at the beginning of a result
+%    \begin{macrocode}
+%% === Formating commands ============================
+\newcommand{\preResultSkip}{\vspace*{-0.5\baselineskip}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{environment}{latexresult}
+% Environment to print the result in a box
+%    \begin{macrocode}
+\newenvironment{latexresult}{%
+\demoresultprefix
+\nopagebreak[4]
+\preResultSkip
+\mdframed[%
+  style=DemoStyleFrames,
+  backgroundcolor=demo@resultbackcolor,%
+  usetwoside=false,
+]%
+}{
+\endmdframed
+\noindent
+}
+%    \end{macrocode}
+% \end{environment}
+%
+%
+% \begin{macro}{\resultline}
+%% Single Line for results
+%    \begin{macrocode}
+\newcommand{\resultline}{%
+\nopagebreak[4]
+%% Insert single line
+\mdframed[%
+  style=DemoStyleFrames,
+  skipabove=3pt,
+  skipbelow=3pt,
+  topline=true,bottomline=false,leftline=false,rightline=false,
+  backgroundcolor=white,%
+]\mbox{}\endmdframed
+\nopagebreak[4]
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% % \subsection{Low level commands for printing of code and result}
+%
+% \begin{macro}{\printlatexcode}
+% Prints the code using \cs{lstinputlisting}
+%    \begin{macrocode}
+%% === Output commands ===============================
+%% Print Code with prefix
+\newcommand{\printlatexcode}{%
+\democodeprefix
+\lstinputlisting[style=demostyle,nolol=true]{\democodefile}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\printlatexresult}
+% Prints the result enclosed in the \demoenv{latexresult} environment.
+% The evaluation of the code is simply achieved by loading the file with 
+% \cs{input}.
+%    \begin{macrocode}
+%% Print Result with standard box
+\newcommand{\printlatexresult}{%
+\begin{latexresult}%
+\IfFileExists{\democodefile}{\input{\democodefile}}{}%
+\end{latexresult}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\printlatexresultlines}
+% Like \cs{printlatexresult} but with lines above and below instead of a
+% surrounding box.
+%    \begin{macrocode}
+%% Print result with lines 
+\newcommand{\printlatexresultlines}{%
+\demoresultprefix
+\nopagebreak[4] \resultline \nopagebreak[4]
+\IfFileExists{\democodefile}{\input{\democodefile}}{}%
+\nopagebreak[4] \resultline \nopagebreak[4]
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Output of code and result}
+%
+% \begin{macro}{\PrintCodeAndResultsParallel}
+%    \begin{macrocode}
+%% === Output commands for code and result ===========
+\newcommand{\PrintCodeAndResultsParallel}{%
+\nopagebreak[4]
+\vspace*{0.5em}\par\noindent
+\begin{minipage}[t]{0.48\linewidth}
+\printlatexcode
+\end{minipage} \hfill
+\begin{minipage}[t]{0.48\linewidth}
+\printlatexresult
+\end{minipage}
+\par\noindent
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\PrintCodeAndResultsStacked}
+%    \begin{macrocode}
+\newcommand{\PrintCodeAndResultsStacked}{%
+\nopagebreak[4]
+\vspace*{0.5em}\par\noindent
+\printlatexcode%
+\printlatexresult%
+\par\noindent
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\PrintCodeAndResultsStackedLines}
+%    \begin{macrocode}
+\newcommand{\PrintCodeAndResultsStackedLines}{%
+\nopagebreak[4]
+\vspace*{0.5em}\par\noindent
+\printlatexcode%
+\printlatexresultlines%
+\vspace*{0.5em}\par\noindent
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\PrintCodeAndResultsNone}
+%    \begin{macrocode}
+\newcommand{\PrintCodeAndResultsNone}{%
+\nopagebreak[4]
+\vspace*{0.5em}\par\noindent
+\printlatexcode%
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\demoresultprefix
+\nopagebreak[4]
+\par\noindent
+\IfFileExists{\democodefile}{\input{\democodefile}}{}%
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\vspace*{0.5em}\par\noindent
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\PrintCodeAndResultsPage}
+%    \begin{macrocode}
+\newcommand{\PrintCodeAndResultsPage}{%
+\nopagebreak[4]
+\vspace*{0.5em}\par\noindent
+\printlatexcode%
+\demoresultprefix: Shown on the following page.
+\newpage
+\IfFileExists{\democodefile}{\input{\democodefile}}{}%
+\newpage
+}%
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+} % end of \AtBeginDocument
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \iffalse
+%</templatedemo.sty>
+% \fi
+%
+% \Finale
+\endinput
