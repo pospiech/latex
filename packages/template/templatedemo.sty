@@ -1,10 +1,17 @@
 %%
-%% This is file templatedemo.sty',
+%% This is file `templatedemo.sty',
+%% generated with the docstrip utility.
 %%
-%% Copyright (C) 2011 Matthias Pospiech (matthias@pospiech.eu)
+%% The original source files were:
 %%
+%% templatedemo.dtx  (with options: `templatedemo.sty')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2012 Matthias Pospiech (matthias@pospiech.eu)
+%% 
 %% --------------------------------------------------------------------------
-%%
+%% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -12,37 +19,26 @@
 %%   http://www.latex-project.org/lppl.txt
 %% and version 1.3 or later is part of all distributions of LaTeX
 %% version 2003/12/01 or later.
-%%
+%% 
 %% This work has the LPPL maintenance status 'maintained'.
-%%
+%% 
 %% This Current Maintainer of this work is Matthias Pospiech
-%%
-%%
+%% 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{templatedemo}[2011/10/01 demonstrates the possibilities of the template]
-
-
+\ProvidesPackage{templatedemo}[2012/05/20 v0.1 typeset code and resulting output]
 \RequirePackage{listings}
-
 \AtBeginDocument{%
-%% This code needs to be executed at the beginning
-%% of the document because some packages (eg. xcolor)
-%% could leed to option clashes otherwise
-
-% === Packages ======================================
-
-% Programming
+%% Programming
 \RequirePackage{xspace}
 \RequirePackage{etoolbox}
-% Write contents to files
+%% Write contents to files
 \RequirePackage{filecontents}
-% Package for colors
+%% Package for colors
 \RequirePackage{xcolor}
-% Packages for frames
+%% Packages for frames
 \RequirePackage{mdframed}
 \RequirePackage{framed}
-
-% === Colors ========================================
+%% Colors
 \colorlet{demo@stringcolor}{green!40!black!100}
 \colorlet{demo@commentcolor}{green!50!black!100}
 \colorlet{demo@numbercolor}{white!50!black!100}
@@ -51,8 +47,7 @@
 \definecolor{demo@keywordcolor}{rgb}{0,0.47,0.80}
 \definecolor{demo@rulecolor}{rgb}{0,0.4,0.5}
 \definecolor{demo@code@rulecolor}{rgb}{0.5,0.5,0.5}
-
-% === Simple Commands ===============================
+%% === Simple Commands ===============================
 \newcommand{\bs}{\textbackslash}
 \newcommand{\democs}[1]{\democommand{#1}}
 \newcommand{\democommand}[1]{\texttt{\bs{}#1}}
@@ -61,7 +56,6 @@
 \newcommand{\democodefile}{democode}
 \newcommand{\democodeprefix}{Code: }
 \newcommand{\demoresultprefix}{\noindent Result:}
-
 %% Print Error
 \newcommand{\DemoError}[1]{
   \ifcsdef{textcolor}
@@ -69,21 +63,13 @@
     {Error:~}
   #1 \par\noindent
 }
-
-
-% === Define Keys ===================================
-
+%% === Define Keys ===================================
 \RequirePackage{kvoptions-patch}
 \RequirePackage{kvoptions}  % options
 \RequirePackage{pdftexcmds} % string comparison
-
 \SetupKeyvalOptions{family=demo,prefix=demo@}
-
-% parallel, stacked, lines, page
 \DeclareStringOption[stacked]{style}
-
 \ProcessKeyvalOptions{demo}
-
 \newcommand{\PrintDemoUsingKeys}{%
   \ifnum\pdf@strcmp{\demo@style}{parallel}=0%
     \PrintCodeAndResultsParallel%
@@ -102,22 +88,17 @@
      }{}%
   \fi\fi\fi\fi\fi%
 }%
-
-% Print code and result using the key-value syntax
 \newcommand{\PrintDemo}[1]{%
 \begingroup
   \setkeys{demo}{#1}%
   \PrintDemoUsingKeys
 \endgroup
-}    
-
-
-% === Listings style ================================
+}
+%% === Listings style ================================
 \lstdefinestyle{demostyle}{
   columns=flexible,
-  keepspaces=true,    
+  keepspaces=true,
   numberstyle=\tiny\color{demo@numbercolor},%
-  %
   basicstyle=\small\ttfamily,%
   numbers=none,%
   stepnumber=1,%
@@ -135,27 +116,22 @@
   backgroundcolor=\color{demo@codebackcolor},%
   rulecolor=\color{demo@code@rulecolor},%
   language = [LaTeX]TeX,%
-%  morekeywords
   moretexcs={maketitle,tableofcontents,subsection,text,includegraphics,
-  chapter,tableofcontents,section,subsection,subsubsection,paragraph,si,SI,
-  textmu,newcolumntype,rowcolor,rowcolors,bottomrule,toprule,midrule,
-  mainmatter,frontmatter,geometry,KOMAoptions,enquote,blockquote,ding,mathds,
-  ifcsdef,mathcal,underset,operatorname,sfrac,Bra,Ket,Braket,setlength,subcaption,
-  sisetup,rowfont,taburowcolors,theadstart,tbody,tsubheadstart,tsubhead,tend,
-  unit,unitfrac,micro,gls,printglossary,glsadd,newglossaryentry,lettrine,mdfsetup,democodefile,demopackage,democs,democommand,demoenv,DemoError},
+    chapter,tableofcontents,section,subsection,subsubsection,paragraph,si,SI,
+    textmu,newcolumntype,rowcolor,rowcolors,bottomrule,toprule,midrule,
+    mainmatter,frontmatter,geometry,KOMAoptions,enquote,blockquote,ding,mathds,
+    ifcsdef,mathcal,underset,operatorname,sfrac,Bra,Ket,Braket,setlength,
+    subcaption,sisetup,rowfont,taburowcolors,theadstart,tbody,tsubheadstart,
+    tsubhead,tend,unit,unitfrac,micro,gls,printglossary,glsadd,newglossaryentry,
+    lettrine,mdfsetup,democodefile,demopackage,democs,democommand,demoenv,
+    DemoError},
 }
-
-
-
 \lstloadlanguages{[LaTeX]TeX}
-
-% create new environment for listings
 \lstnewenvironment{latexcode}{%
 \lstset{style=demostyle, inputencoding=latin1, escapeinside=!!}%
 \democodeprefix
 }{}
-
-% === Mdframed style ================================
+%% === Mdframed style ================================
 \mdfdefinestyle{DemoStyleFrames}{
   linecolor=demo@rulecolor,%
   linewidth=0.8pt,
@@ -165,14 +141,9 @@
   rightmargin=-3.5pt,
   innerleftmargin=3pt,
   innerrightmargin=3pt,
-}% 
-
-
-% === Commands for Results =========================
-
+}%
+%% === Formating commands ============================
 \newcommand{\preResultSkip}{\vspace*{-0.5\baselineskip}}
-
-%% Box for results
 \newenvironment{latexresult}{%
 \demoresultprefix
 \nopagebreak[4]
@@ -186,11 +157,10 @@
 \endmdframed
 \noindent
 }
-
 %% Single Line for results
 \newcommand{\resultline}{%
 \nopagebreak[4]
-% Insert single line
+%% Insert single line
 \mdframed[%
   style=DemoStyleFrames,
   skipabove=3pt,
@@ -200,29 +170,26 @@
 ]\mbox{}\endmdframed
 \nopagebreak[4]
 }
-
-% Print Code with prefix
+%% === Output commands ===============================
+%% Print Code with prefix
 \newcommand{\printlatexcode}{%
 \democodeprefix
 \lstinputlisting[style=demostyle,nolol=true]{\democodefile}%
 }%
-
-% Print Result with standard box
+%% Print Result with standard box
 \newcommand{\printlatexresult}{%
 \begin{latexresult}%
 \IfFileExists{\democodefile}{\input{\democodefile}}{}%
 \end{latexresult}%
 }%
-
-% Print result with lines 
+%% Print result with lines
 \newcommand{\printlatexresultlines}{%
 \demoresultprefix
 \nopagebreak[4] \resultline \nopagebreak[4]
 \IfFileExists{\democodefile}{\input{\democodefile}}{}%
 \nopagebreak[4] \resultline \nopagebreak[4]
 }%
-
-
+%% === Output commands for code and result ===========
 \newcommand{\PrintCodeAndResultsParallel}{%
 \nopagebreak[4]
 \vspace*{0.5em}\par\noindent
@@ -234,7 +201,6 @@
 \end{minipage}
 \par\noindent
 }
-
 \newcommand{\PrintCodeAndResultsStacked}{%
 \nopagebreak[4]
 \vspace*{0.5em}\par\noindent
@@ -242,8 +208,6 @@
 \printlatexresult%
 \par\noindent
 }%
-
-
 \newcommand{\PrintCodeAndResultsStackedLines}{%
 \nopagebreak[4]
 \vspace*{0.5em}\par\noindent
@@ -251,23 +215,16 @@
 \printlatexresultlines%
 \vspace*{0.5em}\par\noindent
 }%
-
 \newcommand{\PrintCodeAndResultsNone}{%
 \nopagebreak[4]
 \vspace*{0.5em}\par\noindent
 \printlatexcode%
-%
 \demoresultprefix
 \nopagebreak[4]
 \par\noindent
 \IfFileExists{\democodefile}{\input{\democodefile}}{}%
-%
 \vspace*{0.5em}\par\noindent
 }%
-
-
-
-
 \newcommand{\PrintCodeAndResultsPage}{%
 \nopagebreak[4]
 \vspace*{0.5em}\par\noindent
@@ -277,5 +234,7 @@
 \IfFileExists{\democodefile}{\input{\democodefile}}{}%
 \newpage
 }%
-
 } % end of \AtBeginDocument
+\endinput
+%%
+%% End of file `templatedemo.sty'.
