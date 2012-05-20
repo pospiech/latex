@@ -35,9 +35,14 @@
 % provide new if (\ifTemplateSection<name>) 
 % with definition \TemplateSection<name><true>
 % 
-\providecommand{\DefineTemplateSection}[2][true]{%
+\newcommand{\DefineTemplateSection}[2][true]{%
   \expandafter\newif\csname ifTemplateSection#2\endcsname
   \csname TemplateSection#2#1\endcsname
+}%
+%----------------------------------------------------------------------
+% Alternative to \DefineTemplateSection
+\newcommand{\SetTemplateSection}[2]{%
+  \DefineTemplateSection[#2]{#1}
 }%
 %----------------------------------------------------------------------
 \newcommand\BeginTemplateSection[1]{%
