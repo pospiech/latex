@@ -1,0 +1,53 @@
+% See file 'tablestyles.dtx' for copyright and licence.
+
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+
+\usedir{tex/latex/templatesection}
+
+\preamble
+
+This is a generated file.
+
+Copyright: Copyright (C) 2011 Matthias Pospiech.
+
+           This program may be distributed and/or modified under
+           the conditions of the LaTeX Project Public License,
+           either version 1.2 of this license or (at your option)
+           any later version. The latest version of this license
+           is in
+             http://www.latex-project.org/lppl.txt
+           and version 1.2 or later is part of all distributions
+           of LaTeX version 1999/12/01 or later.
+
+Function:  This packages provides an environment to switch a section
+           within the preamble on or off. This can be used to create a 
+           template were the executed code can be preselected.
+
+Base on:   The code is based in the verbatim.sty package and was 
+           modified by Ulrich Diez to match the pure comment
+           functionality.
+
+\endpreamble
+
+\generate{
+  \file{templatesection.sty}{\from{templatesection.dtx}{templatesection.sty}}
+}
+
+\obeyspaces
+\Msg{*************************************************************}
+\Msg{*                                                           *}
+\Msg{* To finish the installation you have to move the following *}
+\Msg{* file into a directory searched by TeX:                    *}
+\Msg{*                                                           *}
+\Msg{*     templatesection.sty                                   *}
+\Msg{*                                                           *}
+\Msg{* To produce the documentation run the file                 *}
+\Msg{* templatesection.dtx through LaTeX.                        *}
+\Msg{*                                                           *}
+\Msg{* Happy TeXing!                                             *}
+\Msg{*                                                           *}
+\Msg{*************************************************************}
+
+\endbatchfile
