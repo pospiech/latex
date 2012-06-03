@@ -45,6 +45,7 @@
 \usepackage[table]{xcolor}
 \usepackage{enumitem}
 \usepackage{tabu}
+\usepackage[htt]{hyphenat}
 %%% listings
 \input{preamble/listings-latex.tex}
 %%% hyperref
@@ -107,32 +108,28 @@ available from other packages, so that this package only provides a wrapper
 with a unique code style. 
 \end{abstract}
 \tableofcontents
-
-%
-% \section{Introduction}
-%
-% Put text here.
 %
 % \section{Usage}
 %
-% \subsection{commands}
+% \subsection{Commands}
 % The following commands are all wrappers to \cs{ifcsdef} with only
 %  mandatory options:
 %
 %
-% \DescribeMacro{\IfDefined} \marg{command}\marg{code} 
+% \DescribeMacro{\IfDefined} \marg{command}\marg{code defined} \AfterLastParam
 % Executes the code if the command is defined. 
 %
 %
-% \DescribeMacro{\IfUndefined} \marg{command}\marg{code}  
+% \DescribeMacro{\IfUndefined} \marg{command}\marg{code undefined} \AfterLastParam 
 % Executes the code if the command is not defined.
 %
-%
 % \DescribeMacro{\IfElseDefined} \marg{command}\marg{defined}\marg{undefined}
-% Executes either the the code in the first brackets if the command is defined 
-%%% or the second brackets if the code is undefined.
+% \AfterLastParam
+% Executes either the the code in the \emph{defined} bracket if the command is
+% defined or in the \emph{undefined} bracket if the code is undefined.
 %
 % \DescribeMacro{\IfElseUndefined} \marg{command}\marg{undefined}\marg{defined}
+% \AfterLastParam
 % As \cs{IfElseDefined}, but with switched brackets for defined and undefined.
 %
 %
@@ -151,8 +148,8 @@ with a unique code style.
 % \fi
 %
 %
-% \DescribeMacro{\IfMultDefined} \marg{list of commands}
-% \marg{defined}\marg{undefined}
+% \DescribeMacro{\IfMultDefined} 
+% \marg{list of commands}\marg{defined}\marg{undefined} \AfterLastParam
 % Checks a comma separated list of commands before it executes the defined
 % code path if all commands were defined or the undefined code path else.
 %
@@ -183,16 +180,16 @@ with a unique code style.
 % \subsection{Packages}
 %
 % \DescribeMacro{\IfPackageLoaded}
-%
+% \AfterLastParam
 %
 % \DescribeMacro{\IfPackageNotLoaded}
-%
+% \AfterLastParam
 %
 % \DescribeMacro{\IfPackagesLoaded}
-%
+% \AfterLastParam
 %
 % \DescribeMacro{\IfPackagesNotLoaded}
-%
+% \AfterLastParam
 %
 % \subsection{Package Loading order}
 % In \latex{} documents it is quite often essential
@@ -209,10 +206,10 @@ with a unique code style.
 % The code is based on \package{scrlfile} (Koma Script).
 % 
 % \DescribeMacro{\ExecuteAfterPackage}
-% \marg{after this package}\marg{execute this code}
+% \marg{after this package}\marg{execute this code}\AfterLastParam
 %
 % \DescribeMacro{\ExecuteBeforePackage}
-% \marg{before this package}\marg{execute this code}
+% \marg{before this package}\marg{execute this code}\AfterLastParam
 %
 % \subsubsection{Example}
 % \package{cleveref} package must be loaded after package \package{hyperref}.
@@ -235,33 +232,38 @@ with a unique code style.
 %
 % \DescribeMacro{\IfTikzLibraryLoaded}
 %
+%
+%
 % \subsection{Column types}
 %
 % \LaTeX{} provides no tool to check for the existence of a column type. 
 % This is provided by the following command:
 %
 % \DescribeMacro{\IfColumntypeDefined}\marg{columntype character}\marg{is 
-% defined}\marg{is undefined}
+% defined}\marg{is undefined} \AfterLastParam
 %
 % which is also available as a command checking a comma separated list for 
 % column type characters
 %
 % \DescribeMacro{\IfColumntypesDefined}
 % \marg{columntype character list}\marg{is defined}\marg{is undefined}
-%
+% \AfterLastParam
 %
 % \subsection{Color definitions}
 %
 % Color definitions are saved in \latex{} as names. The following commands
-% provide a covinient way to check the existens of these color definitions
+% provide a covinient way to check the existens of these color definitions.
 %
-% \DescribeMacro{\IfColorDefined}
-%    {#2} % color string is defined
-    {#3}} % color string is not defined
-
+% \DescribeMacro{\IfColorDefined} 
+% \marg{color name}\marg{is defined}\marg{is undefined} \AfterLastParam
+%
+% Also available as a command checking for multiple color definitions with a 
+% comma separated list: 
+%
 % \DescribeMacro{\IfColorsDefined}
+% \marg{list of color name}\marg{is defined}\marg{is undefined} \AfterLastParam
 %
-% \subsection{Math version}
+% \subsection{Math font version}
 %
 % \DescribeMacro{\IfMathVersionDefined}
 %
@@ -275,13 +277,14 @@ with a unique code style.
 % template which require multi line macros.
 %
 % \DescribeMacro{\SetTemplateDefinition} \marg{Group}\marg{Property}\marg{Code}
+% \AfterLastParam
 % Defines a collection of commands (a macro) with a \emph{group} and 
 % \emph{property}.
 %
-% \DescribeMacro{\UseDefinition} \marg{Group}\marg{Property} 
+% \DescribeMacro{\UseDefinition} \marg{Group}\marg{Property} \AfterLastParam
 % Execute macro save with the \emph{group} and \emph{property}.
 %
-% \subsection{Example}
+% \subsubsection{Example}
 % The following code allows to switch the colors anywhere in the document:
 %
 % \iffalse
@@ -326,15 +329,16 @@ with a unique code style.
 \RequirePackage{scrlfile}
 %    \end{macrocode}
 %
-% \subsection{command sequences}
+% \subsection{Command sequences}
 %
-%    \begin{macrocode}
+% \iffalse
 %%% --- Check if command is defined
 %%% ------------------------------------------------------------------
-%    \end{macrocode}
+% \fi
 %
 %
 % \begin{macro}{\IfDefined}
+% Wrapper to \cs{ifcsdef} with only true path.
 %    \begin{macrocode}
 \newcommand{\IfDefined}[2]{\ifcsdef{#1}{#2}{}}%
 %    \end{macrocode}
@@ -342,6 +346,7 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfUndefined}
+% Wrapper to \cs{ifcsdef} with only false path.
 %    \begin{macrocode}
 \newcommand{\IfUndefined}[2]{\ifcsdef{#1}{}{#2}}%
 %    \end{macrocode}
@@ -349,6 +354,7 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfElseDefined}
+% Wrapper to \cs{ifcsdef} with true and false path.
 %    \begin{macrocode}
 \newcommand{\IfElseDefined}[3]{\ifcsdef{#1}{#2}{#3}}%
 %    \end{macrocode}
@@ -356,6 +362,7 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfElseUndefined}
+% Wrapper to \cs{ifcsdef} with true and false path in reverse order.
 %    \begin{macrocode}
 \newcommand{\IfElseUndefined}[3]{\ifcsdef{#1}{#3}{#2}}%
 %    \end{macrocode}
@@ -363,7 +370,7 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfMultDefined}
-% check if more than one command is defined
+% Checks if more than one command is defined
 %    \begin{macrocode}
 \newcommand{\IfMultDefined}[1]{%
   \@tempswatrue
@@ -375,21 +382,35 @@ with a unique code style.
   }%
 %% Process csv list with command \do (etoolbox)
   \docsvlist{#1}%
-%% does what ??
+%% makes sure that the conditional works with one or two (if, else) parameters.
   \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
 }
 %    \end{macrocode}
 % \end{macro}
+% 
+% Thank to \person{egreg} on \href{http://tex.stackexchange.com/questions/35282/how-to-implement-a-command-that-checks-for-loaded-packages}{tex.stackexchange.com} for the explanation on how to check a comma separated list. 
 %
-% \subsection{draft mode}
 %
-%    \begin{macrocode}
+% \subsection{Draft mode}
+%
+% \iffalse
 % ------------------------------------------------------------------
 % Check for 'draft' mode - commands.
 % ------------------------------------------------------------------
+% \fi
+%
+%
+% \begin{macro}{\IfDraft}
+% Tests if \cs{@draft} is undefined and executed false path in case draft string 
+% is defined.
+%    \begin{macrocode}
+\newcommand{\IfDraft}[1]{\ifx\@draft\@undefined \else #1 \fi}
 %    \end{macrocode}
+% \end{macro}
+
 %
 % \begin{macro}{\IfNotDraft}
+% Similar to \cs{IfDraft} but executes only path for draft mode undefined.
 %    \begin{macrocode}
 \newcommand{\IfNotDraft}[1]{\ifx\@draft\@undefined #1 \fi}
 %    \end{macrocode}
@@ -397,29 +418,28 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfNotDraftElse}
+% Similar to \cs{IfDraft} but executes true and fals path.
 %    \begin{macrocode}
 \newcommand{\IfNotDraftElse}[2]{\ifx\@draft\@undefined #1 \else #2 \fi}
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\IfDraft}
-%    \begin{macrocode}
-\newcommand{\IfDraft}[1]{\ifx\@draft\@undefined \else #1 \fi}
-%    \end{macrocode}
-% \end{macro}
 %
+% \subsection{Packages}
 %
-% \subsection{packages}
-%
-%    \begin{macrocode}
+% \iffalse
 % ------------------------------------------------------------------
 % Check load status of packages
 % ------------------------------------------------------------------
-%    \end{macrocode}
+% \fi
 %
+% If a package is loaded can be checked in many ways, but here the 
+% \cs{ltx@ifpackageloaded} is used because it can be executed anywhere
+% in the document. 
 %
 % \begin{macro}{\IfPackageLoaded}
+% Wrapper to \cs{ltx@ifpackageloaded} with only true path.
 %    \begin{macrocode}
 \newcommand{\IfPackageLoaded}[2]{\ltx@ifpackageloaded{#1}{#2}{}}
 %    \end{macrocode}
@@ -427,14 +447,18 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfPackageNotLoaded}
+% Wrapper to \cs{ltx@ifpackageloaded} with only false path.
 %    \begin{macrocode}
 \newcommand{\IfPackageNotLoaded}[2]{\ltx@ifpackageloaded{#1}{}{#2}}
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\IfElsePackageLoaded\}
+% Wrapper to \cs{ltx@ifpackageloaded}
 %    \begin{macrocode}
 \let\IfElsePackageLoaded\ltx@ifpackageloaded
 %    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{\IfPackagesLoaded}
 % check list of packages
@@ -466,6 +490,8 @@ with a unique code style.
 %    \end{macrocode}
 % \end{macro}
 %
+% Thank to \person{egreg,Andrey Vihrov, Martin Scharrer} on \href{http://tex.stackexchange.com/questions/35282/how-to-implement-a-command-that-checks-for-loaded-packages}{tex.stackexchange.com} for the help to implement a command that checks a comma separated list. 
+
 %
 % \begin{macro}{\ExecuteAfterPackage}
 %    \begin{macrocode}
@@ -502,15 +528,17 @@ with a unique code style.
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{tikz library}
+% \subsection{Tikz library}
 %
-%    \begin{macrocode}
+% \iffalse
 % ------------------------------------------------------------------
-% Check if tikz library is loaded
-%    \end{macrocode}
+% The command sequence that is created for each tikz library when it is loaded is 
+% used to check if is is loaded.
+% \fi
 %
 %
 % \begin{macro}{\IfTikzLibraryLoaded}
+% Check if tikz library is loaded
 %    \begin{macrocode}
 \def\IfTikzLibraryLoaded#1{%
   \ifcsname tikz@library@#1@loaded\endcsname
@@ -522,13 +550,17 @@ with a unique code style.
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{column types in tables}
+% Thanks to \person{egreg} and \person{Marco Daniel} on \href{http://tex.stackexchange.com/questions/48453/how-to-test-if-tikz-library-is-loaded}{tex.stackexchange.com} for their help with this command.
 %
-%    \begin{macrocode}
+% \subsection{Column types in tables}
+%
+% \iffalse
 % ------------------------------------------------------------------
 % table columns
 % ------------------------------------------------------------------
-%    \end{macrocode}
+% \fi
+%
+% The code in this section was inspired by the discussion with \person{egreg} on \href{http://tex.stackexchange.com/questions/35527/how-to-check-if-a-column-type-is-defined}{tex.stackexchange.com} on the detection of column definitions.
 %
 % Create list of predefined columntypes
 %    \begin{macrocode}
@@ -547,11 +579,15 @@ with a unique code style.
 %    \end{macrocode}
 %
 % \begin{macro}{\CheckIfColumntypeDefined}
+% Creates a bool variable that save the status of the column type.
 %    \begin{macrocode}
 \newcommand\CheckIfColumntypeDefined[1]{%
+%% create the bool variable for column type
   \providebool{tpl@coltype@#1}
+%% check if new column type of this name was created
   \ifcsdef{NC@find@\string#1}%
     {\setbool{tpl@coltype@#1}{true}}%
+%% if not check if it is a predefined column type
     {\ifcsdef{columntype@\string#1}
       {\setbool{tpl@coltype@#1}{true}}%
       {\setbool{tpl@coltype@#1}{false}}%
@@ -562,6 +598,8 @@ with a unique code style.
 %
 %
 % \begin{macro}{\isColumntypeDefined}
+% Returns the bool variable which can be interpreted by \cs{ifboolexpr}.
+% This should only be used internally and fails for non existent bool variables.
 %    \begin{macrocode}
 \newcommand\isColumntypeDefined[1]{tpl@coltype@#1}
 %    \end{macrocode}
@@ -569,9 +607,14 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfColumntypeDefined}
+% Executes \cs{CheckIfColumntypeDefined} and uses the resulting bool
+% variable with \cs{isColumntypeDefined} in a conditional sequence with 
+% \cs{ifboolexpr}.
 %    \begin{macrocode}
 \newcommand\IfColumntypeDefined[3]{%
+%% Execute check which create bool variable
   \CheckIfColumntypeDefined{#1}
+%% use bool variable for if sequence
   \ifboolexpr{ bool{\isColumntypeDefined{#1}} }{#2}{#3}%
 }
 %    \end{macrocode}
@@ -579,6 +622,7 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfColumntypesDefined}
+% Checks a comma separated list instead of a single string.
 %    \begin{macrocode}
 \newcommand{\IfColumntypesDefined}[1]{%
   \@tempswatrue
@@ -596,13 +640,14 @@ with a unique code style.
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{color definitions}
 %
-%    \begin{macrocode}
+% \subsection{Color definitions}
+%
+% \iffalse
 % ------------------------------------------------------------------
 % test color definitions
 % ------------------------------------------------------------------
-%    \end{macrocode}
+% \fi
 %
 %
 % \begin{macro}{\IfColorDefined}
@@ -617,6 +662,7 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfColorsDefined}
+% Does the same for a list (comma separated) of color names.
 %    \begin{macrocode}
 \newcommand{\IfColorsDefined}[1]{%
   \@tempswatrue
@@ -631,33 +677,36 @@ with a unique code style.
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{math version}
+% \subsection{Math font version}
 %
-%    \begin{macrocode}
+% \iffalse
 % ------------------------------------------------------------------
 % test math versions
 % ------------------------------------------------------------------
-%    \end{macrocode}
-%
+% \fi
 %
 % \begin{macro}{\IfMathVersionDefined}
+% Checks if a mathversion font is defined.  
 %    \begin{macrocode}
 \newcommand{\IfMathVersionDefined}[3]{\ifcsdef{mv@#1}{#2}{#3}}
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{template definitions}
+% Thanks to \person{Werner} and \person{Ulrike Fischer} for pointing me to this name definition on \href{http://tex.stackexchange.com/questions/40903/check-if-mathversion-font-is-defined}{tex.stackexchange.com}.
 %
-%    \begin{macrocode}
+% \subsection{Template definitions}
+%
+% \iffalse
 % ------------------------------------------------------------------
 % template definitions
 % ------------------------------------------------------------------
-%    \end{macrocode}
+% \fi
 %
 %
 % \begin{macro}{\SetTemplateDefinition}
+% Defines a macro with the \emph{group} and \emph{property} parameter names.
 %    \begin{macrocode}
-\newcommand\SetTemplateDefinition[3]{%
+\newcommand\SetTemplateDefinition[3]{% 1: group, 2: property, 3: code
   \csdef{tpl@definition@#1@#2}{#3}
 }
 %    \end{macrocode}
@@ -665,13 +714,15 @@ with a unique code style.
 %
 %
 % \begin{macro}{\UseDefinition}
+% Executes the macro using \cs{csuse} if it is defined. Otherwise a error is 
+% thrown.
 %    \begin{macrocode}
 \newcommand\UseDefinition[2]{%
   \ifcsdef{tpl@definition@#1@#2}
     {\csuse{tpl@definition@#1@#2}}
     {\PackageError{templatetools}%
       {Definition #1 -> #2 is unknown\MessageBreak}{}}%
-}
+}%
 %    \end{macrocode}
 % \end{macro}
 %
