@@ -3,18 +3,31 @@
 \CodelineIndex
 \RecordChanges
 %
+%%% Font packages
 \usepackage{cmap} 
-\usepackage[T1]{fontenc} % T1 Schrift Encoding
+\usepackage[T1]{fontenc}
 \usepackage{lmodern}
-%
-\RequirePackage{enumitem}
-\RequirePackage[table]{xcolor}
-
+%%% Additional packages
+\usepackage{soulutf8}
+\usepackage[table]{xcolor}
+\usepackage{enumitem}
+\usepackage{tabu}
+%%% listings
 \input{preamble/listings-latex.tex}
-%
+%%% hyperref
 \input{preamble/setup-hyperref.tex}
-
-\newcommand{\package}[1]{\texttt{#1}}
+%%% color setup
+% table colors 
+\colorlet{tablebodycolor}{white!100}
+\colorlet{tablerowcolor}{gray!10}
+\colorlet{tableheadcolor}{gray!25}
+%%% Set document layout / variables
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+%%% doc commands
+\input{preamble/setup-doc-commands.tex}
 
 \listfiles
 \begin{document}
