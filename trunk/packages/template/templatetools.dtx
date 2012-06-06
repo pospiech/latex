@@ -1,5 +1,5 @@
 % \iffalse meta-comment
-%
+% 
 % Copyright (C) 2012 by Matthias Pospiech <matthias@pospiech.eu>
 % ---------------------------------------------------------------------------
 % This work may be distributed and/or modified under the
@@ -123,7 +123,7 @@ with a unique code style.
 %
 % \DescribeMacro{\IfElseDefined} \marg{command}\marg{defined}\marg{undefined}
 % \AfterLastParam
-% Executes either the the code in the \emph{defined} bracket if the command is
+% Executes either the code in the \emph{defined} bracket if the command is
 % defined or in the \emph{undefined} bracket if the code is undefined.
 %
 % \DescribeMacro{\IfElseUndefined} \marg{command}\marg{undefined}\marg{defined}
@@ -193,7 +193,7 @@ with a unique code style.
 %
 % \subsection{Packages}
 %
-% These commands check if a package was loaded or not. This can be achieved in different wasy. The key point of these commands is that they work not only in the preamble and include no @-char. 
+% These commands check if a package was loaded or not. This can be achieved in different ways. The key point of these commands is that they work not only in the preamble and include no @-char. 
 % 
 % \DescribeMacro{\IfPackageLoaded}\marg{package}\marg{is loaded}
 % \AfterLastParam
@@ -229,7 +229,7 @@ with a unique code style.
 %
 % \subsection{Package Loading order}
 % In \latex{} documents it is quite often essential
-% to load packges in the right order to ensure that everthing works.
+% to load packages in the right order to ensure that everything works.
 % However this makes it impossible to group similar packages together.
 %
 % The following commands allow to execute code after or before a 
@@ -309,8 +309,8 @@ with a unique code style.
 % \AfterLastParam
 %
 % \subsubsection{Example}
-% Executes the code only of the X column type is defined and the tabularx was
-% loaded by checking that \cs{tabularx} is defined .
+% Executes the code only of the X column type is defined and the tabularx package was 
+% loaded by checking that \cs{tabularx} is defined.
 %
 % \iffalse
 %<*example>
@@ -338,7 +338,7 @@ text which is considerably longer than the width of the column \\
 % \subsection{Color definitions}
 %
 % Color definitions are saved in \latex{} as names. The following commands
-% provide a covinient way to check the existens of these color definitions.
+% provide a convenient way to check the existence of these color definitions.
 % 
 % \DescribeMacro{\IfColorDefined} 
 % \marg{color name}\marg{is defined}\marg{is undefined} \AfterLastParam
@@ -355,7 +355,7 @@ text which is considerably longer than the width of the column \\
 % \subsection{Template Definitions}
 % The following commands in principle define only macros. However these are 
 % saved using two keys named \emph{group} and \emph{property}. These macros 
-% can the be executed with these key. This way these macros are provided in 
+% can then be executed with these key. This way these macros are provided in 
 % a well readable syntax and the group key give it an object like touch.
 %
 % They were created in the first place to have switches for properties in a
@@ -626,7 +626,7 @@ text which is considerably longer than the width of the column \\
 % \iffalse
 % ------------------------------------------------------------------
 % The command sequence that is created for each tikz library when it is loaded is 
-% used to check if is is loaded.
+% used to check if it is loaded.
 % \fi
 %
 %
@@ -692,7 +692,7 @@ text which is considerably longer than the width of the column \\
 %
 % \begin{macro}{\isColumntypeDefined}
 % Returns the bool variable which can be interpreted by \cs{ifboolexpr}.
-% This should only be used internally and fails for non existent bool variables.
+% This should only be used internally and fails for nonexistent bool variables.
 %    \begin{macrocode}
 \newcommand\isColumntypeDefined[1]{tpl@coltype@#1}
 %    \end{macrocode}
