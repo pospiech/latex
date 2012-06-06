@@ -45,7 +45,7 @@
 \usepackage[table]{xcolor}
 \usepackage{enumitem}
 \usepackage{tabu}
-\usepackage[htt]{hyphenat}
+% \usepackage[htt]{hyphenat}
 %%% listings
 \input{preamble/listings-latex.tex}
 %%% hyperref
@@ -112,9 +112,7 @@ with a unique code style.
 % \section{Usage}
 %
 % \subsection{Commands}
-% The following commands are all wrappers to \cs{ifcsdef} with only
-%  mandatory options:
-%
+% The following commands check if a command sequence is defined or not. 
 %
 % \DescribeMacro{\IfDefined} \marg{command}\marg{code defined} \AfterLastParam
 % Executes the code if the command is defined. 
@@ -169,39 +167,77 @@ with a unique code style.
 %
 % \subsection{Draft mode}
 %
-% \DescribeMacro{\IfNotDraft}
+% The following commands check if draft mode is active or not.
 %
+% \DescribeMacro{\IfDraft}\marg{draft mode active}
+% \AfterLastParam
 %
-% \DescribeMacro{\IfNotDraftElse}
+% \DescribeMacro{\IfNotDraft}\marg{draft mode disabled}
+% \AfterLastParam
 %
+% \DescribeMacro{\IfNotDraftElse}\marg{draft mode disabled}\marg{draft mode active}
+% \AfterLastParam
 %
-% \DescribeMacro{\IfDraft}
+% \subsubsection{Example}
+% The \package{bookmark} is not loaded in draft mode:
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=demostyle]
+\IfNotDraft{\usepackage[]{bookmark}}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
 %
 % \subsection{Packages}
 %
-% \DescribeMacro{\IfPackageLoaded}
+% These commands check if a package was loaded or not. This can be achieved in different wasy. The key point of these commands is that they work not only in the preamble and include no @-char. 
+% 
+% \DescribeMacro{\IfPackageLoaded}\marg{package}\marg{is loaded}
 % \AfterLastParam
 %
-% \DescribeMacro{\IfPackageNotLoaded}
+% \DescribeMacro{\IfPackageNotLoaded}\marg{package}\marg{is not loaded}
 % \AfterLastParam
 %
-% \DescribeMacro{\IfPackagesLoaded}
+% \DescribeMacro{\IfPackagesLoaded}\marg{list of packages}\marg{all are loaded}
 % \AfterLastParam
 %
-% \DescribeMacro{\IfPackagesNotLoaded}
+% \DescribeMacro{\IfPackagesNotLoaded}\marg{list of packages}\marg{none is loaded}
 % \AfterLastParam
+%
+% \subsubsection{Example}
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=demostyle]
+% Load epstopdf only if graphicx was loaded
+\IfPackageLoaded{graphicx}{%
+  \usepackage{epstopdf}
+}
+% Do not load subcaption if subfig was loaded (incompatible)
+\IfPackageNotLoaded{subfig}{
+  \usepackage{subcaption}[2011/08/17]
+}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
 %
 % \subsection{Package Loading order}
 % In \latex{} documents it is quite often essential
-% to load packges in the right order to. However this makes
-% it impossible to group similar packages together.
+% to load packges in the right order to ensure that everthing works.
+% However this makes it impossible to group similar packages together.
 %
 % The following commands allow to execute code after or before a 
-% specified package and thus also load packages in a specified order
+% specified package and thus also allows to load packages in a specified order
 % using \cs{usepackage} commands.
 %
-% If the package was not loaded in the document at all
-% the code will be executed before \texttt{\cs{begin}\{document\}}
+% If the reference package was not loaded in the preamble
+% the code will nevertheless be executed before \texttt{\cs{begin}\{document\}}
 %
 % The code is based on \package{scrlfile} (Koma Script).
 % 
@@ -229,43 +265,92 @@ with a unique code style.
 % \fi
 %
 % \subsection{Tikz Library}
+% Checks if a tikz library was loaded.
 %
-% \DescribeMacro{\IfTikzLibraryLoaded}
+% \DescribeMacro{\IfTikzLibraryLoaded}\marg{library}\marg{if loaded}
 %
+% 
+% \subsubsection{Example}
+% Executes the code only of the tikz library was loaded.
 %
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=demostyle]
+\IfTikzLibraryLoaded{lindenmayersystems}{%
+% code origin: pgf/tikz manual
+\begin{tikzpicture}
+\pgfdeclarelindenmayersystem{Koch curve}{
+   \rule{F -> F-F++F-F}
+}
+\shadedraw [top color=white, bottom color=blue!50, draw=blue!50!black]
+           [l-system={Koch curve, step=2pt, angle=60, axiom=F++F++F, order=3}]
+           lindenmayer system -- cycle;
+\end{tikzpicture}
+}%
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
 %
 % \subsection{Column types}
 %
 % \LaTeX{} provides no tool to check for the existence of a column type. 
-% This is provided by the following command:
+% This is provided by the following commands:
 %
 % \DescribeMacro{\IfColumntypeDefined}\marg{columntype character}\marg{is 
 % defined}\marg{is undefined} \AfterLastParam
 %
-% which is also available as a command checking a comma separated list for 
-% column type characters
+^^A which is also available as a command checking a comma separated list for 
+^^A column type characters
 %
 % \DescribeMacro{\IfColumntypesDefined}
 % \marg{columntype character list}\marg{is defined}\marg{is undefined}
 % \AfterLastParam
 %
+% \subsubsection{Example}
+% Executes the code only of the X column type is defined and the tabularx was
+% loaded by checking that \cs{tabularx} is defined .
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=demostyle]
+\IfColumntypeDefined{X}{%
+\IfDefined{tabularx}{%
+%
+\begin{tabularx}{0.9\textwidth}{llXX}
+\hline
+l & l & X & X \\\hline
+%
+left column & left column & 
+text which is considerably longer than the width of the column & 
+text which is considerably longer than the width of the column \\
+\hline
+\end{tabularx}
+%
+}}%
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+
 % \subsection{Color definitions}
 %
 % Color definitions are saved in \latex{} as names. The following commands
 % provide a covinient way to check the existens of these color definitions.
-%
+% 
 % \DescribeMacro{\IfColorDefined} 
 % \marg{color name}\marg{is defined}\marg{is undefined} \AfterLastParam
 %
-% Also available as a command checking for multiple color definitions with a 
-% comma separated list: 
+%^^A Also available as a command checking for multiple color definitions with a 
+%^^A comma separated list: 
 %
 % \DescribeMacro{\IfColorsDefined}
 % \marg{list of color name}\marg{is defined}\marg{is undefined} \AfterLastParam
 %
-% \subsection{Math font version}
-%
-% \DescribeMacro{\IfMathVersionDefined}
+% ^^A \subsection{Math font version}
+% ^^A \DescribeMacro{\IfMathVersionDefined}
 %
 % \subsection{Template Definitions}
 % The following commands in principle define only macros. However these are 
@@ -305,7 +390,7 @@ with a unique code style.
 % \fi
 %
 % \StopEventually{}
-%
+% \clearpage
 % \section{Implementation}
 %
 % \iffalse
@@ -494,6 +579,10 @@ with a unique code style.
 
 %
 % \begin{macro}{\ExecuteAfterPackage}
+% Executes the code after the reference package has been loaded (using
+% \cs{AfterAtEndOfPackage}) or finally at the end of the preamble
+% if the reference package was not loaded until then.
+%
 %    \begin{macrocode}
 \newcommand{\ExecuteAfterPackage}[2]{%
 %% #1: after this package
@@ -512,6 +601,10 @@ with a unique code style.
 %
 %
 % \begin{macro}{\ExecuteBeforePackage}
+% Executes the code directly before the reference package is loaded (using
+% \cs{BeforePackage}) or finally at the end of the preamble
+% if the reference package was not loaded until then.
+%
 %    \begin{macrocode}
 \newcommand{\ExecuteBeforePackage}[2]{%
 %% #1: before this package
@@ -538,7 +631,7 @@ with a unique code style.
 %
 %
 % \begin{macro}{\IfTikzLibraryLoaded}
-% Check if tikz library is loaded
+% Checks if the tikz library is loaded
 %    \begin{macrocode}
 \def\IfTikzLibraryLoaded#1{%
   \ifcsname tikz@library@#1@loaded\endcsname
@@ -579,7 +672,7 @@ with a unique code style.
 %    \end{macrocode}
 %
 % \begin{macro}{\CheckIfColumntypeDefined}
-% Creates a bool variable that save the status of the column type.
+% Creates a bool variable that saves the status of the column type.
 %    \begin{macrocode}
 \newcommand\CheckIfColumntypeDefined[1]{%
 %% create the bool variable for column type
@@ -692,7 +785,11 @@ with a unique code style.
 %    \end{macrocode}
 % \end{macro}
 %
-% Thanks to \person{Werner} and \person{Ulrike Fischer} for pointing me to this name definition on \href{http://tex.stackexchange.com/questions/40903/check-if-mathversion-font-is-defined}{tex.stackexchange.com}.
+% Thanks to \person{Werner} and \person{Ulrike Fischer} for pointing me to this
+% name definition on 
+% \href{http://tex.stackexchange.com/questions/40903/check-if-mathversion-font-is-defined}{tex.stackexchange.com}.
+%
+% Note, that this feature is untested.
 %
 % \subsection{Template definitions}
 %
