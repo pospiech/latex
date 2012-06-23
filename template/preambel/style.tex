@@ -271,14 +271,6 @@
 \setcounter{bottomnumber}{2}     % vorher: 1
 \setcounter{totalnumber}{5}      % vorher: 3
 
-% TODO: not in demo
-\IfPackageLoaded{sidecap} {
-  \renewcommand\sidecaptionsep{2em}
-  %\renewcommand\sidecaptionrelwidth{20}
-  \sidecaptionvpos{table}{c}
-  \sidecaptionvpos{figure}{c}
-}
-
 \EndTemplateSection{StyleFigures}
 
 %% ~~~ Captions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -303,7 +295,7 @@
  }
 }
 
-% Style of captions and subcaptions
+% Style of figure placement with floatrow
 \input{preambel/style-floatrow.tex}
 
 
