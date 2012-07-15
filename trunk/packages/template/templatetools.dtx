@@ -100,14 +100,11 @@
 % \author{Matthias Pospiech \\ \url{matthias@pospiech.eu}}
 % \date{\fileversion~from \filedate}
 %
-%\maketitle
-\begin{abstract}\noindent
-Collection of tools, which are helpful for the creation of a \LaTeX{} template 
-if conditional paths for code execution are required. Most of them are already
-available from other packages, so that this package only provides a wrapper
-with a unique code style. 
-\end{abstract}
-\tableofcontents
+% \maketitle
+% \begin{abstract}\noindent
+% Collection of tools, which are helpful for the creation of a \LaTeX{}
+% template if conditional paths for code execution are required. 
+% \end{abstract}
 %
 % \section{Usage}
 %
@@ -118,7 +115,8 @@ with a unique code style.
 % Executes the code if the command is defined. 
 %
 %
-% \DescribeMacro{\IfUndefined} \marg{command}\marg{code undefined} \AfterLastParam 
+% \DescribeMacro{\IfUndefined} \marg{command}\marg{code undefined}
+% \AfterLastParam 
 % Executes the code if the command is not defined.
 %
 % \DescribeMacro{\IfElseDefined} \marg{command}\marg{defined}\marg{undefined}
@@ -193,7 +191,10 @@ with a unique code style.
 %
 % \subsection{Packages}
 %
-% These commands check if a package was loaded or not. This can be achieved in different ways. The key point of these commands is that they work not only in the preamble and include no @-char. 
+% These commands check if a package was loaded or not. 
+% This can be achieved in different ways with commands from other packages.
+% The key point of these commands here is that they work not only in 
+% the preamble and include no @-char. 
 % 
 % \DescribeMacro{\IfPackageLoaded}\marg{package}\marg{is loaded}
 % \AfterLastParam
@@ -239,7 +240,6 @@ with a unique code style.
 % If the reference package was not loaded in the preamble
 % the code will nevertheless be executed before \texttt{\cs{begin}\{document\}}
 %
-% The code is based on \package{scrlfile} (Koma Script).
 % 
 % \DescribeMacro{\ExecuteAfterPackage}
 % \marg{after this package}\marg{execute this code}\AfterLastParam
@@ -301,8 +301,8 @@ with a unique code style.
 % \DescribeMacro{\IfColumntypeDefined}\marg{columntype character}\marg{is 
 % defined}\marg{is undefined} \AfterLastParam
 %
-^^A which is also available as a command checking a comma separated list for 
-^^A column type characters
+% ^^A which is also available as a command checking a comma separated list for 
+% ^^A column type characters
 %
 % \DescribeMacro{\IfColumntypesDefined}
 % \marg{columntype character list}\marg{is defined}\marg{is undefined}
@@ -343,8 +343,8 @@ text which is considerably longer than the width of the column \\
 % \DescribeMacro{\IfColorDefined} 
 % \marg{color name}\marg{is defined}\marg{is undefined} \AfterLastParam
 %
-%^^A Also available as a command checking for multiple color definitions with a 
-%^^A comma separated list: 
+% ^^A Also available as a command checking for multiple color definitions with a 
+% ^^A comma separated list: 
 %
 % \DescribeMacro{\IfColorsDefined}
 % \marg{list of color name}\marg{is defined}\marg{is undefined} \AfterLastParam
@@ -353,13 +353,11 @@ text which is considerably longer than the width of the column \\
 % ^^A \DescribeMacro{\IfMathVersionDefined}
 %
 % \subsection{Template Definitions}
-% The following commands in principle define only macros. However these are 
-% saved using two keys named \emph{group} and \emph{property}. These macros 
-% can then be executed with these key. This way these macros are provided in 
-% a well readable syntax and the group key give it an object like touch.
-%
-% They were created in the first place to have switches for properties in a
-% template which require multi line macros.
+% The following commands in principle define only macros, but in contrast to 
+% normal methods these are saved using two keys named \emph{group} 
+% and \emph{property}. With a matching command for the execution this
+% allows to generate macros in an object like naming structure, which
+% can be used to toggle settings. 
 %
 % \DescribeMacro{\SetTemplateDefinition} \marg{Group}\marg{Property}\marg{Code}
 % \AfterLastParam
@@ -394,7 +392,7 @@ text which is considerably longer than the width of the column \\
 % \section{Implementation}
 %
 % \iffalse
-%<templatetools.sty>
+%<*templatetools.sty>
 % \fi
 %
 %
@@ -473,8 +471,9 @@ text which is considerably longer than the width of the column \\
 %    \end{macrocode}
 % \end{macro}
 % 
-% Thank to \person{egreg} on \href{http://tex.stackexchange.com/questions/35282/how-to-implement-a-command-that-checks-for-loaded-packages}{tex.stackexchange.com} for the explanation on how to check a comma separated list. 
-%
+% Thank to \person{egreg,Andrey Vihrov, Martin Scharrer} on 
+%\href{http://tex.stackexchange.com/questions/35282/how-to-implement-a-command-that-checks-for-loaded-packages}{tex.stackexchange.com}
+% for the help to implement a command that checks a comma separated list. 
 %
 % \subsection{Draft mode}
 %
@@ -546,7 +545,7 @@ text which is considerably longer than the width of the column \\
 % \end{macro}
 %
 % \begin{macro}{\IfPackagesLoaded}
-% check list of packages
+% Checks a list of packages
 %    \begin{macrocode}
 \newcommand{\IfPackagesLoaded}[1]{%
   \@tempswatrue
@@ -562,6 +561,7 @@ text which is considerably longer than the width of the column \\
 %
 %
 % \begin{macro}{\IfPackagesNotLoaded}
+% Invers check if all packages in a list are not loaded
 %    \begin{macrocode}
 \newcommand{\IfPackagesNotLoaded}[1]{%
   \@tempswatrue
@@ -575,8 +575,6 @@ text which is considerably longer than the width of the column \\
 %    \end{macrocode}
 % \end{macro}
 %
-% Thank to \person{egreg,Andrey Vihrov, Martin Scharrer} on \href{http://tex.stackexchange.com/questions/35282/how-to-implement-a-command-that-checks-for-loaded-packages}{tex.stackexchange.com} for the help to implement a command that checks a comma separated list. 
-
 %
 % \begin{macro}{\ExecuteAfterPackage}
 % Executes the code after the reference package has been loaded (using
@@ -655,7 +653,7 @@ text which is considerably longer than the width of the column \\
 %
 % The code in this section was inspired by the discussion with \person{egreg} on \href{http://tex.stackexchange.com/questions/35527/how-to-check-if-a-column-type-is-defined}{tex.stackexchange.com} on the detection of column definitions.
 %
-% Create list of predefined columntypes
+% Creates a list of predefined columntypes
 %    \begin{macrocode}
 \expandafter\let\csname columntype@l\endcsname\@empty
 \expandafter\let\csname columntype@c\endcsname\@empty
