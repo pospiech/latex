@@ -1,28 +1,35 @@
-% File:      templatetools.sty
-% Version:   2011/11/01 v0.1
-% Author:    Matthias Pospiech
-% Email:     <matthias.pospiech@gmx.de>
-%
-% Copyright: Copyright (C) 2011 Matthias Pospiech.
-%
-%            This program may be distributed and/or modified under
-%            the conditions of the LaTeX Project Public License,
-%            either version 1.2 of this license or (at your option)
-%            any later version. The latest version of this license
-%            is in
-%              http://www.latex-project.org/lppl.txt
-%            and version 1.2 or later is part of all distributions
-%            of LaTeX version 1999/12/01 or later.
-%
-% Function:  This packages provides macros usefull inside a template
-%
-% Use:       LaTeX: \usepackage{templatetools}
-%
+%%
+%% This is file `templatetools.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% templatetools.dtx  (with options: `templatetools.sty')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright: Copyright (C) 2012 Matthias Pospiech.
+%% 
+%%            This program may be distributed and/or modified under
+%%            the conditions of the LaTeX Project Public License,
+%%            either version 1.3 of this license or (at your option)
+%%            any later version. The latest version of this license
+%%            is in
+%%              http://www.latex-project.org/lppl.txt
+%%            and version 1.3 or later is part of all distributions
+%%            of LaTeX version 2003/12/01 or later.
+%% 
+%% Maintainer: This work has the LPPL maintenance status 'maintained'.
+%%             The current maintainer of this work is Matthias Pospiech.
+%% 
+%% Function:  This packages provides an environment to switch a section
+%%            within the preamble on or off. This can be used to create a
+%%            template were the executed code can be preselected.
+%% 
 
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
 \ProvidesPackage{templatetools}
-          [2011/11/01 v0.1 Tools for creation of LaTeX templates]
-
+          [2012/06/01 v0.1 Collection of conditional commands useful inside templates]
 %%% --- Necessary Packages
 %%% ------------------------------------------------------------------
 \RequirePackage{ifpdf}
@@ -31,79 +38,53 @@
 \RequirePackage{array} % for column types
 \RequirePackage{ifdraft} % check draft
 \RequirePackage{scrlfile}
-
-%%% --- Template Macros
+%%% --- Check if command is defined
 %%% ------------------------------------------------------------------
-
 \newcommand{\IfDefined}[2]{\ifcsdef{#1}{#2}{}}%
 \newcommand{\IfUndefined}[2]{\ifcsdef{#1}{}{#2}}%
 \newcommand{\IfElseDefined}[3]{\ifcsdef{#1}{#2}{#3}}%
 \newcommand{\IfElseUndefined}[3]{\ifcsdef{#1}{#3}{#2}}%
-
-% check if more than one command is defined
 \newcommand{\IfMultDefined}[1]{%
   \@tempswatrue
   \def\do##1{%
-    % define \@tempa with trimmed index element.
+%% define \@tempa with trimmed index element.
     \edef\@tempa{\zap@space##1 \@empty}%
-    % check if package of current index is loaded
+%% check if package of current index is loaded
     \ifcsdef{\@tempa}{}{\@tempswafalse}%
   }%
-  % Process csv list with command \do (etoolbox)
+%% Process csv list with command \do (etoolbox)
   \docsvlist{#1}%
-  % ??
+%% makes sure that the conditional works with one or two (if, else) parameters.
   \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
 }
+\newcommand{\IfDraft}[1]{\ifx\@draft\@undefined \else #1 \fi}
 
-
-
-% ------------------------------------------------------------------
-% Check for 'draft' mode - commands.
 \newcommand{\IfNotDraft}[1]{\ifx\@draft\@undefined #1 \fi}
 \newcommand{\IfNotDraftElse}[2]{\ifx\@draft\@undefined #1 \else #2 \fi}
-\newcommand{\IfDraft}[1]{\ifx\@draft\@undefined \else #1 \fi}
-%
-% ------------------------------------------------------------------
-
-% ------------------------------------------------------------------
-
-
 \newcommand{\IfPackageLoaded}[2]{\ltx@ifpackageloaded{#1}{#2}{}}
 \newcommand{\IfPackageNotLoaded}[2]{\ltx@ifpackageloaded{#1}{}{#2}}
 \let\IfElsePackageLoaded\ltx@ifpackageloaded
-
-% check list of packages
 \newcommand{\IfPackagesLoaded}[1]{%
   \@tempswatrue
   \def\do##1{%
-    % define \@tempa with trimmed index element.
     \edef\@tempa{\zap@space##1 \@empty}%
-    % check if package of current index is loaded
     \ltx@ifpackageloaded{\@tempa}{}{\@tempswafalse}%
   }%
-  % Process csv list with command \do (etoolbox)
   \docsvlist{#1}%
-  % ??
   \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
 }
-
 \newcommand{\IfPackagesNotLoaded}[1]{%
   \@tempswatrue
   \def\do##1{%
-    % define \@tempa with trimmed index element.
     \edef\@tempa{\zap@space##1 \@empty}%
-    % check if package of current index is loaded
     \ltx@ifpackageloaded{\@tempa}{\@tempswafalse}{}%
   }%
-  % Process csv list with command \do (etoolbox)
   \docsvlist{#1}%
-  % ??
   \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
 }
-
 \newcommand{\ExecuteAfterPackage}[2]{%
-  % #1: after this package
-  % #2: code to execute
+%% #1: after this package
+%% #2: code to execute
   \AfterAtEndOfPackage{#1}{
     #2%
   }
@@ -112,11 +93,10 @@
      #2%
     }
   }
-} 
-
+}
 \newcommand{\ExecuteBeforePackage}[2]{%
-  % #1: before this package
-  % #2: code to execute
+%% #1: before this package
+%% #2: code to execute
   \BeforePackage{#1}{
     #2%
   }
@@ -125,16 +105,7 @@
      #2%
     }
   }
-} 
-
-% ------------------------------------------------------------------
-% Check if tikz library is loaded
-
-%\newcommand*\@tikzextension{code.tex}
-%\def\IfTikzLibraryLoaded#1{%
-%   \@ifl@aded\@tikzextension{tikzlibrary#1}
-%}
-
+}
 \def\IfTikzLibraryLoaded#1{%
   \ifcsname tikz@library@#1@loaded\endcsname
     \expandafter\@firstoftwo
@@ -142,12 +113,6 @@
     \expandafter\@secondoftwo
   \fi
 }
-
-% ------------------------------------------------------------------
-% table columns
-% ------------------------------------------------------------------
-
-% Create list of predefined columntypes
 \expandafter\let\csname columntype@l\endcsname\@empty
 \expandafter\let\csname columntype@c\endcsname\@empty
 \expandafter\let\csname columntype@r\endcsname\@empty
@@ -160,91 +125,62 @@
 \expandafter\let\csname columntype@<\endcsname\@empty
 \expandafter\let\csname columntype@>\endcsname\@empty
 \expandafter\let\csname columntype@=\endcsname\@empty
-
 \newcommand\CheckIfColumntypeDefined[1]{%
+%% create the bool variable for column type
   \providebool{tpl@coltype@#1}
+%% check if new column type of this name was created
   \ifcsdef{NC@find@\string#1}%
     {\setbool{tpl@coltype@#1}{true}}%
+%% if not check if it is a predefined column type
     {\ifcsdef{columntype@\string#1}
       {\setbool{tpl@coltype@#1}{true}}%
       {\setbool{tpl@coltype@#1}{false}}%
     }%
 }
-
 \newcommand\isColumntypeDefined[1]{tpl@coltype@#1}
-
 \newcommand\IfColumntypeDefined[3]{%
+%% Execute check which create bool variable
   \CheckIfColumntypeDefined{#1}
+%% use bool variable for if sequence
   \ifboolexpr{ bool{\isColumntypeDefined{#1}} }{#2}{#3}%
 }
-
 \newcommand{\IfColumntypesDefined}[1]{%
   \@tempswatrue
   \def\do##1{%
-    % define \@tempa with trimmed index element.
     \edef\@tempa{\zap@space##1 \@empty}%
-    % check if package of current index is loaded
-    %   here with \expandafter because of the \string definition 
-    %   in \CheckIfColumntypeDefined 
+%% check if column is defined.
+%%   Here with \expandafter because of the \string definition
+%%   in \CheckIfColumntypeDefined.
     \expandafter\IfColumntypeDefined
         \expandafter{\@tempa}{}{\@tempswafalse}
   }%
-  % Process csv list with command \do (etoolbox)
   \docsvlist{#1}%
-  % ??
   \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
 }
-
-% ------------------------------------------------------------------
-% test color definitions
-% ------------------------------------------------------------------
-
-% test if a color is defined
 \newcommand{\IfColorDefined}[3]{%
   \ifcsdef{\string\color @#1}
-    % color string is defined
-    {#2}
-    % color string is not defined
-    {#3}}
-
+    {#2} % color string is defined
+    {#3}} % color string is not defined
 \newcommand{\IfColorsDefined}[1]{%
   \@tempswatrue
   \def\do##1{%
-    % define \@tempa with trimmed index element.
     \edef\@tempa{\zap@space##1 \@empty}%
-    % check if package of current index is loaded
-    %   here with \expandafter because of the \string definition 
-    %   in \CheckIfColumntypeDefined 
     \expandafter\IfColorDefined
         \expandafter{\@tempa}{}{\@tempswafalse}
   }%
-  % Process csv list with command \do (etoolbox)
   \docsvlist{#1}%
-  % ??
   \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
 }
-
-
-% ------------------------------------------------------------------
-% test math versions
-% ------------------------------------------------------------------
-
 \newcommand{\IfMathVersionDefined}[3]{\ifcsdef{mv@#1}{#2}{#3}}
-
-% ------------------------------------------------------------------
-% template definitions
-% ------------------------------------------------------------------
-
-\newcommand\SetTemplateDefinition[3]{%
+\newcommand\SetTemplateDefinition[3]{% 1: group, 2: property, 3: code
   \csdef{tpl@definition@#1@#2}{#3}
 }
-
 \newcommand\UseDefinition[2]{%
   \ifcsdef{tpl@definition@#1@#2}
     {\csuse{tpl@definition@#1@#2}}
     {\PackageError{templatetools}%
       {Definition #1 -> #2 is unknown\MessageBreak}{}}%
-}
-
-
-
+}%
+\endinput
+%%
+%% End of file `templatetools.sty'.
