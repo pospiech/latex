@@ -124,9 +124,27 @@
 %
 % \section{Basic example}
 % \label{sec:example:basic}
-% Below is a principle example (using \cs{ifcsdef} from etoolbox),
+% Below is a principle example,
 % which demonstrates the usage of the package by showing some commands of a
 % package (\demopackage{soul}) with the resulting code side by side:
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{filecontents*}{\democodefile}
+\so{letterspacing}, \\
+\ul{underlining},   \\
+\st{overstriking}   \\
+and \hl{highlighting}. 
+\end{filecontents*}
+% \iffalse
+%</example>
+% \fi
+%
+% \PrintDemo{style=parallel}
+%
+% which is created with the code of this package using \cs{ifcsdef} from etoolbox
+% to test if the code will run through or fail because of unkown commands.
 %
 % \iffalse
 %<*example>
@@ -153,22 +171,6 @@ and \hl{highlighting}.
 % \iffalse
 %</example>
 % \fi
-%
-% which is shown as 
-% \iffalse
-%<*example>
-% \fi
-\begin{filecontents*}{\democodefile}
-\so{letterspacing}, \\
-\ul{underlining},   \\
-\st{overstriking}   \\
-and \hl{highlighting}. 
-\end{filecontents*}
-% \iffalse
-%</example>
-% \fi
-%
-%\PrintDemo{style=parallel}
 %
 % \section{Usage}
 %
