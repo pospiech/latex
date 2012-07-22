@@ -20,6 +20,12 @@ SET PACKAGE=templatetools
 SET FOLDER=%TARGETDIR%\%PACKAGE%
 call:createPackage %FOLDER% %PACKAGE%
 
+:: Package: tablestyles
+SET PACKAGE=tablestyles
+SET FOLDER=%TARGETDIR%\%PACKAGE%
+call:createPackage %FOLDER% %PACKAGE%
+
+
 call:CleanUP
 
 echo.&pause&goto:eof
@@ -88,6 +94,7 @@ echo.&pause&goto:eof
 @del *.bcf
 @del democode.tex
 @del *.log
+@del *.gz
 goto:eof
 
 
