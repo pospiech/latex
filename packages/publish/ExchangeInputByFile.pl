@@ -16,7 +16,17 @@ if (defined($arg)) { $outputfile = $arg;  $arg = shift; }
 open PARSEFILE, "<$parsefile" or die "file >$parsefile< can not be opended\n";
 open OUTPUTFILE, ">$outputfile" or die "file >$outputfile< can not be saved\n";
 
-while (<PARSEFILE>) {
+# format current date
+
+my ($mday, $mon, $year) = (localtime(time))[3, 4, 5];
+$mon  += 1;
+$year += 1900;
+my $strCurrDate = sprintf("%02d/%02d/%02d", $year, $mon, $mday);
+
+while (my $line = <PARSEFILE>) {
+  # if replace <*date*> by string
+  $line =~ s/<\*date\*>/$strCurrDate/;
+  $_ = $line;
   # if string \input{*} is found 
   if ( m/\\input\{preamble\/(.*?)\}/ ) {
     # save arg #1 of regex as inputfile
