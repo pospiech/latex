@@ -5,6 +5,11 @@ SET TEXENGINE=pdflatex
 SET TARGETDIR=CTAN
 call:funcCreateDir %TARGETDIR%
 
+:: Package: tablestyles
+SET PACKAGE=tablestyles
+SET FOLDER=%TARGETDIR%\%PACKAGE%
+call:createPackage %FOLDER% %PACKAGE%
+
 :: Package: templatedemo
 SET PACKAGE=templatedemo
 SET FOLDER=%TARGETDIR%\%PACKAGE%
@@ -19,12 +24,6 @@ call:createPackage %FOLDER% %PACKAGE%
 SET PACKAGE=templatetools
 SET FOLDER=%TARGETDIR%\%PACKAGE%
 call:createPackage %FOLDER% %PACKAGE%
-
-:: Package: tablestyles
-SET PACKAGE=tablestyles
-SET FOLDER=%TARGETDIR%\%PACKAGE%
-call:createPackage %FOLDER% %PACKAGE%
-
 
 call:CleanUP
 
