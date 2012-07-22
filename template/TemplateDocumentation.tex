@@ -1,5 +1,7 @@
 %!TeX encoding=utf8
 
+% Description: This is the main file for the documentation of the template.
+
 %% Bug fixes and other packages to be loaded before the class
 \RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
 \RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
@@ -59,8 +61,7 @@
 %% new commands / definitions
 \input{preambel/commands.tex}
 
-% display the layouts
-% \IfPackageLoaded{geometry}{\geometry{showframe}}
+\input{../packages/publish/preamble/setup-doc-commands.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Configurations
@@ -89,7 +90,7 @@
 \IfPackageLoaded{biblatex}{%
   \ExecuteBibliographyOptions{%
 %%--- Backend --- --- ---
-	backend=bibtex,   % (bibtex, biber)
+	backend=biber,   % (bibtex, biber)
 	bibwarn=true,     %
 	texencoding=auto, % auto-detect the input encoding
 	bibencoding=auto, % (auto (equal to tex), <encoding>)
@@ -118,33 +119,6 @@
 % bibliography (now in preamble !)
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-%%% bibtex file(s)
-% add multiple files with comma separation
-% biblatex requires files before document
-\IfPackageLoaded{biblatex}{
-  % add all .bib files:
-  \addbibresource{bib/BibtexDatabase}
-  % \addbibresource{bib/BibtexData-anytopic}
-}%
-
-
-%% Dokument Beginn %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\includeonly{
-% content/Titel
-% content/0-Abstract
-%%content/0-Einleitung,
-%content/1-Grundlagen,
-%%content/2-Wellenleiter,
-%%content/3-WellenleiterStrukturen,
-%%content/4-Superaufloesung,
-%%content/5-Zusammenfassung,
-% content/Z-Anhang
-%}
-
-% Definition of acronyms
-\input{content/Z-Acronyms.tex}
-
 
 %%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -155,16 +129,8 @@
 \pagestyle{empty}
 
 % -- title page --
-\include{content/title}
+\include{doc/title}
 \cleardoublepage
-
-% -- abstract --
-% (only in phd thesis)
-\include{content/0-Abstract} 
-\cleardoublepage
-% -- declaration --
-% (only in bachelor/master thesis)
-\input{content/Z-Erklaerung.tex}
 
 \frontmatter
 \IfPackageLoaded{scrpage2}{\pagestyle{scrheadings}}
@@ -175,27 +141,10 @@
 \IfPackageLoaded{hyperref}{\pdfbookmark[1]{\contentsname}{toc}}
 \tableofcontents
 
-\IfDefined{printglossary}{
-  \IfPackageLoaded{longtable}{% 
-    \clearpage
-    % print out acronym list 
-    \printglossary[type=\acronymtype,style=longtabuFancyHeader]
-    % print out symbol list 
-    \printglossary[type=symbolslist,style=longtabuFancyHeader]
-    % print out glossary
-    \printglossary[style=altlist]
-  }
-}
-
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter
-%
-%\include{content/demo/demo}
-\include{content/0-Einleitung}
-\include{content/1-Grundlagen}
-\include{content/2-Experimente}
-\include{content/3-Ergebnisse}
-\include{content/4-Zusammenfassung}
+%% demonstration of the template
+\input{doc/documentation.tex}
 
 % -- bibliography --
 % (must be placed _before_ appendix)
@@ -209,38 +158,11 @@
 \clearpage
 \listoffigures
 \listoftables
-%\IfDefined{lstlistoflistings}{\lstlistoflistings}
-
-% --- Appendix --- --- --- --- --- --- ---
 \cleardoublepage
-\appendix
-% Add `Appendix` to TOC
-\addcontentsline{toc}{part}{\appendixname}
-% must be _input_, otherwise the TOC entry is at the wrong place
-\input{content/Z-Anhang.tex}
-
-% -- only in phd thesis --->
-\input{content/Z-Publikationen}
-\input{content/Z-CV}
-% <------------------------
+\IfDefined{lstlistoflistings}{\lstlistoflistings}
 \cleardoublepage
 \IfDefined{printindex}{\printindex}
 
-\input{content/Z-Danksagung}
-
-% add todo list (remove for final document!)
-% incompatible with ???
-%\IfPackageLoaded{todonotes}{
-%  \clearpage
-%  \IfPackageLoaded{hyperref}{\phantomsection}
-%  \todototoc   % add to toc 
-%  \listoftodos % print to document
-%}
-
-
-
-\typeout{time elapsed: \the\pdfelapsedtime/65536 s}
-
-%%% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Dokument END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
