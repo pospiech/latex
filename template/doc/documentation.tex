@@ -1,8 +1,56 @@
+\newcounter{lstLastPage}
+\newcounter{lstLastLine}
+\setcounter{lstLastLine}{0}
+\setcounter{lstLastPage}{0}
+\newcommand{\printCodeFromFile}[3][]
+{
+\ifstrempty{#1}{}{%
+  \setcounter{lstLastPage}{#1}
+}
+\setcounter{lstLastLine}{#2}
+%
+\lstinputlisting[%
+  firstnumber=\thelstLastPage,%
+  firstline=\thelstLastPage,%
+  lastline=\thelstLastLine,%
+  style=lstStyleLaTeX]%
+  {#3}%
+%
+\setcounter{lstLastPage}{#2}
+\addtocounter{lstLastPage}{1}
+}
+
 \chapter{Overview}
 
 \chapter{main file}
 
-\lstinputlisting[firstline=0,lastline=6,style=lstStyleLaTeX]{LaTeXTemplate.tex}
+\section{Code before the documentclass}
+\subsection{magic shortcodes}
+\printCodeFromFile{1}{LaTeXTemplate.tex}
+
+\subsection{bug fix packages}
+\printCodeFromFile[3]{6}{LaTeXTemplate.tex}
+
+\section{documentclass}
+\printCodeFromFile{22}{LaTeXTemplate.tex}
+
+\section{preamble (packages and settings)}
+Packages that must be loaded before anything else. In this template this is necessary for all packages that are using by the template itself in control sequences.
+\printCodeFromFile[27]{29}{LaTeXTemplate.tex}
+
+Selection of encoding of the LaTeX files and the encoding of the file system. The latter is primarily depended on the operating system.
+\printCodeFromFile[35]{46}{LaTeXTemplate.tex}
+
+Selection of fonts, packages (functionality), the style (layout) and custom commands.
+
+TODO: add links to subfiles
+\printCodeFromFile[52]{60}{LaTeXTemplate.tex}
+
+Configuration
+\printCodeFromFile[69]{99}{LaTeXTemplate.tex}
+
+
+% \lstinputlisting[firstline=0,lastline=6,style=lstStyleLaTeX]{LaTeXTemplate.tex}
 
 \chapter{preamble files}
 
