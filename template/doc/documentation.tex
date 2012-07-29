@@ -1,3 +1,7 @@
+\let\oldlatex\latex
+\renewcommand{\latex}{\oldlatex\xspace}
+\newcommand{\file}[1]{\texttt{#1}}
+
 \newcounter{lstLastPage}
 \newcounter{lstLastLine}
 \setcounter{lstLastLine}{0}
@@ -20,38 +24,109 @@
 \addtocounter{lstLastPage}{1}
 }
 
+% =========================================================================
 \chapter{Overview}
 
+% =========================================================================
 \chapter{main file}
 
+% -------------------------------------------------------------------------
 \section{Code before the documentclass}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{magic shortcodes}
 \printCodeFromFile{1}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{bug fix packages}
 \printCodeFromFile[3]{6}{LaTeXTemplate.tex}
 
-\section{documentclass}
+% -------------------------------------------------------------------------
+\section{Documentclass}
+In this template only classes from Koma-Script (Version 3) can be used.
+Other classes would result in a non compiling template and are not supported therefore. 
+
+In document class options some of the most important settings for the document are configured, such as paper size, font size and language of the document.
 \printCodeFromFile{22}{LaTeXTemplate.tex}
 
-\section{preamble (packages and settings)}
-Packages that must be loaded before anything else. In this template this is necessary for all packages that are using by the template itself in control sequences.
+% -------------------------------------------------------------------------
+\section{Preamble (packages and settings)}
+The code after \texttt{documentclass} and before the document starts is called preamble. All functionality and layout is loaded and configured there. The following sections show in which order things are loaded and configured.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Packages that come first}
+The following code loaded all packages that must be loaded before anything else. In this template this is necessary for all packages that are using by the template itself in control sequences.
 \printCodeFromFile[27]{29}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Encoding}
 Selection of encoding of the LaTeX files and the encoding of the file system. The latter is primarily depended on the operating system.
 \printCodeFromFile[35]{46}{LaTeXTemplate.tex}
 
-Selection of fonts, packages (functionality), the style (layout) and custom commands.
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Packages, layout, fonts and custom commands}
+Selection of fonts, packages (functionality), the style (layout) and custom commands that are required by the template.
 
 TODO: add links to subfiles
 \printCodeFromFile[52]{60}{LaTeXTemplate.tex}
 
-Configuration
-\printCodeFromFile[69]{99}{LaTeXTemplate.tex}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Configuration}
+All the configuration code shown here is separated from the files \file{preamble/packages.tex} or \file{preamble/style.tex} because they are either system or target specific.
+\medskip\\\noindent
+%
+Selection of link colors: The links can either be displayed in colors for a pdf document or be displayed in black for a print document.
+\printCodeFromFile[69]{73}{LaTeXTemplate.tex}
+%
+Here possible options are selectable, which configure the way the pdf document is opened.
+\printCodeFromFile[74]{87}{LaTeXTemplate.tex}
+%
+The backend and encodings for biblatex are configured in the following code.
+\printCodeFromFile[89]{97}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Custom definitions}
+With the following files custom macros (\file{macros/newcommands.tex} and additional hypernation patterns \file{premabel/Hyphenation.tex} are loaded. 
+\printCodeFromFile[103]{106}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Execution of commands}
+Several packages only work if their make-commands are executed. Examples are index, glossaries and such. Here these are grouped in the file \file{macros/makeCommands.tex}. 
+
+\democs{listfiles} tells \latex to print all files loaded during compilation in a file list at the end of the log-file.
+%
+\printCodeFromFile[113]{115}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Bibliography data}
+With biblatex the bibliography files are loaded before the document starts. 
+They are loaded with the command \democs{addbibresource} and the file is included without the \texttt{.bib} file extension. Multiple files bibliography files are added with multiple \democs{addbibresource} commands.
+\printCodeFromFile[121]{129}{LaTeXTemplate.tex}
+
+% -------------------------------------------------------------------------
+\section{The document}
+It start with \democs{begin\{document\}} and ends with \democs{end\{document\}}.
+The code in-between includes all the content for the document. Nevertheless the code is filled with necessary style and settings commands.
+\printCodeFromFile[145]{147}{LaTeXTemplate.tex}
+
+\subsection{Acronyms}
+If you want to use acronyms you can fill them in the file loaded here:
+\printCodeFromFile[149]{150}{LaTeXTemplate.tex}
+%
+\subsection{Title page}
+The page style and the page numbering for the title page is set up with this code
+\printCodeFromFile[152]{154}{LaTeXTemplate.tex}
+%
+followed by the title page in file \file{content/title}.
+\printCodeFromFile[157]{158}{LaTeXTemplate.tex}
+
+\subsection{Abstract}
+An abstract is common in phd thesis, but unusual in master and bachelor thesis. If you do not require an abstract just comment out the following lines.
+\printCodeFromFile[162]{163}{LaTeXTemplate.tex}
 
 
-% \lstinputlisting[firstline=0,lastline=6,style=lstStyleLaTeX]{LaTeXTemplate.tex}
-
+% =========================================================================
 \chapter{preamble files}
 
+% =========================================================================
 \chapter{How to list}
