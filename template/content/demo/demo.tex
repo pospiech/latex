@@ -2973,9 +2973,10 @@ The result of the index is not displayed here, but is shown in the appendix of t
 
 
 \begin{filecontents*}{\democodefile}
-Lorem\index{Lorem} ipsum\index{ipsum} dolor\index{dolor} sit amet,
-consectetuer adipiscing elit Nam dui ligula, fringilla a, euismod 
-sodales, sollicitudin vel, wisi.
+Lorem\index{example!Lorem} ipsum\index{example!ipsum} 
+dolor\index{example!dolor} sit amet, consectetuer adipiscing 
+elit Nam dui ligula, fringilla a, euismod sodales, 
+sollicitudin vel, wisi.
 
 The resulting index is printed on page~\pageref{sec:Index}.
 \end{filecontents*}
@@ -3193,6 +3194,46 @@ This template defines the following styles
 }{\DemoError{Package \demopackage{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
+
+\subsection{Todo notes (package todonotes)}
+
+\begin{filecontents*}{\democodefile}
+The most common usage this package is to insert clearly visible todo notes in 
+a latex\todo{Should be written as LaTeX} document in the margin or inline 
+in the text. An example of its usage is the command \emph{todo}, which 
+renders in the default setting with a orange box in the margin.
+
+The line connecting the note with the place in the text can be disabled 
+with the option \emph{noline}.\todo[noline]{A note with no line connecting 
+the note to the placement in the text.}
+
+Furthermore it is possible to place the notes in the main text instead 
+of placing them in the margin. This is recommended if the text too large for
+printing it to the margin. However this also means that the placement of 
+paragraphs, figures and tables in the the normal text is influenced.
+\todo[inline]{A todo note placed in the text}
+\end{filecontents*}
+
+\IfElsePackageLoaded{todonotes}{%
+
+The \demopackage{todonotes} package provides the commands \democs{todo} and \democs{missingfigure} to insert todo notes in a \latex{} document. These notes are automatically collected and can be printed out at the end of the document.
+
+\PrintDemo{style=lines}%
+
+}{\DemoError{Package \demopackage{todonotes} not loaded.}}%
+
+\begin{filecontents*}{\democodefile}
+\missingfigure{Description or Caption of the missing figure}
+\end{filecontents*}
+
+\IfElsePackageLoaded{todonotes}{%
+
+The \democs{missingfigure} command is supposed to indicate missing figures. It can be handled as an \democs{includegraphics} command in any figure environment.
+
+\PrintDemo{style=lines}%
+}{}%
+
+
 
 \EndTemplateSection{DemoIndexGlossar} 
 %% ============================================================

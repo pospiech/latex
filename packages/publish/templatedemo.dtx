@@ -379,22 +379,32 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 % \begin{macro}{\democommand}
 % Prints the argument with backslash in typewriter font. 
 % This is meant to be used for \latex{} commands.
+% Additionally the command is added to the index.
 %    \begin{macrocode}
-\newcommand{\democommand}[1]{\texttt{\bs{}#1}}
+\newcommand{\democommand}[1]{%
+\texttt{\bs{}#1}%
+\index{command!\bs{}#1}%
+}%
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\demoenv}
-% Format an environment in typewriter font. 
+% Formats an environment in typewriter font and adds it to the index. 
 %    \begin{macrocode}
-\newcommand{\demoenv}[1]{\texttt{#1}}
+\newcommand{\demoenv}[1]{%
+\texttt{#1}%
+\index{environment!#1}%
+}%
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\demopackage}
-% Format an package in typewriter font. 
+% Formats an package in typewriter font and adds it to the index. 
 %    \begin{macrocode}
-\newcommand{\demopackage}[1]{\texttt{#1}}
+\newcommand{\demopackage}[1]{%
+\texttt{#1}%
+\index{package!#1}%
+}%
 %    \end{macrocode}
 % \end{macro}
 %
@@ -508,15 +518,39 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
   backgroundcolor=\color{demo@codebackcolor},%
   rulecolor=\color{demo@code@rulecolor},%
   language = [LaTeX]TeX,%
-  moretexcs={maketitle,tableofcontents,subsection,text,includegraphics,
-    chapter,tableofcontents,section,subsection,subsubsection,paragraph,si,SI,
-    textmu,newcolumntype,rowcolor,rowcolors,bottomrule,toprule,midrule,
-    mainmatter,frontmatter,geometry,KOMAoptions,enquote,blockquote,ding,mathds,
-    ifcsdef,mathcal,underset,operatorname,sfrac,Bra,Ket,Braket,setlength,
-    subcaption,sisetup,rowfont,taburowcolors,theadstart,tbody,tsubheadstart,
-    tsubhead,tend,unit,unitfrac,micro,gls,printglossary,glsadd,newglossaryentry,
-    lettrine,mdfsetup,democodefile,demopackage,democs,democommand,demoenv,
-    DemoError},
+   % LaTeX programming
+   ,moretexcs={setlength,usepackage,newcommand,renewcommand,RequirePackage,
+     SelectInputMappings},
+   % other commands
+   ,moretexcs={maketitle,text,includegraphics,chapter,section,subsection,
+     subsubsection,paragraph,textmu,enquote,blockquote,ding,mathds,ifcsdef,Bra,Ket,Braket,subcaption,lettrine,mdfsetup,captionof,listoffigures,listoftables,tableofcontents,appendix}
+   % tables
+   ,moretexcs={newcolumntype,rowfont,taburowcolors,rowcolor,rowcolors,bottomrule,
+     toprule,midrule,}
+   % hyperref
+   ,moretexcs={hypersetup}
+   % glossaries
+   ,moretexcs={gls,printglossary,glsadd,newglossaryentry}
+   % Koma
+   ,moretexcs={mainmatter,frontmatter,geometry,KOMAoptions}
+   % SI, unit
+   ,moretexcs={si,SI,sisetup,unit,unitfrac,micro}
+   % biblatex package
+   ,moretexcs={newblock,ExecuteBibliographyOptions,addbibresource}
+   % math packages
+   ,moretexcs={operatorname,frac,sfrac,dfrac,DeclareMathOperator,mathcal,underset}
+   % demo package
+   ,moretexcs={democodefile,demopackage,democs,democommand,demoenv,DemoError}  
+   % tablestyles
+   ,moretexcs={theadstart,tbody,tsubheadstart,tsubhead,tend}
+   % code section package
+   ,moretexcs={DefineTemplateSection,SetTemplateSection,BeginTemplateSection,
+     EndTemplateSection}
+   % template tools package
+   ,moretexcs={IfDefined,IfUndefined,IfElseDefined,IfElseUndefined,IfMultDefined,
+     IfNotDraft,IfNotDraftElse,IfDraft,IfPackageLoaded,IfPackageNotLoaded,IfPackagesLoaded,IfPackagesNotLoaded,ExecuteAfterPackage,ExecuteBeforePackage,IfTikzLibraryLoaded,IfColumntypeDefined,IfColumntypesDefined,IfColorDefined,IfColorsDefined,IfMathVersionDefined,SetTemplateDefinition,UseDefinition}
+   % todonotes
+   ,moretexcs={todo,missingfigure}
 }
 \lstloadlanguages{[LaTeX]TeX}
 %    \end{macrocode}
