@@ -1,48 +1,10 @@
-\let\oldlatex\latex
-\renewcommand{\latex}{\oldlatex\xspace}
-\newcommand{\file}[1]{\texttt{#1}}
-
-\let\OrigDemoPackage\demopackage
-\renewcommand{\demopackage}[1]{
-\OrigDemoPackage{#1}%
-\index{package!#1}%
-}%
-
-\let\OrigDemocs\democs
-\renewcommand{\democs}[1]{
-\OrigDemocs{#1}%
-\index{command!#1}%
-}%
-
-
-\newcounter{lstLastPage}
-\newcounter{lstLastLine}
-\setcounter{lstLastLine}{0}
-\setcounter{lstLastPage}{0}
-\newcommand{\printCodeFromFile}[3][]
-{
-\ifstrempty{#1}{}{%
-  \setcounter{lstLastPage}{#1}
-}
-\setcounter{lstLastLine}{#2}
-%
-\lstinputlisting[%
-  firstnumber=\thelstLastPage,%
-  firstline=\thelstLastPage,%
-  lastline=\thelstLastLine,%
-  nolol=true,
-  style=lstStyleLaTeX]%
-  {#3}%
-%
-\setcounter{lstLastPage}{#2}
-\addtocounter{lstLastPage}{1}
-}
-
+\input{doc/doc-commands.tex}
 % =========================================================================
 \chapter{Overview}
 
 % =========================================================================
 \chapter{Main file (LaTeXTemplate.tex)}
+\labelfile{LaTeXTemplate.tex}
 
 % -------------------------------------------------------------------------
 \section{Code before the documentclass}
@@ -120,14 +82,16 @@ They are loaded with the command \democs{addbibresource} and the file is include
 
 % -------------------------------------------------------------------------
 \section{The document (the content)}
-It start with \democs{begin\{document\}} and ends with \democs{end\{document\}}.
+It start with \texttt{\bs{}begin\{document\}} and ends with \texttt{\bs{}end\{document\}}.
 The code in-between includes all the content for the document. Nevertheless the code is filled with necessary style and settings commands.
 \printCodeFromFile[145]{147}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Acronyms}
 If you want to use acronyms you can fill them in the file loaded here:
 \printCodeFromFile[149]{150}{LaTeXTemplate.tex}
 %
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Title page}
 The page style and the page numbering for the title page is set up with this code
 \printCodeFromFile[152]{154}{LaTeXTemplate.tex}
@@ -135,34 +99,99 @@ The page style and the page numbering for the title page is set up with this cod
 followed by the title page in file \file{content/title}.
 \printCodeFromFile[157]{158}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Abstract}
 An abstract is common in phd thesis, but unusual in master and bachelor thesis. If you do not require an abstract just comment out the following lines.
 \printCodeFromFile[162]{163}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Declaration}
 These lines load the document \file{content/Z-Declaration} in which you can state that the whole document is based on your ideas and written by only yourself. As far as I know this is required in bachelor and master thesis, but not part of phd-thesis. Comment out this line if you do not require it.
 \printCodeFromFile[165]{166}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Frontmatter}
 The front pages of a thesis typically contain the table of contents followed by other lists. Here these are the symbol list, an acronym list and a glossary.
 
 These lines only setup the page style and the line numbering for the front pages. The first line sets up as pages with headings defined by \texttt{srcheadings} and the line numbering is applied by the command \democs{frontmatter} in the second line.
 \printCodeFromFile[168]{169}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Table of contents}
 The table of contents is inserted with \democs{tableofcontents}. Additionally it is added to the pdf bookmarks.
 \printCodeFromFile[173]{175}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Lists: acronym, symbols, glossaries}
 These are loaded if the package for all these lists is loaded and the standard style, which requires the \demopackage{longtable} package is loaded. If you do not require all these lists comment those out that you do not want. The make commands required for building these lists were already executed, see \vref{sec:ExecutionOfCommands}. The styles of these lists are defined in file \file{preambel/style-glossaries.tex}.
 \printCodeFromFile[177]{187}{LaTeXTemplate.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Main Document}
 This is the part which contains all the content. It start with \democs{mainmatter}, which sets up the line numbering and is followed by a list of files loaded with \democs{include}. The latter is important to ensure that \democs{includeonly} works.
-\printCodeFromFile[189]{197}{LaTeXTemplate.tex}
+\printCodeFromFile[189]{200}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Bibliography}
+The bibliography is placed directly after the main content. It however must not be placed in the appendix. The layout of the bibliography is defined in file \file{preambel/style-biblatex.tex}.
+%
+\printCodeFromFile{207}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Lists of figures, tables, listings}
+Several lists are automatically created by \latex. The most common are the list of figures and list of tables. If one of these lists is not required the responsible line can be commented out. 
+%
+\printCodeFromFile{213}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Lists of listings}
+The list of listings is one of the additional lists that can be created. 
+It can only be created if the total number of list stays below the total number of possible file outputs. For more information see section \ref{sec:problems:write}.
+
+\printCodeFromFile[214]{217}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Appendix}
+The appendix contains contains additional information that do not fit into the main text of the thesis and must contain only information which is \emph{not} necessary for the understanding of the main text. Therefore the appendix is not treated as part of the thesis in the valuation.
+
+The appendix is started with \democs{appendix} and manually added to the table of contents. In the last line the file \file{content/Z-Appendix.tex} is loaded which contains all further chapters and sections of the appendix.
+%
+\printCodeFromFile[218]{224}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Publications and Curriculum Vita}
+The list of publications is loaded with file \file{content/Z-Publications.tex} and the cv with \file{content/Z-CV.tex}. These files should only be loaded in case of a phd-thesis. For bachelor and master thesis these lines should be commented out.
+%
+\printCodeFromFile{229}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Index}
+An index is very useful for finding a topic in a large document. It is however also very time consuming to create a good index. If you are not sure that your index content is worth to include it in your thesis you should comment these lines out.
+
+The setup for the index is done in file \file{preambel/style-index.tex}.
+\printCodeFromFile{234}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Thanks}
+It is common to add a page at the end of the document where the author thanks all people who helped in the creation of the thesis. 
+\printCodeFromFile{239}{LaTeXTemplate.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{End}
+Finally the main file is closed with 
+\printCodeFromFile[240]{245}{LaTeXTemplate.tex}
+
+Any content after this line will not be executed.
 
 % =========================================================================
 \chapter{Preamble files}
 
 % =========================================================================
 \chapter{How to list}
+
+% =========================================================================
+\chapter{Known problems}
+
+% -------------------------------------------------------------------------
+\section{No room for new write}
+\label{sec:problems:write}

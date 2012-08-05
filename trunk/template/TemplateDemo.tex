@@ -129,8 +129,6 @@
   \addbibresource{bib/demo.bib}
 }%
 
-\input{content/Z-Acronyms.tex}
-
 %%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -181,10 +179,18 @@
 \clearpage
 \listoffigures
 \listoftables
+
+%% -- List of Listings --
+% \cleardoublepage
+% \IfDefined{lstlistoflistings}{\lstlistoflistings}
+
+%% -- Index --
 \cleardoublepage
-\IfDefined{lstlistoflistings}{\lstlistoflistings}
-\cleardoublepage
+\label{sec:Index}
 \IfDefined{printindex}{\printindex}
+
+%% -- Todo Notes (remove for final document!) --
+% \input{content/Z-Todo.tex}
 
 \typeout{time elapsed: \the\pdfelapsedtime/65536 s}
 

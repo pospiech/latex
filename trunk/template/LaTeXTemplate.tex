@@ -189,6 +189,8 @@
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter
 %
+% (files loaded with include must not have the prefix .tex)
+%
 %\include{content/demo/demo}
 \include{content/0-Introduction}
 \include{content/1-Theory}
@@ -204,11 +206,14 @@
   ]	
 }
 
-%% -- list of figures and tables --
+%% -- list of figures, tables and listings --
 \clearpage
 \listoffigures
 \listoftables
-%\IfDefined{lstlistoflistings}{\lstlistoflistings}
+
+%% -- List of Listings --
+% \cleardoublepage
+% \IfDefined{lstlistoflistings}{\lstlistoflistings}
 
 % --- Appendix --- --- --- --- --- --- ---
 \cleardoublepage
@@ -216,29 +221,22 @@
 % Add `Appendix` to TOC
 \addcontentsline{toc}{part}{\appendixname}
 % must be _input_, otherwise the TOC entry is at the wrong place
-\input{content/Z-Anhang.tex}
+\input{content/Z-Appendix.tex}
 
 % -- only in phd thesis --->
-\input{content/Z-Publikationen}
-\input{content/Z-CV}
+\input{content/Z-Publications.tex}
+\input{content/Z-CV.tex}
 % <------------------------
+
+%% -- Index --
 \cleardoublepage
+\label{sec:Index}
 \IfDefined{printindex}{\printindex}
 
-\input{content/Z-Danksagung}
+\input{content/Z-Thanks.tex}
 
 % add todo list (remove for final document!)
-% incompatible with ???
-%\IfPackageLoaded{todonotes}{
-%  \clearpage
-%  \IfPackageLoaded{hyperref}{\phantomsection}
-%  \todototoc   % add to toc 
-%  \listoftodos % print to document
-%}
-
-
-
-\typeout{time elapsed: \the\pdfelapsedtime/65536 s}
+\input{content/Z-Todo.tex}
 
 %%% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
