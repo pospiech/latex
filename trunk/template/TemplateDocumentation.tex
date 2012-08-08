@@ -63,6 +63,9 @@
 
 \input{../packages/publish/preamble/setup-doc-commands.tex}
 
+\usepackage{xstring}
+\usepackage{kvsetkeys}
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Configurations
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -146,21 +149,26 @@
 %% demonstration of the template
 \input{doc/documentation.tex}
 
-% -- bibliography --
-% (must be placed _before_ appendix)
-\IfPackageLoaded{biblatex}{
-  \printbibliography[%
-    heading=bibintoc, % (bibintoc, bibnumbered)
-  ]	
-}
+%% -- bibliography --
+%% (must be placed _before_ appendix)
+%\IfPackageLoaded{biblatex}{
+%  \printbibliography[%
+%    heading=bibintoc, % (bibintoc, bibnumbered)
+%  ]	
+%}
 
 %% -- list of figures and tables --
-\clearpage
-\listoffigures
-\listoftables
+%\clearpage
+%\listoffigures
+%\listoftables
+
+%% -- List of Listings --
+% \cleardoublepage
+% \IfDefined{lstlistoflistings}{\lstlistoflistings}
+
+%% -- Index --
 \cleardoublepage
-\IfDefined{lstlistoflistings}{\lstlistoflistings}
-\cleardoublepage
+\label{sec:Index}
 \IfDefined{printindex}{\printindex}
 
 %%% Dokument END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

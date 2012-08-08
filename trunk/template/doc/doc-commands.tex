@@ -2,19 +2,19 @@
 \let\oldlatex\latex
 \renewcommand{\latex}{\oldlatex\xspace}
 
-% add package to index, when printed
-\let\OrigDemoPackage\demopackage
-\renewcommand{\demopackage}[1]{%
-\OrigDemoPackage{#1}%
-\index{package!#1}%
-}%
-
-% add command to index, when printed
-\let\OrigDemocs\democs
-\renewcommand{\democs}[1]{%
-\OrigDemocs{#1}%
-\index{command!\bs{}#1}%
-}%
+%% add package to index, when printed
+%\let\OrigDemoPackage\demopackage
+%\renewcommand{\demopackage}[1]{%
+%\OrigDemoPackage{#1}%
+%\index{package!#1}%
+%}%
+%
+%% add command to index, when printed
+%\let\OrigDemocs\democs
+%\renewcommand{\democs}[1]{%
+%\OrigDemocs{#1}%
+%\index{command!\bs{}#1}%
+%}%
 
 % -------------------------------------------------
 % \printCodeFromFile
@@ -57,14 +57,35 @@
 % hyperref uses \theH<counter>
 \providecommand*{\theHfile}{\thefile}
 
+%% code from tex.stackexchange with the 
+%% the help from Heiko Oberdiek.
+\makeatletter
 \newcommand*{\labelfile}[1]{%
+  \StrSubstitute{#1}{/}{/,}[\IndexFileA]%
+  \let\IndexFileB\@empty
+  \expandafter
+  \comma@parse@normalized\expandafter{\IndexFileA}\@AddFileEntry
+  %
+  \@bsphack
   \renewcommand*{\theHfile}{#1}%
   \refstepcounter{file}%
   \phantomsection
   \label{file:#1}%
-  \index{files!#1@\string\FileName{#1}}%
+  \index{files!\IndexFileB}%
+  \@esphack  
 }
-%%%
+\newcommand*{\@AddFileEntry}[1]{%
+  \ifx\IndexFileB\@empty
+    \def\IndexFileB{#1@\texttt{#1}}%
+  \else
+    \expandafter\def\expandafter\IndexFileB\expandafter{%
+      \IndexFileB!%
+      #1@\texttt{#1}%
+    }%
+  \fi
+}
+\makeatother
+
 
 \newcommand*{\file}[1]{%
   \hyperref[file:#1]{\FileName{#1}}%
