@@ -47,7 +47,7 @@
   table,      % Load the colortbl package
   % fixpdftex,  % Load the pdfcolmk package (may be problematic)
   hyperref,   % Support  the  hyperref  package
-  fixinclude, %Prevent dvips color reset before .eps ﬁle inclusion
+  fixinclude, % Prevent dvips color reset before .eps file inclusion
 ]{xcolor}
 
 % Description: Support for graphics in LaTeX
@@ -75,7 +75,7 @@
 
 \EndTemplateSection{PackagesBase}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% latex bug fixing packages
+% LaTeX bug fixing packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{PackagesBugfixes}
 
@@ -103,7 +103,7 @@
 %% Description: changes the \marginpar commands, such
 %%              that long margin notes work.
 %% Doc: marginfix.pdf (TODO: why not used)
-% \usepackage{marginfix}
+\usepackage{marginfix}
 
 % Description: Used to define commands that don't eat spaces.
 % Doc: xspace.pdf
@@ -156,7 +156,7 @@
 \IfPackageLoaded{amsmath}{
 
 % Description: The mathtools package is an extension package to amsmath. 
-%              Furthermore it  correct various bugs
+%              Furthermore it corrects various bugs
 % Doc: mathtools.pdf
 \usepackage[fixamsmath,disallowspaces]{mathtools}
 
@@ -171,7 +171,7 @@
 
 } % end: IfPackageLoaded{amsmath}
 
-% Description: Macros for Dirac bra–ket notation and sets.
+% Description: Macros for Dirac bra-ket notation and sets.
 % Doc: braket.pdf
 \usepackage{braket}
 
@@ -181,7 +181,7 @@
 
 %% Description: Emphasize equations
 %% Doc: empheq.pdf
-\usepackage{empheq}  % Hervorheben
+\usepackage{empheq}  
 
 % Description: scales math mode output in all environments correct
 % Doc: Mathmode.pdf
@@ -261,7 +261,7 @@
 \EndTemplateSection{PackagesScience}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Symbole
+% Symbols
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{PackagesSymbols}
 %%% General Doc: symbols-a4.pdf
@@ -273,6 +273,7 @@
 % Futher Math symbols
 \IfPackagesNotLoaded{MnSymbol,MdSymbol}{
   \usepackage{esint} % generate missing integrals for lmodern
+  %
   % provides further symbols of the Text Companion (TC) fonts
   % such as \tcmu, \tcperthousand, \tcdegree
   \usepackage{mathcomp} 
@@ -309,7 +310,7 @@
 \ExecuteAfterPackage{hyperref}{\usepackage{ltxtable}}
 
 % Description: defines a single environment tabu to make all kinds of tabulars
-%              It is more ﬂexible than tabular, tabular*, tabularx and array
+%              It is more flexible than tabular, tabular*, tabularx and array
 %              and extends the possibilities.
 % Doc: tabu.pdf
 \usepackage{tabu}
@@ -328,6 +329,7 @@
 
 \BeginTemplateSection{PackagesText}
 
+%%% bug fixing ===========================================
 % description: fixes bug in ellipsis (...) 
 % Doc: ellipsis.pdf
 % -> load after babel
@@ -350,7 +352,7 @@
 % Doc: url.pdf
 \usepackage{url}
 
-%%% footnotes/endnotes ===================================
+%%% footnotes============================================
 
 % Description: The footmisc package provides several different 
 %              customisations of the way foonotes are represented.
@@ -396,20 +398,17 @@
 % }{}%
 %}%
 
-%%% Doc: endnotes.pdf
-% \usepackage{endnotes}
-
 %%% References ============================================
 %
 % Description:  provides \vref, which is similar to \ref but 
 %               adds an additional page reference, like 
-%               ‘on the facing page’ or ‘on page 27’
+%               'on the facing page' or 'on page 27'
 % Doc: varioref.pdf
 \usepackage{varioref} 
 
 % Description:  enhances  the cross-referencing  features,
 %               allowing the format of cross-references to be determined
-%               automatically according to the “type” of cross-reference
+%               automatically according to the "type" of cross-reference
 % Doc: cleveref.pdf
 % loading: must be loaded after hyperref and after varioref
 \ExecuteAfterPackage{hyperref}{
