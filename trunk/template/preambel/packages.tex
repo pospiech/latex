@@ -459,7 +459,7 @@
 ]{biblatex}  
 % Other options:
 %  style=numeric, % 
-%  style=numeric-comp,    % [1–3, 7, 8]
+%  style=numeric-comp,    % [1-3, 7, 8]
 %  style=numeric-verb,    % [2]; [5]; [6]
 %  style=alphabetic,      % [Doe92; Doe95; Jon98]
 %  style=alphabetic-verb, % [Doe92]; [Doe95]; [Jon98]
@@ -490,7 +490,7 @@
 % \usepackage{float} 
 
 
-% Description: enables typesetting a narrow ﬂoat at the edge of the text,
+% Description: enables typesetting a narrow float at the edge of the text,
 %              and making the text wrap around it. 
 % load after: float
 % load before: caption
@@ -518,8 +518,9 @@
 
 \EndTemplateSection{PackagesFigures}
 
-%%% Captions ============================================
-
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% caption packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{PackagesCaptions}
 
 
@@ -532,7 +533,7 @@
 \usepackage{floatrow, fr-fancy}
 
 % Description: The caption package offers customization
-%              of captions in ﬂoating environments such
+%              of captions in floating environments such
 %              figure and table and cooperates with many 
 %              other packages.
 % Doc: caption.pdf (Required v3.2 or newer)
@@ -577,11 +578,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{PackagesMisc}
 
-% Description: Modify printing of numbers
-%              --> use siunitx instead
-% Doc: numprint.pdf
-% \usepackage{numprint}
-
 % Description: adds line numbers to the main text
 % Doc: ulineno
 %\usepackage[
@@ -592,6 +588,7 @@
 
 
 \EndTemplateSection{PackagesMisc}
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Index and other lists
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -639,14 +636,14 @@
 
 \BeginTemplateSection{PackagesVerbatim}
 %%% Doc: upquote.sty
-\usepackage{upquote} % Setzt "richtige" Quotes in verbatim-Umgebung
+\usepackage{upquote} % print correct quotes in verbatim-environments
 
-% Description: Reimplemntation of the original verbatim enironment
+% Description: Reimplementation of the original verbatim enironment
 % Doc: verbatim.pdf
 \usepackage{verbatim} %
 
 % Description: This package provides many facilities for reading, writing and
-%              chaning the output style of verbatim code
+%              changing the output style of verbatim code
 % Doc: fancyvrb.pdf
 % BUG: fails with "! Paragraph ended before \FV@BeginScanning was complete."
 \usepackage{fancyvrb} 
