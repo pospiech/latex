@@ -248,6 +248,7 @@ The whole template should compile with any section excluded except section \emph
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Base packages}
+\label{sec:packages:base}
 The following packages provide basic functionality such as language selections, graphics and colors. Since most other packages require these to be loaded they are loaded here at the beginning. 
 
 \begin{itemize}[noitemsep]
@@ -290,7 +291,7 @@ This section is rather empty since the fonts and most of the related packages ar
 \printCodeFromFile[113]{123}{preambel/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{math packages}
+\subsection{Math packages}
 The base package for all math in \latex is the package \demopackage{amsmath}. The other packages are not necessary, but some of them provide useful bug fixes and enhancement to the math commands and environments defined by \demopackage{amsmath}.
 
 \begin{itemize}[noitemsep]
@@ -309,7 +310,7 @@ The base package for all math in \latex is the package \demopackage{amsmath}. Th
 \printCodeFromFile[125]{209}{preambel/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{diagram and vector graphics packages}
+\subsection{Diagram and vector graphics packages}
 Several approaches are possible to include vector graphics in a \latex document with \latex-code. In this template the packages \demopackage{tikz}/\demopackage{pgf} were chosen for this application.
 
 Since \demopackage{tikz} and \demopackage{pgf} come with many options and extension package they are loaded in an extra file \file{preambel/packages-tikzpgf.tex}. The package \demopackage{pgfplots} provides an extension for scientific plots.
@@ -331,7 +332,7 @@ Since \demopackage{tikz} and \demopackage{pgf} come with many options and extens
 \printCodeFromFile[1]{92}{preambel/packages-tikzpgf.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{science packages}
+\subsection{Science packages}
 Here packages are included which help to typeset numbers and units correctly.
 The recommended package is \demopackage{siunitx}. The other packages are not activated by default because they are incompatible with \demopackage{siunitx} or not necessary with the default fonts.
 
@@ -343,7 +344,7 @@ The recommended package is \demopackage{siunitx}. The other packages are not act
 \printCodeFromFile[230]{261}{preambel/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{symbol packages}
+\subsection{Symbol packages}
 There are many packages that provide additional symbols to \latex . Since these are font depended they are also incompatible if special font packages are loaded. Here only a selection of smybol packages is documented and loaded.
 
 \begin{itemize}[noitemsep]
@@ -357,7 +358,7 @@ There are many packages that provide additional symbols to \latex . Since these 
 \printCodeFromFile[263]{289}{preambel/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{table packages}
+\subsection{Table packages}
 Standard \latex tables are just ugly. In order to create good looking or even fancy tables further packages are necessary.
 
 \begin{itemize}[noitemsep]
@@ -389,6 +390,82 @@ This code is divided into bug fixing packages and packages for text-decoration, 
 \end{itemize}
 
 \printCodeFromFile[326]{430}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Quotes}
+
+The package \demopackage{csquotes} is a very powerful package that makes quotes language specific and in general easier.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{csquotes}
+\end{itemize}
+
+\printCodeFromFile[332]{447}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Citation/bibliography packages}
+
+There are many packages for citations and creation or modification or the bibliography. However almost all of them are nowadays replaced by the package 
+\demopackage{biblatex} which provides the functionality of all previous package and beyond them. The enable the full functionality of \demopackage{biblatex} it is necessary to also replace \texttt{bibtex} by the program \texttt{biber}.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{biblatex}
+\end{itemize}
+
+\printCodeFromFile[448]{480}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Packages for figures, placement and floats}
+The basic package \demopackage{graphicx} for figures is already loaded at the beginning as shown in section \ref{sec:packages:base}. Here further packages are loaded that extent the placement and floating possibilities.
+
+\begin{itemize}[noitemsep]
+\item (\demopackage{float}  - replaced by \demopackage{floatrow})
+\item \demopackage{wrapfig}
+\item \demopackage{flafter}
+\item \demopackage{placeins}
+\item (\demopackage{floatflt}, unused alternative to \demopackage{wrapfig})
+\end{itemize}
+
+\printCodeFromFile[481]{519}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Caption packages}
+
+The fundamental package for captions is the package \demopackage{caption}.  Its possibilities in terms of figure placement is enhanced by package \demopackage{floatrow} and for subfigures package \demopackage{subcaption}.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{floatrow}, \demopackage{fr-fancy}
+\item \demopackage{caption}
+\item \demopackage{subcaption} (replaces \demopackage{subfig})
+\item \demopackage{mcaption}
+\item \demopackage{rotating}
+\end{itemize}
+
+\printCodeFromFile[521]{573}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Misc packages}
+This section contains mainly packages that should be loaded before \demopackage{hyperref} and do not fit into the other section.
+Currently it contains only the package \demopackage{lineno} for numbering lines
+in the document. It is not loaded by default, but can be activated by removing the comment chars.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{lineno}
+\end{itemize}
+
+\printCodeFromFile[576]{590}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Packages for index and other lists}
+For the index package \demopackage{imakeidx} is loaded and for almost anything else \demopackage{glossaries} provides a solution.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{imakeidx}
+\item \demopackage{showidx}
+\item \demopackage{glossaries}, \demopackage{glossary-longragged}
+\end{itemize}
+
+\printCodeFromFile[592]{630}{preambel/packages.tex}
 
 
 % =========================================================================
