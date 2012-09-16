@@ -445,12 +445,13 @@ The fundamental package for captions is the package \demopackage{caption}.  Its 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Misc packages}
-This section contains mainly packages that should be loaded before \demopackage{hyperref} and do not fit into the other section.
+\label{sec:packages:misc}
+This section contains mainly packages that should be loaded before \demopackage{hyperref} and do not fit into the other sections.
 Currently it contains only the package \demopackage{lineno} for numbering lines
 in the document. It is not loaded by default, but can be activated by removing the comment chars.
 
 \begin{itemize}[noitemsep]
-\item \demopackage{lineno}
+\item \demopackage{lineno} (unused)
 \end{itemize}
 
 \printCodeFromFile[576]{590}{preambel/packages.tex}
@@ -467,6 +468,193 @@ For the index package \demopackage{imakeidx} is loaded and for almost anything e
 
 \printCodeFromFile[592]{630}{preambel/packages.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Verbatim packages}
+
+Verbatim environments are used to display text in monospaced fonts. The typical usage is to display programming code. \demopackage{verbatim} and \demopackage{fancyvrb} are intended to be used for small (and fancy) code sections, whereas \demopackage{listings} is optimal for large code section with syntax highlighting.
+
+The style of \demopackage{listings} is defined in file \file{preambel/style-listings.tex}.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{upquote}
+\item \demopackage{verbatim}
+\item \demopackage{fancyvrb}
+\item \demopackage{listings}
+\end{itemize}
+
+\printCodeFromFile[633]{660}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Fancy packages}
+
+Two different types of fancy packages are loaded. \demopackage{lettrine} for dropping capitals and other packages for fancy framed texts: \demopackage{boxedminipage}, \demopackage{fancybox}, \demopackage{framed} and \demopackage{mdframed}. Not however that \demopackage{mdframed} is a modern package that can replace the other three.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{lettrine} 
+\item \demopackage{boxedminipage}
+\item \demopackage{framed}
+\item \demopackage{fancybox} (incompatible with fancyvrb)
+\item \demopackage{mdframed}
+\end{itemize}
+
+\printCodeFromFile[661]{695}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Layout packages}
+
+The indentation of the first paragraph can be modified using \demopackage{indentation}. The text can be printed in multiple columns with package \demopackage{multicol}. The line spacing can be modified using package 
+\demopackage{setspace}. And the page layout can be modified with the packages \demopackage{geometry} or alternatively \demopackage{typearea}. The latter is automatically loaded with the koma script class. \demopackage{changepage} can be used to detect odd/even pages.
+
+The configuration of most packages is in file \file{preambel/style.tex} and for package \demopackage{geometry} in file \file{preambel/style-geometry.tex}.
+
+
+\begin{itemize}[noitemsep]
+\item \demopackage{indentation} (unused)
+\item \demopackage{multicol}
+\item \demopackage{setspace}
+\item \demopackage{geometry} (unused)
+\item \demopackage{typearea} (automatically loaded)
+\item \demopackage{geometry} (changepage)
+\end{itemize}
+
+\printCodeFromFile[697]{739}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Packages for header and footer}
+
+The content in the header and footer of a page is defined with package \demopackage{scrpage2}, with the settings defined in file \file{preambel/style-scrpage2.tex}.
+
+The total number of page is provided by package \demopackage{pageslts}.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{scrpage2}
+\item \demopackage{pageslts}
+\end{itemize}
+
+\printCodeFromFile[740]{778}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Layout of headings}
+
+All headings can be redefined using package \demopackage{titlesec}.
+
+\printCodeFromFile[779]{793}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Layout of table of contents}
+
+The format of the table of contents and other lists is defined by package \demopackage{tocstyle}. The appendix title can be modified with package \demopackage{appendix}
+
+\begin{itemize}[noitemsep]
+\item \demopackage{tocstyle}
+\item \demopackage{appendix} (unused)
+\end{itemize}
+
+\printCodeFromFile[780]{837}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{PDF packages (including hyperref)}
+
+\demopackage{pdfpages} is a package for the inclusion of pages from external pdf documents,
+\demopackage{pdflscape} for changing the page orientation,
+\demopackage{microtype} for improving the textformating,
+\demopackage{hyperref} for almost everything else that is related to PDF especially its hyperlinks and 
+\demopackage{bookmark} for bookmarks in a PDF document.
+
+Note that \demopackage{hyperref} must be loaded after almost all packages!
+
+The settings of hyperref are defined in file \file{preambel/style-hyperref.tex}.
+
+\begin{itemize}[noitemsep]
+\item \demopackage{pdfpages}
+\item \demopackage{pdflscape} (unused)
+\item \demopackage{microtype}
+\item \demopackage{hyperref}
+\item \demopackage{bookmark}
+\end{itemize}
+
+\printCodeFromFile[838]{895}{preambel/packages.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Additional packages  (explicitly after package hyperref)}
+
+These packages here have nothing in common except that they can be loaded after \demopackage{hyperref}. Other additional package that must be loaded before must be put into the section \texttt{Misc Packages}, see section \cref{sec:packages:misc}.
+
+\printCodeFromFile[896]{918}{preambel/packages.tex}
+
+% -------------------------------------------------------------------------
+\section{preambel/style.tex}
+\labelfile{preambel/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Package sections}
+
+This is the file that defines all settings for the package including the page layout. The settings are grouped together according to there usage. 
+These section defined at the beginning of the file:
+
+\printCodeFromFile[1]{27}{preambel/style.tex}
+
+If you do not require all sections in your document you can change the setting from \emph{true} to \emph{false} in all section definitions you do not want to include in the compilation.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Colors}
+
+If package \demopackage{xcolor} is loaded then colors for the sections, the tables and pdf links are defined with \democs{definecolor} and \democs{colorlet}. Note that \democs{SetTemplateDefinition} is used here to define switchable colors for different document targets (web/print).
+
+\printCodeFromFile[28]{69}{preambel/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Math}
+
+This code shows how to exchange the vector symbol arrow with a bold font and how to exchange various greek symbols by there \emph{var} variant.
+
+\printCodeFromFile[70]{96}{preambel/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Science}
+
+Loading of \file{preambel/style-siunitx.tex}.
+
+\printCodeFromFile[97]{105}{preambel/style.tex}
+
+% .........................................................................
+\subsubsection{preambel/style-siunitx.tex}
+\labelfile{preambel/style-siunitx.tex}
+
+\demopackage{siunitx} is setup for the detection of all font changes and in mode \emph{math}. For german text several changes are applied to ensure the correct setting of math in that language.
+
+Additionally the commands \democs{nicefrac}, \democs{unitfrac} and \democs{unit} are defined in order to emulate the commands from the package \demopackage{units}.
+
+\printCodeFromFile[1]{36}{preambel/style-siunitx.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Diagrams}
+
+Setup of default plot size for tikz/pgfplots and in case of german text the decimal separator is set up as a comma.
+
+Further settings for pgfplots are in a separate file: \file{preambel/style-pgfplots.tex}.
+
+\printCodeFromFile[106]{126}{preambel/style.tex}
+
+% .........................................................................
+\subsubsection{preambel/style-pgfplots.tex}
+\labelfile{preambel/style-pgfplots.tex}
+
+Color series for pgfplots are defined in this file.
+
+\printCodeFromFile[1]{31}{preambel/style-pgfplots.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Text}
+
+Here the font for urls (package \demopackage{url}) and the font in margins used by package \demopackage{marginnote} is defined.
+
+\printCodeFromFile[127]{145}{preambel/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Footnotes}
+
+\printCodeFromFile[146]{186}{preambel/style.tex}
 
 % =========================================================================
 \chapter{How to list}
