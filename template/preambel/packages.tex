@@ -316,8 +316,8 @@
 \usepackage{tabu}
 
 % tablestyles
-\IfFileExists{../packages/tablestyles/tablestyles.sty}{
-  \usepackage{../packages/tablestyles/tablestyles}
+\IfFileExists{tablestyles.sty}{
+  \usepackage{tablestyles}
 }{}
 
 
@@ -645,9 +645,7 @@
 % Description: This package provides many facilities for reading, writing and
 %              changing the output style of verbatim code
 % Doc: fancyvrb.pdf
-% BUG: fails with "! Paragraph ended before \FV@BeginScanning was complete."
 \usepackage{fancyvrb} 
-% TODO : test
 
 % Description: The listings package is a source code printer for LaTeX.
 %              You can typeset stand alone files as well as listings with an 
@@ -784,8 +782,8 @@
 
 \BeginTemplateSection{PackagesHeadings}
 
-% Description: The titlesec package is essentially a replacement — partial or
-%              total—for the LaTeX macros related with sections — namely
+% Description: The titlesec package is essentially a replacement - partial or
+%              total-for the LaTeX macros related with sections - namely
 %              titles, headers and contents.
 %%% Doc: titlesec.pdf
 \usepackage{titlesec}
@@ -800,7 +798,7 @@
 \BeginTemplateSection{PackagesTOC}
 
 % Description: apply different styles for the formating of the 
-%              table of contents and lists of ﬂoats.
+%              table of contents and lists of floats.
 %%% Doc: tocstyle.pdf (Koma Script)
 \usepackage[%
   tocindentauto,     % all widths at the TOCs are calculated by tocindentauto
@@ -811,7 +809,7 @@
 %  tocfullflat,      % no intendation, no alignment
 %%%  
   tocbreaksstrict,   % sets a lot of penalties before and after TOC entries 
-                     % to avoid page break between a TOC entry and it’s parent. 
+                     % to avoid page break between a TOC entry and it's parent. 
 %  tocbreakscareless,% allow more page breaks.  
 %%%  
 %  toctextentriesindented, % unnumbered TOC entrie are indented only as wide 
@@ -824,14 +822,14 @@
 %              modifying the typesetting of appendix titles.
 % Doc: appendix.pdf
 %\usepackage[
-% ,toc   % Put a header (e.g., ‘Appendices’) into the Table of Contents
-% %,page  % Puts a title  (e.g.,  ‘Appendices’) into the document at the 
+% ,toc   % Put a header (e.g., 'Appendices') into the Table of Contents
+% %,page  % Puts a title  (e.g.,  'Appendices') into the document at the 
 %        % beginning of the appendices environment
-% %,title % Adds a name (e.g., ‘Appendix’) before each appendix title in
+% %,title % Adds a name (e.g., 'Appendix') before each appendix title in
 %        % the body of the document.
-% %,titletoc % Adds a name (e.g., ‘Appendix’) before each appendix listed 
+% %,titletoc % Adds a name (e.g., 'Appendix') before each appendix listed 
 %        % in the ToC
-% %,header% Adds a name (e.g., ‘Appendix’) before each appendix in page headers.
+% %,header% Adds a name (e.g., 'Appendix') before each appendix in page headers.
 %]{appendix}
 %\renewcommand{\appendixtocname}{\appendixname}
 
@@ -849,7 +847,7 @@
 
 % Description: landscape orientation in PDF Format
 % Doc: pdflscape.pdf
-% load before footmisc
+% load after: footmisc (correct ?)
 %\usepackage{pdflscape}
 
 % Description: The microtype package provides a LaTeX interface to the  
