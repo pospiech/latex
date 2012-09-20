@@ -41,9 +41,16 @@ Selection of encoding of the LaTeX files and the encoding of the file system. Th
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages, layout, fonts and custom commands}
-Selection of fonts, packages (functionality), the style (layout) and custom commands that are required by the template.
+Selection of fonts, packages (functionality), the style (layout) and custom 
+commands that are required by the template. All defined in the following files:
+%
+\begin{itemize}[noitemsep]
+\item \file{fonts/fonts.tex}
+\item \file{preamble/packages.tex}
+\item \file{preamble/style.tex}
+\item \file{preamble/commands.tex}
+\end{itemize}
 
-TODO: add links to subfiles
 \printCodeFromFile[52]{60}{LaTeXTemplate.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -123,7 +130,12 @@ The table of contents is inserted with \democs{tableofcontents}. Additionally it
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Lists: acronym, symbols, glossaries}
-These are loaded if the package for all these lists is loaded and the standard style, which requires the \demopackage{longtable} package is loaded. If you do not require all these lists comment those out that you do not want. The make commands required for building these lists were already executed, see \vref{sec:ExecutionOfCommands}. The styles of these lists are defined in file \file{preambel/style-glossaries.tex}.
+These are loaded if the package for all these lists is loaded and the standard 
+style, which requires the \demopackage{longtable} package is loaded. If you do 
+not require all these lists comment those out that you do not want. The make 
+commands required for building these lists were already executed, see 
+\vref{sec:ExecutionOfCommands}. The styles of these lists are defined in file 
+\file{preamble/style-glossaries.tex}.
 \printCodeFromFile[177]{187}{LaTeXTemplate.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -133,7 +145,9 @@ This is the part which contains all the content. It start with \democs{mainmatte
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Bibliography}
-The bibliography is placed directly after the main content. It however must not be placed in the appendix. The layout of the bibliography is defined in file \file{preambel/style-biblatex.tex}.
+The bibliography is placed directly after the main content. It however must 
+not be placed in the appendix. The layout of the bibliography is defined in 
+file \file{preamble/style-biblatex.tex}.
 %
 \printCodeFromFile{207}{LaTeXTemplate.tex}
 
@@ -168,7 +182,7 @@ The list of publications is loaded with file \file{content/Z-Publications.tex} a
 \subsection{Index}
 An index is very useful for finding a topic in a large document. It is however also very time consuming to create a good index. If you are not sure that your index content is worth to include it in your thesis you should comment these lines out.
 
-The setup for the index is done in file \file{preambel/style-index.tex}.
+The setup for the index is done in file \file{preamble/style-index.tex}.
 \printCodeFromFile{234}{LaTeXTemplate.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -230,8 +244,8 @@ File that loads MyriadPro and takes care of the package loaded order. MyriadPro 
 \printCodeFromFile[1]{35}{fonts/fonts-MyriadPro.tex}
 
 % -------------------------------------------------------------------------
-\section{preambel/packages.tex}
-\labelfile{preambel/packages.tex}
+\section{preamble/packages.tex}
+\labelfile{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Package sections}
@@ -240,7 +254,7 @@ This is the file that loads all packages. The packages are grouped together acco
 
 All package groups, named within this text \emph{sections}, start with the command \democs{BeginTemplateSection} and end with \democs{EndTemplateSection}. If these section are included in the compilation or excludes (not compiled) is defined at the beginning of the file:
 
-\printCodeFromFile[1]{24}{preambel/packages.tex}
+\printCodeFromFile[1]{24}{preamble/packages.tex}
 
 If you do not require all sections in your document you can thus change the setting from \emph{true} to \emph{false} in all section definitions you do not want to include in the compilation.
 
@@ -262,7 +276,7 @@ The following packages provide basic functionality such as language selections, 
 
 The application of each package is given with a short description in the source code. The documentation file name and package loading order requirements are also included in the source code. 
 
-\printCodeFromFile[25]{76}{preambel/packages.tex}
+\printCodeFromFile[25]{76}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Bug fixing packages}
@@ -278,7 +292,7 @@ The application of each package is given with a short description in the source 
 \end{itemize}
 
 
-\printCodeFromFile[77]{112}{preambel/packages.tex}
+\printCodeFromFile[77]{112}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Font packages}
@@ -288,7 +302,7 @@ This section is rather empty since the fonts and most of the related packages ar
 \item \demopackage{relsize}
 \end{itemize}
 
-\printCodeFromFile[113]{123}{preambel/packages.tex}
+\printCodeFromFile[113]{123}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Math packages}
@@ -307,13 +321,16 @@ The base package for all math in \latex is the package \demopackage{amsmath}. Th
 \item \demopackage{xfrac}
 \end{itemize}
 
-\printCodeFromFile[125]{209}{preambel/packages.tex}
+\printCodeFromFile[125]{209}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Diagram and vector graphics packages}
 Several approaches are possible to include vector graphics in a \latex document with \latex-code. In this template the packages \demopackage{tikz}/\demopackage{pgf} were chosen for this application.
 
-Since \demopackage{tikz} and \demopackage{pgf} come with many options and extension package they are loaded in an extra file \file{preambel/packages-tikzpgf.tex}. The package \demopackage{pgfplots} provides an extension for scientific plots.
+Since \demopackage{tikz} and \demopackage{pgf} come with many options and 
+extension package they are loaded in an extra file 
+\file{preamble/packages-tikzpgf.tex}. The package \demopackage{pgfplots} 
+provides an extension for scientific plots.
 
 \begin{itemize}[noitemsep]
 \item \demopackage{tikz}
@@ -323,13 +340,13 @@ Since \demopackage{tikz} and \demopackage{pgf} come with many options and extens
 \end{itemize}
 
 
-\printCodeFromFile[210]{229}{preambel/packages.tex}
+\printCodeFromFile[210]{229}{preamble/packages.tex}
 
 % .........................................................................
-\subsubsection{preambel/packages-tikzpgf.tex}
-\labelfile{preambel/packages-tikzpgf.tex}
+\subsubsection{preamble/packages-tikzpgf.tex}
+\labelfile{preamble/packages-tikzpgf.tex}
 
-\printCodeFromFile[1]{92}{preambel/packages-tikzpgf.tex}
+\printCodeFromFile[1]{92}{preamble/packages-tikzpgf.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Science packages}
@@ -341,7 +358,7 @@ The recommended package is \demopackage{siunitx}. The other packages are not act
 \item not recommended: \demopackage{gensymb}, \demopackage{upgreek},  \demopackage{units}
 \end{itemize}
 
-\printCodeFromFile[230]{261}{preambel/packages.tex}
+\printCodeFromFile[230]{261}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Symbol packages}
@@ -355,7 +372,7 @@ There are many packages that provide additional symbols to \latex . Since these 
 \item \demopackage{pifont}
 \end{itemize}
 
-\printCodeFromFile[263]{289}{preambel/packages.tex}
+\printCodeFromFile[263]{289}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Table packages}
@@ -369,7 +386,7 @@ Standard \latex tables are just ugly. In order to create good looking or even fa
 \item \demopackage{tablestyles}
 \end{itemize}
  
-\printCodeFromFile[290]{325}{preambel/packages.tex}
+\printCodeFromFile[290]{325}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Text related packages}
@@ -389,7 +406,7 @@ This code is divided into bug fixing packages and packages for text-decoration, 
 \item \demopackage{enumitem}
 \end{itemize}
 
-\printCodeFromFile[326]{430}{preambel/packages.tex}
+\printCodeFromFile[326]{430}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Quotes}
@@ -400,7 +417,7 @@ The package \demopackage{csquotes} is a very powerful package that makes quotes 
 \item \demopackage{csquotes}
 \end{itemize}
 
-\printCodeFromFile[332]{447}{preambel/packages.tex}
+\printCodeFromFile[332]{447}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Citation/bibliography packages}
@@ -412,7 +429,7 @@ There are many packages for citations and creation or modification or the biblio
 \item \demopackage{biblatex}
 \end{itemize}
 
-\printCodeFromFile[448]{480}{preambel/packages.tex}
+\printCodeFromFile[448]{480}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for figures, placement and floats}
@@ -426,7 +443,7 @@ The basic package \demopackage{graphicx} for figures is already loaded at the be
 \item (\demopackage{floatflt}, unused alternative to \demopackage{wrapfig})
 \end{itemize}
 
-\printCodeFromFile[481]{519}{preambel/packages.tex}
+\printCodeFromFile[481]{519}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Caption packages}
@@ -441,7 +458,7 @@ The fundamental package for captions is the package \demopackage{caption}.  Its 
 \item \demopackage{rotating}
 \end{itemize}
 
-\printCodeFromFile[521]{573}{preambel/packages.tex}
+\printCodeFromFile[521]{573}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Misc packages}
@@ -454,7 +471,7 @@ in the document. It is not loaded by default, but can be activated by removing t
 \item \demopackage{lineno} (unused)
 \end{itemize}
 
-\printCodeFromFile[576]{590}{preambel/packages.tex}
+\printCodeFromFile[576]{590}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for index and other lists}
@@ -466,14 +483,15 @@ For the index package \demopackage{imakeidx} is loaded and for almost anything e
 \item \demopackage{glossaries}, \demopackage{glossary-longragged}
 \end{itemize}
 
-\printCodeFromFile[592]{630}{preambel/packages.tex}
+\printCodeFromFile[592]{630}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Verbatim packages}
 
 Verbatim environments are used to display text in monospaced fonts. The typical usage is to display programming code. \demopackage{verbatim} and \demopackage{fancyvrb} are intended to be used for small (and fancy) code sections, whereas \demopackage{listings} is optimal for large code section with syntax highlighting.
 
-The style of \demopackage{listings} is defined in file \file{preambel/style-listings.tex}.
+The style of \demopackage{listings} is defined in file 
+\file{preamble/style-listings.tex}.
 
 \begin{itemize}[noitemsep]
 \item \demopackage{upquote}
@@ -482,7 +500,7 @@ The style of \demopackage{listings} is defined in file \file{preambel/style-list
 \item \demopackage{listings}
 \end{itemize}
 
-\printCodeFromFile[633]{660}{preambel/packages.tex}
+\printCodeFromFile[633]{660}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Fancy packages}
@@ -497,7 +515,7 @@ Two different types of fancy packages are loaded. \demopackage{lettrine} for dro
 \item \demopackage{mdframed}
 \end{itemize}
 
-\printCodeFromFile[661]{695}{preambel/packages.tex}
+\printCodeFromFile[661]{695}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout packages}
@@ -505,7 +523,8 @@ Two different types of fancy packages are loaded. \demopackage{lettrine} for dro
 The indentation of the first paragraph can be modified using \demopackage{indentation}. The text can be printed in multiple columns with package \demopackage{multicol}. The line spacing can be modified using package 
 \demopackage{setspace}. And the page layout can be modified with the packages \demopackage{geometry} or alternatively \demopackage{typearea}. The latter is automatically loaded with the koma script class. \demopackage{changepage} can be used to detect odd/even pages.
 
-The configuration of most packages is in file \file{preambel/style.tex} and for package \demopackage{geometry} in file \file{preambel/style-geometry.tex}.
+The configuration of most packages is in file \file{preamble/style.tex} and 
+for package \demopackage{geometry} in file \file{preamble/style-geometry.tex}.
 
 
 \begin{itemize}[noitemsep]
@@ -517,12 +536,14 @@ The configuration of most packages is in file \file{preambel/style.tex} and for 
 \item \demopackage{geometry} (changepage)
 \end{itemize}
 
-\printCodeFromFile[697]{739}{preambel/packages.tex}
+\printCodeFromFile[697]{739}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for header and footer}
 
-The content in the header and footer of a page is defined with package \demopackage{scrpage2}, with the settings defined in file \file{preambel/style-scrpage2.tex}.
+The content in the header and footer of a page is defined with package 
+\demopackage{scrpage2}, with the settings defined in file 
+\file{preamble/style-scrpage2.tex}.
 
 The total number of page is provided by package \demopackage{pageslts}.
 
@@ -531,14 +552,14 @@ The total number of page is provided by package \demopackage{pageslts}.
 \item \demopackage{pageslts}
 \end{itemize}
 
-\printCodeFromFile[740]{778}{preambel/packages.tex}
+\printCodeFromFile[740]{778}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout of headings}
 
 All headings can be redefined using package \demopackage{titlesec}.
 
-\printCodeFromFile[779]{793}{preambel/packages.tex}
+\printCodeFromFile[779]{793}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout of table of contents}
@@ -550,7 +571,7 @@ The format of the table of contents and other lists is defined by package \demop
 \item \demopackage{appendix} (unused)
 \end{itemize}
 
-\printCodeFromFile[780]{837}{preambel/packages.tex}
+\printCodeFromFile[780]{837}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{PDF packages (including hyperref)}
@@ -563,7 +584,8 @@ The format of the table of contents and other lists is defined by package \demop
 
 Note that \demopackage{hyperref} must be loaded after almost all packages!
 
-The settings of hyperref are defined in file \file{preambel/style-hyperref.tex}.
+The settings of hyperref are defined in file 
+\file{preamble/style-hyperref.tex}.
 
 \begin{itemize}[noitemsep]
 \item \demopackage{pdfpages}
@@ -573,18 +595,18 @@ The settings of hyperref are defined in file \file{preambel/style-hyperref.tex}.
 \item \demopackage{bookmark}
 \end{itemize}
 
-\printCodeFromFile[838]{895}{preambel/packages.tex}
+\printCodeFromFile[838]{895}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Additional packages  (explicitly after package hyperref)}
 
 These packages here have nothing in common except that they can be loaded after \demopackage{hyperref}. Other additional package that must be loaded before must be put into the section \texttt{Misc Packages}, see section \cref{sec:packages:misc}.
 
-\printCodeFromFile[896]{918}{preambel/packages.tex}
+\printCodeFromFile[896]{918}{preamble/packages.tex}
 
 % -------------------------------------------------------------------------
-\section{preambel/style.tex}
-\labelfile{preambel/style.tex}
+\section{preamble/style.tex}
+\labelfile{preamble/style.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Package sections}
@@ -592,7 +614,7 @@ These packages here have nothing in common except that they can be loaded after 
 This is the file that defines all settings for the package including the page layout. The settings are grouped together according to there usage. 
 These section defined at the beginning of the file:
 
-\printCodeFromFile[1]{27}{preambel/style.tex}
+\printCodeFromFile[1]{27}{preamble/style.tex}
 
 If you do not require all sections in your document you can change the setting from \emph{true} to \emph{false} in all section definitions you do not want to include in the compilation.
 
@@ -601,84 +623,85 @@ If you do not require all sections in your document you can change the setting f
 
 If package \demopackage{xcolor} is loaded then colors for the sections, the tables and pdf links are defined with \democs{definecolor} and \democs{colorlet}. Note that \democs{SetTemplateDefinition} is used here to define switchable colors for different document targets (web/print).
 
-\printCodeFromFile[28]{69}{preambel/style.tex}
+\printCodeFromFile[28]{69}{preamble/style.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Math}
 
 This code shows how to exchange the vector symbol arrow with a bold font and how to exchange various greek symbols by there \emph{var} variant.
 
-\printCodeFromFile[70]{96}{preambel/style.tex}
+\printCodeFromFile[70]{96}{preamble/style.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Science}
 
-Loading of \file{preambel/style-siunitx.tex}.
+Loading of \file{preamble/style-siunitx.tex}.
 
-\printCodeFromFile[97]{105}{preambel/style.tex}
+\printCodeFromFile[97]{105}{preamble/style.tex}
 
 % .........................................................................
-\subsubsection{preambel/style-siunitx.tex}
-\labelfile{preambel/style-siunitx.tex}
+\subsubsection{preamble/style-siunitx.tex}
+\labelfile{preamble/style-siunitx.tex}
 
 \demopackage{siunitx} is setup for the detection of all font changes and in mode \emph{math}. For german text several changes are applied to ensure the correct setting of math in that language.
 
 Additionally the commands \democs{nicefrac}, \democs{unitfrac} and \democs{unit} are defined in order to emulate the commands from the package \demopackage{units}.
 
-\printCodeFromFile[1]{36}{preambel/style-siunitx.tex}
+\printCodeFromFile[1]{36}{preamble/style-siunitx.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Diagrams}
 
 Setup of default plot size for tikz/pgfplots and in case of german text the decimal separator is set up as a comma.
 
-Further settings for pgfplots are in a separate file: \file{preambel/style-pgfplots.tex}.
+Further settings for pgfplots are in a separate file: 
+\file{preamble/style-pgfplots.tex}.
 
-\printCodeFromFile[106]{126}{preambel/style.tex}
+\printCodeFromFile[106]{126}{preamble/style.tex}
 
 % .........................................................................
-\subsubsection{preambel/style-pgfplots.tex}
-\labelfile{preambel/style-pgfplots.tex}
+\subsubsection{preamble/style-pgfplots.tex}
+\labelfile{preamble/style-pgfplots.tex}
 
 Color series for pgfplots are defined in this file.
 
-\printCodeFromFile[1]{31}{preambel/style-pgfplots.tex}
+\printCodeFromFile[1]{31}{preamble/style-pgfplots.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Text}
 
 Here the font for urls (package \demopackage{url}) and the font in margins used by package \demopackage{marginnote} is defined.
 
-\printCodeFromFile[127]{145}{preambel/style.tex}
+\printCodeFromFile[127]{145}{preamble/style.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Footnotes}
 
 Several definitions to solve common problems with footnotes and example code for the redefinition of the footnote layout.
 
-\printCodeFromFile[146]{186}{preambel/style.tex}
+\printCodeFromFile[146]{186}{preamble/style.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Quotes}
 
 Settings for package \demopackage{csquotes}.
 
-\printCodeFromFile[187]{208}{preambel/style.tex}
+\printCodeFromFile[187]{208}{preamble/style.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Citations / Style of Bibliography}
 
 Loading of the settings file for package \demopackage{biblatex}  and principle layout of the bibliography items.
 
-\printCodeFromFile[209]{220}{preambel/style.tex}
+\printCodeFromFile[209]{220}{preamble/style.tex}
 
 % .........................................................................
-\subsubsection{preambel/style-biblatex.tex}
-\labelfile{preambel/style-biblatex.tex}
+\subsubsection{preamble/style-biblatex.tex}
+\labelfile{preamble/style-biblatex.tex}
 
 Setting of bibliography options and redefinitions of bib-macros for an alpha style.
 
-\printCodeFromFile[1]{135}{preambel/style-biblatex.tex}
+\printCodeFromFile[1]{135}{preamble/style-biblatex.tex}
 
 
 % =========================================================================
