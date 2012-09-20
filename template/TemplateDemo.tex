@@ -49,18 +49,18 @@
 ]{grffile}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Preambel
+% preamble
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 %% select/load fonts
 \input{fonts/fonts.tex}
 %\input{fonts/font-commercial.tex}
 %% load packages
-\input{preambel/packages.tex}
+\input{preamble/packages.tex}
 %% apply style settings
-\input{preambel/style.tex}
+\input{preamble/style.tex}
 %% new commands / definitions
-\input{preambel/commands.tex}
+\input{preamble/commands.tex}
 
 % display the layouts
 % \IfPackageLoaded{geometry}{\geometry{showframe}}
@@ -106,14 +106,14 @@
 \input{macros/newcommands.tex}
 
 %%% Silbentrennung
-\input{preambel/Hyphenation.tex}
+\input{preamble/Hyphenation.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % execute necessary commands
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % (... if the according package is loaded or not)
 
-\input{preambel/makeCommands.tex}
+\input{preamble/makeCommands.tex}
 
 \listfiles % list all loaded files at end of document
 

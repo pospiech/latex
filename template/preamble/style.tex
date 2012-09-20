@@ -100,7 +100,7 @@
 \BeginTemplateSection{StyleScience}
 
 % style setup of siunitx
-\input{preambel/style-siunitx.tex}
+\input{preamble/style-siunitx.tex}
 
 \EndTemplateSection{StyleScience}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -121,7 +121,7 @@
 }
 
 % setup of package pgfplots
-\input{preambel/style-pgfplots.tex}
+\input{preamble/style-pgfplots.tex}
 
 \EndTemplateSection{StyleDiagrams}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -211,7 +211,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleCiteBib}
 
-\input{preambel/style-biblatex.tex}
+\input{preamble/style-biblatex.tex}
 
 \KOMAoptions{%
    bibliography=oldstyle%
@@ -252,7 +252,7 @@
 
 
 % Style of captions and subcaptions
-\input{preambel/style-caption.tex}
+\input{preamble/style-caption.tex}
 
 % style options for subfig
 \IfPackageLoaded{subfig}{
@@ -268,7 +268,7 @@
 }
 
 % Style of figure placement with floatrow
-\input{preambel/style-floatrow.tex}
+\input{preamble/style-floatrow.tex}
 
 
 
@@ -312,8 +312,8 @@
 
 \BeginTemplateSection{StyleIndexes}
 
-\input{preambel/style-index.tex}
-\input{preambel/style-glossaries.tex}
+\input{preamble/style-index.tex}
+\input{preamble/style-glossaries.tex}
 
 \EndTemplateSection{StyleIndexes}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -321,7 +321,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleVerbatim}
 \IfPackageLoaded{listings}{
-  \input{preambel/style-listings.tex}
+  \input{preamble/style-listings.tex}
 } %
 \EndTemplateSection{StyleVerbatim}
 
@@ -385,7 +385,7 @@
 \raggedbottom     % allow variable (ragged) site heights
 
 \IfPackageLoaded{geometry}{%
-  \input{preambel/style-geometry}
+  \input{preamble/style-geometry}
 } % Endif
 
 % Layout mit 'typearea'
@@ -463,7 +463,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleHeadFoot}
 \IfPackageLoaded{scrpage2}{%
-   \input{preambel/style-scrpage2.tex}
+   \input{preamble/style-scrpage2.tex}
 } % end: \IfPackageLoaded{scrpage2}
 
 \EndTemplateSection{StyleHeadFoot}
@@ -573,7 +573,7 @@
 % \renewcommand*{\chapterheadendvskip}{\vspace{0.5\baselineskip}}%
 
 \IfPackageLoaded{titlesec}{
-   \input{preambel/style-titlesec.tex}
+   \input{preamble/style-titlesec.tex}
 }% end: \IfPackageLoaded{titlesec}
 \EndTemplateSection{StyleHeadingsLayout}
 
@@ -688,7 +688,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StylePdf}
 \IfPackageLoaded{hyperref}{
-   \input{preambel/style-hyperref.tex}
+   \input{preamble/style-hyperref.tex}
 } % end: IfPackageLoaded{hyperref}
 
 \IfPackageLoaded{bookmark}{
@@ -709,7 +709,7 @@
 % \fi
 
 % Make figure and not only the number to a link
-\input{preambel/style-references.tex}
+\input{preamble/style-references.tex}
 
 \EndTemplateSection{StylePdf}
 
@@ -747,10 +747,10 @@
 
 % fix Problem with onlyamsmath active $ char 
 % together with the tabu package
-\input{preambel/fix-tabu-onlyamsmath.tex}
+\input{preamble/fix-tabu-onlyamsmath.tex}
 
 % fix problems with framed and marginnote
-\input{preambel/fix-framed-marginnote.tex}
+\input{preamble/fix-framed-marginnote.tex}
 
 % ------------------------------------------------------------------
 \EndTemplateSection{StyleFixProblems}
