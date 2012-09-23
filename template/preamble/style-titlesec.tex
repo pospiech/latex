@@ -1,6 +1,7 @@
-% -- Section Aussehen veraendern --
+\IfPackageLoaded{titlesec}{
+
+%% -> Section with rule below
 % --------------------------------
-%% -> Section mit Unterstrich
 % \titleformat{\section}
 %   [hang]%[frame]display
 %   {\usekomafont{sectioning}\Large}
@@ -10,9 +11,8 @@
 %   [\titlerule \vspace{0.5\baselineskip}]
 % --------------------------------
 
-% -- Chapter Aussehen veraendern --
+%--> chapter with 'chapter' + number boxed, name below centered
 % --------------------------------
-%--> Box mit (Kapitel + Nummer ) +  Name
 % \titleformat{\chapter}[display]     % {command}[shape]
 %   {\usekomafont{chapter}\filcenter} % format
 %   {                                 % label
@@ -21,14 +21,19 @@
 %   }}}
 %   {1pc}                             % sep (from chapternumber)
 %   {\vspace{1pc}}                    % {before}[after] (before chaptertitle and after)
+%% --------------------------------
+
+%--> chapter with 'chapter' + number + rule + name + rule
+% --------------------------------
+\titleformat{\chapter}[display]               % {command}[shape]
+  {\usekomafont{chapter}\Large \color{black}} % format
+  {\LARGE\MakeUppercase{\chaptertitlename}%   % label
+   \Huge~\thechapter \filright}%  
+  {1pt}										  % sep (from chapternumber)
+  {\titlerule \vspace{0.9pc} % 
+   \filright \color{sectioncolor}}            % (before chaptertitle and after)
+  [\color{black} \vspace{0.9pc} \filright {\titlerule}] %
 % --------------------------------
 
-%--> Kapitel + Nummer + Trennlinie + Name + Trennlinie
-\titleformat{\chapter}[display]	               % {command}[shape]
-  {\usekomafont{chapter}\Large \color{black}}	% format
-  {\LARGE\MakeUppercase{\chaptertitlename}%     % label
-   \Huge~\thechapter \filright}%  
-  {1pt}										            % sep (from chapternumber)
-  {\titlerule \vspace{0.9pc} % 
-   \filright \color{sectioncolor}}              % (before chaptertitle and after)
-  [\color{black} \vspace{0.9pc} \filright {\titlerule}] %
+
+}% end: \IfPackageLoaded{titlesec}
