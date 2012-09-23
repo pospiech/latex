@@ -31,7 +31,7 @@
    % glossaries
    ,moretexcs={gls,printglossary,glsadd,newglossaryentry}
    % Koma
-   ,moretexcs={mainmatter,frontmatter,geometry,KOMAoptions}
+   ,moretexcs={mainmatter,frontmatter,geometry,KOMAoptions,setkomafont,addtokomafont}
    % SI, unit
    ,moretexcs={si,SI,sisetup,unit,unitfrac,micro}
    % biblatex package
@@ -47,20 +47,23 @@
      EndTemplateSection}
    % template tools package
    ,moretexcs={IfDefined,IfUndefined,IfElseDefined,IfElseUndefined,IfMultDefined,
-     IfNotDraft,IfNotDraftElse,IfDraft,IfPackageLoaded,IfPackageNotLoaded,IfPackagesLoaded,IfPackagesNotLoaded,ExecuteAfterPackage,ExecuteBeforePackage,IfTikzLibraryLoaded,IfColumntypeDefined,IfColumntypesDefined,IfColorDefined,IfColorsDefined,IfMathVersionDefined,SetTemplateDefinition,UseDefinition}
+     IfNotDraft,IfNotDraftElse,IfDraft,IfPackageLoaded,IfPackageNotLoaded,IfPackagesLoaded,IfPackagesNotLoaded,ExecuteAfterPackage,ExecuteBeforePackage,IfTikzLibraryLoaded,IfColumntypeDefined,IfColumntypesDefined,IfColorDefined,IfColorsDefined,IfMathVersionDefined,SetTemplateDefinition,UseDefinition,IfFileExists,iflanguage}
    % todonotes
    ,moretexcs={todo,missingfigure}
+   % listings
+   ,moretexcs={lstloadlanguages,lstdefinestyle,lstset}
+   % index
+   ,moretexcs={indexsetup}
+   % glossaries
+   ,moretexcs={newglossarystyle,glossarystyle,deftranslation,newglossary}
+   % tikz
+   ,moretexcs={usetikzlibrary}
+   % color
+   ,moretexcs={definecolor,colorlet}
+   % caption
+   ,moretexcs={captionsetup,DeclareCaptionStyle}
+   % floatrow
+   ,moretexcs={floatsetup}
 }
 
 \lstloadlanguages{[LaTeX]TeX}
-
-% correct utf8 umlaute
-\lstset{literate=%
-  {Ö}{{\"O}}1
-  {Ä}{{\"A}}1
-  {Ü}{{\"U}}1
-  {ß}{{\ss}}2
-  {ü}{{\"u}}1
-  {ä}{{\"a}}1
-  {ö}{{\"o}}1
-}

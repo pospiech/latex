@@ -298,7 +298,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Index and other lists
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 \BeginTemplateSection{StyleIndexes}
 
 \input{preamble/style-index.tex}
@@ -309,14 +308,10 @@
 % verbatim packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleVerbatim}
-\IfPackageLoaded{listings}{
-  \input{preamble/style-listings.tex}
-} %
+
+\input{preamble/style-listings.tex}
+
 \EndTemplateSection{StyleVerbatim}
-
-
-
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % fancy packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -337,14 +332,13 @@
 }
 \EndTemplateSection{StyleFancy}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% layout 
+% layout:  Paragraph
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-%\nonfrenchspacing     % liefert extra Platz hinter Satzenden.
-                       % Fuer deutschen Text standardmaessig ausgeschaltet!
+\BeginTemplateSection{StyleParagraph}
+%\nonfrenchspacing     % provides extra space after sentence endings 
+                       % Must be switched of for german and english text!
 
 %% Paragraph Separation =================================
-\BeginTemplateSection{StyleParagraph}
 \KOMAoptions{%
    % parskip=relative, % _not_ compatible with tikz! othwise recommanded
    parskip=absolute, % do not change indentation according to fontsize
@@ -359,15 +353,19 @@
    % parskip=half*  % parksip of 1/2 line - with free space in last line of 1em
 }%
 \EndTemplateSection{StyleParagraph}
-%% line spacing =========================================
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% layout:  line spacing
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %
 \BeginTemplateSection{StyleLineSpacing}
 \IfPackageLoaded{setspace}{
-  %\onehalfspacing    % 1,5-facher Abstand
-  %\doublespacing     % 2-facher Abstand
+  %\onehalfspacing    % 1,5-times spacing
+  %\doublespacing     % 2-times spacing
 }
 \EndTemplateSection{StyleLineSpacing}
-%% page layout ==========================================
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% layout:  page layout
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %
 \BeginTemplateSection{StylePageLayout}
 
@@ -392,7 +390,7 @@
 %
 }% end: \IfPackageNotLoaded{geometry}
 
-%%% === Page Layout  Options ===
+%%% === Page Layout Options ===
 \KOMAoptions{% (most options are for package typearea)
    twoside=true, % two side layout (alternating margins, standard in books)
    % twoside=false, % single side layout 
@@ -410,7 +408,6 @@
    footsepline=false,%
    cleardoublepage=empty %plain, headings
 }%
-
 
 % reloading of typearea, necessary if setting of spacing changed
 \IfPackageLoaded{typearea}{% Wenn typearea geladen ist
@@ -446,21 +443,24 @@
    %titlepage=false %
 }%
 \EndTemplateSection{StyleTitlepage}
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % head and foot lines
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleHeadFoot}
-\IfPackageLoaded{scrpage2}{%
-   \input{preamble/style-scrpage2.tex}
-} % end: \IfPackageLoaded{scrpage2}
+
+\input{preamble/style-scrpage2.tex}
 
 \EndTemplateSection{StyleHeadFoot}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % headings / page opening
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleHeadings}
+
+% depth of sections numbering
 \setcounter{secnumdepth}{2}
+% 0 - chapter
+% 1 - section
+% 2 - subsection and so on ...
 
 \KOMAoptions{%
 %%%% headings
@@ -473,7 +473,6 @@
    % ,numbers=autoenddot
    % ,numbers=enddot
    ,numbers=noenddot
-   % ,secnumdepth=3 % depth of sections numbering (???)
 }%
 
 \IfDefined{chapter}{
@@ -488,7 +487,7 @@
 	}%
 }%
 
-% Titelzeile linksbuendig, haengend
+% headings left aligned and ragged
 \renewcommand*{\raggedsection}{\raggedright} 
 
 \EndTemplateSection{StyleHeadings}
@@ -515,9 +514,6 @@
 
 \setkomafont{descriptionlabel}{\itshape}
 
-%\setkomafont{caption}{\normalfont}
-%\setkomafont{captionlabel}{\normalfont}
-
 %\setkomafont{dictum}{}
 %\setkomafont{dictumauthor}{}
 %\setkomafont{dictumtext}{}
@@ -541,15 +537,13 @@
 
 % colors of headings
 \IfDefined{color}{%
-\addtokomafont{sectioning}{\color{sectioncolor}}
-\IfDefined{chapter}{%
-	\addtokomafont{chapter}{\color{sectioncolor}}
-}
+  \addtokomafont{sectioning}{\color{sectioncolor}}
+  \IfDefined{chapter}{%
+    \addtokomafont{chapter}{\color{sectioncolor}}
+  }
 }
 
 \EndTemplateSection{StyleHeadingsFonts}
-
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % layout of headings 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -561,11 +555,9 @@
 %% Space below Chapter Title
 % \renewcommand*{\chapterheadendvskip}{\vspace{0.5\baselineskip}}%
 
-\IfPackageLoaded{titlesec}{
-   \input{preamble/style-titlesec.tex}
-}% end: \IfPackageLoaded{titlesec}
-\EndTemplateSection{StyleHeadingsLayout}
+\input{preamble/style-titlesec.tex}
 
+\EndTemplateSection{StyleHeadingsLayout}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % settings and layout of TOC, LOF, 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

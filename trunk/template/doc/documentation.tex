@@ -727,17 +727,155 @@ recommended and can only be used without \demopackage{subcaption}.
 \subsubsection{preamble/style-caption.tex}
 \labelfile{preamble/style-caption.tex}
 
+In this file the standard caption style with name \emph{captionStyleTemplateDefault} is defined and applied via \democs{captionsetup}. Furthermore a version for short captions is defined with the name \emph{captionStyleTemplateShortDefault}, which is then applied for all wrap style and margin figures.
+
+Additionally caption styles are defined for subcaption type captions and for subfig caption (not recommended) in the case that subfig is loaded instead of subcaption.
+
 \printCodeFromFile[1]{119}{preamble/style-caption.tex}
 
 % .........................................................................
 \subsubsection{preamble/style-floatrow.tex}
 \labelfile{preamble/style-floatrow.tex}
 
+Several settings of package \demopackage{floatrow} are set up and float styles are defined with \democs{floatsetup}.
+
 \printCodeFromFile[1]{238}{preamble/style-floatrow.tex}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Tables}
+
+Here new column types are defined if they are not yet defined.
+
+\printCodeFromFile[265]{297}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Index and glossaries and other lists}
+
+\printCodeFromFile[298]{306}{preamble/style.tex}
+
+% .........................................................................
+\subsubsection{preamble/style-index.tex}
+\labelfile{preamble/style-index.tex}
+
+Setup for package \demopackage{imakeidx}.
+
+\printCodeFromFile[1]{12}{preamble/style-index.tex}
+
+% .........................................................................
+\subsubsection{preamble/style-glossaries.tex}
+\labelfile{preamble/style-glossaries.tex}
+
+Configuration for package \demopackage{glossaries}. New styles are defined with \democs{newglossarystyle} and with the use of package \demopackage{translator} the headings are translated for the german language.
+
+\printCodeFromFile[1]{83}{preamble/style-glossaries.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Verbatim and listings packages}
+
+\printCodeFromFile[307]{314}{preamble/style.tex}
+
+% .........................................................................
+\subsubsection{preamble/style-listings.tex}
+\labelfile{preamble/style-listings.tex}
+
+First a new basic style with name \emph{lstStyleBase} is defined using \democs{lstdefinestyle}. Then Programming dependend styles are loaded in subfiles and in the end activated with \democs{lstloadlanguages}.
+
+\printCodeFromFile[1]{97}{preamble/style-listings.tex}
+
+% .........................................................................
+\subsubsection{preamble/listings-latex.tex}
+\labelfile{preamble/listings-latex.tex}
+
+Style definitions for language \emph{LaTeX} saved as \emph{lstStyleLaTeX}.
+
+\printCodeFromFile[1]{100}{preamble/listings-latex.tex}
+
+% .........................................................................
+\subsubsection{preamble/listings-cpp.tex}
+\labelfile{preamble/listings-cpp.tex}
+
+Style definitions for language \emph{C++} saved as \emph{lstStyleCpp}.
+
+\printCodeFromFile[1]{39}{preamble/listings-cpp.tex}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Fancy packages}
+
+Configuration for package \demopackage{lettrine} and package \demopackage{framed}.
+
+\printCodeFromFile[315]{333}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Layout: paragraph}
+
+Definition of \emph{parksip}.
+
+\printCodeFromFile[334]{355}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Layout: line spacing}
+
+Configuration of line spacing with package \demopackage{setspace}.
+
+\printCodeFromFile[356]{365}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Layout: page layout}
+
+Configuration of package \demopackage{goemtry} or package \demopackage{typearea}.
+
+\printCodeFromFile[366]{436}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Titlepage}
+
+Configuration for the title page.
+
+\printCodeFromFile[437]{445}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Header and footer lines}
+
+Configuration of the (automatic) content in header and footer.
+
+\printCodeFromFile[446]{453}{preamble/style.tex}
+
+% .........................................................................
+\subsubsection{preamble/style-scrpage2.tex}
+\labelfile{preamble/style-scrpage2.tex}
+
+Configuration of header and footer defined by package \demopackage{scrpage2}. 
+
+\printCodeFromFile[1]{100}{preamble/style-scrpage2.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Headings: numbering, sizes and page opening}
+
+Configuration of heading numbering, sizes and page openings.
+
+\printCodeFromFile[454]{493}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Headings: fonts}
+
+Configuration of heading fonts.
+
+\printCodeFromFile[494]{546}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Headings: custom layout}
+
+\printCodeFromFile[547]{560}{preamble/style.tex}
+
+% .........................................................................
+\subsubsection{preamble/style-titlesec.tex}
+\labelfile{preamble/style-titlesec.tex}
+
+Changes to the layout of headings with package \demopackage{titlesec}. 
+
+\printCodeFromFile[1]{100}{preamble/style-titlesec.tex}
 
 
 % =========================================================================

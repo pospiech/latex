@@ -1,67 +1,57 @@
+\IfPackageLoaded{scrpage2}{%
+
 \IfElseDefined{chapter}{%
-   \pagestyle{scrheadings} % Seite mit Headern
+   \pagestyle{scrheadings} % pages with header
 }{
-   \pagestyle{scrplain} % Seiten ohne Header
+   \pagestyle{scrplain} % pages without header but page numbers
 }
-%\pagestyle{empty} % Seiten ohne Header
+%\pagestyle{empty} % empty pages
 %
-% loescht voreingestellte Stile
+% delete predefined styles
 \clearscrheadings
 \clearscrplain
 %
-% Was steht wo...
+% What is printed where ...
 \IfElseDefined{chapter}{
-   % Oben aussen: Kapitel und Section
-   % Unten aussen: Seitenzahl
-   % \ohead{\headmark} % Oben außen: Setzt Kapitel und Section automatisch
-   % \ofoot[\pagemark]{\pagemark}
-   % oder...
-   % Oben aussen: Seitenzahlen
-   % Oben innen: Kapitel und Section
-   \ohead{\pagemark}
-   \ihead{\headmark}
-   \ofoot[\pagemark]{} % Außen unten: Seitenzahlen bei plain
+   \ohead{\pagemark} % header outside: page number
+   \ihead{\headmark} % header inside: chapter and section titles
+   \ofoot[\pagemark]{} % footer outsite: page numbers on plain pages
 }{
    \cfoot[\pagemark]{\pagemark} % Mitte unten: Seitenzahlen bei plain
 }
-% Vollstaendige Liste der moeglichen Positionierungen
-% \lehead[scrplain-links-gerade]{scrheadings-links-gerade}
-% \cehead[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
-% \rehead[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
-% \lefoot[scrplain-links-gerade]{scrheadings-links-gerade}
-% \cefoot[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
-% \refoot[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
-% \lohead[scrplain-links-ungerade]{scrheadings-links-ungerade}
-% \cohead[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
-% \rohead[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
-% \lofoot[scrplain-links-ungerade]{scrheadings-links-ungerade}
-% \cofoot[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
-% \rofoot[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
-% \ihead[scrplain-innen]{scrheadings-innen}
-% \chead[scrplain-zentriert]{scrheadings-zentriert}
-% \ohead[scrplain-außen]{scrheadings-außen}
-% \ifoot[scrplain-innen]{scrheadings-innen}
-% \cfoot[scrplain-zentriert]{scrheadings-zentriert}
-% \ofoot[scrplain-außen]{scrheadings-außen}
+% Complete list of possible positions
+%\lehead[scrplain-left-even   ]{scrheadings-left-even }
+%\cehead[scrplain-center-even ]{scrheadings-center-even }
+%\rehead[scrplain-right-even  ]{scrheadings-right-even }
+%\lefoot[scrplain-left-even   ]{scrheadings-left-even }
+%\cefoot[scrplain-center-even ]{scrheadings-center-even }
+%\refoot[scrplain-right-even  ]{scrheadings-right-even }
+%\lohead[scrplain-left-odd    ]{scrheadings-left-odd }
+%\cohead[scrplain-center-odd  ]{scrheadings-center-odd }
+%\rohead[scrplain-right-odd   ]{scrheadings-right-odd }
+%\lofoot[scrplain-left-odd    ]{scrheadings-left-odd }
+%\cofoot[scrplain-center-odd  ]{scrheadings-center-odd }
+%\rofoot[scrplain-right-odd   ]{scrheadings-right-odd }
+%\ihead[scrplain-inside       ]{scrheadings-inside }
+%\chead[scrplain-centered     ]{scrheadings-centered }
+%\ohead[scrplain-outside      ]{scrheadings-outside }
+%\ifoot[scrplain-inside       ]{scrheadings-inside }
+%\cfoot[scrplain-centered     ]{scrheadings-centered }
+%\ofoot[scrplain-outside      ]{scrheadings-outside }
 
-% Angezeigte Abschnitte im Header
+% Shown sections in the header
 \IfElseDefined{chapter}{
-   \automark[section]{chapter} %[rechts]{links}
+   \automark[section]{chapter} %[right]{left}
 }{
-   \automark[subsection]{section} %[rechts]{links}
+   \automark[subsection]{section} %[right]{left}
 }
 %
-% Linien (moegliche Kombination mit Breiten)
+% Lines
 \IfDefined{chapter}{%
-   %\setheadtopline{}     % modifiziert die Parameter fuer die Linie ueber dem
-   							  %	 Seitenkopf
-   \setheadsepline{.4pt}[\color{black}]
-                         % modifiziert die Parameter fuer die Linie zwischen
-                         % Kopf und Textkörper
-   %\setfootsepline{}    % modifiziert die Parameter fuer die Linie zwischen
-   							 % Text und Fuß
-   %\setfootbotline{}    % modifiziert die Parameter fuer die Linie unter dem
-   							 % Seitenfuss
+   % \setheadtopline{} % configures the line above the header
+   \setheadsepline{.4pt}[\color{black}] % configures the line below the header
+   % \setfootsepline{} % configures the line above the footer
+   % \setfootbotline{} % configures the line below the footer
 }
 
 %% width of head and foot
@@ -81,3 +71,4 @@
 %\renewcommand*{\titlepagestyle}{empty}
 %\renewcommand*{\indexpagestyle}{empty}
 
+} % end: \IfPackageLoaded{scrpage2}

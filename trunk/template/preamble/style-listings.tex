@@ -1,6 +1,7 @@
 \IfDefined{colorlet}{
    \colorlet{colorlstNumber}{white!50!black!100}
 }
+\IfPackageLoaded{listings}{%
 
 \lstdefinestyle{lstStyleBase}{
 %%% appearance
@@ -65,20 +66,32 @@
 % frames in fancyvrb are printed out wrong!
 % \IfPackageLoaded{fancyvrb}{\lstset{fancyvrb=true}}
 
+% correct utf8 umlaute
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}2
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
+
 \input{preamble/listings-latex.tex}
 \input{preamble/listings-cpp.tex}
 
 % load language used in document. 
-% All languages should be loaded at once
-% note: Check documentation for further languages
+% (LaTex and C++ already loaded)
 \lstloadlanguages{
+   %,[LaTeX]TeX
+   %,C++
+   %,[Visual]C++
+   %,[ISO]C++   
    %,[Visual]Basic
    %,Pascal
    %,C
-   ,C++
-   ,[Visual]C++
-   ,[ISO]C++
-   ,[LaTeX]Tex
    %,XML
    %,HTML
 }
+
+}% End of \IfPackageLoaded
