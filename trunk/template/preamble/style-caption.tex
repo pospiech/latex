@@ -1,4 +1,4 @@
-\IfPackageLoaded{caption} {%
+\IfPackageLoaded{caption}{%
 % Style of captions
 \DeclareCaptionStyle{captionStyleTemplateDefault}
 [ % single line captions
@@ -102,13 +102,17 @@
   \renewcommand\thesubfigure{(\alph{subfigure})} 
 }
 
-%\IfNotKomaScript{%
-%  % The position settings are overwritten by koma script
-%  \captionsetup{%
-%  {%
-%   % position=auto, % auto/top/bottom %
-%   figureposition=top, % auto/top/bottom %
-%   tableposition=bottom, % auto/top/bottom %
-%  }
-%}
-
+% style options for subfig
+\IfPackageLoaded{caption}{%
+ \IfPackageLoaded{subfig}{%
+  \captionsetup[subfloat]{%
+   style = captionStyleTemplateDefault, % base
+   skip=6pt,
+   margin=5pt,
+   labelformat = parens,% default, empty, simple, brace
+   labelsep    = space,
+   list=false,
+   hypcap=false
+  }
+ } % end \IfPackageLoaded{subfig}
+} % end \IfPackageLoaded{caption}

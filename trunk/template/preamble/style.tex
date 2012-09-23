@@ -219,7 +219,7 @@
 }%
 \EndTemplateSection{StyleCiteBib}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% figures, placement, floats and captions
+% figures, placement and floats
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleFigures}
 \IfPackageLoaded{float} {
@@ -227,50 +227,39 @@
 }
 
 \IfPackageLoaded{wrapfig} {
-%\setlength{\wrapoverhang}{\marginparwidth} % aeerlapp des Bildes ...
-%\addtolength{\wrapoverhang}{\marginparsep} % ... in den margin
-\setlength{\intextsep}{0.5\baselineskip} % Platz ober- und unterhalb des Bildes
-% \intextsep ignoiert bei draft ???
-%\setlength{\columnsep}{1em} % Abstand zum Text
+%\setlength{\wrapoverhang}{\marginparwidth} 
+%\addtolength{\wrapoverhang}{\marginparsep} 
+\setlength{\intextsep}{0.5\baselineskip} % space above and below the image
+% \intextsep ignored with draft ???
+%\setlength{\columnsep}{1em} % separation to the text
 }
 
 % Make float placement easier
-\renewcommand{\floatpagefraction}{.75} % vorher: .5
-\renewcommand{\textfraction}{.1}       % vorher: .2
-\renewcommand{\topfraction}{.8}        % vorher: .7
-\renewcommand{\bottomfraction}{.5}     % vorher: .3
-\setcounter{topnumber}{3}        % vorher: 2
-\setcounter{bottomnumber}{2}     % vorher: 1
-\setcounter{totalnumber}{5}      % vorher: 3
+\renewcommand{\floatpagefraction}{.75} % previous: .5
+\renewcommand{\textfraction}{.1}       % previous: .2
+\renewcommand{\topfraction}{.8}        % previous: .7
+\renewcommand{\bottomfraction}{.5}     % previous: .3
+\setcounter{topnumber}{3}        % previous: 2
+\setcounter{bottomnumber}{2}     % previous: 1
+\setcounter{totalnumber}{5}      % previous: 3
 
 \EndTemplateSection{StyleFigures}
-
-%% ~~~ Captions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Captions
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleCaptions}
-% \numberwithin{figure}{chapter} %Befehl zum Kapitelweise Nummerieren der Bilder, setzt `amsmath' vorraus
-% \numberwithin{table}{chapter}  %Befehl zum Kapitelweise Nummerieren der Tabellen, setzt `amsmath' vorraus
 
-
-% Style of captions and subcaptions
-\input{preamble/style-caption.tex}
-
-% style options for subfig
-\IfPackageLoaded{subfig}{
- \captionsetup[subfloat]{%
-  style = captionStyleTemplateDefault, % base
-  skip=6pt,
-  margin=5pt,
-  labelformat = parens,% default, empty, simple, brace
-  labelsep    = space,
-  list=false,
-  hypcap=false
- }
+\IfPackageLoaded{amsmath}{
+% Numbering of figures and table in each chapter
+% \numberwithin{figure}{chapter}
+% \numberwithin{table}{chapter}
 }
+
+% Style of captions and subcaptions (and subfig)
+\input{preamble/style-caption.tex}
 
 % Style of figure placement with floatrow
 \input{preamble/style-floatrow.tex}
-
-
 
 \EndTemplateSection{StyleCaptions}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
