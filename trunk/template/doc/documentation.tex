@@ -55,6 +55,7 @@ commands that are required by the template. All defined in the following files:
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Configuration}
+\label{sec:main:Configuration}
 All the configuration code shown here is separated from the files \file{preamble/packages.tex} or \file{preamble/style.tex} because they are either system or target specific.
 \medskip\\\noindent
 %
@@ -69,13 +70,13 @@ The backend and encodings for biblatex are configured in the following code.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Custom definitions}
-With the following files custom macros (\file{macros/newcommands.tex} and additional hypernation patterns \file{premabel/Hyphenation.tex} are loaded. 
+With the following files custom macros (\file{macros/newcommands.tex} and additional hypernation patterns \file{preamble/Hyphenation.tex} are loaded. 
 \printCodeFromFile[103]{106}{LaTeXTemplate.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Execution of commands}
 \label{sec:ExecutionOfCommands}
-Several packages only work if their make-commands are executed. Examples are index, glossaries and such. Here these are grouped in the file \file{macros/makeCommands.tex}. 
+Several packages only work if their make-commands are executed. Examples are index, glossaries and such. Here these are grouped in the file \file{preamble/makeCommands.tex}. 
 
 \democs{listfiles} tells \latex to print all files loaded during compilation in a file list at the end of the log-file.
 %
@@ -89,6 +90,7 @@ They are loaded with the command \democs{addbibresource} and the file is include
 
 % -------------------------------------------------------------------------
 \section{The document (the content)}
+\label{sec:main:document}
 It start with \texttt{\bs{}begin\{document\}} and ends with \texttt{\bs{}end\{document\}}.
 The code in-between includes all the content for the document. Nevertheless the code is filled with necessary style and settings commands.
 \printCodeFromFile[145]{147}{LaTeXTemplate.tex}
@@ -877,13 +879,122 @@ Changes to the layout of headings with package \demopackage{titlesec}.
 
 \printCodeFromFile[1]{100}{preamble/style-titlesec.tex}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Settings and layout of table of contents and other lists}
 
-% =========================================================================
-\chapter{How to list}
+Configuration of counter \emph{tocdepth}, options of koma-script, package \demopackage{tocstyle} and koma-script specific fonts and general options for lists.
 
-% =========================================================================
-\chapter{Known problems}
+\printCodeFromFile[561]{662}{preamble/style.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Settings and layout of table of contents and other lists}
+
+Configuration of packages \demopackage{hyperref}, \demopackage{bookmark} and the creation \demopackage{hyperref} depended reference commands.
+
+\printCodeFromFile[663]{690}{preamble/style.tex}
+
+% .........................................................................
+\subsubsection{preamble/style-hyperref.tex}
+\labelfile{preamble/style-hyperref.tex}
+
+Configuration of package \demopackage{hyperref}. The option \emph{pdfpagelayout} is not included here because it should be set up by the user of the template. It is therefore in file \file{LaTeXTemplate.tex}, see section \vref{sec:main:Configuration}.
+
+\printCodeFromFile[1]{100}{preamble/style-hyperref.tex}
+
+% .........................................................................
+\subsubsection{preamble/style-references.tex}
+\labelfile{preamble/style-references.tex}
+
+Provides the commands \democs{eqnref}, \democs{figref}, \democs{tabref}, \democs{secref} and \democs{chapref}, which behave like \democs{ref} but also include the name of the thing to reference in the hyperlink.
+
+Something similar and is achieved by the package \demopackage{cleveref} which does the same thing in a more clever way.
+
+\printCodeFromFile[1]{100}{preamble/style-references.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Fix remaining problems}
+
+Several packages cause problems if they are loaded together or can cause problems in this template if the package is not loaded or a special command is not available. These things are fixed here.
+
+The commands \democs{frontmatter}, \democs{mainmatter} and \democs{backmatter} are defined if they are not defined. This happens for example if the class \emph{scrartcl} is loaded.
+
+\printCodeFromFile[691]{731}{preamble/style.tex}
+
+% .........................................................................
+\subsubsection{preamble/fix-tabu-onlyamsmath.tex}
+\labelfile{preamble/fix-tabu-onlyamsmath.tex}
+
+The package \demopackage{tabu} has a problem with the \$-char if it was redefined by package \demopackage{onlyamsmath}. Here the original definition is restored for every tabu tabular to solve the problem.
+
+\printCodeFromFile[1]{100}{preamble/fix-tabu-onlyamsmath.tex}
+
+% .........................................................................
+\subsubsection{preamble/fix-framed-marginnote.tex}
+\labelfile{preamble/fix-framed-marginnote.tex}
+
+the placement of margin notes of package \demopackage{marginnote} is wrong next to frames created by package \demopackage{framed}. This is corrected here.
+
+\printCodeFromFile[1]{100}{preamble/fix-framed-marginnote.tex}
+
 
 % -------------------------------------------------------------------------
-\section{No room for new write}
-\label{sec:problems:write}
+\section{preamble/commands.tex}
+\labelfile{preamble/commands.tex}
+
+This file defines new commands which are required by the template. User commands should instead be inserted to \file{macros/newcommands.tex}.
+
+\begin{itemize}
+\item \democs{marginwidth} defines the margin width
+\item \democs{doctextwidth} and \democs{doctextheight} define the width and height of the document text area.
+\end{itemize}
+
+\printCodeFromFile[1]{100}{preamble/commands.tex}
+
+% -------------------------------------------------------------------------
+\section{macros/newcommands.tex}
+\labelfile{macros/newcommands.tex}
+
+This file contains a collection of commands that might be useful in physics or math. Additional user commands should as well be inserted in this file.
+
+\printCodeFromFile[1]{1000}{macros/newcommands.tex}
+
+% -------------------------------------------------------------------------
+\section{content/hyphenation.tex}
+\labelfile{content/hyphenation.tex}
+
+Contains all hyphenation patterns inside of the command \democs{hyphenation}.
+
+\printCodeFromFile[1]{100}{content/hyphenation.tex}
+
+% -------------------------------------------------------------------------
+\section{preamble/makeCommands.tex}
+\labelfile{preamble/makeCommands.tex}
+
+Calls make commands that are required inside the preamble, such as 
+\democs{makeindex}, \democs{makeglossaries} and \democs{linenumbers}.
+
+\printCodeFromFile[1]{100}{preamble/makeCommands.tex}
+
+% =========================================================================
+\chapter{Document content files}
+
+The structure of this part inside \file{LaTeXTemplate.tex} is described in  \vref{sec:main:document}.
+
+% -------------------------------------------------------------------------
+\section{content/Z-Acronyms.tex}
+\labelfile{content/Z-Acronyms.tex}
+
+Definition of acronyms using command \democs{newacronym} from package \demopackage{glossaries}.
+
+\printCodeFromFile[1]{100}{content/Z-Acronyms.tex}
+
+
+%% =========================================================================
+%\chapter{How to list}
+%
+%% =========================================================================
+%\chapter{Known problems}
+%
+%% -------------------------------------------------------------------------
+%\section{No room for new write}
+%\label{sec:problems:write}
