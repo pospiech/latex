@@ -23,7 +23,7 @@
 \DefineTemplateSection[true]{StyleLayoutTOC}
 \DefineTemplateSection[true]{StylePdf}
 \DefineTemplateSection[true]{StyleFixProblems}
-\DefineTemplateSection[true]{StyleNewDefinitions}
+
  
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Colors
@@ -464,7 +464,7 @@
 
 \KOMAoptions{%
 %%%% headings
-	headings=small  % Small Font Size, thin spacing above and below
+   headings=small  % Small Font Size, thin spacing above and below
    % headings=normal % Medium Font Size, medium spacing above and below
    % headings=big % Big Font Size, large spacing above and below
    %
@@ -476,7 +476,7 @@
 }%
 
 \IfDefined{chapter}{
-	\KOMAoptions{%
+   \KOMAoptions{%
       headings=noappendixprefix % chapter in appendix as in body text
       ,headings=nochapterprefix  % no prefix at chapters
       % ,headings=appendixprefix   % inverse of 'noappendixprefix'
@@ -484,7 +484,7 @@
       % ,headings=openany   % Chapters start at any side
       % ,headings=openleft  % Chapters start at left side
       ,headings=openright % Chapters start at right side      
-	}%
+   }%
 }%
 
 % headings left aligned and ragged
@@ -559,7 +559,7 @@
 
 \EndTemplateSection{StyleHeadingsLayout}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% settings and layout of TOC, LOF, 
+% settings and layout of TOC, LOF 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleLayoutTOC}
 %%% === Table of Contents ==============================
@@ -575,7 +575,7 @@
    % toc=nobib,
    % toc=bibnumbered,
    %
-	% toc=index,%
+   % toc=index,%
    toc=noindex,
    %
    % toc=listof,
@@ -584,11 +584,46 @@
    %   
 }%  
 
+% Setup using tocstyle
+\IfPackageLoaded{tocstyle}{
+% predefined styles
+\usetocstyle{standard} % A style similar to the standard classes. 
+%\usetocstyle{KOMAlike} % A style similar to the KOMA-Script classes.  
+%%            % This is almost the same like standard, but instead 
+%%            % of bold face \usekomafont { disposition } will be used if 
+%%            % \usekomafont was defined and sans serif, bold face
+%%            % (\sffamily\bfseries) if not.
+%%            %
+%\usetocstyle{classic}  % Like KOMAlike but all page numbers are set 
+%%                      % using normal font.
+%\usetocstyle{allwithdot}  % Like classic but dots between entry text 
+%%                         % and page numbers are used at all depths.
+%\usetocstyle{noonewithdot} % Like classic but not dots between entry 
+%%                          % text and page numbers are used.
+%\usetocstyle{nopagecolumn} % Like noonewithdot but also the gap between 
+%                           % text and page numbersis omited.  
+}
+
+%\newcommand{\fontTOC}{\sffamily}
+\newcommand{\fontTOC}{\rmfamily}
+
+\IfPackageNotLoaded{tocloft}{
+   % apply style of TOC using koma script
+   \setkomafont{partentry}{\usekomafont{sectioning}\large}
+   \IfElseDefined{chapter}{%
+      \setkomafont{chapterentry}{\bfseries\fontTOC}
+      \setkomafont{chapterentrypagenumber}{\bfseries\fontTOC}
+   }{%
+      \setkomafont{sectionentry}{\bfseries\fontTOC}
+      \setkomafont{sectionentrypagenumber}{\bfseries\fontTOC}
+   }
+}
+
 %%% === Appereance of Lists of figures, tables etc.  ===
 \KOMAoptions{%
    %%% Setting of 'Style' and 'Content' of Lists 
    %%% (figures, tables etc)
-	% --- General List Style ---
+   % --- General List Style ---
    listof=left, % tabular styles
    listof=indented, % hierarchical style
    % --- Appearance of Lists in TOC
@@ -609,9 +644,9 @@
    % --- chapter highlighting ---
    % listof=chapterentry, % ??? Chapter starts are marked in figure/table
    % listof=chaptergapline, % New chapter starts are marked by a gap 
-      		  			   	 % of a single line
-	listof=chaptergapsmall, % New chapter starts are marked by a gap 
-   	    					   % of a smallsingle line
+                            % of a single line
+   listof=chaptergapsmall, % New chapter starts are marked by a gap 
+                            % of a smallsingle line
    % listof=nochaptergap, % No Gap between chapters
    % chapteratlists=10pt, % define gap explicitly
    %
@@ -621,56 +656,16 @@
 
 % Inhalte von List of Figures
 \IfPackageLoaded{subfig}{
-	\setcounter{lofdepth}{1}  %1 = nur figures, 2 = figures + subfigures
+   \setcounter{lofdepth}{1}  %1 = nur figures, 2 = figures + subfigures
 }
-
-%\newcommand{\fontTOC}{\sffamily}
-\newcommand{\fontTOC}{\rmfamily}
-
-% Setup using tocstyle
-\IfPackageLoaded{tocstyle}{
-% predefined styles
-\usetocstyle{standard} % A style similar to the standard classes. 
-%\usetocstyle{KOMAlike} % A style similar to the KOMA-Script classes.  
-%%	            % This is almost the same like standard, but instead 
-%%	            % of bold face \usekomafont { disposition } will be used if 
-%%	            % \usekomafont was de?ned and sans serif, bold face
-%%	            % (\sffamily\bfseries) if not.
-%%	            %
-%\usetocstyle{classic}  % Like KOMAlike but all page numbers are set 
-%%                      % using normal font.
-%\usetocstyle{allwithdot}  % Like classic but dots between entry text 
-%%                         % and page numbers are used at all depths.
-%\usetocstyle{noonewithdot} % Like classic but not dots between entry 
-%%	                        % text and page numbers are used.
-%\usetocstyle{nopagecolumn} % Like noonewithdot but also the gap between 
-%	                        % text and page numbersis omited.  
-}	
-	
-\IfPackageNotLoaded{tocloft}{
-	% apply style of TOC using koma script
-	\setkomafont{partentry}{\usekomafont{sectioning}\large}
-	\IfElseDefined{chapter}{%
-		\setkomafont{chapterentry}{\bfseries\fontTOC}
-		\setkomafont{chapterentrypagenumber}{\bfseries\fontTOC}
-	}{%
-		\setkomafont{sectionentry}{\bfseries\fontTOC}
-		\setkomafont{sectionentrypagenumber}{\bfseries\fontTOC}
-	}
-}
-
-
-
 
 \EndTemplateSection{StyleLayoutTOC}
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % pdf packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StylePdf}
-\IfPackageLoaded{hyperref}{
-   \input{preamble/style-hyperref.tex}
-} % end: IfPackageLoaded{hyperref}
+
+\input{preamble/style-hyperref.tex}
 
 \IfPackageLoaded{bookmark}{
    \bookmarksetup{%
@@ -693,7 +688,6 @@
 \input{preamble/style-references.tex}
 
 \EndTemplateSection{StylePdf}
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % fix remaining problems
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -735,10 +729,3 @@
 
 % ------------------------------------------------------------------
 \EndTemplateSection{StyleFixProblems}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% New definitions
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\BeginTemplateSection{StyleNewDefinitions}
-%
-%\EndTemplateSection{StyleNewDefinitions}

@@ -1,8 +1,4 @@
-
-\IfDefined{templatePdfPageLayout}{}{
-	\providecommand{\templatePdfPageLayout}{TwoPageRight}
-}
-
+\IfPackageLoaded{hyperref}{
 
 \hypersetup{
 %%% General options
@@ -10,7 +6,7 @@
 	,final=true   % all hypertext options are turned on
 	,debug=false  % extra diagnostic messages are printed in the log file
 	,hypertexnames=true % use guessable names for links
-	,naturalnames=false % use LATEX-computed names for links
+	,naturalnames=false % use LaTeX-computed names for links
 	,setpagesize=true   % sets page size by special driver commands
 %%% Configuration options
 	,raiselinks=true    % forces commands to reflect the
@@ -57,7 +53,6 @@
 	,pdffitwindow=false     % resize document window to fit document size
 	,pdfnewwindow=false     % make links that open another PDF file 
 	                        % start a new window
-	% ,pdfpagelayout=\templatePdfPageLayout % set layout of PDF pages
 	% options:
 	%  SinglePage     Displays a single page; advancing flips the page
 	%  OneColumn      Displays the document in one column; continuous scrolling.
@@ -71,3 +66,4 @@
 	,pdfdisplaydoctitle=true  % display document title instead of file name 
 } % end: hypersetup
 
+} % end: IfPackageLoaded{hyperref}
