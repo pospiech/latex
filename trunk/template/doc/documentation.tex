@@ -65,7 +65,7 @@ Selection of link colors: The links can either be displayed in colors for a pdf 
 Here possible options are selectable, which configure the way the pdf document is opened.
 \printCodeFromFile[74]{87}{LaTeXTemplate.tex}
 %
-The backend and encodings for biblatex are configured in the following code.
+The backend and encodings for \demopackage{biblatex} are configured in a different file:
 \printCodeFromFile[89]{97}{LaTeXTemplate.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -431,7 +431,7 @@ There are many packages for citations and creation or modification or the biblio
 \item \demopackage{biblatex}
 \end{itemize}
 
-\printCodeFromFile[448]{480}{preamble/packages.tex}
+\printCodeFromFile[448]{494}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for figures, placement and floats}
@@ -445,7 +445,7 @@ The basic package \demopackage{graphicx} for figures is already loaded at the be
 \item (\demopackage{floatflt}, unused alternative to \demopackage{wrapfig})
 \end{itemize}
 
-\printCodeFromFile[481]{519}{preamble/packages.tex}
+\printCodeFromFile[495]{532}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Caption packages}
@@ -460,7 +460,7 @@ The fundamental package for captions is the package \demopackage{caption}.  Its 
 \item \demopackage{rotating}
 \end{itemize}
 
-\printCodeFromFile[521]{573}{preamble/packages.tex}
+\printCodeFromFile[533]{584}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Misc packages}
@@ -473,7 +473,7 @@ in the document. It is not loaded by default, but can be activated by removing t
 \item \demopackage{lineno} (unused)
 \end{itemize}
 
-\printCodeFromFile[576]{590}{preamble/packages.tex}
+\printCodeFromFile[585]{600}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for index and other lists}
@@ -485,7 +485,7 @@ For the index package \demopackage{imakeidx} is loaded and for almost anything e
 \item \demopackage{glossaries}, \demopackage{glossary-longragged}
 \end{itemize}
 
-\printCodeFromFile[592]{630}{preamble/packages.tex}
+\printCodeFromFile[601]{635}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Verbatim packages}
@@ -502,7 +502,7 @@ The style of \demopackage{listings} is defined in file
 \item \demopackage{listings}
 \end{itemize}
 
-\printCodeFromFile[633]{660}{preamble/packages.tex}
+\printCodeFromFile[636]{664}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Fancy packages}
@@ -517,7 +517,7 @@ Two different types of fancy packages are loaded. \demopackage{lettrine} for dro
 \item \demopackage{mdframed}
 \end{itemize}
 
-\printCodeFromFile[661]{695}{preamble/packages.tex}
+\printCodeFromFile[665]{699}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout packages}
@@ -538,7 +538,7 @@ for package \demopackage{geometry} in file \file{preamble/style-geometry.tex}.
 \item \demopackage{geometry} (changepage)
 \end{itemize}
 
-\printCodeFromFile[697]{739}{preamble/packages.tex}
+\printCodeFromFile[700]{741}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for header and footer}
@@ -554,14 +554,14 @@ The total number of page is provided by package \demopackage{pageslts}.
 \item \demopackage{pageslts}
 \end{itemize}
 
-\printCodeFromFile[740]{778}{preamble/packages.tex}
+\printCodeFromFile[742]{778}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout of headings}
 
 All headings can be redefined using package \demopackage{titlesec}.
 
-\printCodeFromFile[779]{793}{preamble/packages.tex}
+\printCodeFromFile[780]{793}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout of table of contents}
@@ -573,7 +573,7 @@ The format of the table of contents and other lists is defined by package \demop
 \item \demopackage{appendix} (unused)
 \end{itemize}
 
-\printCodeFromFile[780]{837}{preamble/packages.tex}
+\printCodeFromFile[794]{837}{preamble/packages.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{PDF packages (including hyperref)}
@@ -988,6 +988,79 @@ Definition of acronyms using command \democs{newacronym} from package \demopacka
 
 \printCodeFromFile[1]{100}{content/Z-Acronyms.tex}
 
+% -------------------------------------------------------------------------
+\section{content/title.tex}
+\labelfile{content/title.tex}
+
+Here different approaches to generate a title are shown. The first uses \democs{maketitle} which however is difficult to modify and therefore not used. The title used makes use of several \cs{vspace} commands for manual alignment. The same layout is shown as a template for bachelor and master thesis. For phd-thesis however it usually must be created according to the rules of the university.
+
+\printCodeFromFile[1]{500}{content/title.tex}
+
+% -------------------------------------------------------------------------
+\section{content/0-Abstract.tex}
+\labelfile{content/0-Abstract.tex}
+
+The abstract should only be included in a phd thesis. In master and bachelor thesis this is typically not desired. Here it is on two pages. The first for the language of the thesis and the second for an English translation.
+If the thesis itself is in english the first page should be removed.
+
+\printCodeFromFile[1]{500}{content/0-Abstract.tex}
+
+% -------------------------------------------------------------------------
+\section{content/Z-Declaration.tex}
+\labelfile{content/Z-Declaration.tex}
+
+This file prints a declaration stating the work was done by the author himself.
+It may belong to a phd thesis, but often this is on a separated document. In all bachelor and master thesis I know of, this was part of the thesis itself.
+
+\printCodeFromFile[1]{500}{content/Z-Declaration.tex}
+
+
+% -------------------------------------------------------------------------
+\section{content/0-Introduction.tex, content/1-Theory.tex, \ldots}
+
+These document contain \emph{your} content. Fill them with the content of the thesis. The command available for creating your document are shown in the separate demonstration document of this template.
+
+% -------------------------------------------------------------------------
+\section{content/Z-Appendix.tex}
+\labelfile{content/Z-Appendix.tex}
+
+Contains all chapters or sections for the appendix.
+
+\printCodeFromFile[1]{500}{content/Z-Appendix.tex}
+
+% -------------------------------------------------------------------------
+\section{content/Z-Publications.tex}
+\labelfile{content/Z-Publications.tex}
+
+Add all your publications to this file. Unfortunately I did not find a satisfactory way of creating this bibliographic data other than manually.
+
+\printCodeFromFile[1]{500}{content/Z-Publications.tex}
+
+% -------------------------------------------------------------------------
+\section{content/Z-CV.tex}
+\labelfile{content/Z-CV.tex}
+
+This CV is based on my own phd thesis and created with package \demopackage{currvita}. A CV should only be part of a phd thesis, not a bachelor or master thesis.
+
+\printCodeFromFile[1]{500}{content/Z-CV.tex}
+
+% -------------------------------------------------------------------------
+\section{content/Z-Thanks.tex}
+\labelfile{content/Z-Thanks.tex}
+
+The thesis ends with some acknowledgment statements. Here a fixed paragraph skip is introduced and the paragraph indentation removed.
+
+\printCodeFromFile[1]{500}{content/Z-Thanks.tex}
+
+% -------------------------------------------------------------------------
+\section{content/Z-Todo.tex}
+\labelfile{content/Z-Todo.tex}
+
+This code prints out a todo list created by commands of package \demopackage{todonotes}.
+
+\printCodeFromFile[1]{500}{content/Z-Todo.tex}
+
+\printFileList[\chapter]
 
 %% =========================================================================
 %\chapter{How to list}
