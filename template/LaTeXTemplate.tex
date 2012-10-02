@@ -86,15 +86,15 @@
   %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
 }%
 
-\IfPackageLoaded{biblatex}{%
-  \ExecuteBibliographyOptions{%
-%%--- Backend --- --- ---
-	backend=bibtex,   % (bibtex, biber)
-	bibwarn=true,     %
-	texencoding=auto, % auto-detect the input encoding
-	bibencoding=auto, % (auto (equal to tex), <encoding>)
-  }%
-}%
+% The backend and encodings for biblatex 
+% are configured in file:
+%
+%    preamble/packages.tex
+%
+% in section
+%    PackagesCitation
+%
+%
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % custom definitions
@@ -128,21 +128,19 @@
 }%
 
 
-%% Dokument Beginn %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% document content %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\includeonly{
-% content/Titel
-% content/0-Abstract
-%%content/0-Einleitung,
-%content/1-Grundlagen,
-%%content/2-Wellenleiter,
-%%content/3-WellenleiterStrukturen,
-%%content/4-Superaufloesung,
-%%content/5-Zusammenfassung,
-% content/Z-Anhang
+% content/title,
+% content/0-Abstract,
+% content/0-Introduction,
+% content/1-Theory,
+% content/2-Experiments,
+% content/3-Results,
+% content/4-Summery,
 %}
 
-%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% document start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -236,8 +234,8 @@
 \input{content/Z-Thanks.tex}
 
 % add todo list (remove for final document!)
-\input{content/Z-Todo.tex}
+% \input{content/Z-Todo.tex}
 
-%%% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% document END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

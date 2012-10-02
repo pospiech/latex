@@ -89,15 +89,15 @@
   %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
 }%
 
-\IfPackageLoaded{biblatex}{%
-  \ExecuteBibliographyOptions{%
-%%--- Backend --- --- ---
-	backend=biber,   % (bibtex, biber)
-	bibwarn=true,     %
-	texencoding=auto, % auto-detect the input encoding
-	bibencoding=auto, % (auto (equal to tex), <encoding>)
-  }%
-}%
+% The backend and encodings for biblatex 
+% are configured in file:
+%
+%    preamble/packages.tex
+%
+% in section
+%    PackagesCitation
+%
+%
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % custom definitions

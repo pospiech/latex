@@ -225,8 +225,8 @@
 \usetikzlibrary{pgfplots.polar}
 \usetikzlibrary{pgfplots.units}
 
+\input{preamble/fix-pgfplots.tex} % fix bug in pgfplots with \directlua
 \EndTemplateSection{PackagesDiagrams}
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % science packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -456,6 +456,11 @@
 \usepackage[
   style=alphabetic, % Loads the bibliography and the citation style 
   natbib=true, % define natbib compatible cite commands
+%%--- Backend --- --- ---
+  backend=bibtex,   % (bibtex, biber)
+  bibwarn=true,     %
+  texencoding=auto, % auto-detect the input encoding
+  bibencoding=auto, % (auto (equal to tex), <encoding>)
 ]{biblatex}  
 % Other options:
 %  style=numeric, % 
@@ -475,9 +480,18 @@
 %  style=authortitle-tcomp,
 %  style=authortitle-ticomp,
 
+% space for further additions...
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
 \EndTemplateSection{PackagesCitation}
-
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % figures, placement, floats and captions
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -488,7 +502,6 @@
 %% Doc: float.pdf
 %% ---> replaced by floatrow package!
 % \usepackage{float} 
-
 
 % Description: enables typesetting a narrow float at the edge of the text,
 %              and making the text wrap around it. 
@@ -517,12 +530,10 @@
 % \usepackage{floatflt}
 
 \EndTemplateSection{PackagesFigures}
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % caption packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{PackagesCaptions}
-
 
 % Description: extents the float mechanism of LaTeX and
 %              provides macros for precise placement of 
@@ -571,8 +582,6 @@
 \usepackage[figuresright]{rotating}
 
 \EndTemplateSection{PackagesCaptions}
-
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % misc packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -592,9 +601,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Index and other lists
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 \BeginTemplateSection{PackagesIndexes}
-
 
 %% Description makeindex package with shell-escape makeindex call
 %% Doc: imakeidx.pdf
@@ -625,10 +632,7 @@
 \newglossary[slg]{symbolslist}{syi}{syg}{List of Symbols}
 }
 
-
-
 \EndTemplateSection{PackagesIndexes}
-
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % verbatim packages
@@ -693,12 +697,10 @@
 
 \EndTemplateSection{PackagesFancy}
 
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % layout packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{PackagesLayout}
-
 
 %%% indentation =========================================
 
@@ -773,7 +775,6 @@
 % Doc: pageslts.pdf
 \ExecuteAfterPackage{hyperref}{\usepackage{pageslts}}
 
-
 \EndTemplateSection{PackagesHeadFoot}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -787,7 +788,6 @@
 %              titles, headers and contents.
 %%% Doc: titlesec.pdf
 \usepackage{titlesec}
-
 
 \EndTemplateSection{PackagesHeadings}
 
@@ -913,6 +913,7 @@
 \usepackage[NoDate]{currvita}
 
 % \usepackage{nicefilelist}
+\usepackage{dateiliste} % print file list to pdf
 
 \EndTemplateSection{PackagesAdditional}
 
