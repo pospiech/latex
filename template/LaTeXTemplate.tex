@@ -123,8 +123,8 @@
 % biblatex requires files before document
 \IfPackageLoaded{biblatex}{
   % add all .bib files:
-  \addbibresource{bib/BibtexDatabase}
-  % \addbibresource{bib/BibtexData-anytopic}
+  \addbibresource{bib/BibtexDatabase.bib}
+  % \addbibresource{bib/BibtexData-anytopic.bib}
 }%
 
 
@@ -199,14 +199,17 @@
 % -- bibliography --
 % (must be placed _before_ appendix)
 \IfPackageLoaded{biblatex}{
+  \cleardoublepage
+  \IfDefined{phantomsection}{\phantomsection}\label{sec:bibliography}
   \printbibliography[%
     heading=bibintoc, % (bibintoc, bibnumbered)
   ]	
 }
 
 %% -- list of figures, tables and listings --
-\clearpage
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lof}
 \listoffigures
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lot}
 \listoftables
 
 %% -- List of Listings --

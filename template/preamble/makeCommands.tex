@@ -1,5 +1,6 @@
 %% Index (package imakeidx)
-\IfDefined{makeindex}{
+\IfDefined{makeindex}{%
+ \IfPackageLoaded{imakeidx}{%
   \makeindex[%
     ,title=\indexname%
     ,program=makeindex% (makeindex,xindy,texindy)
@@ -8,7 +9,8 @@
     ,columnsep=35pt%
     ,columnseprule=false%
   ]%
-}
+ }%
+}%
 %% Glossary/Acronym list/list of symbols (glossaries package)
 \IfDefined{makeglossaries}{\makeglossaries}
 
