@@ -58,10 +58,10 @@
 \input{preamble/packages.tex}
 %% apply style settings
 \input{preamble/style.tex}
-%% new commands / definitions
+%% new commands / definitions (required by the template!)
 \input{preamble/commands.tex}
 
-\input{../packages/publish/preamble/setup-doc-commands.tex}
+%\input{../packages/publish/preamble/setup-doc-commands.tex}
 
 \usepackage{xstring}
 \usepackage{kvsetkeys}
@@ -90,15 +90,15 @@
   %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
 }%
 
-\IfPackageLoaded{biblatex}{%
-  \ExecuteBibliographyOptions{%
-%%--- Backend --- --- ---
-	backend=biber,   % (bibtex, biber)
-	bibwarn=true,     %
-	texencoding=auto, % auto-detect the input encoding
-	bibencoding=auto, % (auto (equal to tex), <encoding>)
-  }%
-}%
+% The backend and encodings for biblatex 
+% are configured in file:
+%
+%    preamble/packages.tex
+%
+% in section
+%    PackagesCitation
+%
+%
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % custom definitions
@@ -121,6 +121,20 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % bibliography (now in preamble !)
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%% bibtex file(s)
+% add multiple files with comma separation
+% biblatex requires files before document
+\IfPackageLoaded{biblatex}{
+  % add all .bib files:
+  \addbibresource{bib/BibtexDatabase.bib}
+  % \addbibresource{bib/BibtexData-anytopic.bib}
+}%
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% cross references 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\externaldocument[Tpl-]{LaTeXTemplate}[LaTeXTemplate.pdf]
 
 
 %%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,30 +160,36 @@
 
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter
-%% demonstration of the template
+%% documentation of the code of the template
 \input{doc/documentation.tex}
+%% demonstration of the template
+%\input{content/demo/demo.tex}
 
-%% -- bibliography --
-%% (must be placed _before_ appendix)
-%\IfPackageLoaded{biblatex}{
-%  \printbibliography[%
-%    heading=bibintoc, % (bibintoc, bibnumbered)
-%  ]	
-%}
+% -- bibliography --
+% (must be placed _before_ appendix)
+\IfPackageLoaded{biblatex}{
+  \cleardoublepage
+  \IfDefined{phantomsection}{\phantomsection}\label{sec:bibliography}
+  \printbibliography[%
+    heading=bibintoc, % (bibintoc, bibnumbered)
+  ]	
+}
 
 %% -- list of figures and tables --
-%\clearpage
-%\listoffigures
-%\listoftables
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lof}
+\listoffigures
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lot}
+\listoftables
 
 %% -- List of Listings --
 % \cleardoublepage
 % \IfDefined{lstlistoflistings}{\lstlistoflistings}
 
 %% -- Index --
-\cleardoublepage
-\label{sec:Index}
-\IfDefined{printindex}{\printindex}
+\IfDefined{printindex}{%
+  \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
+  \printindex%
+}%
 
 %%% Dokument END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}

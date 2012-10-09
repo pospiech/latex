@@ -14,7 +14,7 @@
 \renewcommand\FrameCommand{\fcolorbox{demo@rulecolor}{demo@resultbackcolor}}
 \makeatother
 
-\newcommand{\latex}{\LaTeX}
+\ifcsdef{}{\newcommand{\latex}{\LaTeX{}}}
 \newcommand{\democodepath}{content/demo/}
 \renewcommand{\democodefile}{content/demo/democode}
 
@@ -2095,9 +2095,11 @@ content & content & content & content\\
 The color commands from the xcolor package (\democs{rowcolor}) can not be used in tabu-tables. For this purpose the commands from the tabu package need to be applied, such as \democs{taburowcolors}.
 
 \ifcsdef{tabu}{%
+\ifcsdef{rowcolor}{%
 
 \PrintDemo{style=stacked}%
 
+}{\DemoError{Command \democs{rowcolor} not available}}%
 }{\DemoError{Package \demopackage{tabu} not loaded}}%
 
 
@@ -3622,10 +3624,12 @@ be defined in every detail.
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
+\IfColorDefined{OrangeRed}{
 
 \subsubsection{for each example}
 \PrintDemo{style=stacked}%
 
+}{\DemoError{Package \demopackage{xcolor} not loaded, Color \emph{OrangeRed} not defined}}%
 }{\DemoError{Package \demopackage{tikz} not loaded}}%
 }{}%
 

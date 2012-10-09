@@ -5,6 +5,7 @@
 % and extended and modified by Matthias Pospiech
 
 \section{LaTeX Typesetting By Example}
+\label{sec:example:tutorial}
 This section demonstrates a basic set of LaTeX formatting commands and shows how they look like in this template. For comparison of the typeset output with the input document refer to the code listing starting on page \pageref{sec:example:code}.
 
 The content presented here is based on similar text by Phil Farrell\footnote{\url{https://pangea.stanford.edu/computing/unix/formatting/latexexample.php}} and Harvey Gould\footnote{\url{http://sip.clarku.edu/tutorials/TeX/}}.
@@ -63,7 +64,7 @@ If not, \cs{blockquote} will behave like \cs{textquote}.
 Depending on the threshold type option, the threshold may be based on the number
 of lines required to typeset the text or on the number of words in the text.}
 
-The standard command for citations is \texttt{\textbackslash{}cite} which may have a prenote argument for adding a page number or something similar. To show how a citation is typeset we cite here a book about LaTeX \cite[59]{companion}. Further commands such as \cs{parencite} \parencite{companion} and \cs{textcite} \textcite{companion} allow a different typeset of the citation. The resulting bibliography is printed out on \cpageref{sec:bibliography}. Refer to the biblatex manual for further details on citation commands and modifications on the printout and the section on biblatex in \url{TemplateDemo.pdf}.
+The standard command for citations is \texttt{\textbackslash{}cite} which may have a prenote argument for adding a page number or something similar. To show how a citation is typeset we cite here a book about LaTeX \cite[59]{companion}. Further commands such as \cs{parencite} \parencite{companion} and \cs{textcite} \textcite{companion} allow a different typeset of the citation. The resulting bibliography is printed out on \cpageref{sec:bibliography}. Refer to the biblatex manual for further details on citation commands and modifications on the printout and the section on biblatex in \path{TemplateDemo.pdf}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{References}
@@ -169,7 +170,7 @@ fcc & 3 & 12 & 1.225 \\
 \end{tabularx}
 \end{table}
 
-The design and creating of complex tables is shown in much greater detail in \url{TemplateDemo.pdf} in the section about tables.
+The design and creating of complex tables is shown in much greater detail in \path{TemplateDemo.pdf} in the section about tables.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Mathematical Equations}
@@ -247,6 +248,25 @@ letters are included here.
 \omega, \Omega\]
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Literal text}
+\label{sec:example:verbatim}
+\index{example!verbatim}
+
+It is desirable to print program code exactly as it is typed in a
+monospaced font. Use \cs{begin\{lstlisting\}} and
+\cs{end\{lstlisting\}} as in the following example:
+\begin{lstlisting}[style=lstStyleCpp]
+double y0 = 10; // example of declaration and assignment statement
+double v0 = 0;  // initial velocity
+double t = 0;   // time
+double dt = 0.01; // time step
+double y = y0;
+\end{lstlisting}
+Two styles are predefined in this template: \texttt{lstStyleCpp} and \texttt{lstStyleLaTeX}.
+
+The command \cs{lstinputlisting\{content/demo/latextutorial.tex\}}
+allows you to list the file \texttt{latextutorial.tex} in the directory \path{content/demo/} as done with the listing in \cref{sec:example:code}.
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Figures}
 \label{sec:example:figures}
 \index{example!figures}
@@ -282,35 +302,13 @@ All possibilities of grouping pictures side by side, on top or in matrices can b
 For complex subfigure constructs and correct alignment of the subcaption the \texttt{floatrow} provides powerful commands. These are described in \path{TemplateDemo.pdf}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{Literal text}
-\label{sec:example:verbatim}
-\index{example!verbatim}
-
-It is desirable to print program code exactly as it is typed in a
-monospaced font. Use \cs{begin\{lstlisting\}} and
-\cs{end\{lstlisting\}} as in the following example:
-\begin{lstlisting}[style=lstStyleCpp]
-double y0 = 10; // example of declaration and assignment statement
-double v0 = 0;  // initial velocity
-double t = 0;   // time
-double dt = 0.01; // time step
-double y = y0;
-\end{lstlisting}
-Two styles are predefined in this template: \texttt{lstStyleCpp} and \texttt{lstStyleLaTeX}.
-
-The command \cs{lstinputlisting\{content/demo/latextutorial.tex\}}
-allows you to list the file \texttt{latextutorial.tex} in the directory \path{content/demo/} as done with the listing in the following \cref{sec:example:code}.
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Index}
 \label{sec:example:index}
 \index{example!index}
 
 An index is easy to create with LaTeX, but should only be done if the time is available to do it right, since it requires substantial work to create an index which is really useful for the reader.
 
-An index is created with the command \cs{index\{word\}} and can be grouped with 
-\cs{index\{group!word\}}. The index created with this document is displayed on page~\pageref{sec:Index}. Within this document some index commands are grouped togther with the section headers of this tutorial.
-
+A word is added to the index with the command \cs{index\{word\}} and these indexed words can be grouped with \cs{index\{group!word\}}. Within this document some index commands are inserted below the section headers of this tutorial for the purpose of demonstrating the indexing. The resulting index is displayed on page~\pageref{sec:Index}. 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Code}
 \label{sec:example:code}

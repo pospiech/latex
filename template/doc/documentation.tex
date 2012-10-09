@@ -13,6 +13,7 @@
 
 % =========================================================================
 \chapter{Main file (LaTeXTemplate.tex)}
+\label{sec:doc:MainFile}
 \labelfile{LaTeXTemplate.tex}
 
 % -------------------------------------------------------------------------
@@ -1069,14 +1070,78 @@ This code prints out a todo list created by commands of package \demopackage{tod
 
 \printCodeFromFile[1]{500}{content/Z-Todo.tex}
 
-\printFileList[\chapter]
 
 %% =========================================================================
 %\chapter{How to list}
 %
 %% =========================================================================
-%\chapter{Known problems}
+\chapter{Known problems}
+
+\section{warnings}
+
+\subsection{biblatex: No file \argument{filename}.bbl}
+
+If you have not executed \texttt{biber} you will get the following warning by
+\demopackage{biblatex}. Simply run you bibliography tool to get create bbl file.
+
+\begin{verbatim}
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file '<filename>.bbl' not found.
+
+No file <filename>.bbl.
+\end{verbatim}
+
+%\subsection{glossaries: No \cs{printglossary} or \cs{printglossaries} found.}
 %
+%\begin{verbatim}
+%Package glossaries Warning: No \printglossary or \printglossaries found.
+%This document will not have a glossary.
+%\end{verbatim}
+
+
+\subsection{tocstyle: This is an alpha version}
+
+Package \demopackage{tocstyle} prints out the following warning:
+%
+\begin{verbatim}
+Package tocstyle Warning: THIS IS AN ALPHA VERSION!
+(tocstyle)                USAGE OF THIS VERSION IS ON YOUR OWN RISK!
+(tocstyle)                EVERYTHING MAY HAPPEN!
+(tocstyle)                EVERYTHING MAY CHANGE IN FUTURE!
+(tocstyle)                THERE IS NO SUPPORT, IF YOU USE THIS PACKAGE!
+(tocstyle)                Maybe it would be better, not to load this package.
+\end{verbatim}
+%
+This package is now in use with this template for several years (of development of the template before its release) and so far no problem has been found. Therefore I do not expect any problem because of this package and consider this warning to be ignorable.
+
+\subsection{hypennat: You have used the htt option}
+
+Package \demopackage{hypennat} prints out the following warning:
+%
+\begin{verbatim}
+Package hyphenat Warning: *******************************
+(hyphenat)                * You have used the htt option.
+(hyphenat)                * You are likely to get many Font Warning messages.
+(hyphenat)                * These can usually be ignored.
+(hyphenat)                *******************************.
+\end{verbatim}
+%
+It can be ignored as already stated by the package warning.
+
+\subsection{pageslts: Package pdfpages detected.}
+
+Package \demopackage{hypennat} warns about the use of package \demopackage{pdfpages}:
+%
+\begin{verbatim}
+Package pageslts Warning: Package pdfpages detected.
+(pageslts)                Using hyperref with pdfpages can cause problems. See
+(pageslts)                ftp://ftp.ctan.org/tex-archive/
+(pageslts)                macros/latex/contrib/pax/
+(pageslts)                for project pax (PDFAnnotExtractor)..
+\end{verbatim}
+%
+This can be savely ignored, see \url{http://tex.stackexchange.com/questions/73767/warning-about-pdfpages-with-hyperref} for a discussion.
+
 %% -------------------------------------------------------------------------
 %\section{No room for new write}
 %\label{sec:problems:write}

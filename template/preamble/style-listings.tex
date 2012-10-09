@@ -77,8 +77,11 @@
   {ö}{{\"o}}1
 }
 
-\input{preamble/listings-latex.tex}
-\input{preamble/listings-cpp.tex}
+\IfDefined{colorlet}{
+  % style files make use of colors and require \colorlet
+  \input{preamble/listings-latex.tex}
+  \input{preamble/listings-cpp.tex}
+}
 
 % load language used in document. 
 % (LaTex and C++ already loaded)

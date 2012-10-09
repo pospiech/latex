@@ -317,7 +317,7 @@
 
 % tablestyles
 \IfFileExists{tablestyles.sty}{
-  \usepackage{tablestyles}
+  \IfDefined{rowcolors}{\usepackage{tablestyles}}%
 }{}
 
 
@@ -415,6 +415,12 @@
 % caption and cleveref incompatible in Versions before 2011/12/24
   \usepackage{cleveref}[2011/12/24]
 }
+
+% Description: Extension of the xr package for
+%              cross references, with hyperref support
+% Doc: xr.pdf
+% load: before hyperref
+\usepackage{xr-hyper} 
 
 %%% Lists ================================================
 %
@@ -913,7 +919,9 @@
 \usepackage[NoDate]{currvita}
 
 % \usepackage{nicefilelist}
-\usepackage{dateiliste} % print file list to pdf
+
+% very buggy package (Oktober 2012)!
+% \usepackage[noaddmain]{dateiliste} % print file list to pdf
 
 \EndTemplateSection{PackagesAdditional}
 

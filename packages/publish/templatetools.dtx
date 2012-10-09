@@ -809,14 +809,14 @@ text which is considerably longer than the width of the column \\
 %
 %
 % \begin{macro}{\UseDefinition}
-% Executes the macro using \cs{csuse} if it is defined. Otherwise a error is 
+% Executes the macro using \cs{csuse} if it is defined. Otherwise a warning is 
 % thrown.
 %    \begin{macrocode}
 \newcommand\UseDefinition[2]{%
   \ifcsdef{tpl@definition@#1@#2}
     {\csuse{tpl@definition@#1@#2}}
-    {\PackageError{templatetools}%
-      {Definition #1 -> #2 is unknown\MessageBreak}{}}%
+    {\PackageWarning{templatetools}%
+      {Definition #1->#2 is unknown\MessageBreak}{}}%
 }%
 %    \end{macrocode}
 % \end{macro}

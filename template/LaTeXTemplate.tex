@@ -127,6 +127,10 @@
   % \addbibresource{bib/BibtexData-anytopic.bib}
 }%
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% cross references 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\externaldocument[Doc-]{TemplateDocumentation}[TemplateDocumentation.pdf]
 
 %% document content %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -172,16 +176,14 @@
 \IfPackageLoaded{hyperref}{\pdfbookmark[1]{\contentsname}{toc}}
 \tableofcontents
 
-\IfDefined{printglossary}{
-  \IfPackageLoaded{longtable}{% 
-    \clearpage
-    % print out acronym list 
-    \printglossary[type=\acronymtype,style=longtabuFancyHeader]
-    % print out symbol list 
-    \printglossary[type=symbolslist,style=longtabuFancyHeader]
-    % print out glossary
-    \printglossary[style=altlist]
-  }
+\IfPackagesLoaded{glossaries,longtable,tabu}{%
+  \clearpage
+  % print out acronym list 
+  \printglossary[type=\acronymtype,style=longtabuFancyHeader]
+  % print out symbol list 
+  \printglossary[type=symbolslist,style=longtabuFancyHeader]
+  % print out glossary
+  \printglossary[style=altlist]
 }
 
 % --- Main Document --- --- --- --- --- --- ---
@@ -206,7 +208,7 @@
   ]	
 }
 
-%% -- list of figures, tables and listings --
+%% -- list of figures and tables --
 \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lof}
 \listoffigures
 \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lot}
@@ -230,9 +232,11 @@
 % <------------------------
 
 %% -- Index --
-\cleardoublepage
-\label{sec:Index}
-\IfDefined{printindex}{\printindex}
+
+\IfDefined{printindex}{%
+  \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
+  \printindex%
+}%
 
 \input{content/Z-Thanks.tex}
 
