@@ -59,7 +59,7 @@
 \input{preamble/packages.tex}
 %% apply style settings
 \input{preamble/style.tex}
-%% new commands / definitions
+%% new commands / definitions (required by the template!)
 \input{preamble/commands.tex}
 
 % display the layouts
@@ -126,7 +126,8 @@
 % biblatex requires files before document
 \IfPackageLoaded{biblatex}{
   % add all .bib files:
-  \addbibresource{bib/demo.bib}
+  \addbibresource{bib/BibtexDatabase.bib}
+  % \addbibresource{bib/BibtexData-anytopic.bib}
 }%
 
 %%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -150,18 +151,6 @@
 \IfPackageLoaded{hyperref}{\pdfbookmark[1]{\contentsname}{toc}}
 \tableofcontents
 
-\IfDefined{printglossary}{
-  \IfPackageLoaded{longtable}{% 
-    \clearpage
-    % print out acronym list 
-    \printglossary[type=\acronymtype,style=longtabuFancyHeader]
-    % print out symbol list 
-    \printglossary[type=symbolslist,style=longtabuFancyHeader]
-    % print out glossary
-    \printglossary[style=altlist]
-  }
-}
-
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter
 %% demonstration of the template
@@ -170,14 +159,17 @@
 % -- bibliography --
 % (must be placed _before_ appendix)
 \IfPackageLoaded{biblatex}{
+  \cleardoublepage
+  \IfDefined{phantomsection}{\phantomsection}\label{sec:bibliography}
   \printbibliography[%
     heading=bibintoc, % (bibintoc, bibnumbered)
   ]	
 }
 
 %% -- list of figures and tables --
-\clearpage
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lof}
 \listoffigures
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lot}
 \listoftables
 
 %% -- List of Listings --
@@ -185,9 +177,10 @@
 % \IfDefined{lstlistoflistings}{\lstlistoflistings}
 
 %% -- Index --
-\cleardoublepage
-\label{sec:Index}
-\IfDefined{printindex}{\printindex}
+\IfDefined{printindex}{%
+  % \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:Index}%
+  \printindex%
+}%
 
 %% -- Todo Notes (remove for final document!) --
 % \input{content/Z-Todo.tex}

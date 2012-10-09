@@ -1,6 +1,5 @@
 % ensure that space is added after \latex
-\let\oldlatex\latex
-\renewcommand{\latex}{\oldlatex\xspace}
+\newcommand{\latex}{\LaTeX\xspace}
 
 %% add package to index, when printed
 %\let\OrigDemoPackage\demopackage
@@ -92,4 +91,4 @@
 } 
 
 \newcommand\cs[1]{\texttt{\textbackslash{}#1}}
-
+\newcommand\argument[1]{$\langle${\normalfont\slshape#1}$\rangle$}

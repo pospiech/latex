@@ -29,7 +29,7 @@
 % Colors
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleColors}
-\IfDefined{definecolor}{%
+\IfMultDefined{definecolor,colorlet}{%
 
 % color of headings
 %\definecolor{sectioncolor}{RGB}{0, 51, 153} % blue
@@ -44,16 +44,20 @@
 \definecolor{pdfruncolor}{named}{cyan}
 
 \SetTemplateDefinition{Target}{Web}{%
-  \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
-  \definecolor{pdffilecolor}{rgb}{0.7,0,0}
-  \definecolor{pdflinkcolor}{rgb}{0,0,0.6}
-  \definecolor{pdfcitecolor}{rgb}{0,0,0.6}
+  \IfDefined{definecolor}{
+    \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
+    \definecolor{pdffilecolor}{rgb}{0.7,0,0}
+    \definecolor{pdflinkcolor}{rgb}{0,0,0.6}
+    \definecolor{pdfcitecolor}{rgb}{0,0,0.6}
+  }
 }%
 \SetTemplateDefinition{Target}{Print}{%
-  \definecolor{pdfurlcolor}{rgb}{0,0,0}
-  \definecolor{pdffilecolor}{rgb}{0,0,0}
-  \definecolor{pdflinkcolor}{rgb}{0,0,0}
-  \definecolor{pdfcitecolor}{rgb}{0,0,0}
+  \IfDefined{definecolor}{
+    \definecolor{pdfurlcolor}{rgb}{0,0,0}
+    \definecolor{pdffilecolor}{rgb}{0,0,0}
+    \definecolor{pdflinkcolor}{rgb}{0,0,0}
+    \definecolor{pdfcitecolor}{rgb}{0,0,0}
+  }
 }%
 
 \UseDefinition{Target}{Web}
@@ -63,9 +67,7 @@
 \colorlet{tablerowcolor}{gray!10}
 \colorlet{tableheadcolor}{gray!25}
 
-
-
-} % End: \IfDefined{definecolor}
+}{} % End: \IfMultDefined{definecolor}
 \EndTemplateSection{StyleColors}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Math Settings
@@ -109,7 +111,7 @@
 \BeginTemplateSection{StyleDiagrams}
 
 % tikz/pgf
-\IfPackageLoaded{tikz}{%
+\IfPackagesLoaded{tikz,pgfplots}{%
 \pgfplotsset{width=0.8\textwidth,compat=1.5.1}
 % set decimal point to comma for german text
 \iflanguage{ngerman}{%
@@ -118,7 +120,7 @@
     y tick label style={/pgf/number format/use comma},%
     z tick label style={/pgf/number format/use comma}}%
   }{}
-}
+}{}
 
 % setup of package pgfplots
 \input{preamble/style-pgfplots.tex}
