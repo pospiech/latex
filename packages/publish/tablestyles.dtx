@@ -37,39 +37,20 @@
 %
 %<*driver>
 \documentclass{ltxdoc}
+\usepackage{hypdoc}
+\RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools} % 
 \usepackage{tablestyles}[<*date*>]
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
 %
-%%% Font packages
-\usepackage{cmap} 
-\usepackage[T1]{fontenc} % T1 Schrift Encoding
-\usepackage{lmodern}
 %%% Additional packages
 \usepackage{soulutf8}
 \usepackage[table]{xcolor}
 \usepackage{enumitem}
 \usepackage{tabu}
 \usepackage{float}
-%%% listings
-\input{preamble/listings-latex.tex}
-%%% hyperref
-\input{preamble/setup-hyperref.tex}
-% load after hyperref
 \usepackage{ltxtable}
-%%% color setup
-% table colors 
-\colorlet{tablebodycolor}{white!100}
-\colorlet{tablerowcolor}{gray!10}
-\colorlet{tableheadcolor}{gray!25}
-%%% Set document layout / variables
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5\baselineskip}
-\setcounter{secnumdepth}{2}
-\setcounter{tocdepth}{2}
-%%% doc commands
-\input{preamble/setup-doc-commands.tex}
 %
 \listfiles
 \begin{document}
@@ -142,10 +123,9 @@
 % \iffalse
 %<*example>
 % \fi
-
-\begin{lstlisting}[style=demostyle]%
-\usepackage{tablestyles}\end{lstlisting}
-
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]%
+\usepackage{tablestyles}
+\end{lstlisting}
 % \iffalse
 %</example>
 % \fi
@@ -168,7 +148,7 @@
 \colorlet{colorhead}{gray!25}
 \colorlet{colorrow}{gray!15.0}
 
-\begin{lstlisting}[style=demostyle, basicstyle=\small\ttfamily,
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , basicstyle=\small\ttfamily,
  captionpos=b,caption={example code for a table with manual changes to the appereance.},label={code:manualtable}]
 \begin{table}
 %
@@ -245,7 +225,7 @@
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={example code for a table with style commands.}, label={code:tablewithstyle}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={example code for a table with style commands.}, label={code:tablewithstyle}]
 \begin{table}
 %
 \tablestyle[sansbold]
@@ -326,7 +306,7 @@
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={code example with table style applied.}, label={code:tablestylebasic}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={code example with table style applied.}, label={code:tablestylebasic}]
 \begin{table}
 %
 \tablestyle[stylename]
@@ -367,7 +347,7 @@
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={code for heading and subheading.}, label={code:headings}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={code for heading and subheading.}, label={code:headings}]
 \theadstart
     \thead header &
     \thead header \\
@@ -401,7 +381,7 @@
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={example for multi column rows.}, label={code:headrows}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={example for multi column rows.}, label={code:headrows}]
 \theadstart
 \theadrow{2}{full width header} 
 \tbody
@@ -448,7 +428,7 @@
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={configuration and selection of font sizes .}, label={code:fontsizes}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={configuration and selection of font sizes .}, label={code:fontsizes}]
 % definition
 \setuptablefontsize{body}{\small}
 ...
@@ -473,7 +453,7 @@
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={configuration and selection of colors.}, label={code:colors}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={configuration and selection of colors.}, label={code:colors}]
 % definition
 \setuptablecolor{body}{white!100}
 ...
@@ -500,7 +480,7 @@
 % \fi
 
 \begin{minipage}[t]{0.48\linewidth}
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={automatic alternating row colors.}, label={code:rowcolors}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={automatic alternating row colors.}, label={code:rowcolors}]
 \begin{table}[H]
 \tablestyle % using \tablealtcolored
 \begin{tabular}{*{2}{p{0.25\textwidth}}}
@@ -529,7 +509,7 @@
 \end{minipage} \newline
 
 \begin{minipage}[t]{0.48\linewidth}
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={disabled alternating row colors.}, label={code:norowcolors}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={disabled alternating row colors.}, label={code:norowcolors}]
 \begin{table}[H]
 \tablestyle 
 \disablealternatecolors
@@ -581,7 +561,7 @@
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={disabled alternating row colors.}, label={code:coloredlines}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={disabled alternating row colors.}, label={code:coloredlines}]
 \colorlet{grayline}{gray!70}
 \definecolor{blueline}{rgb}{0,0.27,0.55}
 
@@ -682,7 +662,7 @@ description & 0,3 & 0,35 & 0,5 & 0,65 & 0,80\\
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={definition of the default style.}, label={code:setupdefaultstyle}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={definition of the default style.}, label={code:setupdefaultstyle}]
  \setuptablestyle{default}{%
   \resettablestyle
   \renewcommand{\arraystretch}{1.4}
@@ -845,7 +825,7 @@ description & 0,3 & 0,35 & 0,5 & 0,65 & 0,80\\
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={example of default column types.}, label={code:ct:default}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={example of default column types.}, label={code:ct:default}]
 \begin{table}
 \tablestyle
 %
@@ -895,7 +875,7 @@ text which is considerably longer than the width of the column \\
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={example of paragraph column types.}, label={code:ct:pmb}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={example of paragraph column types.}, label={code:ct:pmb}]
 \begin{table}
 \tablestyle
 %
@@ -948,7 +928,7 @@ text which is considerably longer than the width of the column \\
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={example of tabularx type columns.}, label={code:ct:XZY}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={example of tabularx type columns.}, label={code:ct:XZY}]
 \begin{table}
 \tablestyle
 \begin{tabularx}{\textwidth}{|X|Z|Y|}
@@ -1012,7 +992,7 @@ text which is considerably longer than the width of the column \\
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={example of new p-type columns.}, label={code:ct:LCR}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={example of new p-type columns.}, label={code:ct:LCR}]
 \begin{table}
 \tablestyle
 \begin{tabularx}{\textwidth}{|p{0.17\linewidth}|L{0.17\linewidth}|C{0.17\linewidth}|R{0.17\linewidth}|X|}
@@ -1078,7 +1058,7 @@ text which is considerably longer than the width of the column \\
 %<*example>
 % \fi
 
-\begin{lstlisting}[style=demostyle, captionpos=b,caption={example of tableitemize.}, label={code:tableitemize}]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode   , captionpos=b,caption={example of tableitemize.}, label={code:tableitemize}]
 ...
 The ...
 &
@@ -1146,6 +1126,16 @@ is not available. \MessageBreak%
   \RequirePackage{xcolor}
 }
 \RequirePackage{ragged2e}
+\AtBeginDocument{%
+\@ifpackageloaded{tabularx}{}{
+    \PackageError{tablestyles}%
+    {%
+\MessageBreak%
+Package 'tabularx' must be loaded, otherwise tablestyles will not
+work.
+  }%
+}% end of ifpackageloaded
+}% end of AtBeginDocument
 %    \end{macrocode}
 %
 % \subsection{Configuration commands}

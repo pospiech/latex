@@ -1,41 +1,197 @@
 \RequirePackage{listings}
 
-\colorlet{demo@stringcolor}{green!40!black!100}
-\colorlet{demo@commentcolor}{green!50!black!100}
-\colorlet{demo@numbercolor}{white!50!black!100}
-\definecolor{demo@keywordcolor}{rgb}{0,0.47,0.80}
-\colorlet{demo@codebackcolor}{white}
-\definecolor{demo@rulecolor}{rgb}{0.5,0.5,0.5}
+
+\colorlet{doc@stringcolor}{green!40!black!100}
+\colorlet{doc@commentcolor}{green!50!black!100}
+\colorlet{doc@numbercolor}{white!50!black!100}
+\definecolor{doc@keywordcolor}{rgb}{0,0.35,1.0}
+\colorlet{doc@demo@backcolor}{white}
+\definecolor{doc@rulecolor}{rgb}{0.5,0.5,0.5}
 %
-\lstdefinestyle{demostyle}{
-   columns=flexible,
-   keepspaces=true,    
-   numberstyle=\tiny\color{demo@numbercolor},
-   basicstyle=\small\ttfamily,
-   numbers=left,
-   stepnumber=1,
-   numbersep=5pt,
-   tabsize=2,
-   extendedchars=true,
-   breaklines=true,
-   stringstyle=\color{demo@stringcolor},
-   keywordstyle=\color{demo@keywordcolor},
-   commentstyle=\color{demo@commentcolor},
-   showspaces=false,
-   showtabs=false,
-   showstringspaces=false,
-   frame=single,
-   backgroundcolor=\color{demo@codebackcolor},
-   rulecolor=\color{demo@rulecolor},
-   language = [LaTeX]TeX,
-   moretexcs={setuptablefontsize,tablefontsize,setuptablestyle,tablestyle,
-     setuptablecolor,tablecolor,disablealternatecolors,   tablealtcolored,tbegin,tbody,tend,thead, theadstart,tsubheadstart,tsubhead,theadrow,tsubheadrow,resettablestyle,theadend,tsubheadend,tableitemize,PreserveBackslash},
-   moretexcs={newcolumntype,rowcolor,rowcolors,bottomrule,toprule,midrule,
-     colorlet,definecolor,},
-   moretexcs={DefineTemplateSection,SetTemplateSection,BeginTemplateSection,
-     EndTemplateSection},
-   moretexcs={democodefile,demopackage,democs,democommand,demoenv,DemoError},
-   moretexcs={IfDefined,IfUndefined,IfElseDefined,IfElseUndefined,IfMultDefined,
-     IfNotDraft,IfNotDraftElse,IfDraft,IfPackageLoaded,IfPackageNotLoaded,IfPackagesLoaded,IfPackagesNotLoaded,ExecuteAfterPackage,ExecuteBeforePackage,IfTikzLibraryLoaded,IfColumntypeDefined,IfColumntypesDefined,IfColorDefined,IfColorsDefined,IfMathVersionDefined,SetTemplateDefinition,UseDefinition},
+\lstdefinestyle{lstStyleDefault}{
+%%% appearance
+   ,basicstyle=\small\ttfamily % Standardschrift
+%%%  Space and placement
+   ,floatplacement=tbp    % is used as float place specifier
+   ,aboveskip=\medskipamount % define the space above and 
+   ,belowskip=\medskipamount % below displayed listings.
+   ,lineskip=0pt          % specifies additional space between lines in listings.
+   ,boxpos=c              % c,b,t
+%%% The printed range
+   ,showlines=false       % prints empty lines at the end of listings
+%%% characters
+   ,extendedchars=true   % allows or prohibits extended characters 
+                         % in listings, that means (national)
+                         % characters of codes 128-255. 
+   ,upquote=true         % determines printing of quotes
+   ,tabsize=2,           % chars of tab
+   ,showtabs=false       % do not show tabs
+   ,showspaces=false     % do not show spaces
+   ,showstringspaces=false % do not show blank spaces in string
+%%% Line numbers
+   ,numbers=none         % left, right, none
+%%% Captions
+   ,numberbychapter=true %
+   ,captionpos=b         % t,b
+   ,abovecaptionskip=\smallskipamount % the vertical space respectively above 
+   ,belowcaptionskip=\smallskipamount % or below each caption
+%%% Margins and line shape
+   ,linewidth=\linewidth % defines the base line width for listings.  
+   ,xleftmargin=0pt      % extra margins
+   ,xrightmargin=0pt     %
+   ,resetmargins=false   % indention from list environments like enumerate 
+                         % or itemize is reset, i.e. not used.
+   ,breaklines=true      % line breaking of long lines.
+   ,breakatwhitespace=false % allows line breaks only at white space.
+   ,breakindent=0pt     % is the indention of the second, third, ...  
+                         % line of broken lines.
+   ,breakautoindent=true % apply intendation
+   ,columns=flexible     %
+   ,keepspaces=true      %
 }
+
+\lstset{style=lstStyleDefault}
+
+\lstdefinestyle{lstDocStyleBase}{
+%%% appearance
+   ,basicstyle=\small\ttfamily % Standardschrift
+   ,commentstyle=\slshape
+%%%  Space and placement
+   ,floatplacement=tbp    % is used as float place specifier
+   ,aboveskip=\medskipamount % define the space above and 
+   ,belowskip=\medskipamount % below displayed listings.
+   ,lineskip=0pt          % specifies additional space between lines in listings.
+   ,boxpos=c              % c,b,t
+%%% The printed range
+   ,showlines=false       % prints empty lines at the end of listings
+%%% characters
+   ,extendedchars=true   % allows or prohibits extended characters 
+                         % in listings, that means (national)
+                         % characters of codes 128-255. 
+   ,upquote=true         % determines printing of quotes
+   ,tabsize=2,           % chars of tab
+   ,showtabs=false       % do not show tabs
+   ,showspaces=false     % do not show spaces
+   ,showstringspaces=false % do not show blank spaces in string
+%%% Line numbers
+   ,numbers=left         % left, right, none
+   ,stepnumber=1         % seperation between numbers
+   ,numberfirstline=false % number first line always
+   ,numberstyle=\tiny\color{doc@numbercolor}    % style of numbers
+   ,numbersep=5pt        % distance to text
+   ,numberblanklines=true %
+%%% Captions
+   ,numberbychapter=true %
+   ,captionpos=b         % t,b
+   ,abovecaptionskip=\smallskipamount % the vertical space respectively above 
+   ,belowcaptionskip=\smallskipamount % or below each caption
+%%% Margins and line shape
+   ,linewidth=\linewidth % defines the base line width for listings.  
+   ,xleftmargin=0pt      % extra margins
+   ,xrightmargin=0pt     %
+   ,resetmargins=false   % indention from list environments like enumerate 
+                         % or itemize is reset, i.e. not used.
+   ,breaklines=true      % line breaking of long lines.
+   ,breakatwhitespace=false % allows line breaks only at white space.
+   ,breakindent=0pt     % is the indention of the second, third, ...  
+                         % line of broken lines.
+   ,breakautoindent=true % apply intendation
+   ,columns=flexible     %
+   ,keepspaces=true      %
+%%% language
+   ,language = [LaTeX]TeX
+%%% commands
+   % LaTeX programming
+   ,moretexcs={setlength,usepackage,newcommand,renewcommand,providecommand,RequirePackage,SelectInputMappings,ifpdftex,ifpdfoutput,AtBeginEnvironment,ProvidesPackage},
+   % other commands
+   ,moretexcs={maketitle,text,includegraphics,chapter,section,subsection,
+     subsubsection,paragraph,textmu,enquote,blockquote,ding,mathds,ifcsdef,Bra,Ket,Braket,subcaption,lettrine,mdfsetup,captionof,listoffigures,listoftables,tableofcontents,appendix}
+   % tables
+   ,moretexcs={newcolumntype,rowfont,taburowcolors,rowcolor,rowcolors,bottomrule,
+     toprule,midrule,}
+   % hyperref
+   ,moretexcs={hypersetup}
+   % glossaries
+   ,moretexcs={gls,printglossary,glsadd,newglossaryentry,newacronym}
+   % Koma
+   ,moretexcs={mainmatter,frontmatter,geometry,KOMAoptions,setkomafont,addtokomafont}
+   % SI, unit
+   ,moretexcs={si,SI,sisetup,unit,unitfrac,micro}
+   % biblatex package
+   ,moretexcs={newblock,ExecuteBibliographyOptions,addbibresource}
+   % math packages
+   ,moretexcs={operatorname,frac,sfrac,dfrac,DeclareMathOperator,mathcal,underset}
+   % demo package
+   ,moretexcs={democodefile,package,cs,command,env,DemoError,PrintDemo}  
+   % tablestyles
+   ,moretexcs={theadstart,tbody,tsubheadstart,tsubhead,tend}
+   % code section package
+   ,moretexcs={DefineTemplateSection,SetTemplateSection,BeginTemplateSection,
+     EndTemplateSection}
+   % template tools package
+   ,moretexcs={IfDefined,IfUndefined,IfElseDefined,IfElseUndefined,IfMultDefined,IfNotDraft,IfNotDraftElse,IfDraft,IfPackageLoaded,IfElsePackageLoaded,IfPackageNotLoaded,IfPackagesLoaded,IfPackagesNotLoaded,ExecuteAfterPackage,ExecuteBeforePackage,IfTikzLibraryLoaded,IfColumntypeDefined,IfColumntypesDefined,IfColorDefined,IfColorsDefined,IfMathVersionDefined,SetTemplateDefinition,UseDefinition,IfFileExists,iflanguage}
+   % tablestyles
+   ,moretexcs={setuptablefontsize,tablefontsize,setuptablestyle,tablestyle,  setuptablecolor,tablecolor,disablealternatecolors,   tablealtcolored,tbegin,tbody,tend,thead, theadstart,tsubheadstart,tsubhead,theadrow,tsubheadrow,resettablestyle,theadend,tsubheadend,tableitemize,PreserveBackslash}
+   % todonotes
+   ,moretexcs={todo,missingfigure}
+   % listings
+   ,moretexcs={lstloadlanguages,lstdefinestyle,lstset}
+   % index
+   ,moretexcs={indexsetup}
+   % glossaries
+   ,moretexcs={newglossarystyle,glossarystyle,deftranslation,newglossary}
+   % tikz
+   ,moretexcs={usetikzlibrary}
+   % color
+   ,moretexcs={definecolor,colorlet}
+   % caption
+   ,moretexcs={captionsetup,DeclareCaptionStyle}
+   % floatrow
+   ,moretexcs={floatsetup}
+   % doc.sty
+   ,moretexcs={EnableCrossrefs,DisableCrossrefs,PageIndex,CodelineIndex,CodelineNumbered}
+}
+
+\lstdefinestyle{lstDemoStyleLaTeXCode}{ %
+%%% base style
+   ,style=lstDocStyleBase
+%%% colors
+   ,stringstyle=\color{doc@stringcolor}
+   ,keywordstyle=\color{doc@keywordcolor}
+   ,commentstyle=\color{doc@commentcolor}
+   ,backgroundcolor=\color{doc@demo@backcolor}
+   ,rulecolor=\color{doc@rulecolor}
+%%% frame 
+   ,frame=single         % none, leftline, topline, bottomline, lines
+                         % single, shadowbox
+   ,framesep=3pt 
+   ,rulesep=2pt          % control the space between frame and listing 
+                         % and between double rules.
+   ,framerule=0.4pt      % controls the width of the rules.
+}
+
+\colorlet{doc@code@backcolor}{gray!5}
+\colorlet{doc@code@keywordcolor}{black}
+\colorlet{doc@code@commentcolor}{black!60}
+
+\lstdefinestyle{lstDocStyleLaTeXCode}{%
+%%% base style
+   ,style=lstDocStyleBase
+%%% colors
+   ,stringstyle=\color{doc@stringcolor}
+   ,keywordstyle=\color{doc@code@keywordcolor} % 
+   ,commentstyle=\color{doc@code@commentcolor}
+   ,backgroundcolor=\color{doc@code@backcolor}
+   ,rulecolor=\color{doc@rulecolor}
+%%% frame 
+   ,frame=none         % none, leftline, topline, bottomline, lines
+                         % single, shadowbox
+   ,framesep=3pt 
+   ,rulesep=2pt          % control the space between frame and listing 
+                         % and between double rules.
+   ,framerule=0.4pt      % controls the width of the rules.
+%%% numbers
+   ,firstnumber=last
+}
+
 \lstloadlanguages{[LaTeX]TeX}

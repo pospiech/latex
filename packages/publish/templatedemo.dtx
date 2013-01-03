@@ -1,7 +1,7 @@
 % \iffalse meta-comment
-%  
+%   
 % File:      templatedemo.sty
-% Version:   <*date*> v0.1
+% Version:   2012/12/01 v0.1
 % Author:    Matthias Pospiech
 % Email:     <matthias@pospiech.eu>
 %
@@ -27,7 +27,6 @@
 % \newcommand\authortext{Matthias Pospiech}
 % \newcommand\emailtext{matthias@pospiech.eu} 
 % \newcommand\versiontext{v0.1} 
-% \newcommand\datetext{<*date*>} 
 % \iffalse
 %<*driver>
 \ProvidesFile{templatedemo.dtx}
@@ -35,39 +34,36 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{templatedemo}
 %<*package>
-   [<*date*> v0.1 typeset code and resulting output]
+   [2012/12/01 v0.1 typeset code and resulting output]
 %</package>
 %
 %<*driver>
 \documentclass{ltxdoc}
+\usepackage{hypdoc}
 \RequirePackage{templatedemo}
-\EnableCrossrefs
-\CodelineIndex
-\RecordChanges
-
-%%% Font packages
-\usepackage{cmap} 
-\usepackage[T1]{fontenc} % T1 Schrift Encoding
-\usepackage{lmodern}
-%%% Additional packages
+%%%% Additional packages
 \usepackage{soulutf8}
-\usepackage[table]{xcolor}
-\usepackage{enumitem}
-\usepackage{tabu}
-%%% hyperref
-\input{preamble/setup-hyperref.tex}
-%%% color setup
-% table colors 
-\colorlet{tablebodycolor}{white!100}
-\colorlet{tablerowcolor}{gray!10}
-\colorlet{tableheadcolor}{gray!25}
-%%% Set document layout / variables
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5\baselineskip}
-\setcounter{secnumdepth}{2}
-\setcounter{tocdepth}{2}
-%%% doc commands
-\input{preamble/setup-doc-commands.tex}
+%
+%%% Configures doc.sty and its (outdated) index generation, which does
+%   not work together with any modern package and has no hyperref support
+%   and thus no links. Furthermore it is conflicts with the index macros
+%   of doctools.
+%
+\EnableCrossrefs  % (default) Every new macro name used within a macrocode or
+                  % macrocode∗ environment will produce an index entry.
+% \DisableCrossrefs % turn off this feature
+%
+% If an index is created is determined by the use of the following
+% declarations in the driver file preamble; if neither is used, no index is 
+% produced.
+\PageIndex     % all index entries refer to their page number
+% \CodelineIndex % index entries produced by \DescribeMacro and \DescribeEnv
+               %  refer to page number but those produced by the macro
+               %  environment refer to the code lines, 
+               % which will be numbered automatically.
+% \CodelineNumbered % no index is created, but the code lines are numbered
+
+\RecordChanges
 
 \listfiles
 
@@ -79,7 +75,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{226}
+% \CheckSum{0}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -98,7 +94,7 @@
 %   Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v0.1}{<*date*>}{initial version (converted to dtx file)}
+% \changes{v0.1}{2012/12/01}{initial version (converted to dtx file)}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -111,7 +107,8 @@
 % \maketitle
 % \section{Introduction}
 % In order to demonstrate \latex{} code it is very useful to have the code and
-% the resulting output together in the same document. \demopackage{\packagetext} 
+% the resulting output together in the same document.
+% \package{\packagetext} 
 % is a package that provides configurable tools to print out \latex{} code and the
 % resulting output in the same document.
 %
@@ -126,7 +123,7 @@
 % \label{sec:example:basic}
 % Below is a principle example,
 % which demonstrates the usage of the package by showing some commands of a
-% package (\demopackage{soul}) with the resulting code side by side:
+% package (\package{soul}) with the resulting code side by side:
 %
 % \iffalse
 %<*example>
@@ -162,8 +159,8 @@ and \hl{highlighting}.
 \PrintDemo{style=parallel}
 %
 }{% 
-  \DemoError{Command \democs{so} of package% 
-  \demopackage{soul} not available.
+  \DemoError{Command \cs{so} of package% 
+  \package{soul} not available.
   Probably the package was not loaded.
   }
 }%
@@ -177,7 +174,7 @@ and \hl{highlighting}.
 % \subsection{Define code}
 % This package requires the example code to be written to an external file. The
 % filename is saved in the command sequence \cs{democodefile}. The output is done
-% with the \demoenv{filecontents} environment:
+% with the \environment{filecontents} environment:
 %
 % \iffalse
 %<*example>
@@ -203,18 +200,20 @@ and \hl{highlighting}.
 %
 % \subsection{Print code and result}
 %
-% \DescribeMacro{\PrintDemo\{style=\arg{option}\}}%
-% is the macro for the output of code and result. 
+% \DescribeMacro{\PrintDemo}\arg{style=\meta{option}} \AfterLastParam%
+% This is the macro for the output of code and result. 
 % The layout of both is defined with the style option. 
 % The following options are possible
-%
 % \begin{Optionlist}
-%  parallel &  code and result side by side.  \\
-%  stacked  &  (default) code and result with 100\,\% text width stacked.\\
-%  lines    &  like \texttt{stacked}, but with lines on 
-%              top and bottom of the result instead of a surrounding box. \\
-%  none     &  like \texttt{stacked}, but with nothing around the result. \\
-%  page     &  result on a single page.\\
+%  \option{parallel} &  code and result side by side.  \\
+%  \option{stacked}  &  (default) code and result with 100\,\% text width
+%                       stacked.\\
+%  \option{lines}    &  like \texttt{stacked}, but with lines on 
+%                       top and bottom of the result instead of a 
+%                       surrounding box. \\
+%  \option{none}     &  like \texttt{stacked}, but with nothing around the
+%                       result. \\
+%  \option{page}     &  result on a single page.\\
 % \end{Optionlist}
 %
 % You should use \option{parallel} for small examples and \option{stacked}
@@ -243,16 +242,16 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 % \fi
 %
 % \begin{itemize}
-% \item \cmd{\PrintDemo\{style=parallel\}}
+% \item \cs{PrintDemo}\{style=parallel\}
 % \PrintDemo{style=parallel}
 %
-% \item \cmd{\PrintDemo\{style=stacked\}}
+% \item \cs{PrintDemo}\{style=stacked\}
 % \PrintDemo{style=stacked}
 %
-% \item \cmd{\PrintDemo\{style=lines\}}
+% \item \cs{PrintDemo}\{style=lines\}
 % \PrintDemo{style=lines}
 %
-% \item \cmd{\PrintDemo\{style=none\}}
+% \item \cs{PrintDemo}\{style=none\}
 % \PrintDemo{style=none}
 % \end{itemize}
 %
@@ -284,24 +283,28 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 % \label{sec:commands:output}
 %
 % The following commands are provided for the user to print out and format
-% commands, environments, packages and errors.
+% commands, environments, packages and errors. Some are provided by the
+%  \package{doctools} package.
 %
-% \DescribeMacro{\democs}%
-% shortcut for \cs{democommand}
-% \Example{\democs{foo}}
+% \DescribeMacro{\command} \marg{cmd} \AfterLastParam
+% Prints out the argument \cs{command}\arg{foo} as \cs{foo}.
 %
-% \DescribeMacro{\democommand}%
-% formats the given command sequence name. Note that a parameter
-% \parameter{foo} is printed as \cs{foo}.
-% \Example{\democommand{foo}}
+% \DescribeMacro{\cs} \marg{cmd} \AfterLastParam
+% Shortcut for \cs{command}. 
 %
-% \DescribeMacro{\demopackage}%
-% formats the given packagename.
-% \Example{\demopackage{foo}}
+% \DescribeMacro{\arg} \marg{cmd} \AfterLastParam
+% Prints out an argument in curled brackets without the use of 
+% angle brackets as in \cs{marg} or \cs{oarg}. 
+% Thus prints \cs{arg}\arg{foo} as \arg{foo}.
 %
-% \DescribeMacro{\demoenv}%
-% formats the given environment name.
-% \Example{\demoenv{foo}}
+% \DescribeMacro{\environment}  \marg{environment} \AfterLastParam
+% Prints out an environment name as \environment{environment}.
+%
+% \DescribeMacro{\env} \marg{environment} \AfterLastParam
+% Shortcut for \cs{environment}
+%
+% \DescribeMacro{\package} \marg{package} \AfterLastParam
+% Prints out a package name as \package{package}.
 %
 % \DescribeMacro{\DemoError}%
 % prints out the given error message
@@ -310,6 +313,7 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %
 % \StopEventually{}
 %
+% \clearpage
 % \section{Implementation}
 %
 % \iffalse
@@ -318,8 +322,12 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{templatedemo}[<*date*> v0.1 typeset code and resulting output]
+\ProvidesPackage{templatedemo}[2012/12/01 v0.1 typeset code and resulting output]
 \RequirePackage{listings}
+\@ifpackageloaded{hypdoc}
+  {\RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools}}
+  {\RequirePackage[loadHyperref=true,createIndexEntries=true]{doctools}}
+\PassOptionsToPackage{table}{xcolor}
 % This code needs to be executed at the beginning
 % of the document because some packages (eg. xcolor)
 % could lead to option clashes otherwise
@@ -361,52 +369,6 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %    \begin{macrocode}
 %% === Simple Commands ===============================
 %    \end{macrocode}
-%
-% \begin{macro}{\bs}
-% Shortcut for \cs{textbackslash}.
-%    \begin{macrocode}
-\newcommand{\bs}{\textbackslash}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\democs}
-% Shortcut for \cs{democommand}.
-%    \begin{macrocode}
-\newcommand{\democs}[1]{\democommand{#1}}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\democommand}
-% Prints the argument with backslash in typewriter font. 
-% This is meant to be used for \latex{} commands.
-% Additionally the command is added to the index.
-%    \begin{macrocode}
-\newcommand{\democommand}[1]{%
-\texttt{\bs{}#1}%
-\index{command!\bs{}#1}%
-}%
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\demoenv}
-% Formats an environment in typewriter font and adds it to the index. 
-%    \begin{macrocode}
-\newcommand{\demoenv}[1]{%
-\texttt{#1}%
-\index{environment!#1}%
-}%
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\demopackage}
-% Formats an package in typewriter font and adds it to the index. 
-%    \begin{macrocode}
-\newcommand{\demopackage}[1]{%
-\texttt{#1}%
-\index{package!#1}%
-}%
-%    \end{macrocode}
-% \end{macro}
 %
 % \begin{macro}{\democodefile}
 % Saves the filename for temporary file output.
@@ -497,69 +459,12 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 % \subsection{listings package style}
 %    \begin{macrocode}
 %% === Listings style ================================
+%% reuses style from doctools
 \lstdefinestyle{demostyle}{
-  columns=flexible,
-  keepspaces=true,    
-  numberstyle=\tiny\color{demo@numbercolor},%
-  basicstyle=\small\ttfamily,%
-  numbers=none,%
-  stepnumber=1,%
-  numbersep=5pt,%
-  tabsize=2,%
-  extendedchars=true,%
-  breaklines=true,%
-  stringstyle=\color{demo@stringcolor}, %
-  keywordstyle=\color{demo@keywordcolor}, %
-  commentstyle=\color{demo@commentcolor}, %
-  showspaces=false,%
-  showtabs=false,%
-  showstringspaces=false,%
-  frame=single,%
-  backgroundcolor=\color{demo@codebackcolor},%
-  rulecolor=\color{demo@code@rulecolor},%
-  language = [LaTeX]TeX,%
-   % LaTeX programming
-   ,moretexcs={setlength,usepackage,newcommand,renewcommand,RequirePackage,
-     SelectInputMappings},
-   % other commands
-   ,moretexcs={maketitle,text,includegraphics,chapter,section,subsection,
-     subsubsection,paragraph,textmu,enquote,blockquote,ding,mathds,ifcsdef,Bra,Ket,Braket,subcaption,lettrine,mdfsetup,captionof,listoffigures,listoftables,tableofcontents,appendix}
-   % tables
-   ,moretexcs={newcolumntype,rowfont,taburowcolors,rowcolor,rowcolors,bottomrule,
-     toprule,midrule,}
-   % hyperref
-   ,moretexcs={hypersetup}
-   % glossaries
-   ,moretexcs={gls,printglossary,glsadd,newglossaryentry}
-   % Koma
-   ,moretexcs={mainmatter,frontmatter,geometry,KOMAoptions}
-   % SI, unit
-   ,moretexcs={si,SI,sisetup,unit,unitfrac,micro}
-   % biblatex package
-   ,moretexcs={newblock,ExecuteBibliographyOptions,addbibresource}
-   % math packages
-   ,moretexcs={operatorname,frac,sfrac,dfrac,DeclareMathOperator,mathcal,underset}
-   % demo package
-   ,moretexcs={democodefile,demopackage,democs,democommand,demoenv,DemoError}  
-   % tablestyles
-   ,moretexcs={theadstart,tbody,tsubheadstart,tsubhead,tend}
-   % code section package
-   ,moretexcs={DefineTemplateSection,SetTemplateSection,BeginTemplateSection,
-     EndTemplateSection}
-   % template tools package
-   ,moretexcs={IfDefined,IfUndefined,IfElseDefined,IfElseUndefined,IfMultDefined,
-     IfNotDraft,IfNotDraftElse,IfDraft,IfPackageLoaded,IfPackageNotLoaded,IfPackagesLoaded,IfPackagesNotLoaded,ExecuteAfterPackage,ExecuteBeforePackage,IfTikzLibraryLoaded,IfColumntypeDefined,IfColumntypesDefined,IfColorDefined,IfColorsDefined,IfMathVersionDefined,SetTemplateDefinition,UseDefinition}
-   % todonotes
-   ,moretexcs={todo,missingfigure}
+  ,style=lstDemoStyleLaTeXCode%
+  ,numbers=none%
 }
 \lstloadlanguages{[LaTeX]TeX}
-%    \end{macrocode}
-% Create a new environment for listings
-%    \begin{macrocode}
-\lstnewenvironment{latexcode}{%
-\lstset{style=demostyle, inputencoding=latin1, escapeinside=!!}%
-\democodeprefix
-}{}
 %    \end{macrocode}
 %
 % \subsection{mdframed package style}
@@ -643,7 +548,7 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %
 %
 % \begin{macro}{\printlatexresult}
-% Prints the result enclosed in the \demoenv{latexresult} environment.
+% Prints the result enclosed in the \environment{latexresult} environment.
 % The evaluation of the code is simply achieved by loading the file with 
 % \cs{input}.
 %    \begin{macrocode}

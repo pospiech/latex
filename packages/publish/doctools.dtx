@@ -1,0 +1,913 @@
+% \iffalse meta-comment
+% !TeX spellcheck = en-US
+%   
+% File:      doctools.sty
+% Version:   <*date*> v0.1
+% Author:    Matthias Pospiech
+% Email:     <matthias@pospiech.eu>
+%
+% Copyright (C) 2012 by Matthias Pospiech (matthias@pospiech.eu)
+% ---------------------------------------------------------------------------
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Matthias Pospiech.
+%
+% This work consists of the files doctools.dtx and doctools.ins
+% and the derived filebase doctools.sty.
+%
+% \fi
+% \iffalse
+%<*driver>
+\ProvidesFile{doctools.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<package>\ProvidesPackage{doctools}
+%<*package>
+   [<*date*> v0.1 commands and packages for documenting LaTeX Code]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{hypdoc}
+\RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools} % 
+%
+%%% Configures doc.sty and its (outdated) index generation, which does
+%   not work together with any modern package and has no hyperref support
+%   and thus no links. Furthermore it is conflicts with the index macros
+%   of doctools.
+%
+\EnableCrossrefs  % (default) Every new macro name used within a macrocode or
+                  % macrocode∗ environment will produce an index entry.
+% \DisableCrossrefs % turn off this feature
+%
+% If an index is created is determined by the use of the following
+% declarations in the driver file preamble; if neither is used, no index is 
+% produced.
+\PageIndex     % all index entries refer to their page number
+% \CodelineIndex % index entries produced by \DescribeMacro and \DescribeEnv
+               %  refer to page number but those produced by the macro
+               %  environment refer to the code lines, 
+               % which will be numbered automatically.
+% \CodelineNumbered % no index is created, but the code lines are numbered
+
+\RecordChanges
+\listfiles
+%
+\begin{document}
+  \DocInput{doctools.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \CheckSum{0}
+%
+% \changes{v0.1}{2012/12/01}{initial version (converted to dtx file)}
+%
+% \DoNotIndex{\newcommand,\newenvironment,\@bsphack,\@empty,\@esphack,\addtocounter,\arraystretch,\bs,\color,\colorlet,\else,\end,\expandafter,\fi,\hyperref,\ifcsdef,\ifstrempty,\ifx,\index,\label,\langle,\let,\linewidth,\lstinputlisting,\makeatletter,\makeatother,\NeedsTeXFormat,\newcounter,\noindent,\normalfont,\option,\par,\parindent,\parskip,\phantomsection,\PrintDescribeEnv,\PrintDescribeMacro,\PrintEnvName,\PrintMacroName,\ProcessKeyvalOptions,\providecommand,\ProvidesPackage,\rangle,\refstepcounter,\renewcommand,\RequirePackage,\setcounter,\setlength,\slshape,\small,\string,\strut,\textbackslash,\textsc,\texttt,\ttfamily,\urlstyle,\usepackage,\xspace}
+%
+% \providecommand*{\url}{\texttt}
+% \GetFileInfo{doctools.dtx}
+% \title{The \textsf{doctools} package}
+% \author{<*author*> \\ \url{<*email*>}}
+% \date{0.1~from <*date*>}
+%
+% \maketitle
+% \tableofcontents
+% ^^A ===================================================================
+% \section{Documentation}
+% This package is a collections of tools for the documentation of \latex code
+% either in a normal document or within a dtx file.
+% \StopEventually{}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Options}
+% This package has two options 
+% \begin{Optionlist}
+%  \option{loadHyperref}   &  true/false (default: false)  \\
+%  \option{createIndexEntries}   &  true/false (default: true)  \\
+% \end{Optionlist}
+% \package{doctools} is typically loaded before most other packages 
+% and in the case of a dtx file possible the only package which 
+% is necessary to load.
+%
+% The selection of these option should follow the following principles, which
+% are mostly related to the fact that doc.sty does not support package 
+% \package{hyperref} (prohibits display of index entries) and requires 
+% the package \package{hypdoc} instead.
+% 
+% \subsubsection{Selection of options inside a dtx file}
+% In a dtx file index entries are created by the package \package{doc.sty}
+% which have a format the requires the use of the format file 
+% \texttt{gind.ist} for makeindex:
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[]
+makeindex.exe -s gind.ist filename.idx
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% The index entries by \package{doc.sty} are created if \cs{PageIndex} or
+% \cs{CodelineIndex} are defined except if \cs{CodelineNumbered} is defined.
+% With the last definition no index is created, but the code lines are still
+% numbered. In this case \package{hyperref} has no
+% influence on the index creation since the index is never created: 
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDocStyleBase]
+\CodelineNumbered
+\usepackage[
+  loadHyperref=true,%
+  createIndexEntries=false% (has no influence)
+]{doctools} % 
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% If in contrast the index entries of \package{doc.sty} are activated using \cs{PageIndex} or \cs{CodelineIndex}, then \package{hyperref} should not be loaded because it prohibits the display of the index entries created by \package{doc.sty}. Furthermore the index entries of \package{doctools} should be disabled because they use a different format and would be displayed wrong. 
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDocStyleBase]
+\PageIndex
+\usepackage[
+  loadHyperref=false,% (would prohibit doc.sty index entries)
+  createIndexEntries=false% (would be displayed wrong)
+]{doctools} % 
+\usepackage{hypdoc}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+% If the index entries of \package{doc.sty} are supposed to be displayed with hyperlinks the package \package{hypdoc} must be loaded instead\footnote{This issue is explained very well in this thread: \url{http://tex.stackexchange.com/questions/87670/disable-index-creation-in-dtx-file}}. If the option \option{loadHyperref} is used all styles are applied although \package{hyperref} is not loaded, because it is already loaded by the package \package{hypdoc}. Take care of the loading order: \package{hypdoc} must be loaded before \package{doctools}.
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDocStyleBase]
+\PageIndex
+\usepackage{hypdoc} % load before doctools !
+\usepackage[
+  loadHyperref=true,% apply hyperref styles
+  createIndexEntries=false% (would be displayed wrong)
+]{doctools} % 
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% However, if only the index entries of \package{doctools.sty} are supposed to be displayed in the index, this can be realized by loading \package{hyperref}. In this case the format file for \texttt{makeindex} must not be specified.
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDocStyleBase]
+\PageIndex % creates index, but entries are not displayed
+\usepackage[
+  loadHyperref=true,% (prohibit doc.sty index entries)
+  createIndexEntries=true% 
+]{doctools} % 
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \subsubsection{Selection of options in a normal \latex file}
+% In a normal \latex file that does not load \package{doc.sty} the package options may be selected according to the needs of the user. If both index entries shall be created and \package{hyperref} can be safely loaded one could load the package with these options:
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDocStyleBase]
+\usepackage[
+  loadHyperref=true,% 
+  createIndexEntries=true% 
+]{doctools} % 
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Commands provided by doc.sty and ltxdoc}
+% For the complete reference refer to \url{doc.pdf} and \url{ltxdoc.pdf}. Here % only the most relevant commands for the code in the documentation part are
+% described.
+%
+% \DescribeMacro{\DescribeMacro} \marg{macro}  \AfterLastParam
+% Prints out the macro name in the margin and
+% adds the command to the index. It primary usage is to indicate the part of
+% the documentation where the usage of this macro is described.
+% 
+% \DescribeMacro{\DescribeEnv} \marg{environment}  \AfterLastParam
+% Is used analogues to \cs{DescribeMacro}.
+%
+% \DescribeMacro{\marg} \marg{argument}  \AfterLastParam
+% Mandatory argument, printed as \marg{argument}
+%
+% \DescribeMacro{\oarg} \marg{argument}  \AfterLastParam
+% Optional argument, printed as \oarg{argument}
+%
+% \DescribeMacro{\meta} Both \cs{marg} and \cs{oarg} use \cs{meta}
+% to print out the argument as \meta{argument}.
+%
+% If \package{ltxdoc} is not used both \cs{marg} and \cs{oarg} are instead 
+% defined by \package{doctools}.
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Commands provided by doctools.sty}
+% 
+% \DescribeMacro{\bs} Shortcut for \cs{textbackslash}.
+%
+% \DescribeMacro{\command} \marg{cmd} \AfterLastParam
+% Prints out the argument \cs{command}\arg{foo} as \cs{foo}.
+%
+% \DescribeMacro{\cs} \marg{cmd} \AfterLastParam
+% Shortcut for \cs{command}. Also defined by \ltxclass{ltxdoc}.
+%
+% \DescribeMacro{\arg} \marg{cmd} \AfterLastParam
+% Prints out an argument in curled brackets without the use of 
+% angle brackets as in \cs{marg} or \cs{oarg}. 
+% Thus prints \cs{arg}\arg{foo} as \arg{foo}.
+%
+% \DescribeMacro{\environment}  \marg{environment} \AfterLastParam
+% Prints out an environment name as \environment{environment}.
+%
+% \DescribeMacro{\env} \marg{environment} \AfterLastParam
+% Shortcut for \cs{environment}
+%
+% \DescribeMacro{\package} \marg{package} \AfterLastParam
+% Prints out a package name as \package{package}.
+%
+% \DescribeMacro{\ltxclass} \marg{LaTeX documentclass} \AfterLastParam
+% Prints out a class name as \ltxclass{class}.
+%
+% \DescribeMacro{\option} \marg{option} \AfterLastParam
+% Prints out an option as \option{option}.
+%
+% \DescribeMacro{\parameter} \marg{parameter} \AfterLastParam
+% Prints out an option as \parameter{parameter}.
+%
+% \DescribeMacro{\person} \marg{person} \AfterLastParam
+%    Print out name of a person, for example for the acknowledge
+%    of their help during the development of some code.
+%    \Example{\normalfont This package was written by 
+%    \person{Matthias Pospiech}.}
+%
+% \DescribeMacro{\AfterLastParam}
+%    Used in conjuction with \cs{DescribeMacro} and the printout of arguments
+%    using \cs{marg} or \cs{oarg}. \cs{AfterLastParam} is inserted at the end
+%    to begin a new line.
+%    \Example{\cs{DescribeMacro}\arg{foo}\cs{marg}\arg{argument}
+%    \cs{AfterLastParam}}
+%
+% \DescribeMacro{\Default}
+%    \cs{Default} is used to print out the default value of a command.
+%
+% \DescribeMacro{\Example}
+%    \cs{Example} is used to print out an example for the usage of a command. %    See documentation of \cs{AfterLastParam} for an example.
+%
+% \DescribeEnv{Optionlist} Table to print out all possible options 
+% of a command. See the following code for an example.
+%
+% \DescribeMacro{\latex}  New lower case command for printing out \latex.
+%
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{latexcode}
+\begin{Optionlist}
+ top     &  placement is on top  \\
+ bottom  &  placement is at the bottom\\
+\end{Optionlist}
+\end{latexcode}
+% \iffalse
+%</example>
+% \fi
+% Output:
+% \begin{Optionlist}
+%  top     &  placement is on top  \\
+%  bottom  &  placement is at the bottom\\
+% \end{Optionlist}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Printing of \latex code}
+%
+% This package provides two \package{listings} styles for the printing of 
+% \latex code: \textsl{lstDemoStyleLaTeXCode} and
+% \textsl{lstDocStyleLaTeXCode}. The first is meant for printing of code
+% examples, the latter only to be used inside a dtx file for the documentation
+% of the package code.
+%
+% For convenience these style are provided with the following environments.
+%
+% \DescribeEnv{latexcode} Listings environment for code examples. The output of this style is shown in the example below.
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+\begin{latexcode}
+% comment
+Example Code \ldots
+\end{latexcode}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% In the case of a dtx file this must be wrapped in special dtx code as shown % in the following code. 
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+% \iffalse
+%<*example>
+% \fi
+\begin{latexcode}
+Example Code \ldots
+\end{latexcode}
+% \iffalse
+%</example>
+% \fi
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \DescribeEnv{macrocode} is in contrast an environment for the code in a dtx file, which is used for the creation of a latex package or class. In a dtx file therefore the special comment and indentation of the environment must be taken care of. The following example is displayed with this style.
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDocStyleLaTeXCode]
+%    \begin{macrocode}
+% definition of foobar
+\newcommand{\foobar}{foo-bar}
+%    \end{macrocode}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \DescribeMacro{\printCodeFromFile} 
+% \oarg{first line} \marg{last line} \marg{file name} \AfterLastParam
+% This command is very helpful to display parts of a file sequentially.
+% If the first line is not given the last line value is incremented by one 
+% and used as the first line.
+% \Example{\cs{printCodeFromFile}[3]\arg{6}\arg{LaTeXTemplate.tex}}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Label Link system for files and their usage}
+% The system explained in this section allows to adds a hyperlink to sections
+% where a file is discussed and adds the usage page to the index. The code
+% is very close to the label/ref system as shown in the following example:
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{latexcode}
+\section{about links in pdf}    
+The code is in \file{preamble/hyperref.tex}
+\dots
+\section{preamble/hyperref.tex}
+\labelfile{preamble/hyperref.tex}
+\end{latexcode}
+% \iffalse
+%</example>
+% \fi
+%
+% \DescribeMacro{\labelfile} \marg{filepath/filename.tex} \AfterLastParam
+% Creates a label that is used by \cs{file} for linking to the 
+% occurrence of \cs{labelfile}. 
+% Furthermore an index entry is created with a new sub-index for every path.
+% In the case of \cs{labelfile}\arg{preamble/hyperref.tex} this would look
+% like:
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+Files
+   preamble
+      hyperref.tex
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \DescribeMacro{\file} \marg{filepath/filename.tex} \AfterLastParam
+% Prints out the filename in typewriter font and links to the usage if an
+% equivalent \cs{labelfile} is given.
+%
+% ^^A =====================================================================
+% \section{Implementation}
+%
+% \iffalse
+%<*doctools.sty>
+% \fi
+%
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{doctools}[2012/12/01 v0.1 commands and packages for documenting LaTeX Code]
+%    \end{macrocode}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Define keys}
+%
+%    \begin{macrocode}
+%%% === Define Keys ===================================
+\RequirePackage{kvoptions-patch}
+\RequirePackage{kvoptions}  % options
+\RequirePackage{pdftexcmds} % string comparison
+\SetupKeyvalOptions{family=doctools,prefix=doctools@}
+%    \end{macrocode}
+% Define default option for style key: \emph{stacked}
+%    \begin{macrocode}
+\DeclareBoolOption[false]{loadHyperref}
+\DeclareBoolOption[false]{loadHypdoc}
+\DeclareBoolOption[true]{createIndexEntries}
+\ProcessKeyvalOptions{doctools}
+%    \end{macrocode}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Preamble}
+% \subsubsection{Packages}
+% Most package are loaded at the beginning of the document to avoid clashes
+%  with other packages and make a correct loading order possible. Since the
+%  packages are only available at the end of the preamble, all commands
+%  defined by this package are also only available at the end of the preamble.
+%    \begin{macrocode}
+%%% ---- Packages ----
+%%% Programming
+\usepackage{etoolbox}
+%%% Font packages
+\usepackage{cmap} 
+\usepackage[T1]{fontenc} % T1 Schrift Encoding
+\usepackage{lmodern}
+\usepackage{textcomp}
+%%% load all further packages and all commands 
+%%% at the beginning of the document and thus
+%%% after all other packages 
+\PassOptionsToPackage{table}{xcolor}
+\AtBeginDocument{%
+%%
+%%% Additional packages
+\usepackage{xspace}
+\@ifpackageloaded{xcolor}{}
+ {\usepackage{xcolor}}
+%%% listings
+\input{preamble/listings-latex.tex}
+%%% hyperref
+\ifdoctools@loadHyperref
+\input{preamble/setup-hyperref.tex}
+\fi
+%    \end{macrocode}
+%
+% \subsubsection{color setup}
+%
+%    \begin{macrocode}
+%%% color setup
+% table colors 
+\ifcsdef{colorlet}{%
+\colorlet{tablebodycolor}{white!100}
+\colorlet{tablerowcolor}{gray!10}
+\colorlet{tableheadcolor}{gray!25}
+}{}
+%    \end{macrocode}
+%
+% \subsubsection{Document layout / variables}
+%
+%    \begin{macrocode}
+%%% Set document layout / variables
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+%    \end{macrocode}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Internal Variables}
+%
+%    \begin{macrocode}
+%%% ---- Internal Variables ---- 
+%% Font for Index Headings
+\newcommand{\doctools@indexHeadFont}[1]{\textsc{#1}}
+%    \end{macrocode}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Commands}
+%
+% \begin{macro}{\bs}
+% Shortcut for \cs{textbackslash}.
+%    \begin{macrocode}
+%%% ---- Commands ---- 
+%% \bs
+\newcommand{\bs}{\textbackslash}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\command}
+% Prints the argument with backslash in typewriter font. 
+% This is meant to be used for \LaTeX{} commands.
+% Additionally the command is added to the index.
+%    \begin{macrocode}
+%% \command
+\newcommand{\command}[1]{%
+\texttt{\textbackslash{}#1}\relax%
+\ifdoctools@createIndexEntries%
+  \index{\doctools@indexHeadFont{Command}!\textbackslash{}#1}%
+\fi%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\cs}
+% Shortcut for \cs{command}
+%    \begin{macrocode}
+%% \cs (shortcut for \command)
+%% \cs might be defined by ltxdoc, therefore it needs to be deleted
+%% before it can be redefined.
+\ifcsdef{cs}{\csundef{cs}}{}%
+\let\cs\command%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\environment}
+% Formats an environment in typewriter font and adds it to the index. 
+%    \begin{macrocode}
+%% \environment
+\ifcsdef{environment}{\csundef{environment}}{}
+\newcommand{\environment}[1]{%
+\texttt{#1}%
+\ifdoctools@createIndexEntries
+  \index{\doctools@indexHeadFont{Environment}!#1}%
+\fi
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\env}
+% Shortcut for \cs{environment}
+%    \begin{macrocode}
+%% \env
+\newcommand{\env}[1]{\environment{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\package}
+% Formats an package in typewriter font and adds it to the index. 
+%    \begin{macrocode}
+%% \package
+\newcommand{\package}[1]{%
+\texttt{#1}%
+\ifdoctools@createIndexEntries
+\index{\doctools@indexHeadFont{Package}!#1}%
+\fi
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ltxclass}
+% Formats a \latex class in typewriter font and adds it to the index. 
+%    \begin{macrocode}
+%% \ltxclass
+\newcommand{\ltxclass}[1]{%
+\texttt{#1}%
+\ifdoctools@createIndexEntries
+\index{\doctools@indexHeadFont{Class}!#1}%
+\fi
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\marg}
+% Formats a mandatory argument of a command. If \cs{meta} is defined this is reused.
+%    \begin{macrocode}
+%% \marg
+\ifcsdef{marg}{}{% if not defined
+\ifcsdef{meta}%
+  {\newcommand\marg[1]{\texttt{\{}\meta{#1}\texttt{\}}}}%
+  {\newcommand\argument[1]{
+\texttt{\{}%
+$\langle${\normalfont\slshape#1}$\rangle$
+\texttt{\}}}}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\oarg}
+% Formats a optional argument of a command. If \cs{meta} is defined this is reused.
+%    \begin{macrocode}
+%% \oarg
+\ifcsdef{oarg}{}{% if not defined
+\ifcsdef{meta}%
+  {\newcommand\marg[1]{\texttt{[}\meta{#1}\texttt{]}}}%
+  {\newcommand\argument[1]{
+\texttt{[}%
+$\langle${\normalfont\slshape#1}$\rangle$
+\texttt{]}}}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\arg}
+% Formats an argument of a command without extra angle brackets 
+% in curled brackets in monospaced font.
+%    \begin{macrocode}
+%% \arg
+\ifcsdef{arg}{%
+  \csundef{arg}%
+  \newcommand\arg[1]{\{\texttt{#1}\}}
+}{}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\option}
+% Formats an option in typewriter font and adds it to the index. 
+%    \begin{macrocode}
+%% \option
+\newcommand{\option}[1]{%
+\texttt{#1}%
+\ifdoctools@createIndexEntries
+\index{option!#1}%
+\fi
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\parameter}
+% Formats a parameter in typewriter font. 
+%    \begin{macrocode}
+%% \parameter
+\newcommand{\parameter}[1]{%
+\texttt{#1}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\person}
+%    Print out name of a person, for example for the acknowledge
+%    of their help during the development of some code.
+%    \begin{macrocode}
+%% \person
+\newcommand{\person}[1]{\textsc{#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\AfterLastParam}
+%    Used in conjuction with \cs{DescribeMacro} and the printout of arguments
+%    using \cs{marg} or \cs{oarg}. \cs{AfterLastParam} is inserted at the end
+%    to begin a new line.
+%    \begin{macrocode}
+%% \AfterLastParam
+\newcommand{\AfterLastParam}{\par\noindent}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\Default}
+%    \cs{Default} is used to print out the default value of a command.
+%    \begin{macrocode}
+%% \Default
+\newcommand{\Default}[1]{\par Default: \texttt{#1} \par}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\Example}
+%    \cs{Example} is used to print out an example for the usage of a command.
+%    \begin{macrocode}
+%% \Example
+\newcommand{\Example}[1]{\par Example: \texttt{#1} \par}
+%    \end{macrocode}
+% \end{macro}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Option list}
+%
+% \begin{macro}{Optionlist}
+%    Environment
+%    \begin{macrocode}
+\newenvironment{Optionlist}{%
+\begin{flushleft}%
+\vspace{-1\baselineskip}
+%%  Style  changes
+\small\renewcommand{\arraystretch}{1.4}%
+%%  table
+\begin{tabular} {>{\ttfamily}l<{\normalfont}p{0.7\textwidth}}%
+}{% end of environment
+\end{tabular}%
+\end{flushleft}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{\LaTeX{} engine names}
+%
+% \begin{macro}{\latex}
+%    New lower case command for printing out \LaTeX{}
+%    \begin{macrocode}
+%%% ---- engine names ----
+%% \latex
+% ensure that space is added after \latex
+\newcommand{\latex}{\LaTeX\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{doc.sty modifications}
+% The following commands from doc.sty are changed by
+% introducing colors to the commands
+%    \begin{macrocode}
+%%% ---- doc.sty modifications ----
+% define color for Macro and Environment names
+\colorlet{doctools@ColorCodeNames}{blue!50!black}
+%%% Overwrite font for \meta
+\def\meta@font@select{\normalfont\slshape} % original: \itshape
+%
+\ifcsdef{PrintMacroName}
+   {\def\PrintMacroName#1{\strut \MacroFont %
+   \color{doctools@ColorCodeNames}\string #1\ }}{}
+%
+\newcounter{MacroName} % hyperref uses \theH<counter>
+\providecommand*{\theHMacroName}{\theMacroName}
+%
+%% create label 
+%   \renewcommand*{\theHMacroName}{#1}%
+%   \ifcsdef{phantomsection}{\phantomsection}{}%
+%   \@bsphack%
+%   \refstepcounter{MacroName}%
+%   \label{doc:desc:#1}%   
+\ifcsdef{PrintDescribeMacro}
+   {\def\PrintDescribeMacro#1{%
+   \strut \MacroFont %
+   \color{doctools@ColorCodeNames} \string #1\ }}{}
+\ifcsdef{PrintDescribeEnv}
+   {\def\PrintDescribeEnv#1{\strut \MacroFont %
+   \color{doctools@ColorCodeNames} #1\ }}{}
+\ifcsdef{PrintEnvName}
+   {\def\PrintEnvName#1{\strut \MacroFont %
+   \color{doctools@ColorCodeNames} #1\ }}{}
+%
+%%% disable the index preamble if index entries are generated by this package
+\ifdoctools@createIndexEntries
+\ifcsdef{index@prologue}
+     {\def\index@prologue{\section*{Index}\markboth{Index}{Index}}}
+     {}
+\fi
+%     
+%    \end{macrocode}
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Listings environments}
+%
+%    \begin{macrocode}
+%%% ---- listings environments for LaTeX code
+%%% Overwriting the environment macrocode for printing the code in a dtx file.
+\ifcsdef{macrocode}{\csundef{macrocode}}{}
+\lstnewenvironment{macrocode}{\lstset{style=lstDocStyleLaTeXCode}}{}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%%% environment code examples.
+\lstnewenvironment{latexcode}{\lstset{style=lstDemoStyleLaTeXCode}}{}
+%    \end{macrocode}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{Print LaTeX code from external file using listings}
+%
+%    \begin{macrocode} 
+% -------------------------------------------------
+% \printCodeFromFile
+% -------------------------------------------------
+\newcounter{lstFirstLine}
+\newcounter{lstLastLine}
+\setcounter{lstLastLine}{0}
+\setcounter{lstFirstLine}{0}
+%
+\newcommand{\printCodeFromFile}[3][]{%
+\ifstrempty{#1}{}{%
+  \setcounter{lstFirstLine}{#1}%
+}%
+\setcounter{lstLastLine}{#2}%
+%
+\lstinputlisting[%
+  firstnumber=\thelstFirstLine,%
+  firstline=\thelstFirstLine,%
+  lastline=\thelstLastLine,%
+  nolol=true,
+  style=lstDemoStyleLaTeXCode]%
+  {#3}%
+%
+%% set counter to lastLine + 1
+\setcounter{lstFirstLine}{\thelstLastLine}
+\addtocounter{lstFirstLine}{1}
+}
+%    \end{macrocode}
+%
+% ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \subsection{References and links to files}
+%
+%    \begin{macrocode}
+% -------------------------------------------------
+% \file and \labelfile
+% -------------------------------------------------
+% Code copied from http://tex.stackexchange.com/
+%  questions/65639/how-to-create-my-on-ref-label-system/
+% with later modifications.
+% Thanks to Heiko Oberdiek for providing this answer !
+% -------------------------------------------------
+%% Command for printing the filename
+\ifcsdef{urlstyle}{}{\usepackage{url}}
+\DeclareUrlCommand{\PrintFileName}{\urlstyle{tt}}
+%%
+\newcounter{file}
+%% hyperref uses \theH<counter>
+\providecommand*{\theHfile}{\thefile}
+%% code from tex.stackexchange with the 
+%% the help from Heiko Oberdiek.
+\newcommand*{\labelfile}[1]{%
+  %% convert all "/" to "/," (comma list) and save in \IndexFileA
+  \StrSubstitute{#1}{/}{/,}[\IndexFileA]%
+  %% define \IndexFileB as empty (used for the output string)
+  \let\IndexFileB\@empty
+  %% parse and convert \IndexFileA using \@AddFileEntry
+  \expandafter
+  \comma@parse@normalized\expandafter{\IndexFileA}\@AddFileEntry
+  %% create label and print to index
+  \@bsphack
+  \renewcommand*{\theHfile}{#1}%
+  \refstepcounter{file}%
+  \ifcsdef{phantomsection}{\phantomsection}{}
+  \label{file:#1}%
+  \ifdoctools@createIndexEntries
+  \index{files!\IndexFileB}%
+  \fi
+  \@esphack  
+}
+%% add entries of comma list to the index.
+\newcommand*{\@AddFileEntry}[1]{%
+  \ifx\IndexFileB\@empty
+    %% add first entry to index with lexEntry@\texttt{printEntry}
+    \def\IndexFileB{#1@\texttt{#1}}%
+  \else
+    \expandafter\def\expandafter\IndexFileB\expandafter{%
+    %% add following entries to index with 
+    %% previousEntries!lexEntry@\texttt{printEntry}
+\IndexFileB!%
+#1@\texttt{#1}%
+    }%
+  \fi
+}
+%% Print out filename and create a link if the label exists.
+\newcommand*{\file}[1]{%
+  \ifcsdef{hyperref}%
+    {\hyperref[file:#1]{\PrintFileName{#1}}}%
+    {\PrintFileName{#1}}
+} 
+%%
+} % end of \AtBeginDocument 
+
+%    \end{macrocode}
+%
+%
+%
+% \iffalse
+%</doctools.sty>
+% \fi
+%
+% \Finale
+\endinput

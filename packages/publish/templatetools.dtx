@@ -31,37 +31,27 @@
 %
 %<*driver>
 \documentclass{ltxdoc}
+\usepackage{hypdoc}
+\RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools} % 
+
 \usepackage{templatetools}[<*date*>]
-\EnableCrossrefs
-\CodelineIndex
+
+\EnableCrossrefs  % (default) Every new macro name used within a macrocode or
+                  % macrocode∗ environment will produce an index entry.
+% \DisableCrossrefs % turn off this feature
+%
+% If an index is created is determined by the use of the following
+% declarations in the driver file preamble; if neither is used, no index is 
+% produced.
+\PageIndex     % all index entries refer to their page number
+% \CodelineIndex % index entries produced by \DescribeMacro and \DescribeEnv
+               %  refer to page number but those produced by the macro
+               %  environment refer to the code lines, 
+               % which will be numbered automatically.
+% \CodelineNumbered % no index is created, but the code lines are numbered
+
 \RecordChanges
 
-%%% Font packages
-\usepackage{cmap} 
-\usepackage[T1]{fontenc} % T1 Schrift Encoding
-\usepackage{lmodern}
-%%% Additional packages
-\usepackage{soulutf8}
-\usepackage[table]{xcolor}
-\usepackage{enumitem}
-\usepackage{tabu}
-% \usepackage[htt]{hyphenat}
-%%% listings
-\input{preamble/listings-latex.tex}
-%%% hyperref
-\input{preamble/setup-hyperref.tex}
-%%% color setup
-% table colors 
-\colorlet{tablebodycolor}{white!100}
-\colorlet{tablerowcolor}{gray!10}
-\colorlet{tableheadcolor}{gray!25}
-%%% Set document layout / variables
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5\baselineskip}
-\setcounter{secnumdepth}{2}
-\setcounter{tocdepth}{2}
-%%% doc commands
-\input{preamble/setup-doc-commands.tex}
 
 \begin{document}
   \DocInput{templatetools.dtx}
@@ -71,7 +61,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{272}
+% \CheckSum{0}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -135,7 +125,7 @@
 % \iffalse
 %<*example>
 % \fi
-\begin{lstlisting}[style=demostyle]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
 % Requires: Command \upmu
 \IfDefined{upmu}{\usepackage[upmu]{gensymb}}
 \end{lstlisting}
@@ -153,7 +143,7 @@
 % \iffalse
 %<*example>
 % \fi
-\begin{lstlisting}[style=demostyle]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
 % Requires: Command longtable and rowcolors
 \IfMultDefined{longtable,rowcolors}
   {... longtable with rowcolors ...}
@@ -181,7 +171,7 @@
 % \iffalse
 %<*example>
 % \fi
-\begin{lstlisting}[style=demostyle]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
 \IfNotDraft{\usepackage[]{bookmark}}
 \end{lstlisting}
 % \iffalse
@@ -213,7 +203,7 @@
 % \iffalse
 %<*example>
 % \fi
-\begin{lstlisting}[style=demostyle]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
 % Load epstopdf only if graphicx was loaded
 \IfPackageLoaded{graphicx}{%
   \usepackage{epstopdf}
@@ -253,7 +243,7 @@
 % \iffalse
 %<*example>
 % \fi
-\begin{lstlisting}[style=demostyle]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
 % loading: must be loaded after hyperref and after varioref
 \ExecuteAfterPackage{hyperref}{
 % caption and cleveref incompatible in Versions before 2011/12/24
@@ -276,7 +266,7 @@
 % \iffalse
 %<*example>
 % \fi
-\begin{lstlisting}[style=demostyle]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
 \IfTikzLibraryLoaded{lindenmayersystems}{%
 % code origin: pgf/tikz manual
 \begin{tikzpicture}
@@ -315,7 +305,7 @@
 % \iffalse
 %<*example>
 % \fi
-\begin{lstlisting}[style=demostyle]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
 \IfColumntypeDefined{X}{%
 \IfDefined{tabularx}{%
 %
@@ -373,7 +363,7 @@ text which is considerably longer than the width of the column \\
 % \iffalse
 %<*example>
 % \fi
-\begin{lstlisting}[style=demostyle]
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
 \SetTemplateDefinition{Target}{Web}{%
   \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
 }%

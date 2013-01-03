@@ -26,8 +26,13 @@ my $strCurrDate = sprintf("%02d/%02d/%02d", $year, $mon, $mday);
 while (my $line = <PARSEFILE>) {
   # if replace <*date*> by string
   $line =~ s/<\*date\*>/$strCurrDate/;
-  $_ = $line;
-  # if string \input{*} is found 
+  # if replace <*author*> by Author
+  $line =~ s/<\*author\*>/Matthias Pospiech/;
+  # if replace <*email*> by mail
+  $line =~ s/<\*email\*>/matthias\@pospiech.eu/;
+  # write back current line
+  $_ = $line;    
+  # if string \input{preamble/*} is found 
   if ( m/\\input\{preamble\/(.*?)\}/ ) {
     # save arg #1 of regex as inputfile
 	my $inputfile = "preamble/$1";
