@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 %   
 % File:      templatedemo.sty
-% Version:   2012/12/01 v0.1
+% Version:   <*date*> v0.1
 % Author:    Matthias Pospiech
 % Email:     <matthias@pospiech.eu>
 %
@@ -23,10 +23,7 @@
 % and the derived filebase templatedemo.sty.
 %
 % \fi
-% \newcommand\packagetext{templatedemo}
-% \newcommand\authortext{Matthias Pospiech}
-% \newcommand\emailtext{matthias@pospiech.eu} 
-% \newcommand\versiontext{v0.1} 
+%
 % \iffalse
 %<*driver>
 \ProvidesFile{templatedemo.dtx}
@@ -34,7 +31,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{templatedemo}
 %<*package>
-   [2012/12/01 v0.1 typeset code and resulting output]
+   [<*date*> v0.1 typeset code and resulting output]
 %</package>
 %
 %<*driver>
@@ -101,14 +98,14 @@
 % \providecommand*{\url}{\texttt}
 % \GetFileInfo{templatedemo.dtx}
 % \title{The \textsf{templatedemo} package}
-% \author{\authortext \\ \url{\emailtext}}
+% \author{<*author*> \\ \url{<*email*>}}
 % \date{\fileversion~from \filedate}
 %
 % \maketitle
 % \section{Introduction}
 % In order to demonstrate \latex{} code it is very useful to have the code and
 % the resulting output together in the same document.
-% \package{\packagetext} 
+% \package{templatedemo} 
 % is a package that provides configurable tools to print out \latex{} code and the
 % resulting output in the same document.
 %
@@ -326,7 +323,9 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 \RequirePackage{listings}
 \@ifpackageloaded{hypdoc}
   {\RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools}}
-  {\RequirePackage[loadHyperref=true,createIndexEntries=true]{doctools}}
+  {\@ifpackageloaded{doc}
+    {\RequirePackage[loadHyperref=false,createIndexEntries=false]{doctools}}
+    {}}
 \PassOptionsToPackage{table}{xcolor}
 % This code needs to be executed at the beginning
 % of the document because some packages (eg. xcolor)
@@ -348,6 +347,10 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %% Packages for frames
 \RequirePackage{mdframed}
 \RequirePackage{framed}
+%% load doctools without hyperref if not loaded and no documentation
+%% package was loaded.
+\@ifpackageloaded{doctools}{}
+  {\RequirePackage[loadHyperref=false,createIndexEntries=true]{doctools}}
 %    \end{macrocode}
 %
 % \subsubsection{Colors}
