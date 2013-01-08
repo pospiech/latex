@@ -1,6 +1,10 @@
-%!TeX encoding=utf8
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
 
-% Description: This is the main file for the documentation of the template.
+% Description: This is the main file for the documentation of the 
+% latex-thesis-template. It not meant to be used by the users
+% of the template.
 
 %% Bug fixes and other packages to be loaded before the class
 \RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
@@ -26,6 +30,10 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Must be loaded first!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom
+\usepackage{etex} 
+\reserveinserts{28}
+% packages required for the template
 \usepackage{templatesection}
 \usepackage{templatetools}
 \usepackage{templatedemo}
@@ -162,8 +170,6 @@
 \mainmatter
 %% documentation of the code of the template
 \input{doc/documentation.tex}
-%% demonstration of the template
-%\input{content/demo/demo.tex}
 
 % -- bibliography --
 % (must be placed _before_ appendix)

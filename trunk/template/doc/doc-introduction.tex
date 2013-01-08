@@ -1,0 +1,143 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = en-US
+% =========================================================================
+\chapter{Overview}
+
+\section{Target Users}
+%Target users of this template
+%- thesis
+%- beginners
+%- experienced
+%- package authors
+%
+\section{Tutorial - how to start}
+%- Files for the end user (not not mess with all the configuration files...)
+
+\section{magic comments}
+
+These \emph{magic comments} present a configuration for the editor, which is save inside the \latex file (at the beginning). These comments allow to define the program (pdflatex), the main file, the encoding (utf8) and the spell checking. 
+
+They were originally developed within the editor \href{http://pages.uoregon.edu/koch/texshop/index.html}{TexShop} and are used by the editors \href{http://www.tug.org/texworks/}{TeXWorks} and \href{http://texstudio.sourceforge.net/}{TeXStudio}.
+%
+The following information on these magic comments is based on these publications:
+%
+\begin{itemize}[noitemsep]
+\item \href{http://www.texdev.net/2011/03/24/texworks-magic-comments/} %
+      {texworks magic comments (by Joseph Wright)}
+\item \href{http://ftp.ctex.org/pub/tex/tools/editors/TeXworks/manual.pdf}%  
+      {TeXworks manual}
+\end{itemize}
+%
+All these comments have in common that they have to be put in the beginning of each file and have to begin with \enquote{\texttt{\% !TeX}}. 
+
+\begin{latexcode}
+% !TeX root = manual.tex
+\end{latexcode}
+%
+Defines the main file for typesetting (often called the \emph{master file}). This enables a very basic project management by defining the master file for each file of the project.
+
+\begin{latexcode}
+% !TeX program = pdflatex
+\end{latexcode}
+%
+Chooses the engine for compilation. Possible values are \texttt{pdflatex}, \texttt{LuaLaTeX}, \texttt{XeTeX}, \texttt{LaTeX} (and possibly others). Note that the engine name inserted is case-insensitive.
+
+Unless your code is set up for a different engine and the selection of  packages and fonts loaded is adapted for that engine the default should be kept as \texttt{pdflatex}. 
+
+\begin{latexcode}
+% !TeX spellcheck = en_US
+\end{latexcode}
+%
+Specifies the spell checking language in the editor for that file. 
+The language of course needs to be installed for the editor!
+%
+Selection of some languages:
+\begin{itemize}[noitemsep]
+\item \texttt{en\_GB} - English (Great Britain)
+\item \texttt{en\_US} - English (US)
+\item \texttt{de\_DE} - German (Germany)
+\item \texttt{fr\_FR} - French (France)
+\end{itemize}
+
+\begin{latexcode}
+% !TeX encoding = UTF-8
+\end{latexcode}
+%
+Sets the file encoding for the current file. The default in current editors is UTF-8.
+
+
+%% =========================================================================
+%\chapter{How to list}
+%
+%% =========================================================================
+\chapter{Known problems}
+
+\section{warnings}
+
+\subsection{biblatex: No file \argument{filename}.bbl}
+
+If you have not executed \texttt{biber} you will get the following warning by
+\package{biblatex}. Simply run you bibliography tool to get create bbl file.
+
+\begin{verbatim}
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file '<filename>.bbl' not found.
+
+No file <filename>.bbl.
+\end{verbatim}
+
+%\subsection{glossaries: No \cs{printglossary} or \cs{printglossaries} found.}
+%
+%\begin{verbatim}
+%Package glossaries Warning: No \printglossary or \printglossaries found.
+%This document will not have a glossary.
+%\end{verbatim}
+
+
+\subsection{tocstyle: This is an alpha version}
+
+Package \package{tocstyle} prints out the following warning:
+%
+\begin{verbatim}
+Package tocstyle Warning: THIS IS AN ALPHA VERSION!
+(tocstyle)                USAGE OF THIS VERSION IS ON YOUR OWN RISK!
+(tocstyle)                EVERYTHING MAY HAPPEN!
+(tocstyle)                EVERYTHING MAY CHANGE IN FUTURE!
+(tocstyle)                THERE IS NO SUPPORT, IF YOU USE THIS PACKAGE!
+(tocstyle)                Maybe it would be better, not to load this package.
+\end{verbatim}
+%
+This package is now in use with this template for several years (of development of the template before its release) and so far no problem has been found. Therefore I do not expect any problem because of this package and consider this warning to be ignorable.
+
+\subsection{hypennat: You have used the htt option}
+
+Package \package{hypennat} prints out the following warning:
+%
+\begin{verbatim}
+Package hyphenat Warning: *******************************
+(hyphenat)                * You have used the htt option.
+(hyphenat)                * You are likely to get many Font Warning messages.
+(hyphenat)                * These can usually be ignored.
+(hyphenat)                *******************************.
+\end{verbatim}
+%
+It can be ignored as already stated by the package warning.
+
+\subsection{pageslts: Package pdfpages detected.}
+
+Package \package{hypennat} warns about the use of package \package{pdfpages}:
+%
+\begin{verbatim}
+Package pageslts Warning: Package pdfpages detected.
+(pageslts)                Using hyperref with pdfpages can cause problems. See
+(pageslts)                ftp://ftp.ctan.org/tex-archive/
+(pageslts)                macros/latex/contrib/pax/
+(pageslts)                for project pax (PDFAnnotExtractor)..
+\end{verbatim}
+%
+This can be savely ignored, see \url{http://tex.stackexchange.com/questions/73767/warning-about-pdfpages-with-hyperref} for a discussion.
+
+% -------------------------------------------------------------------------
+\section{errors}
+\subsection{No room for new write}
+\label{sec:problems:write}

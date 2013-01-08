@@ -35,5 +35,19 @@
   [\color{black} \vspace{0.9pc} \filright {\titlerule}] %
 % --------------------------------
 
+%--> part with 'PART' + number at frame and name inside frame
+% --------------------------------
+\titleformat{\part}[frame]
+  {\usekomafont{part}\Large\color{black}\centering}    % format
+  % label: PART I
+  {\enspace \LARGE\MakeUppercase{\partname}%           
+     \centering \Huge~\thechapter \enspace }%  
+  % sep (from partnumber)
+  {1.5\baselineskip}
+  % (before chaptertitle and after)
+  {\color{sectioncolor}\filcenter}          
+
+% --------------------------------
+
 
 }% end: \IfPackageLoaded{titlesec}

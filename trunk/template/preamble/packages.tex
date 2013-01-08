@@ -1,3 +1,4 @@
+%% -- package section selections -->
 \DefineTemplateSection[true]{PackagesBase}
 \DefineTemplateSection[true]{PackagesBugfixes}
 \DefineTemplateSection[true]{PackagesFonts}
@@ -21,6 +22,7 @@
 \DefineTemplateSection[true]{PackagesTOC}
 \DefineTemplateSection[true]{PackagesPDF}
 \DefineTemplateSection[true]{PackagesAdditional}
+%% <--------------------------------
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % These packages must be loaded before all others
@@ -226,6 +228,7 @@
 \usetikzlibrary{pgfplots.units}
 
 \input{preamble/fix-pgfplots.tex} % fix bug in pgfplots with \directlua
+
 \EndTemplateSection{PackagesDiagrams}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % science packages
@@ -486,17 +489,6 @@
 %  style=authortitle-tcomp,
 %  style=authortitle-ticomp,
 
-% space for further additions...
-%
-%
-%
-%
-%
-%
-%
-%
-%
-
 \EndTemplateSection{PackagesCitation}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % figures, placement, floats and captions
@@ -564,7 +556,6 @@
 %% Doc: subfig.pdf
 %\usepackage{subfig} 
 
-
 % Description: subcaption supports typesetting of sub-captions
 %             (by using the the sub-caption feature of the caption package).
 % incompatible: subfig
@@ -600,7 +591,6 @@
 %  ,pagewise %  Number the lines from 1 on each page (pagewise, running)
 %  ,modulo   %  Print line numbers only if they are multiples of five.
 %]{lineno}
-
 
 \EndTemplateSection{PackagesMisc}
 
@@ -643,7 +633,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % verbatim packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 \BeginTemplateSection{PackagesVerbatim}
 %%% Doc: upquote.sty
 \usepackage{upquote} % print correct quotes in verbatim-environments
@@ -671,7 +660,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % fancy packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 \BeginTemplateSection{PackagesFancy}
 
 % Description: Dropping capitals
@@ -739,7 +727,7 @@
 % -> loaded automatically if geometry not loaded
 % Doc: scrguide.pdf
 
-% Description:Margin adjustment and detection of odd/even pages.
+% Description: Margin adjustment and detection of odd/even pages.
 % Doc: changepage.pdf
 % \usepackage[strict]{changepage}
 
@@ -806,23 +794,25 @@
 % Description: apply different styles for the formating of the 
 %              table of contents and lists of floats.
 %%% Doc: tocstyle.pdf (Koma Script)
-\usepackage[%
-  tocindentauto,     % all widths at the TOCs are calculated by tocindentauto
-%  tocindentmanual,  % opposite of auto
-%%% 
-  tocgraduated,      % standard
-%  tocflat,          % no intendation, text aligned
-%  tocfullflat,      % no intendation, no alignment
-%%%  
-  tocbreaksstrict,   % sets a lot of penalties before and after TOC entries 
-                     % to avoid page break between a TOC entry and it's parent. 
-%  tocbreakscareless,% allow more page breaks.  
-%%%  
-%  toctextentriesindented, % unnumbered TOC entrie are indented only as wide 
-%                          % as the number of numbered TOC entries of the same 
-%level. 
-  toctextentriesleft,% indented as if they have an empty number.
-]{tocstyle}
+%% Alpha package, does not work together with Koma Scripts \setkomafont{}{}
+%% functions. If these are not required it is however a very usefull package.
+%\usepackage[%
+%  tocindentauto,     % all widths at the TOCs are calculated by tocindentauto
+%%  tocindentmanual,  % opposite of auto
+%%%% 
+%  tocgraduated,      % standard
+%%  tocflat,          % no intendation, text aligned
+%%  tocfullflat,      % no intendation, no alignment
+%%%%  
+%  tocbreaksstrict,   % sets a lot of penalties before and after TOC entries 
+%                     % to avoid page break between a TOC entry and it's parent. 
+%%  tocbreakscareless,% allow more page breaks.  
+%%%%  
+%%  toctextentriesindented, % unnumbered TOC entrie are indented only as wide 
+%%                          % as the number of numbered TOC entries of the same 
+%%level. 
+%  toctextentriesleft,% indented as if they have an empty number.
+%]{tocstyle}
 
 % Description: The appendix package provides some facilities for 
 %              modifying the typesetting of appendix titles.

@@ -1,3 +1,6 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = en-US
+
 \DefineTemplateSection[true]{DemoText}
 \DefineTemplateSection[true]{DemoFigures}
 \DefineTemplateSection[true]{DemoTables}
@@ -74,11 +77,11 @@ and \hl{highlighting}.
 
 \ifcsdef{so}{%
 % ------------------------------------------------------------
-Commands of package \demopackage{soul}:
+Commands of package \package{soul}:
 
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Package \demopackage{soul} or \demopackage{soulutf8} not loaded}}%
+}{\DemoError{Package \package{soul} or \package{soulutf8} not loaded}}%
 
 % ------------------------------------------------------------
 \subsection{package: ulem}
@@ -93,10 +96,10 @@ Commands of package \demopackage{soul}:
 
 \ifcsdef{uuline}{%
 
-Commands of package \demopackage{ulem}:
+Commands of package \package{ulem}:
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Package \demopackage{ulem} not loaded}}%
+}{\DemoError{Package \package{ulem} not loaded}}%
 
 % ------------------------------------------------------------
 \subsection{package: url}
@@ -107,14 +110,14 @@ Commands of package \demopackage{ulem}:
 
 \ifcsdef{url}{%
 
-The \demopackage{url} package provides a failsafe way to print
+The \package{url} package provides a failsafe way to print
 urls with characters not allowed by \latex{}.
 
 \PrintDemo{style=parallel}%
 %
 The font used for this command can be set up in the preamble.
 
-}{\DemoError{Package \demopackage{url} not loaded}}%
+}{\DemoError{Package \package{url} not loaded}}%
 
 %% ============================================================
 %
@@ -131,7 +134,7 @@ produce high-quality typesetting, especially for mathematical text.
 \end{quote}
 \end{filecontents*}
 
-This standard environment can be used for quotes. Its text is indented from both sides. For quotes with citations the \demoenv{blockquote} environment of packages \demopackage{csquotes} is much better suited.
+This standard environment can be used for quotes. Its text is indented from both sides. For quotes with citations the \env{blockquote} environment of packages \package{csquotes} is much better suited.
 
 \PrintDemo{style=lines}%
 
@@ -152,11 +155,11 @@ esse cillum dolore eu fugiat nulla pariatur.}
 
 \ifcsdef{enquote}{%
 
-The \demopackage{csquotes} package provides advanced facilities for inline (\democommand{inline}) and display quotations (\democommand{blockquote}).
+The \package{csquotes} package provides advanced facilities for inline (\command{inline}) and display quotations (\command{blockquote}).
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{csquotes} not loaded}}%
+}{\DemoError{Package \package{csquotes} not loaded}}%
 
 %% ============================================================
 %
@@ -186,7 +189,7 @@ if the reference is not on the same page.
 
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Package \demopackage{varioref} not loaded}}%
+}{\DemoError{Package \package{varioref} not loaded}}%
 
 % ------------------------------------------------------------
 \subsection{variable references with the cleveref package}
@@ -209,12 +212,12 @@ reference equations.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{cleveref} not loaded}}%
+}{\DemoError{Package \package{cleveref} not loaded}}%
 %% ============================================================
 %
 \section{Other environments}
 %% ------------------------------------------------------------
-\subsection{\demoenv{abstract} environment}
+\subsection{\env{abstract} environment}
 
 \begin{filecontents*}{\democodefile}
 \begin{abstract}
@@ -230,10 +233,10 @@ produce high-quality typesetting, especially for mathematical text.
 
 \PrintDemo{style=stacked}%%
 
-}{\DemoError{Environment \demoenv{abstract} not available}}%
+}{\DemoError{Environment \env{abstract} not available}}%
 
 %% ------------------------------------------------------------
-\subsection{\demoenv{addmargin} environment (Koma Script)}
+\subsection{\env{addmargin} environment (Koma Script)}
 \label{sec:EnvAddmargin}
 
 \begin{filecontents*}{\democodefile}
@@ -246,11 +249,11 @@ produce high-quality typesetting, especially for mathematical text.
 
 \ifcsdef{endaddmargin}{%
 
-The \demoenv{addmargin}-environment allows to enlarge or shrink the textwidth in both sides of the textbody. It is however recommended to let the wide parts span into the outer margin.
+The \env{addmargin}-environment allows to enlarge or shrink the textwidth in both sides of the textbody. It is however recommended to let the wide parts span into the outer margin.
 
 \PrintDemo{style=stacked}%%
 
-}{\DemoError{Environment \demoenv{addmargin} not available}}%
+}{\DemoError{Environment \env{addmargin} not available}}%
 
 
 \begin{filecontents*}{\democodefile}
@@ -262,7 +265,7 @@ The \demoenv{addmargin}-environment allows to enlarge or shrink the textwidth in
 \ifcsdef{endaddmargin}{%
 \ifbool{isMarginWidthDefined}{}{
  \noindent
- Note that you need to define \democs{marginwidth} for this code. 
+ Note that you need to define \cs{marginwidth} for this code. 
  This can be realized by 
  \lstinputlisting[style=demostyle,nolol=true]{\democodefile}
 } % ifbool
@@ -302,7 +305,7 @@ especially for mathematical text.
 \end{center}
 \end{filecontents*}
 %
-Environment for centering of text. Not to be used with floating environments such as \demoenv{table} or \demoenv{figure}!
+Environment for centering of text. Not to be used with floating environments such as \env{table} or \env{figure}!
 
 \PrintDemo{style=parallel}%%
 
@@ -311,10 +314,10 @@ Environment for centering of text. Not to be used with floating environments suc
 
 \ifcsdef{FlushLeft}{%
 
-The \demopackage{ragged2e} improves typesetting of ragged text. Compared with the standard commands (\bs{}centering, \bs{}raggedleft,
+The \package{ragged2e} improves typesetting of ragged text. Compared with the standard commands (\bs{}centering, \bs{}raggedleft,
 and \bs{}raggedright) it includes hyphenation. Each environment is also available as a switch. \bs{}justifying switches back to justified text after ragged text has been switched on.
 
-}{\DemoError{Package \demopackage{ragged2e} not loaded}}%
+}{\DemoError{Package \package{ragged2e} not loaded}}%
 % ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \begin{FlushLeft}
@@ -421,7 +424,7 @@ odio.
 \end{latexresult}%
 
 
-}{\DemoError{Package \demopackage{multicol} not loaded}}%
+}{\DemoError{Package \package{multicol} not loaded}}%
 
 
 %% ============================================================
@@ -526,13 +529,13 @@ Same as the itemize list, but enumerated.
 \end{filecontents*}
 
 \IfElsePackageLoaded{enumitem}{
-\subsection{Compact lists (with \demopackage{enumitem} package)}
+\subsection{Compact lists (with \package{enumitem} package)}
 
-The \demopackage{enumitem} package provides many options to change the layout of a list. One of these is to create compact lists with the option \texttt{noitemsep}.
+The \package{enumitem} package provides many options to change the layout of a list. One of these is to create compact lists with the option \texttt{noitemsep}.
 
 \PrintDemo{style=stacked}%%
 
-}{\DemoError{Package \demopackage{enumitem} not loaded}}%
+}{\DemoError{Package \package{enumitem} not loaded}}%
 %% ------------------------------------------------------------
 \subsection{Arbitrary labels (enumitem package)}
 
@@ -546,14 +549,14 @@ The \demopackage{enumitem} package provides many options to change the layout of
 
 \IfElsePackageLoaded{enumitem}{
 
-Furthermore labels can be changed using \demopackage{enumitem}, here for example using the label option.
+Furthermore labels can be changed using \package{enumitem}, here for example using the label option.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{enumitem} not loaded}}%
+}{\DemoError{Package \package{enumitem} not loaded}}%
 
 %% ------------------------------------------------------------
-\subsection{\demoenv{description} environment}
+\subsection{\env{description} environment}
 %
 \begin{filecontents*}{\democodefile}
 \begin{description}
@@ -563,12 +566,12 @@ Furthermore labels can be changed using \demopackage{enumitem}, here for example
 \end{filecontents*}
 
 
-The \demoenv{description} environment is used to describe items.
+The \env{description} environment is used to describe items.
 
 \PrintDemo{style=parallel}%%
 
 %% ------------------------------------------------------------
-\subsection{\demoenv{labeling} environment (Koma Script)}
+\subsection{\env{labeling} environment (Koma Script)}
 
 \begin{filecontents*}{\democodefile}
 \begin{labeling}[ --]{Rivers}
@@ -579,13 +582,13 @@ The \demoenv{description} environment is used to describe items.
 
 \ifcsdef{endlabeling}{%
 
-The \demoenv{labeling} environment is an extension of the 
+The \env{labeling} environment is an extension of the 
 description environment. It provided correct alignment using the 
 width of the largest element as a parameter.
 
 \PrintDemo{style=parallel}%%
 
-}{\DemoError{Environment \demoenv{labeling} not available}}%
+}{\DemoError{Environment \env{labeling} not available}}%
 
 
 \EndTemplateSection{DemoText}
@@ -613,7 +616,7 @@ width of the largest element as a parameter.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{graphicx} not loaded}}%
+}{\DemoError{Package \package{graphicx} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -633,7 +636,7 @@ width of the largest element as a parameter.
 \PrintDemo{style=stacked}%
 \clearpage
 
-}{\DemoError{Command \democs{captionof} not available}}%
+}{\DemoError{Command \cs{captionof} not available}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -652,7 +655,7 @@ width of the largest element as a parameter.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{caption} not loaded}}%
+}{\DemoError{Package \package{caption} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -679,12 +682,12 @@ width of the largest element as a parameter.
 
 \subsection{parallel figures with minipages}
 
-The \demoenv{minipage} environment can be used to display figures in parallel.
-However if the \demopackage{floatrow} package is loaded the standard \latex{} behaviour must be restored using \democs{RawFloats} at the beginning of the figure.
+The \env{minipage} environment can be used to display figures in parallel.
+However if the \package{floatrow} package is loaded the standard \latex{} behaviour must be restored using \cs{RawFloats} at the beginning of the figure.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{graphicx} not loaded}}%
+}{\DemoError{Package \package{graphicx} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -708,11 +711,11 @@ However if the \demopackage{floatrow} package is loaded the standard \latex{} be
 %%
 \subsection{subcaption in minipages (caption)}
 
-The \democs{subcaption} command allows to define subfigure captions independent of the code used to display the pictures.
+The \cs{subcaption} command allows to define subfigure captions independent of the code used to display the pictures.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{subcaption} not loaded}}%
+}{\DemoError{Package \package{subcaption} not loaded}}%
 }{} % end if 
 
 %% ------------------------------------------------------------
@@ -737,11 +740,11 @@ The \democs{subcaption} command allows to define subfigure captions independent 
 
 \subsection{subfigure environment (caption)}
 
-The \demoenv{subfigure} environment has a syntax equal to the normal figure environment, enhanced with the width and positioning arguments of a minipage environment.
+The \env{subfigure} environment has a syntax equal to the normal figure environment, enhanced with the width and positioning arguments of a minipage environment.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Environment \demoenv{subfigure} not available}}%
+}{\DemoError{Environment \env{subfigure} not available}}%
 }{} % end if 
 
 
@@ -767,7 +770,7 @@ The \demoenv{subfigure} environment has a syntax equal to the normal figure envi
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \demopackage{subfloat} not available}}%
+}{\DemoError{Command \package{subfloat} not available}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -793,11 +796,11 @@ The \demoenv{subfigure} environment has a syntax equal to the normal figure envi
 
 \IfElsePackageLoaded{floatrow}{%
 
-The \demopackage{floatrow} package provides many ways to layout pictures and tables and any other floating content. Here is an example with the \democs{ffigbox} command inside the \demoenv{floatrow} environment using the figure width for the first figure and the remaining width for the second figure.
+The \package{floatrow} package provides many ways to layout pictures and tables and any other floating content. Here is an example with the \cs{ffigbox} command inside the \env{floatrow} environment using the figure width for the first figure and the remaining width for the second figure.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{floatrow} not loaded}}%
+}{\DemoError{Package \package{floatrow} not loaded}}%
 }{}
 
 %% ------------------------------------------------------------
@@ -827,11 +830,11 @@ The \demopackage{floatrow} package provides many ways to layout pictures and tab
 
 \IfElsePackageLoaded{floatrow}{%
 
-The general \democs{floatbox} command allows vertical alignment in the third optional parameter. Here [t]op and [b]ottom alignment is demonstrated.
+The general \cs{floatbox} command allows vertical alignment in the third optional parameter. Here [t]op and [b]ottom alignment is demonstrated.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{floatrow} not loaded}}%
+}{\DemoError{Package \package{floatrow} not loaded}}%
 }{}
 
 
@@ -860,11 +863,11 @@ The general \democs{floatbox} command allows vertical alignment in the third opt
 
 \IfElsePackageLoaded{floatrow}{%
 
-The figure placement and layout of \demopackage{floatrow} can be changed to subfigures by using the \demoenv{subfloatrow} environment.
+The figure placement and layout of \package{floatrow} can be changed to subfigures by using the \env{subfloatrow} environment.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{floatrow} not loaded}}%
+}{\DemoError{Package \package{floatrow} not loaded}}%
 }{}
 
 %% ------------------------------------------------------------
@@ -883,11 +886,11 @@ text and a bit more text and a little more text to fill space}
 
 \IfElsePackageLoaded{floatrow}{%
 
-Using the first optional argument of \democs{floatbox} one can define a caption which is placed beside the figure with \democs{capbeside}.
+Using the first optional argument of \cs{floatbox} one can define a caption which is placed beside the figure with \cs{capbeside}.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{floatrow} not loaded}}%
+}{\DemoError{Package \package{floatrow} not loaded}}%
 }{}
 
 %% ------------------------------------------------------------
@@ -911,11 +914,11 @@ Using the first optional argument of \democs{floatbox} one can define a caption 
 
 \ifcsdef{captionbeside}{%
 
-If the \demopackage{floatrow} package is loaded the standard \latex{} behaviour must be restored using \democs{RawFloats} at the beginning of the figure.
+If the \package{floatrow} package is loaded the standard \latex{} behaviour must be restored using \cs{RawFloats} at the beginning of the figure.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Environment \demoenv{captionbeside} not available}}%
+}{\DemoError{Environment \env{captionbeside} not available}}%
 }{}
 
 %% ------------------------------------------------------------
@@ -935,7 +938,7 @@ If the \demopackage{floatrow} package is loaded the standard \latex{} behaviour 
 \ifcsdef{wrapfigure}{%
 
 Non floating figure inside the paragraph. Note that this can cause
-wrong placed free space in the text body. If so one must remove this by adding appropiate \democs{vspace} commands at the top and/or bottom of the figure.
+wrong placed free space in the text body. If so one must remove this by adding appropiate \cs{vspace} commands at the top and/or bottom of the figure.
 
 \nopagebreak[4]
 \vspace*{0.5em}\par\noindent
@@ -967,7 +970,7 @@ Donec luctus.
 
 \end{framed}
 
-}{\DemoError{Environment \demoenv{wrapfigure} not available}}%
+}{\DemoError{Environment \env{wrapfigure} not available}}%
 }{}%
 
 
@@ -986,7 +989,7 @@ Donec luctus.
 
 \ifcsdef{wrapfigure}{%
 
-The \demoenv{wrapfloat} environment in contrast to the \demoenv{wrapfigure} environment is a floating environment and can be used for not only figures but any floating content.
+The \env{wrapfloat} environment in contrast to the \env{wrapfigure} environment is a floating environment and can be used for not only figures but any floating content.
 
 \nopagebreak[4]
 \vspace*{0.5em}\par\noindent
@@ -1018,7 +1021,7 @@ Donec luctus.
 
 \end{framed}
 
-}{\DemoError{Environment \demoenv{wrapfloat} not available}}%
+}{\DemoError{Environment \env{wrapfloat} not available}}%
 }{}
 
 
@@ -1036,7 +1039,7 @@ Donec luctus.
 
 \ifcsdef{endfloatingfigure}{%
 
-The \demoenv{floatingfigure} environment is a non-floating environment and can be used only for figures. It has however some layout problems compared to wrapfloat, for example the caption is larger than the image and the image size must be chosen smaller than the free space.
+The \env{floatingfigure} environment is a non-floating environment and can be used only for figures. It has however some layout problems compared to wrapfloat, for example the caption is larger than the image and the image size must be chosen smaller than the free space.
 
 \nopagebreak[4]
 \vspace*{0.5em}\par\noindent
@@ -1067,7 +1070,7 @@ Donec luctus.
 
 \end{framed}
 
-}{\DemoError{Environment \demoenv{floatingfigure} not available}}%
+}{\DemoError{Environment \env{floatingfigure} not available}}%
 }{}
 %
 %% ------------------------------------------------------------
@@ -1111,7 +1114,7 @@ In this example the caption is as wide as the figure, which means that the capti
 
 \PrintDemo{style=lines}
 
-}{\DemoError{Environment \demoenv{addmargin} not available}}%
+}{\DemoError{Environment \env{addmargin} not available}}%
 }{}%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -1148,7 +1151,7 @@ the code \texttt{\bs{}captionsetup\{parboxrestore=full\}}.
 
 \PrintDemo{style=lines}%
 
-}{\DemoError{Environment \demoenv{addmargin} not available}}%
+}{\DemoError{Environment \env{addmargin} not available}}%
 }{}%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -1184,7 +1187,7 @@ adipiscing lorem. Pellentesque nulla augue, nonummy vel, tincidunt at, blandit
 \printlatexcode%
 \printlatexresultlines
 
-}{\DemoError{Package \demopackage{mcaption} not loaded}}%
+}{\DemoError{Package \package{mcaption} not loaded}}%
 }{}%
 % ------------------------------------------------------------
 
@@ -1193,7 +1196,7 @@ adipiscing lorem. Pellentesque nulla augue, nonummy vel, tincidunt at, blandit
 
 \ifcslength{doctextwidth}{%
 
-This template defines the commands \democs{doctextwidth} and \democs{doctextheight} which maintain their size even if the surrounding \democs{textwidth} changes. 
+This template defines the commands \cs{doctextwidth} and \cs{doctextheight} which maintain their size even if the surrounding \cs{textwidth} changes. 
 \vspace{0.5\baselineskip} \\ \noindent
 These sizes can be used in figures to specify the width in fixed paper depended sizes.
 \vspace{0.5\baselineskip} \\ \noindent
@@ -1213,7 +1216,7 @@ These sizes can be used in figures to specify the width in fixed paper depended 
   \end{minipage}}
 \end{minipage}}
 
-}{\DemoError{Length \demoenv{doctextwidth} not defined}}%
+}{\DemoError{Length \env{doctextwidth} not defined}}%
 
 \EndTemplateSection{DemoFigures}
 %% ============================================================
@@ -1229,15 +1232,15 @@ This section about tables is organized as follows:
         \ref{sec:tableStyleBooktabs2}),
   \item with custom commands for the style and the colors
         (\ref{sec:tableStyleCustom}), 
-  \item and with the package \demopackage{tablestyles}
+  \item and with the package \package{tablestyles}
         (\ref{sec:tableStylePackage}).
   \end{itemize}
 %
 \item Section \ref{sec:tableColumnTypes} is about
-      the alignment of columns in a table, the usage of column specifiers and the alignment of numbers using \demopackage{siunitx}.
+      the alignment of columns in a table, the usage of column specifiers and the alignment of numbers using \package{siunitx}.
 %
 \item In section \ref{sec:tableMultiColumnRow} the usage of 
-      \democs{multicolumn} and \democs{multirow} commands is shown.
+      \cs{multicolumn} and \cs{multirow} commands is shown.
 %
 \item Section \ref{sec:tableitemlists} shows how to correct the indentation
       for itemize lists.
@@ -1245,7 +1248,7 @@ This section about tables is organized as follows:
 \item Section \ref{sec:tablecolors} demonstrates the coloring of rows.
 %
 \item Section \ref{sec:tableTabuPackage} 
-      introduces the creation of tables with the \demopackage{tabu} package.
+      introduces the creation of tables with the \package{tabu} package.
 %
 \item How to create and present very large tables is introduced in section~\ref{sec:TableLarge}.
 \end{itemize}
@@ -1283,7 +1286,7 @@ Here some of the most common approaches to style a table are presented.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{booktabs} or \demopackage{caption} not loaded}}%
+}{\DemoError{Package \package{booktabs} or \package{caption} not loaded}}%
 
 \begin{filecontents*}{\democodefile}
 \small\sffamily\renewcommand{\arraystretch}{1.4}
@@ -1320,7 +1323,7 @@ Note that here the style of the table was further changed by the commands:
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{booktabs} not loaded}}%
+}{\DemoError{Package \package{booktabs} not loaded}}%
 
 
 
@@ -1357,15 +1360,15 @@ Note that here the style of the table was further changed by the commands:
 
 Here a custom style is applied
 \begin{itemize}
-\item \democs{small} \hfill tables are more compact.
-\item \democs{renewcommand}\{\democs{arraystretch}\}\{1.4\} \hfill better readibility of rows.
-\item \democs{sffamily} \hfill tables are better distinguished from the main text.
+\item \cs{small} \hfill tables are more compact.
+\item \cs{renewcommand}\{\cs{arraystretch}\}\{1.4\} \hfill better readibility of rows.
+\item \cs{sffamily} \hfill tables are better distinguished from the main text.
 \end{itemize}
 
 \PrintDemo{style=stacked}%
 
 }{\DemoError{Colors not defined}}%
-}{\DemoError{Package \demopackage{xcolor} or \demopackage{caption} not loaded}}%
+}{\DemoError{Package \package{xcolor} or \package{caption} not loaded}}%
 
 
 %% ------------------------------------------------------------
@@ -1407,9 +1410,9 @@ This package unifies the application of a style to a table. The following styles
 
 \PrintDemo{style=stacked}%
 
-One should note, that these commands do not work together with the package \demopackage{tabu}, since in that package most row color command do not work as expected or need to be replaced by color commands from the tabu package, see section~\ref{sec:tabletabucolor}.
+One should note, that these commands do not work together with the package \package{tabu}, since in that package most row color command do not work as expected or need to be replaced by color commands from the tabu package, see section~\ref{sec:tabletabucolor}.
 
-}{\DemoError{Packages \demopackage{xcolor}, \demopackage{caption} or \demopackage{tablestyles} not loaded}}%
+}{\DemoError{Packages \package{xcolor}, \package{caption} or \package{tablestyles} not loaded}}%
 
 
 
@@ -1460,7 +1463,7 @@ p-columns have a fixed width and align the text as justified.
 Note, that such a grid should not be applied to a table.
 It is here only to demonstrate the size of the columns.
 
-}{\DemoError{Column type \demoenv{p} not defined}}%
+}{\DemoError{Column type \env{p} not defined}}%
 
 %% ------------------------------------------------------------
 \subsubsection{Column types: p, m, b}
@@ -1501,7 +1504,7 @@ Therefore b-columns are on top of p-columns because their baselines are aligned.
 Note, that such a grid should not be applied to a table.
 It is here only to demonstrate the alignment.
 
-}{\DemoError{Column types \demoenv{p,m,b} not defined}}%
+}{\DemoError{Column types \env{p,m,b} not defined}}%
 
 %% ------------------------------------------------------------
 \subsubsection{Column types: X (tabularx)}
@@ -1527,7 +1530,7 @@ text which is considerably longer than the width of the column \\
 \IfColumntypeDefined{X}{%
 \ifcsdef{tabularx}{
 
-The package \demopackage{tabularx} defines a new tabular environment, which requires the total width of the tabular as a mandatory argument. The new X-columns take the remaining space to fill the tabular. 
+The package \package{tabularx} defines a new tabular environment, which requires the total width of the tabular as a mandatory argument. The new X-columns take the remaining space to fill the tabular. 
 Each column is aligned as justified.
 
 \PrintDemo{style=stacked}%
@@ -1536,8 +1539,8 @@ Each column is aligned as justified.
 Note, that such a grid should not be applied to a table.
 It is here only to demonstrate the size of the columns.
 
-}{\DemoError{Package \demopackage{tabularx} not loaded}}%
-}{\DemoError{Column types \demoenv{X} not defined}}%
+}{\DemoError{Package \package{tabularx} not loaded}}%
+}{\DemoError{Column types \env{X} not defined}}%
 
 %% ------------------------------------------------------------
 \subsubsection{Custom column types: L, C, R}
@@ -1573,7 +1576,7 @@ The predefined custom column types L, C and R all have a fixed width (they are b
 Note, that such a grid should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Column types \demoenv{L,C,R} not defined}}%
+}{\DemoError{Column types \env{L,C,R} not defined}}%
 
 %% ------------------------------------------------------------
 \subsubsection{Custom column types: W, Y, Z}
@@ -1612,8 +1615,8 @@ The choice of the character W, Y and Z is only based on the available characters
 Note, that such a grid should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Column types \demoenv{W,Y,Z} not defined}}%
-}{\DemoError{Package \demopackage{tabularx} not loaded}}%
+}{\DemoError{Column types \env{W,Y,Z} not defined}}%
+}{\DemoError{Package \package{tabularx} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -1643,7 +1646,7 @@ In this code the \texttt{!\{...\}} specifier is used to replace the cell separat
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{siunitx} not loaded}}%
+}{\DemoError{Package \package{siunitx} not loaded}}%
 
 \begin{filecontents*}{\democodefile}
 \small\renewcommand{\arraystretch}{1.4}
@@ -1697,8 +1700,8 @@ In this table all numbers are aligned, rounded and zeros added if necessary
 Note, that such a grid should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Column type \demoenv{S} not defined}}%
-}{\DemoError{Package \demopackage{siunitx} not loaded}}%
+}{\DemoError{Column type \env{S} not defined}}%
+}{\DemoError{Package \package{siunitx} not loaded}}%
 
 %% ------------------------------------------------------------
 \subsection{Multicolumn and multirow cells}
@@ -1725,9 +1728,9 @@ left  &  center  &  right       \\ \hline
 
 \noindent
 Note, that such a grid should not be applied to a table.
-It is here only to demonstrate the usage of \democs{multicolumn}
+It is here only to demonstrate the usage of \cs{multicolumn}
 
-}{\DemoError{Command \democs{multicolumn} not available}}%
+}{\DemoError{Command \cs{multicolumn} not available}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -1750,9 +1753,9 @@ left   &  centered  &  right  \\ \hline
 \PrintDemo{style=parallel}%
 \noindent
 Note, that such a grid should not be applied to a table.
-It is here only to demonstrate the usage of \democs{multicolumn}
+It is here only to demonstrate the usage of \cs{multicolumn}
 
-}{\DemoError{Command \democs{multirow} not available}}%
+}{\DemoError{Command \cs{multirow} not available}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -1775,9 +1778,9 @@ It is here only to demonstrate the usage of \democs{multicolumn}
 \PrintDemo{style=parallel}%
 \noindent
 Note, that such a grid should not be applied to a table.
-It is here only to demonstrate the usage of \democs{multicolumn}
+It is here only to demonstrate the usage of \cs{multicolumn}
 
-}{\DemoError{Command \democs{multirow} not available}}%
+}{\DemoError{Command \cs{multirow} not available}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -1824,7 +1827,7 @@ It is here only to demonstrate the usage of \democs{multicolumn}
 
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Command \democs{multirow} not available}}%
+}{\DemoError{Command \cs{multirow} not available}}%
 
 
 %% ------------------------------------------------------------
@@ -1877,7 +1880,7 @@ List require a special correction to be not, or rather to be intended correct in
 Note, that the grid lines should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Command \democs{tableitemize} not available or package \demopackage{tabularx} not loaded}}%
+}{\DemoError{Command \cs{tableitemize} not available or package \package{tabularx} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -1907,7 +1910,7 @@ typesetting, especially for mathematical text\tablefootnote{second footnote in t
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{tablefootnote} not available}}%
+}{\DemoError{Command \cs{tablefootnote} not available}}%
 
 
 %% ------------------------------------------------------------
@@ -1932,7 +1935,7 @@ content & content & content \\
 
 \subsection{Colors in tables: rowcolor(s)}
 \label{sec:tablecolors}
-The alternating row colors (zebra table style) is created by the \democs{rowcolors} commmand. A single row is colored with \democs{tableheadcolor}.
+The alternating row colors (zebra table style) is created by the \cs{rowcolors} commmand. A single row is colored with \cs{tableheadcolor}.
 
 \ifcsdef{rowcolor}{%
 \IfColorsDefined{tablerowcolor,tablebodycolor,tableheadcolor}{
@@ -1940,7 +1943,7 @@ The alternating row colors (zebra table style) is created by the \democs{rowcolo
 \PrintDemo{style=stacked}%
 
 }{\DemoError{Colors not defined}}%
-}{\DemoError{Command \democs{rowcolor} not available}}%
+}{\DemoError{Command \cs{rowcolor} not available}}%
 
 %% ------------------------------------------------------------
 \subsection{Tables with the tabu package}
@@ -1973,7 +1976,7 @@ The tabu environment from the tabu-package provides an alternative method for th
 Note, that the grid lines should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Package \demopackage{tabu} not loaded}}%
+}{\DemoError{Package \package{tabu} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2002,7 +2005,7 @@ Tabu provides X-type columns which have an additional horizontal alignment as an
 Note, that the grid lines should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Package \demopackage{tabu} not loaded}}%
+}{\DemoError{Package \package{tabu} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2031,7 +2034,7 @@ The X-columns can also be stretched using a multiplier.
 Note, that the grid lines should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Package \demopackage{tabu} not loaded}}%
+}{\DemoError{Package \package{tabu} not loaded}}%
 
 
 %% ------------------------------------------------------------
@@ -2064,7 +2067,7 @@ The X-columns further take the alignment as an option. Possible values are L,C,R
 Note, that the grid lines should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Package \demopackage{tabu} not loaded}}%
+}{\DemoError{Package \package{tabu} not loaded}}%
 
 
 %% ------------------------------------------------------------
@@ -2092,15 +2095,15 @@ content & content & content & content\\
 \subsubsection{Colors in tabu tables}
 \label{sec:tabletabucolor}
 
-The color commands from the xcolor package (\democs{rowcolor}) can not be used in tabu-tables. For this purpose the commands from the tabu package need to be applied, such as \democs{taburowcolors}.
+The color commands from the xcolor package (\cs{rowcolor}) can not be used in tabu-tables. For this purpose the commands from the tabu package need to be applied, such as \cs{taburowcolors}.
 
 \ifcsdef{tabu}{%
 \ifcsdef{rowcolor}{%
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{rowcolor} not available}}%
-}{\DemoError{Package \demopackage{tabu} not loaded}}%
+}{\DemoError{Command \cs{rowcolor} not available}}%
+}{\DemoError{Package \package{tabu} not loaded}}%
 
 
 %% ------------------------------------------------------------
@@ -2149,7 +2152,7 @@ List require a special correction to intended correct in a tabu cell.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{tableitemize} not available or package \demopackage{tabu} not loaded}}%
+}{\DemoError{Command \cs{tableitemize} not available or package \package{tabu} not loaded}}%
 
 %% ------------------------------------------------------------
 \subsection{Large tables}
@@ -2245,7 +2248,7 @@ This code demonstrates how to create columns which span over more than one page.
 
 \PrintDemo{style=none}%
 
-}{\DemoError{Packages \demopackage{xcolor} or \demopackage{longtable} not loaded}}%
+}{\DemoError{Packages \package{xcolor} or \package{longtable} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2329,23 +2332,23 @@ description   & content & content & content & content & content \\
 \subsubsection{longtabu (tabu package)}
 \label{sec:tableLargeLongtabu}
 
-This code demonstrates how to create columns which span over more than one page using the \demopackage{longtable} and the \demopackage{tabu} package.
+This code demonstrates how to create columns which span over more than one page using the \package{longtable} and the \package{tabu} package.
 
 The advantage here is, that no extra file needs to be created and X columns
-can be used with the additional possibilities of the \demopackage{tabu}
+can be used with the additional possibilities of the \package{tabu}
 package.
 
 \IfMultDefined{longtable,rowcolors,longtabu}{%
 
 \PrintDemo{style=none}%
 
-}{\DemoError{Packages \demopackage{xcolor}, \demopackage{longtable} or \demopackage{tabu} not loaded}}%
+}{\DemoError{Packages \package{xcolor}, \package{longtable} or \package{tabu} not loaded}}%
 
 %% ------------------------------------------------------------
 \subsubsection{Wide tables (addmargin)}
 \label{sec:tableLargeMargin}
 
-For wide tables one can use the \demoenv{addmargin} environment to
+For wide tables one can use the \env{addmargin} environment to
 extend the textwidth into the margin. The usage is demonstrate in section~\ref{sec:EnvAddmargin} and \ref{sec:figuresAddmargin}. 
 
 
@@ -2388,13 +2391,13 @@ text which is considerably longer than the width of the column \\
 \subsubsection{landscape orientated tables (sideways)}
 \label{sec:tableLargeSideways}
 
-The table orientated in landscape created by the environment \demoenv{sideways} is floating with the caption placed above the table in the direction of the page.
+The table orientated in landscape created by the environment \env{sideways} is floating with the caption placed above the table in the direction of the page.
 
 \IfMultDefined{sideways,rowcolors}{%
 
 \PrintDemo{style=page}%
 
-}{\DemoError{Packages \demopackage{xcolor} or \demopackage{rotating} not loaded}}%
+}{\DemoError{Packages \package{xcolor} or \package{rotating} not loaded}}%
 
 
 
@@ -2439,13 +2442,13 @@ text which is considerably longer than the width of the column \\
 \subsubsection{landscape orientated tables (sidewaystable)}
 \label{sec:tableLargeSidewaystable}
 
-The table orientated in landscape created by the environment \democs{sidewaystable} is non-floating. The content is displayed on the following page. The caption is rotated as well and thus placed above the table in the orientation of the table.
+The table orientated in landscape created by the environment \cs{sidewaystable} is non-floating. The content is displayed on the following page. The caption is rotated as well and thus placed above the table in the orientation of the table.
 
 \IfMultDefined{sideways,rowcolors}{%
 
 \PrintDemo{style=page}%
 
-}{\DemoError{Packages \demopackage{xcolor} or \demopackage{rotating} not loaded}}%
+}{\DemoError{Packages \package{xcolor} or \package{rotating} not loaded}}%
 
 %
 \EndTemplateSection{DemoTables}
@@ -2485,7 +2488,7 @@ Examples taken from \url{wikipedia.org}
 \PrintDemo{style=stacked}%
 
 %}{}%
-}{\DemoError{Commands \democs{mathcal}, \democs{oiint} or \democs{underset} not available.}}%
+}{\DemoError{Commands \cs{mathcal}, \cs{oiint} or \cs{underset} not available.}}%
 
 
 %% ------------------------------------------------------------
@@ -2502,7 +2505,7 @@ Examples taken from \url{wikipedia.org}
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{align} not available.}}%
+}{\DemoError{Command \cs{align} not available.}}%
 
 
 %% ------------------------------------------------------------
@@ -2521,7 +2524,7 @@ Examples taken from \url{wikipedia.org}
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{aligned} not available.}}%
+}{\DemoError{Command \cs{aligned} not available.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2538,7 +2541,7 @@ Here the number of alignment specifiers must be declared.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{alignat} not available.}}%
+}{\DemoError{Command \cs{alignat} not available.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2558,7 +2561,7 @@ Here the number of alignment specifiers must be declared.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{operatorname} or environment \demoenv{cases} not available.}}%
+}{\DemoError{Command \cs{operatorname} or environment \env{cases} not available.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2576,8 +2579,8 @@ is written as
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{pmatrix} not available.}}%
-}{\DemoError{Package \demopackage{amsmath} not loaded}}%
+}{\DemoError{Command \cs{pmatrix} not available.}}%
+}{\DemoError{Package \package{amsmath} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2593,7 +2596,7 @@ is written as
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{braket} not loaded}}%
+}{\DemoError{Package \package{braket} not loaded}}%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \begin{equation}
@@ -2607,7 +2610,7 @@ is written as
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{cancel} not loaded}}%
+}{\DemoError{Package \package{cancel} not loaded}}%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \begin{empheq}[box=\fbox]{align}
@@ -2621,7 +2624,7 @@ is written as
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{empheq} not loaded}}%
+}{\DemoError{Package \package{empheq} not loaded}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2639,7 +2642,7 @@ is written as
 
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Command \democs{mathbb} not available.}}%
+}{\DemoError{Command \cs{mathbb} not available.}}%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \[
@@ -2656,7 +2659,7 @@ is written as
 
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Command \democs{mathds} not available.}}%
+}{\DemoError{Command \cs{mathds} not available.}}%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \[
@@ -2672,7 +2675,7 @@ is written as
 
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Command \democs{mathcal} not available.}}%
+}{\DemoError{Command \cs{mathcal} not available.}}%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 You take \sfrac{1}{2} cup of sugar, \ldots
@@ -2684,7 +2687,7 @@ You take \sfrac{1}{2} cup of sugar, \ldots
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{sfrac} not available.}}%
+}{\DemoError{Command \cs{sfrac} not available.}}%
 
 \EndTemplateSection{DemoMath}
 %%% ============================================================
@@ -2711,7 +2714,7 @@ and finally with an uncertainty:  & $\SI{1,7(5)e-11}{m/s^2}$ \\
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \democs{siunitx} not loaded.}}%
+}{\DemoError{Package \cs{siunitx} not loaded.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -2725,7 +2728,7 @@ unitfrac: & $\unitfrac[2.34]{\micro m}{s}$ \\
 
 \subsection{compatible commands for units}
 
-The old units package defines the commands \democs{unit} and \democs{nicefrac}. The following commands are defined to provide some compatibility while the basic packages is switched to siunitx.
+The old units package defines the commands \cs{unit} and \cs{nicefrac}. The following commands are defined to provide some compatibility while the basic packages is switched to siunitx.
 
 Note that the numbers must be provided in the siunitx format.
 
@@ -2733,7 +2736,7 @@ Note that the numbers must be provided in the siunitx format.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \democs{siunitx} not loaded.}}%
+}{\DemoError{Package \cs{siunitx} not loaded.}}%
 
 \EndTemplateSection{DemoScience}
 %% ============================================================
@@ -2752,7 +2755,7 @@ Note that the numbers must be provided in the siunitx format.
 
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Command \democs{ding} not available.}}%
+}{\DemoError{Command \cs{ding} not available.}}%
 
 \EndTemplateSection{DemoSymbols}
 %% ============================================================
@@ -2888,12 +2891,12 @@ Text of this example taken from the original biblatex examples.
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=parallel}%
-}{\DemoError{Package \demopackage{biblatex} not loaded.}}%
+}{\DemoError{Package \package{biblatex} not loaded.}}%
 
 
-\subsubsection{Examples using \democs{parencite}}
+\subsubsection{Examples using \cs{parencite}}
 
-The \democs{parencite} command is similar to \democs{cite} at
+The \cs{parencite} command is similar to \cs{cite} at
 first glance, but the placement of the prenote argument is
 different.
 
@@ -2906,10 +2909,10 @@ This is just filler text \parencite[see][59--63]{companion}.
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=stacked}%
-}{\DemoError{Package \demopackage{biblatex} not loaded.}}%
+}{\DemoError{Package \package{biblatex} not loaded.}}%
 
 
-\subsubsection{Examples using \democs{textcite}}
+\subsubsection{Examples using \cs{textcite}}
 
 \begin{filecontents*}{\democodefile}
 \textcite{companion} show that this is just filler text.
@@ -2920,11 +2923,11 @@ This is just filler text \parencite[see][59--63]{companion}.
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=stacked}%
-}{\DemoError{Package \demopackage{biblatex} not loaded.}}%
+}{\DemoError{Package \package{biblatex} not loaded.}}%
 
-\subsubsection{Example using \democs{autocite}}
+\subsubsection{Example using \cs{autocite}}
 
-By default, the \democs{autocite} command works like \democs{parencite}.
+By default, the \cs{autocite} command works like \cs{parencite}.
 
 \begin{filecontents*}{\democodefile}
 This is just filler text \autocite{companion}.
@@ -2932,7 +2935,7 @@ This is just filler text \autocite{companion}.
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=stacked}%
-}{\DemoError{Package \demopackage{biblatex} not loaded.}}%
+}{\DemoError{Package \package{biblatex} not loaded.}}%
 
 \subsubsection{Multiple citations}
 
@@ -2945,7 +2948,7 @@ enable sorting by setting the `sortcites' package option.
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=stacked}%
-}{\DemoError{Package \demopackage{biblatex} not loaded.}}%
+}{\DemoError{Package \package{biblatex} not loaded.}}%
 
 \subsubsection{Citations details}
 
@@ -2958,7 +2961,7 @@ enable sorting by setting the `sortcites' package option.
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=parallel}%
-}{\DemoError{Package \demopackage{biblatex} not loaded.}}%
+}{\DemoError{Package \package{biblatex} not loaded.}}%
 
 
 \EndTemplateSection{DemoBib}
@@ -2985,7 +2988,7 @@ The resulting index is printed on page~\pageref{sec:Index}.
 
 \ifcsdef{index}{
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{index} not available.}}%
+}{\DemoError{Command \cs{index} not available.}}%
 
 
 %% ------------------------------------------------------------
@@ -3023,8 +3026,8 @@ focal area through the whole imaging system is termed \gls{PSF}. Both, the
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \subsubsection{List of symbols (glossaries)}
@@ -3061,8 +3064,8 @@ because \gls{symb:Pi} is an irrational number.
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \subsubsection{Glossary (package glossaries)}
@@ -3089,8 +3092,8 @@ The \gls{glos:CD} was originally developed to play sound recordings, but later e
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \subsubsection{Styles of package glossaries}
@@ -3104,8 +3107,8 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -3115,8 +3118,8 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -3126,8 +3129,8 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -3137,8 +3140,8 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 \IfPackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3153,8 +3156,8 @@ This template defines the following styles
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -3164,8 +3167,8 @@ This template defines the following styles
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -3178,8 +3181,8 @@ This template defines the following styles
   \IfPackageLoaded{tabu}{%
     \PrintDemo{style=stacked}%
   }
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -3192,8 +3195,8 @@ This template defines the following styles
   \IfPackageLoaded{tabu}{%
     \PrintDemo{style=stacked}%
   }
-}{\DemoError{Command \democs{gls} not available.}}%
-}{\DemoError{Package \demopackage{glossaries} not loaded.}}%
+}{\DemoError{Command \cs{gls} not available.}}%
+}{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
 
@@ -3218,11 +3221,11 @@ paragraphs, figures and tables in the the normal text is influenced.
 
 \IfElsePackageLoaded{todonotes}{%
 
-The \demopackage{todonotes} package provides the commands \democs{todo} and \democs{missingfigure} to insert todo notes in a \latex{} document. These notes are automatically collected and can be printed out at the end of the document.
+The \package{todonotes} package provides the commands \cs{todo} and \cs{missingfigure} to insert todo notes in a \latex{} document. These notes are automatically collected and can be printed out at the end of the document.
 
 \PrintDemo{style=lines}%
 
-}{\DemoError{Package \demopackage{todonotes} not loaded.}}%
+}{\DemoError{Package \package{todonotes} not loaded.}}%
 
 \begin{filecontents*}{\democodefile}
 \missingfigure{Description or Caption of the missing figure}
@@ -3230,7 +3233,7 @@ The \demopackage{todonotes} package provides the commands \democs{todo} and \dem
 
 \IfElsePackageLoaded{todonotes}{%
 
-The \democs{missingfigure} command is supposed to indicate missing figures. It can be handled as an \democs{includegraphics} command in any figure environment.
+The \cs{missingfigure} command is supposed to indicate missing figures. It can be handled as an \cs{includegraphics} command in any figure environment.
 
 \PrintDemo{style=lines}%
 }{}%
@@ -3256,7 +3259,7 @@ Verbatim line.
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
-}{\DemoError{Package \demopackage{fancyvrb} not loaded.}}%
+}{\DemoError{Package \package{fancyvrb} not loaded.}}%
 
 \begin{filecontents*}{\democodefile}
 \begin{Verbatim}[frame=lines]
@@ -3411,7 +3414,7 @@ Some text ...
 
 \IfElsePackageLoaded{listings}{
   \subsubsection{LaTeX code example}
-  This example includes a caption that can be printed in a list at the end of the document with \democs{lstlistoflistings}.
+  This example includes a caption that can be printed in a list at the end of the document with \cs{lstlistoflistings}.
   \PrintDemo{style=none}%
 }{}%
 
@@ -3436,7 +3439,7 @@ the curly brackets, which is set in small caps. The following text flows
 
 \ifcsdef{lettrine}{
   \PrintDemo{style=stacked}%
-}{\DemoError{Command \democs{lettrine} not available.}}%
+}{\DemoError{Command \cs{lettrine} not available.}}%
 
 \begin{filecontents*}{\democodefile}
 \lettrine[lines=3]{A}{} second example where the initial is printed across
@@ -3483,7 +3486,7 @@ Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi eu 
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Environment \demoenv{boxedminipage} not available.}}%
+}{\DemoError{Environment \env{boxedminipage} not available.}}%
 
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -3500,7 +3503,7 @@ Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi eu 
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \democs{ovalbox} not available.}}%
+}{\DemoError{Command \cs{ovalbox} not available.}}%
 %
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
@@ -3522,7 +3525,7 @@ Framed boxes with text width, which can span over more than one page.
 
 \PrintDemo{style=none}%
 
-}{\DemoError{Command \democs{framed} not available.}}%
+}{\DemoError{Command \cs{framed} not available.}}%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 % setup for all frames
@@ -3551,7 +3554,7 @@ be defined in every detail.
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \democs{mdframed} not loaded.}}%
+}{\DemoError{Package \cs{mdframed} not loaded.}}%
 
 \EndTemplateSection{DemoFancy}
 
@@ -3588,8 +3591,8 @@ be defined in every detail.
 \subsubsection{basic nodes}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{tikz} not loaded}}%
-}{\DemoError{Package \demopackage{graphicx} not loaded}}%
+}{\DemoError{Package \package{tikz} not loaded}}%
+}{\DemoError{Package \package{graphicx} not loaded}}%
 
 
 %% ------------------------------------------------------------
@@ -3629,8 +3632,8 @@ be defined in every detail.
 \subsubsection{for each example}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{xcolor} not loaded, Color \emph{OrangeRed} not defined}}%
-}{\DemoError{Package \demopackage{tikz} not loaded}}%
+}{\DemoError{Package \package{xcolor} not loaded, Color \emph{OrangeRed} not defined}}%
+}{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -3662,7 +3665,7 @@ be defined in every detail.
 \subsubsection{Fancy plot with tikz}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{tikz} not loaded}}%
+}{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -3731,7 +3734,7 @@ be defined in every detail.
 \IfTikzLibraryLoaded{circuits}{
 \PrintDemo{style=stacked}%
 }{\DemoError{tikz library `circuits' not loaded}}
-}{\DemoError{Package \demopackage{tikz} not loaded}}%
+}{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -3760,7 +3763,7 @@ be defined in every detail.
 \PrintDemo{style=stacked}%
 
 }{\DemoError{tikz library `lindenmayer' not loaded}}
-}{\DemoError{Package \demopackage{tikz} not loaded}}%
+}{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -3802,7 +3805,7 @@ be defined in every detail.
 \IfTikzLibraryLoaded{mindmap}{
 \PrintDemo{style=stacked}%
 }{\DemoError{tikz library `mindmap' not loaded}}
-}{\DemoError{Package \demopackage{tikz} not loaded}}%
+}{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -3827,7 +3830,7 @@ be defined in every detail.
 \PrintDemo{style=stacked}%
 
 }{\DemoError{tikz library `shadings' not loaded}}
-}{\DemoError{Package \demopackage{tikz} not loaded}}%
+}{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
 %
 %% ------------------------------------------------------------
@@ -3857,7 +3860,7 @@ be defined in every detail.
 \PrintDemo{style=stacked}%
 
 }{\DemoError{tikz library `topaths' not loaded}}%
-}{\DemoError{Package \demopackage{tikz} not loaded}}%
+}{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -3886,8 +3889,8 @@ be defined in every detail.
 \subsubsection{Simple plot with curve (calculated by TeX)}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{pgfplots} not loaded}}%
-}{\DemoError{Package \demopackage{graphicx} not loaded}}%
+}{\DemoError{Package \package{pgfplots} not loaded}}%
+}{\DemoError{Package \package{graphicx} not loaded}}%
 
 
 %% ------------------------------------------------------------
@@ -3922,7 +3925,7 @@ be defined in every detail.
 \subsubsection{Simple plot with curve (calculated by gnuplot)}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{pgfplots} not loaded}}%
+}{\DemoError{Package \package{pgfplots} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -3951,7 +3954,7 @@ be defined in every detail.
 \subsubsection{Semilog axis with filled background}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{pgfplots} not loaded}}%
+}{\DemoError{Package \package{pgfplots} not loaded}}%
 }{}%
 
 
@@ -3983,7 +3986,7 @@ be defined in every detail.
 \subsubsection{3D plot}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{pgfplots} not loaded}}%
+}{\DemoError{Package \package{pgfplots} not loaded}}%
 }{}%
 
 
@@ -4211,7 +4214,7 @@ be defined in every detail.
 \subsubsection{Plotting data from a file}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{pgfplots} not loaded}}%
+}{\DemoError{Package \package{pgfplots} not loaded}}%
 }{}%
 
 %% ------------------------------------------------------------
@@ -4258,7 +4261,7 @@ be defined in every detail.
 \subsubsection{fitting with gnuplot}
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{pgfplots} not loaded}}%
+}{\DemoError{Package \package{pgfplots} not loaded}}%
 }{}%
 
 
@@ -4397,7 +4400,7 @@ x1	y1	y2	y3	y4
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Package \demopackage{pgfplots} not loaded}}%
+}{\DemoError{Package \package{pgfplots} not loaded}}%
 }{}%
 
 
