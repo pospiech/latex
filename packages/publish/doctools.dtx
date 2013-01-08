@@ -621,7 +621,7 @@ Files
 \ifcsdef{marg}{}{% if not defined
 \ifcsdef{meta}%
   {\newcommand\marg[1]{\texttt{\{}\meta{#1}\texttt{\}}}}%
-  {\newcommand\argument[1]{
+  {\newcommand\marg[1]{
 \texttt{\{}%
 $\langle${\normalfont\slshape#1}$\rangle$
 \texttt{\}}}}%
@@ -635,8 +635,8 @@ $\langle${\normalfont\slshape#1}$\rangle$
 %% \oarg
 \ifcsdef{oarg}{}{% if not defined
 \ifcsdef{meta}%
-  {\newcommand\marg[1]{\texttt{[}\meta{#1}\texttt{]}}}%
-  {\newcommand\argument[1]{
+  {\newcommand\oarg[1]{\texttt{[}\meta{#1}\texttt{]}}}%
+  {\newcommand\oarg[1]{
 \texttt{[}%
 $\langle${\normalfont\slshape#1}$\rangle$
 \texttt{]}}}%
@@ -874,21 +874,21 @@ $\langle${\normalfont\slshape#1}$\rangle$
   \ifcsdef{phantomsection}{\phantomsection}{}
   \label{file:#1}%
   \ifdoctools@createIndexEntries
-  \index{files!\IndexFileB}%
+  \index{\textsc{Files}!\IndexFileB}%
   \fi
   \@esphack  
 }
 %% add entries of comma list to the index.
 \newcommand*{\@AddFileEntry}[1]{%
   \ifx\IndexFileB\@empty
-    %% add first entry to index with lexEntry@\texttt{printEntry}
-    \def\IndexFileB{#1@\texttt{#1}}%
+    %% add first entry to index with lexEntry@{printEntry}
+    \def\IndexFileB{#1@#1}%
   \else
     \expandafter\def\expandafter\IndexFileB\expandafter{%
     %% add following entries to index with 
-    %% previousEntries!lexEntry@\texttt{printEntry}
+    %% previousEntries!lexEntry@{printEntry}
 \IndexFileB!%
-#1@\texttt{#1}%
+#1@#1%
     }%
   \fi
 }
@@ -897,7 +897,7 @@ $\langle${\normalfont\slshape#1}$\rangle$
   \ifcsdef{hyperref}%
     {\hyperref[file:#1]{\PrintFileName{#1}}}%
     {\PrintFileName{#1}}
-} 
+}% 
 %%
 } % end of \AtBeginDocument 
 

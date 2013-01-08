@@ -10,17 +10,20 @@ SET PACKAGE=doctools
 SET FOLDER=%TARGETDIR%
 call:createPackage %FOLDER% %PACKAGE%
 
+:: Package: templatedemo
+SET PACKAGE=templatedemo
+SET FOLDER=%TARGETDIR%
+call:createPackage %FOLDER% %PACKAGE%
+IF EXIST "%FOLDER%\%PACKAGE%\doctools.sty" del "%FOLDER%\%PACKAGE%\doctools.sty"
+
+echo.&pause&goto:CleanUp
+
 :: Package: tablestyles
 SET PACKAGE=tablestyles
 SET FOLDER=%TARGETDIR%
 call:createPackage %FOLDER% %PACKAGE%
 IF EXIST "%FOLDER%\%PACKAGE%\doctools.sty" del "%FOLDER%\%PACKAGE%\doctools.sty"
 
-:: Package: templatedemo
-SET PACKAGE=templatedemo
-SET FOLDER=%TARGETDIR%
-call:createPackage %FOLDER% %PACKAGE%
-IF EXIST "%FOLDER%\%PACKAGE%\doctools.sty" del "%FOLDER%\%PACKAGE%\doctools.sty"
 
 :: Package: templatesection
 SET PACKAGE=templatesection
@@ -35,7 +38,6 @@ call:createPackage %FOLDER% %PACKAGE%
 IF EXIST "%FOLDER%\%PACKAGE%\doctools.sty" del "%FOLDER%\%PACKAGE%\doctools.sty"
 
 call:CleanUP
-
 echo.&pause&goto:eof
 
 
