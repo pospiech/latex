@@ -1,4 +1,6 @@
-%!TeX encoding=utf8
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
 
 %% Bug fixes and other packages to be loaded before the class
 \RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
@@ -24,6 +26,10 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Must be loaded first!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom
+\usepackage{etex} 
+\reserveinserts{28}
+% packages required for the template
 \usepackage{templatesection}
 \usepackage{templatetools}
 \usepackage{templatedemo}
@@ -70,7 +76,7 @@
 \IfDefined{UseDefinition}{%
   %\UseDefinition{Target}{Print}
   \UseDefinition{Target}{Web}
-}%
+}% end of UseDefinition
 
 \IfPackageLoaded{hyperref}{%
 %%% set layout of PDF pages
@@ -84,17 +90,7 @@
   %                 odd-numbered pages to the right.
   %  TwoPageLeft    Displays two pages, odd-numbered pages to the left 
   %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
-}%
-
-% The backend and encodings for biblatex 
-% are configured in file:
-%
-%    preamble/packages.tex
-%
-% in section
-%    PackagesCitation
-%
-%
+}% (end of hyperref)
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % custom definitions
@@ -125,7 +121,7 @@
   % add all .bib files:
   \addbibresource{bib/BibtexDatabase.bib}
   % \addbibresource{bib/BibtexData-anytopic.bib}
-}%
+}% end: biblatex
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % cross references 
@@ -142,7 +138,7 @@
 % content/2-Experiments,
 % content/3-Results,
 % content/4-Summery,
-%}
+%} % end includeonly
 
 %%% document start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -184,19 +180,20 @@
   \printglossary[type=symbolslist,style=longtabuFancyHeader]
   % print out glossary
   \printglossary[style=altlist]
-}
+} % end of glossaries
 
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter
 %
 % (files loaded with include must not have the prefix .tex)
 %
-%\include{content/demo/demo}
 \include{content/0-Introduction}
 \include{content/1-Theory}
 \include{content/2-Experiments}
 \include{content/3-Results}
 \include{content/4-Summery}
+
+%%% -- end of main content
 
 % -- bibliography --
 % (must be placed _before_ appendix)
@@ -206,7 +203,7 @@
   \printbibliography[%
     heading=bibintoc, % (bibintoc, bibnumbered)
   ]	
-}
+}% end of bibliography
 
 %% -- list of figures and tables --
 \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lof}
@@ -232,11 +229,10 @@
 % <------------------------
 
 %% -- Index --
-
 \IfDefined{printindex}{%
   \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
   \printindex%
-}%
+}% end of index
 
 \input{content/Z-Thanks.tex}
 

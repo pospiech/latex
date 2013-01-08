@@ -17,53 +17,7 @@
    ,rulecolor = \color{black}%
 %%% language
    ,language = [LaTeX]TeX%
-   % LaTeX programming
-   ,moretexcs={setlength,usepackage,newcommand,renewcommand,RequirePackage,
-     SelectInputMappings,ifpdftex,ifpdfoutput,AtBeginEnvironment},
-   % other commands
-   ,moretexcs={maketitle,text,includegraphics,chapter,section,subsection,
-     subsubsection,paragraph,textmu,enquote,blockquote,ding,mathds,ifcsdef,Bra,Ket,Braket,subcaption,lettrine,mdfsetup,captionof,listoffigures,listoftables,tableofcontents,appendix}
-   % tables
-   ,moretexcs={newcolumntype,rowfont,taburowcolors,rowcolor,rowcolors,bottomrule,
-     toprule,midrule,}
-   % hyperref
-   ,moretexcs={hypersetup}
-   % glossaries
-   ,moretexcs={gls,printglossary,glsadd,newglossaryentry,newacronym}
-   % Koma
-   ,moretexcs={mainmatter,frontmatter,geometry,KOMAoptions,setkomafont,addtokomafont}
-   % SI, unit
-   ,moretexcs={si,SI,sisetup,unit,unitfrac,micro}
-   % biblatex package
-   ,moretexcs={newblock,ExecuteBibliographyOptions,addbibresource}
-   % math packages
-   ,moretexcs={operatorname,frac,sfrac,dfrac,DeclareMathOperator,mathcal,underset}
-   % demo package
-   ,moretexcs={democodefile,demopackage,democs,democommand,demoenv,DemoError}  
-   % tablestyles
-   ,moretexcs={theadstart,tbody,tsubheadstart,tsubhead,tend}
-   % code section package
-   ,moretexcs={DefineTemplateSection,SetTemplateSection,BeginTemplateSection,
-     EndTemplateSection}
-   % template tools package
-   ,moretexcs={IfDefined,IfUndefined,IfElseDefined,IfElseUndefined,IfMultDefined,
-     IfNotDraft,IfNotDraftElse,IfDraft,IfPackageLoaded,IfElsePackageLoaded,IfPackageNotLoaded,IfPackagesLoaded,IfPackagesNotLoaded,ExecuteAfterPackage,ExecuteBeforePackage,IfTikzLibraryLoaded,IfColumntypeDefined,IfColumntypesDefined,IfColorDefined,IfColorsDefined,IfMathVersionDefined,SetTemplateDefinition,UseDefinition,IfFileExists,iflanguage}
-   % todonotes
-   ,moretexcs={todo,missingfigure}
-   % listings
-   ,moretexcs={lstloadlanguages,lstdefinestyle,lstset}
-   % index
-   ,moretexcs={indexsetup}
-   % glossaries
-   ,moretexcs={newglossarystyle,glossarystyle,deftranslation,newglossary}
-   % tikz
-   ,moretexcs={usetikzlibrary}
-   % color
-   ,moretexcs={definecolor,colorlet}
-   % caption
-   ,moretexcs={captionsetup,DeclareCaptionStyle}
-   % floatrow
-   ,moretexcs={floatsetup}
 }
+% \input{peamble/listings-latex-texcs.tex}
 
 \lstloadlanguages{[LaTeX]TeX}

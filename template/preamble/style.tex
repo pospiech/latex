@@ -1,3 +1,4 @@
+%% -- style section selections -->
 \DefineTemplateSection[true]{StyleColors}
 \DefineTemplateSection[true]{StyleMath}
 \DefineTemplateSection[true]{StyleDiagrams}
@@ -23,7 +24,7 @@
 \DefineTemplateSection[true]{StyleLayoutTOC}
 \DefineTemplateSection[true]{StylePdf}
 \DefineTemplateSection[true]{StyleFixProblems}
-
+%% <--------------------------------
  
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Colors
@@ -60,6 +61,7 @@
   }
 }%
 
+% Execute color definition defined by Target->Web
 \UseDefinition{Target}{Web}
 
 % table colors 
@@ -198,7 +200,8 @@
 \renewcommand*{\mkcitation}[1]{{\,}#1}
 \renewcommand*{\mkccitation}[1]{ #1}
 
-\SetBlockThreshold{2} % Anzahl von Zeilen
+\SetBlockThreshold{2} % Number of Lines at which a blockquote is separated
+                      % from the text.
 
 \newenvironment{myquote}%
   {\begin{quote}\small}%
@@ -412,8 +415,8 @@
 }%
 
 % reloading of typearea, necessary if setting of spacing changed
-\IfPackageLoaded{typearea}{% Wenn typearea geladen ist
-   \IfPackageNotLoaded{geometry}{% aber nicht geometry
+\IfPackageLoaded{typearea}{% If typearea is loaded
+   \IfPackageNotLoaded{geometry}{% and geometry is not loaded
       \typearea[current]{last}
 %
 % BCOR
@@ -433,8 +436,8 @@
 %    last     % Satzspiegelberechnung mit demselben DIV -Argument, das beim
 %             % letzten Aufruf angegeben wurde, erneut durchführen
 %
-   }
-}
+   } % \IfPackageNotLoaded{geometry}
+} % \IfPackageLoaded{typearea}
 \EndTemplateSection{StylePageLayout}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Titlepage
@@ -507,7 +510,6 @@
 }
 
 \setkomafont{sectioning}{\SectionFontStyle}
-%\setkomafont{part}{\usekomafont{sectioning}}
 %\setkomafont{section}{\usekomafont{sectioning}}
 %\setkomafont{subsection}{\usekomafont{sectioning}}
 %\setkomafont{subsubsection}{\usekomafont{sectioning}}
@@ -525,8 +527,8 @@
 %\setkomafont{footnotereference}{}
 %\setkomafont{minisec}{}
 
-%\setkomafont{partnumber}{\bfseries\SectionFontStyle}
-%\setkomafont{partentrynumber}{}
+\setkomafont{part}{\usekomafont{sectioning}\LARGE}
+\setkomafont{partnumber}{\usekomafont{sectioning}\Huge}
 
 \setkomafont{pageheadfoot}{\normalfont\normalcolor\small\sffamily}
 % \setkomafont{pagenumber}{\bfseries\usekomafont{sectioning}}
@@ -590,7 +592,7 @@
 \IfPackageLoaded{tocstyle}{
 % predefined styles
 \usetocstyle{standard} % A style similar to the standard classes. 
-%\usetocstyle{KOMAlike} % A style similar to the KOMA-Script classes.  
+% \usetocstyle{KOMAlike} % A style similar to the KOMA-Script classes.  
 %%            % This is almost the same like standard, but instead 
 %%            % of bold face \usekomafont { disposition } will be used if 
 %%            % \usekomafont was defined and sans serif, bold face
@@ -609,9 +611,12 @@
 %\newcommand{\fontTOC}{\sffamily}
 \newcommand{\fontTOC}{\rmfamily}
 
-\IfPackageNotLoaded{tocloft}{
+
+\IfPackageNotLoaded{tocloft}{ % inkompatible
+\IfPackageNotLoaded{tocstyle}{ % tocstyle does not work with \setkomafont
    % apply style of TOC using koma script
-   \setkomafont{partentry}{\usekomafont{sectioning}\large}
+   \setkomafont{partentry}{\fontTOC\bfseries\large}
+   \setkomafont{partentrypagenumber}{\fontTOC\bfseries}
    \IfElseDefined{chapter}{%
       \setkomafont{chapterentry}{\bfseries\fontTOC}
       \setkomafont{chapterentrypagenumber}{\bfseries\fontTOC}
@@ -619,7 +624,8 @@
       \setkomafont{sectionentry}{\bfseries\fontTOC}
       \setkomafont{sectionentrypagenumber}{\bfseries\fontTOC}
    }
-}
+}}
+
 
 %%% === Appereance of Lists of figures, tables etc.  ===
 \KOMAoptions{%
