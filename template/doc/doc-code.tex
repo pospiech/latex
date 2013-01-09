@@ -83,7 +83,7 @@ Here possible options are selectable, which configure the way the pdf document i
 The backend and encodings for \package{biblatex} are configured in \file{preamble/packages.tex} together with the loading of the package, see \cref{sec:preamble:bibliography}.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Custom definitions}
-With the following files custom macros (\file{macros/newcommands.tex} and additional hypernation patterns \file{preamble/Hyphenation.tex} are loaded. 
+With the following files custom macros (\file{macros/newcommands.tex} and additional hypernation patterns \file{content/hyphenation.tex} are loaded. 
 %%?  file: LaTeXTemplate.tex
 %%? start: % ~~~~~~~~~
 %%?   end: \input{content/hyphenation.tex}
@@ -154,7 +154,7 @@ An abstract is common in phd thesis, but unusual in master and bachelor thesis. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Declaration}
-These lines load the document \file{content/Z-Declaration} in which you can state that the whole document is based on your ideas and written by only yourself. As far as I know this is required in bachelor and master thesis, but not part of phd-thesis. Comment out this line if you do not require it.
+These lines load the document \file{content/Z-Declaration.tex} in which you can state that the whole document is based on your ideas and written by only yourself. As far as I know this is required in bachelor and master thesis, but not part of phd-thesis. Comment out this line if you do not require it.
 %%?  file: LaTeXTemplate.tex
 %%? start: % -- declaration --
 %%?   end: \input{content/Z-Declaration.tex}
@@ -331,7 +331,7 @@ File that loads MyriadPro and takes care of the package loaded order. MyriadPro 
 
 This is the file that loads all packages. The packages are grouped together according to there usage. However in many cases the loading order must be different. Therefore the loading order is corrected by commands such as \cs{ExecuteAfterPackage}. If packages can only be loaded after other packages have been loaded or must not be loaded in a special combination this is recognized and the package either loaded or not in order to prevent the template from not compiling. 
 
-All package groups, named within this text \emph{sections}, start with the command \cs{BeginTemplateSection} and end with \cs{EndTemplateSection}. If these section are included in the compilation or excludes (not compiled) is defined at the beginning of the file:
+All package groups, named within this text \emph{sections}, start with \cs{BeginTemplateSection} and end with \cs{EndTemplateSection}. If these section are included in the compilation or excludes (not compiled) is defined at the beginning of the file:
 
 %%?  file: preamble/packages.tex
 %%? start: %% -- package section selections -->
@@ -995,6 +995,14 @@ Configuration of package \package{goemtry} or package \package{typearea}.
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
 %%?   end: \EndTemplateSection{StylePageLayout}
+
+% .........................................................................
+\subsubsection{preamble/style-geometry.tex}
+\labelfile{preamble/style-geometry.tex}
+
+Configuration of package \package{geometry}. 
+
+\printCodeFromFile[1]{1000}{preamble/style-geometry.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Titlepage}
