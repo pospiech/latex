@@ -127,9 +127,9 @@ def parseDefinitionFile(parseFile, outputFile):
 
 
 if __name__ == "__main__":
-    baseFilePath = r"C:\SVN\google code\latexthesistemplate\trunk\template\doc"
+    baseFilePath = r"..\template\doc"
     parseFile = baseFilePath + r"\doc-code.tex"
     outputFile = baseFilePath + r"\doc-code-filled.tex"
-    baseInputPath = r"C:\SVN\google code\latexthesistemplate\trunk\template"
+    baseInputPath = r"..\template"
     #
     parseDefinitionFile(parseFile, outputFile)
