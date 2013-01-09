@@ -1,4 +1,5 @@
 List of packages that shall be integrated in future versions
 
+  * morewrites
   * biblatex-trad
   * hyphsubst (does not work on luatex ?, see http://tex.stackexchange.com/questions/54426/why-does-hyphsubst-not-work-with-luatex)
