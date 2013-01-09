@@ -16,8 +16,6 @@ SET FOLDER=%TARGETDIR%
 call:createPackage %FOLDER% %PACKAGE%
 IF EXIST "%FOLDER%\%PACKAGE%\doctools.sty" del "%FOLDER%\%PACKAGE%\doctools.sty"
 
-echo.&pause&goto:CleanUp
-
 :: Package: tablestyles
 SET PACKAGE=tablestyles
 SET FOLDER=%TARGETDIR%
