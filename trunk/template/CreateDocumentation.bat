@@ -1,11 +1,12 @@
 @ECHO OFF
 cls
 
-SET TEXFILE=TemplateDemo
+SET TEXFILE=TemplateDocumentation
 
 pdflatex -shell-escape -interaction=nonstopmode %TEXFILE%
 makeglossaries %TEXFILE%
 biber %TEXFILE%
+makeindex %TEXFILE%.ist
 pdflatex -shell-escape -interaction=nonstopmode %TEXFILE%
 pdflatex -shell-escape -interaction=nonstopmode %TEXFILE%
 
