@@ -1,15 +1,10 @@
 22.12.
 
-- demo: More Math example
-
-- biblatex: make style 
-
-- docu: Pakete, Vorlage allgemein
+Todo: biblatex: make style 
 
 10.01
 
-- make sure language specific commands are correct
-- demo of template specific commands
+Check: demo of template specific commands
 
 18.01:
 - remove framed from demo.tex ?
@@ -17,11 +12,15 @@
 
 24.04:
 
-- package docu: create common files
-- update all docu 
-- create general docu for the template
+Work (in progress): create general docu for the template
 
-- improve templatedemo.sty documentation. Better text, full list of examples, docu of code
+- improve templatedemo.sty documentation. 
+ --> 2012-11-19: mostly done, improve text
 
 01.05
 - remove BibtexDatabase.bib
+  --> stil required, but content replaced
+
+2012-10-20
+- TODO: create pgfplots options file
+
