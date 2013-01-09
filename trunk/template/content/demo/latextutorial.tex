@@ -4,12 +4,14 @@
 % - http://sip.clarku.edu/tutorials/TeX/
 % and extended and modified by Matthias Pospiech
 
+\ifcsdef{cs}{}{\newcommand{\cs}[1]{\texttt{\textbackslash{}#1}\relax}}%
+
 \section{LaTeX Typesetting By Example}
 \label{sec:example:tutorial}
 This section demonstrates a basic set of LaTeX formatting commands and shows how they look like in this template. For comparison of the typeset output with the input document refer to the code listing starting on page \pageref{sec:example:code}.
 
 The content presented here is based on similar text by Phil Farrell\footnote{\url{https://pangea.stanford.edu/computing/unix/formatting/latexexample.php}} and Harvey Gould\footnote{\url{http://sip.clarku.edu/tutorials/TeX/}}.
-For further reading on the possibilities of this template please refer to the file \path{TemplateDemo.pdf}.
+For further reading on the possibilities of this template please refer to the file \path{TemplateDocumentation.pdf}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Plain Text}
@@ -61,7 +63,7 @@ If not, \cs{blockquote} will behave like \cs{textquote}.
 Depending on the threshold type option, the threshold may be based on the number
 of lines required to typeset the text or on the number of words in the text.}
 
-The standard command for citations is \texttt{\textbackslash{}cite} which may have a prenote argument for adding a page number or something similar. To show how a citation is typeset we cite here a book about LaTeX \cite[59]{companion}. Further commands such as \cs{parencite} \parencite{companion} and \cs{textcite} \textcite{companion} allow a different typeset of the citation. The resulting bibliography is printed out on \cpageref{sec:bibliography}. Refer to the biblatex manual for further details on citation commands and modifications on the printout and the section on biblatex in \path{TemplateDemo.pdf}.
+The standard command for citations is \texttt{\textbackslash{}cite} which may have a prenote argument for adding a page number or something similar. To show how a citation is typeset we cite here a book about LaTeX \cite[59]{companion}. Further commands such as \cs{parencite} \parencite{companion} and \cs{textcite} \textcite{companion} allow a different typeset of the citation. The resulting bibliography is printed out on \cpageref{sec:bibliography}. Refer to the biblatex manual for further details on citation commands and modifications on the printout and the section on biblatex in \path{TemplateDocumentation.pdf}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{References}
@@ -111,7 +113,7 @@ Indenting \verb+\begin{...}+, \verb+\item+, and \verb+\end{...}+
 commands in the input document according to their nesting level can help 
 clarify the structure.
 
-Description lists and other list environments and options for list are described in \path{TemplateDemo.pdf}.
+Description lists and other list environments and options for list are described in \path{TemplateDocumentation.pdf}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Tables}
@@ -167,7 +169,7 @@ fcc & 3 & 12 & 1.225 \\
 \end{tabularx}
 \end{table}
 
-The design and creating of complex tables is shown in much greater detail in \path{TemplateDemo.pdf} in the section about tables.
+The design and creating of complex tables is shown in much greater detail in \path{TemplateDocumentation.pdf} in the section about tables.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Mathematical Equations}
@@ -179,7 +181,7 @@ in the text line by enclosing them in a pair of single dollar sign symbols.
 Don't forget that if you want a real dollar sign in your text, like \$2000,
 you have to use the \verb+\$+ command.
 
-A more complicated equation should be typeset in \emph{displayed math} mode using \cs{[...}\cs{]}, like this:
+A more complicated equation should be typeset in \emph{displayed math} mode using \texttt{\textbackslash{[} ... \textbackslash{]}}, like this:
 %
 \[
 z \left( 1 \ +\  \sqrt{\omega_{i+1} + \zeta -\frac{x+1}{\Theta +1} y + 1} 
@@ -230,7 +232,7 @@ or with only a single number
   \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
 \end{aligned}
 \end{equation}
-Many further possibilities of displaying equations exist. Some or shown in \path{TemplateDemo.pdf}
+Many further possibilities of displaying equations exist. Some or shown in \path{TemplateDocumentation.pdf}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsubsection{Common Greek letters}
@@ -296,7 +298,7 @@ All possibilities of grouping pictures side by side, on top or in matrices can b
   \label{fig:example:subfigures}
 \end{figure}
 
-For complex subfigure constructs and correct alignment of the subcaption the \texttt{floatrow} provides powerful commands. These are described in \path{TemplateDemo.pdf}.
+For complex subfigure constructs and correct alignment of the subcaption the \texttt{floatrow} provides powerful commands. These are described in \path{TemplateDocumentation.pdf}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Index}
