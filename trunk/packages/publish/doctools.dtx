@@ -41,7 +41,7 @@
 %
 %%% Configures doc.sty and its (outdated) index generation, which does
 %   not work together with any modern package and has no hyperref support
-%   and thus no links. Furthermore it is conflicts with the index macros
+%   and thus no links. Furthermore it conflicts with the index macros
 %   of doctools.
 %
 \EnableCrossrefs  % (default) Every new macro name used within a macrocode or
@@ -896,7 +896,7 @@ $\langle${\normalfont\slshape#1}$\rangle$
 \newcommand*{\file}[1]{%
   \ifcsdef{hyperref}%
     {\hyperref[file:#1]{\PrintFileName{#1}}}%
-    {\PrintFileName{#1}}
+    {\PrintFileName{#1}}%
 }% 
 %%
 } % end of \AtBeginDocument 
