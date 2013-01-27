@@ -2,11 +2,12 @@
 % !TeX spellcheck = en-US
 % =========================================================================
 \chapter{Main file (LaTeXTemplate.tex)}
-\label{sec:doc:MainFile}
+\label{chap:doc:MainFile}
 \labelfile{LaTeXTemplate.tex}
 
 % -------------------------------------------------------------------------
 \section{Code before the documentclass}
+\label{sec:main:prefix}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{magic shortcodes}
@@ -22,6 +23,7 @@
 
 % -------------------------------------------------------------------------
 \section{Documentclass}
+\label{sec:main:class}
 In this template only classes from Koma-Script (Version 3) can be used.
 Other classes would result in a non compiling template and are not supported therefore. 
 
@@ -32,10 +34,14 @@ In document class options some of the most important settings for the document a
 
 % -------------------------------------------------------------------------
 \section{Preamble (packages and settings)}
+\label{sec:doc:preamble}
+
 The code after \texttt{documentclass} and before the document starts is called preamble. All functionality and layout is loaded and configured there. The following sections show in which order things are loaded and configured.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages that come first}
+\label{sec:preamble:firstpackages}
+
 The following code loades all packages that must be loaded before anything else. In this template this is necessary for all packages that are used by the template itself in control sequences.
 %%?  file: LaTeXTemplate.tex
 %%? start: % ~~~~~~~~~
@@ -43,6 +49,8 @@ The following code loades all packages that must be loaded before anything else.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Encoding}
+\label{sec:preamble:encoding}
+
 Selection of encoding of the LaTeX files and the encoding of the file system. The latter is primarily depended on the operating system.
 %%?  file: LaTeXTemplate.tex
 %%? start: % ~~~~~~~~~
@@ -50,6 +58,8 @@ Selection of encoding of the LaTeX files and the encoding of the file system. Th
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages, layout, fonts and custom commands}
+\label{sec:preamble:packages}
+
 Selection of fonts, packages (functionality), the style (layout) and custom 
 commands that are required by the template. All defined in the following files:
 %
@@ -66,7 +76,7 @@ commands that are required by the template. All defined in the following files:
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Configuration}
-\label{sec:main:Configuration}
+\label{sec:preamble:configuration}
 All the configuration code shown here is separated from the files \file{preamble/packages.tex} or \file{preamble/style.tex} because they are either system or target specific.
 \medskip\\\noindent
 %
@@ -80,9 +90,11 @@ Here possible options are selectable, which configure the way the pdf document i
 %%? start: \IfPackageLoaded{hyperref}{%
 %%?   end: }% (end of hyperref)
 
-The backend and encodings for \package{biblatex} are configured in \file{preamble/packages.tex} together with the loading of the package, see \cref{sec:preamble:bibliography}.
+The backend and encodings for \package{biblatex} are configured in \file{preamble/packages.tex} together with the loading of the package, see \cref{sec:packages:bibliography}.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Custom definitions}
+\label{sec:preamble:custom}
+
 With the following files custom macros (\file{macros/newcommands.tex} and additional hypernation patterns \file{content/hyphenation.tex} are loaded. 
 %%?  file: LaTeXTemplate.tex
 %%? start: % ~~~~~~~~~
@@ -90,7 +102,7 @@ With the following files custom macros (\file{macros/newcommands.tex} and additi
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Execution of commands}
-\label{sec:ExecutionOfCommands}
+\label{sec:preamble:ExecutionOfCommands}
 Several packages only work if their make-commands are executed. Examples are index, glossaries and such. Here these are grouped in the file \file{preamble/makeCommands.tex}. 
 
 \cs{listfiles} tells \latex to print all files loaded during compilation in a file list at the end of the log-file.
@@ -101,6 +113,7 @@ Several packages only work if their make-commands are executed. Examples are ind
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Bibliography data}
+\label{sec:preamble:bibfiles}
 With biblatex the bibliography files are loaded before the document starts. 
 They are loaded with the command \cs{addbibresource} and the file is included without the \texttt{.bib} file extension. Multiple files bibliography files are added with multiple \cs{addbibresource} commands.
 %%?  file: LaTeXTemplate.tex
@@ -109,7 +122,7 @@ They are loaded with the command \cs{addbibresource} and the file is included wi
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Document chapters: includeonly}
-\label{sec:main:includeonly}
+\label{sec:preamble:includeonly}
 The chapters which are included in the compilation can be chosen using the \cs{includeonly} command. If \cs{includeonly} is not specified in the preamble \latex will assume that all \cs{include} commands should be evaluated. The advantage of \cs{includeonly} is that it creates aux files for each \cs{include} command, so that all references are kept. Note that all files loaded with \cs{input} are included in the compilation regardless of the \cs{includeonly} usage.
 
 %%?  file: LaTeXTemplate.tex
@@ -118,7 +131,7 @@ The chapters which are included in the compilation can be chosen using the \cs{i
 
 % -------------------------------------------------------------------------
 \section{The document (the content)}
-\label{sec:main:document}
+\label{sec:doc:document}
 It start with \texttt{\bs{}begin\{document\}} and ends with \texttt{\bs{}end\{document\}}.
 The code in-between includes all the content for the document. Nevertheless the code is filled with necessary style and settings commands.
 %%?  file: LaTeXTemplate.tex
@@ -127,6 +140,7 @@ The code in-between includes all the content for the document. Nevertheless the 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Acronyms}
+\label{sec:document:acronyms}
 If you want to use acronyms you can fill them in the file 
 \file{content/Z-Acronyms.tex} loaded here:
 %%?  file: LaTeXTemplate.tex
@@ -135,6 +149,7 @@ If you want to use acronyms you can fill them in the file
 %
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Title page}
+\label{sec:document:title}
 The page style and the page numbering for the title page is set up with this code
 %%?  file: LaTeXTemplate.tex
 %%? start: % required for hyperref
@@ -147,6 +162,8 @@ followed by the title page in file \file{content/title.tex}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Abstract}
+\label{sec:document:abstract}
+
 An abstract is common in phd thesis, but unusual in master and bachelor thesis. If you do not require an abstract just comment out the following lines.
 %%?  file: LaTeXTemplate.tex
 %%? start: % -- abstract --
@@ -154,6 +171,8 @@ An abstract is common in phd thesis, but unusual in master and bachelor thesis. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Declaration}
+\label{sec:document:declaration}
+
 These lines load the document \file{content/Z-Declaration.tex} in which you can state that the whole document is based on your ideas and written by only yourself. As far as I know this is required in bachelor and master thesis, but not part of phd-thesis. Comment out this line if you do not require it.
 %%?  file: LaTeXTemplate.tex
 %%? start: % -- declaration --
@@ -161,6 +180,8 @@ These lines load the document \file{content/Z-Declaration.tex} in which you can 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Frontmatter}
+\label{sec:document:frontmatter}
+
 The front pages of a thesis typically contain the table of contents followed by other lists. Here these are the symbol list, an acronym list and a glossary.
 
 These lines only setup the page style and the line numbering for the front pages. The first line sets up as pages with headings defined by \texttt{srcheadings} and the line numbering is applied by the command \cs{frontmatter} in the second line.
@@ -170,6 +191,8 @@ These lines only setup the page style and the line numbering for the front pages
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Table of contents}
+\label{sec:document:toc}
+
 The table of contents is inserted with \cs{tableofcontents}. Additionally it is added to the pdf bookmarks.
 %%?  file: LaTeXTemplate.tex
 %%? start: % -- table of contents --
@@ -177,19 +200,22 @@ The table of contents is inserted with \cs{tableofcontents}. Additionally it is 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Lists: acronym, symbols, glossaries}
+\label{sec:document:glossaries}
+
 These are loaded if the package for all these lists is loaded and the standard 
 style, which requires the \package{longtable} package is loaded. If you do 
 not require all these lists comment those out that you do not want. The make 
 commands required for building these lists were already executed, see 
-\vref{sec:ExecutionOfCommands}. The styles of these lists are defined in file 
-\file{preamble/style-glossaries.tex}.
+\vref{sec:preamble:ExecutionOfCommands}. The styles of these lists are defined in file \file{preamble/style-glossaries.tex}.
 %%?  file: LaTeXTemplate.tex
 %%? start: \IfPackagesLoaded{glossaries
 %%?   end: } % end of glossaries
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Main Document}
-This is the part which contains all the content. It start with \cs{mainmatter}, which sets up the line numbering and is followed by a list of files loaded with \cs{include}. The usage of \cs{include} is important to ensure that \cs{includeonly} works. See \cref{sec:main:includeonly} for the definition of \cs{includeonly}.
+\label{sec:document:content}
+
+This is the part which contains all the content. It start with \cs{mainmatter}, which sets up the line numbering and is followed by a list of files loaded with \cs{include}. The usage of \cs{include} is important to ensure that \cs{includeonly} works. See \cref{sec:preamble:includeonly} for the definition of \cs{includeonly}.
 
 %%?  file: LaTeXTemplate.tex
 %%? start: % --- Main Document ---
@@ -197,6 +223,8 @@ This is the part which contains all the content. It start with \cs{mainmatter}, 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Bibliography}
+\label{sec:document:bibliography}
+
 The bibliography is placed directly after the main content. It however must 
 not be placed in the appendix. The layout of the bibliography is defined in 
 file \file{preamble/style-biblatex.tex}.
@@ -207,6 +235,8 @@ file \file{preamble/style-biblatex.tex}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Lists of figures, tables, listings}
+\label{sec:document:lists}
+
 Several lists are automatically created by \latex. The most common are the list of figures and list of tables. If one of these lists is not required the responsible line can be commented out. 
 %
 %%?  file: LaTeXTemplate.tex
@@ -215,6 +245,8 @@ Several lists are automatically created by \latex. The most common are the list 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Lists of listings}
+\label{sec:document:listings}
+
 The list of listings is one of the additional lists that can be created. 
 It can only be created if the total number of list stays below the total number of possible file outputs. For more information see \cref{sec:problems:write}.
 
@@ -224,6 +256,8 @@ It can only be created if the total number of list stays below the total number 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Appendix}
+\label{sec:document:appendix}
+
 The appendix contains contains additional information that do not fit into the main text of the thesis and must contain only information which is \emph{not} necessary for the understanding of the main text. Therefore the appendix is not treated as part of the thesis in the valuation.
 
 The appendix is started with \cs{appendix} and manually added to the table of contents. In the last line the file \file{content/Z-Appendix.tex} is loaded which contains all further chapters and sections of the appendix.
@@ -234,6 +268,8 @@ The appendix is started with \cs{appendix} and manually added to the table of co
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Publications and Curriculum Vita}
+\label{sec:document:cv}
+
 The list of publications is loaded with file \file{content/Z-Publications.tex} and the cv with \file{content/Z-CV.tex}. These files should only be loaded in case of a phd-thesis. For bachelor and master thesis these lines should be commented out.
 %
 %%?  file: LaTeXTemplate.tex
@@ -243,6 +279,8 @@ The list of publications is loaded with file \file{content/Z-Publications.tex} a
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Index}
+\label{sec:document:index}
+
 An index is very useful for finding a topic in a large document. It is however also very time consuming to create a good index. If you are not sure that your index content is worth to include it in your thesis you should comment these lines out.
 
 The setup for the index is done in file \file{preamble/style-index.tex}.
@@ -253,6 +291,8 @@ The setup for the index is done in file \file{preamble/style-index.tex}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Thanks}
+\label{sec:document:thanks}
+
 It is common to add a page at the end of the document where the author thanks all people who helped in the creation of the thesis. 
 
 %%?  file: LaTeXTemplate.tex
@@ -260,7 +300,9 @@ It is common to add a page at the end of the document where the author thanks al
 %%?   end: \input{content/Z-Thanks.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{Thanks}
+\subsection{Todo}
+\label{sec:document:todo}
+
 One can add a todo list using the features of the \package{todonotes}. 
 By default it is disabled and must be removed for the final version of a document anyway. Its usage can be hindered by the \textit{No room for new write} problem, see \cref{sec:problems:write}.
 %%?  file: LaTeXTemplate.tex
@@ -269,6 +311,8 @@ By default it is disabled and must be removed for the final version of a documen
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{End}
+\label{sec:document:end}
+
 Finally the main file is closed with 
 %%?  file: LaTeXTemplate.tex
 %%? start: %%% document END
@@ -363,6 +407,7 @@ The application of each package is given with a short description in the source 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Bug fixing packages}
+\label{sec:packages:bugfix}
 
 \TeX{} may be bug-free, but \latex and its packages are certainly not free of bugs.  Most packages are updated in short term if bugs are encountered. \latex however has the philosophy to maintain a document setting stability. Therefore bugs in the base \latex system are not fixed, even if they are well known. However, some of them are fixed by extension packages. Others are fixed by special packages, which are loaded here.
 
@@ -380,6 +425,8 @@ The application of each package is given with a short description in the source 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Font packages}
+\label{sec:packages:fonts}
+
 This section is rather empty since the fonts and most of the related packages are already loaded in the file \file{fonts/fonts.tex}.
 
 \begin{itemize}[noitemsep]
@@ -392,6 +439,8 @@ This section is rather empty since the fonts and most of the related packages ar
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Math packages}
+\label{sec:packages:math}
+
 The base package for all math in \latex is the package \package{amsmath}. The other packages are not necessary, but some of them provide useful bug fixes and enhancement to the math commands and environments defined by \package{amsmath}.
 
 \begin{itemize}[noitemsep]
@@ -414,6 +463,8 @@ The base package for all math in \latex is the package \package{amsmath}. The ot
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Diagram and vector graphics packages}
+\label{sec:packages:pgf}
+
 Several approaches are possible to include vector graphics in a \latex document with \latex-code. In this template the packages \package{tikz}/\package{pgf} were chosen for this application.
 
 Since \package{tikz} and \package{pgf} come with many options and 
@@ -440,6 +491,8 @@ provides an extension for scientific plots.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Science packages}
+\label{sec:packages:science}
+
 Here packages are included which help to typeset numbers and units correctly.
 The recommended package is \package{siunitx}. The other packages are not activated by default because they are incompatible with \package{siunitx} or not necessary with the default fonts.
 
@@ -454,6 +507,8 @@ The recommended package is \package{siunitx}. The other packages are not activat
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Symbol packages}
+\label{sec:packages:symbols}
+
 There are many packages that provide additional symbols to \latex . Since these are font depended they are also incompatible if special font packages are loaded. Here only a selection of symbol packages is documented and loaded.
 
 \begin{itemize}[noitemsep]
@@ -470,6 +525,8 @@ There are many packages that provide additional symbols to \latex . Since these 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Table packages}
+\label{sec:packages:tables}
+
 Standard \latex tables are just ugly. In order to create good looking or even fancy tables further packages are necessary.
 
 \begin{itemize}[noitemsep]
@@ -486,6 +543,7 @@ Standard \latex tables are just ugly. In order to create good looking or even fa
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Text related packages}
+\label{sec:packages:text}
 
 This code is divided into bug fixing packages and packages for text-decoration, footnotes, references and lists.
 
@@ -508,6 +566,7 @@ This code is divided into bug fixing packages and packages for text-decoration, 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Quotes}
+\label{sec:packages:quotes}
 
 The package \package{csquotes} is a very powerful package that makes quotes language specific and in general easier.
 
@@ -521,7 +580,7 @@ The package \package{csquotes} is a very powerful package that makes quotes lang
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Citation/bibliography packages}
-\label{sec:preamble:bibliography}
+\label{sec:packages:bibliography}
 There are many packages for citations and creation or modification or the bibliography. However almost all of them are nowadays replaced by the package 
 \package{biblatex} which provides the functionality of all previous package and beyond them. The enable the full functionality of \package{biblatex} it is necessary to also replace \texttt{bibtex} by the program \texttt{biber}.
 
@@ -535,6 +594,8 @@ There are many packages for citations and creation or modification or the biblio
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for figures, placement and floats}
+\label{sec:packages:figures}
+
 The basic package \package{graphicx} for figures is already loaded at the beginning as shown in section \ref{sec:packages:base}. Here further packages are loaded that extent the placement and floating possibilities.
 
 \begin{itemize}[noitemsep]
@@ -551,6 +612,7 @@ The basic package \package{graphicx} for figures is already loaded at the beginn
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Caption packages}
+\label{sec:packages:caption}
 
 The fundamental package for captions is the package \package{caption}.  Its possibilities in terms of figure placement is enhanced by package \package{floatrow} and for subfigures package \package{subcaption}.
 
@@ -583,6 +645,8 @@ in the document. It is not loaded by default, but can be activated by removing t
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for index and other lists}
+\label{sec:packages:index}
+
 For the index package \package{imakeidx} is loaded and for almost anything else \package{glossaries} provides a solution.
 
 \begin{itemize}[noitemsep]
@@ -597,6 +661,7 @@ For the index package \package{imakeidx} is loaded and for almost anything else 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Verbatim packages}
+\label{sec:packages:verbatim}
 
 Verbatim environments are used to display text in monospaced fonts. The typical usage is to display programming code. \package{verbatim} and \package{fancyvrb} are intended to be used for small (and fancy) code sections, whereas \package{listings} is optimal for large code section with syntax highlighting.
 
@@ -616,6 +681,7 @@ The style of \package{listings} is defined in file
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Fancy packages}
+\label{sec:packages:fancy}
 
 Two different types of fancy packages are loaded. \package{lettrine} for dropping capitals and other packages for fancy framed texts: \package{boxedminipage}, \package{fancybox}, \package{framed} and \package{mdframed}. Not however that \package{mdframed} is a modern package that can replace the other three.
 
@@ -633,6 +699,7 @@ Two different types of fancy packages are loaded. \package{lettrine} for droppin
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout packages}
+\label{sec:packages:layout}
 
 The indentation of the first paragraph can be modified using \package{indentation}. The text can be printed in multiple columns with package \package{multicol}. The line spacing can be modified using package 
 \package{setspace}. And the page layout can be modified with the packages \package{geometry} or alternatively \package{typearea}. The latter is automatically loaded with the koma script class. \package{changepage} can be used to detect odd/even pages.
@@ -656,6 +723,7 @@ for package \package{geometry} in file \file{preamble/style-geometry.tex}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for header and footer}
+\label{sec:packages:headfoot}
 
 The content in the header and footer of a page is defined with package 
 \package{scrpage2}, with the settings defined in file 
@@ -674,6 +742,7 @@ The total number of page is provided by package \package{pageslts}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout of headings}
+\label{sec:packages:headings}
 
 All headings can be redefined using package \package{titlesec}.
 
@@ -683,6 +752,7 @@ All headings can be redefined using package \package{titlesec}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout of table of contents}
+\label{sec:packages:TOC}
 
 The format of the table of contents and other lists can defined by package \package{tocstyle}. It is currently unused because it lacks interaction with the \cs{setkomafont} command. If a manual setting in the table of contents is however not required the usage of this package is still encouraged.
 
@@ -699,6 +769,7 @@ The appendix title can be modified with package \package{appendix}. In this temp
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{PDF packages (including hyperref)}
+\label{sec:packages:pdf}
 
 \package{pdfpages} is a package for the inclusion of pages from external pdf documents,
 \package{pdflscape} for changing the page orientation,
@@ -725,6 +796,7 @@ The settings of hyperref are defined in file
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Additional packages  (explicitly after package hyperref)}
+\label{sec:packages:additional}
 
 These packages here have nothing in common except that they can be loaded after \package{hyperref}. Other additional package that must be loaded before must be put into the section \texttt{Misc Packages}, see section \cref{sec:packages:misc}.
 
@@ -738,6 +810,7 @@ These packages here have nothing in common except that they can be loaded after 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Package sections}
+\label{sec:style:sections}
 
 This is the file that defines all settings for the package including the page layout. The settings are grouped together according to there usage. 
 These section defined at the beginning of the file:
@@ -750,6 +823,7 @@ If you do not require all sections in your document you can change the setting f
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Colors}
+\label{sec:style:colors}
 
 If package \package{xcolor} is loaded then colors for the sections, the tables and pdf links are defined with \cs{definecolor} and \cs{colorlet}. Note that \cs{SetTemplateDefinition} is used here to define switchable colors for different document targets (web/print).
 
@@ -759,6 +833,7 @@ If package \package{xcolor} is loaded then colors for the sections, the tables a
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Math}
+\label{sec:style:math}
 
 This code shows how to exchange the vector symbol arrow with a bold font and how to exchange various greek symbols by there \emph{var} variant.
 
@@ -768,6 +843,7 @@ This code shows how to exchange the vector symbol arrow with a bold font and how
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Science}
+\label{sec:style:science}
 
 Loading of \file{preamble/style-siunitx.tex}.
 
@@ -787,6 +863,7 @@ Additionally the commands \cs{nicefrac}, \cs{unitfrac} and \cs{unit} are defined
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Diagrams}
+\label{sec:style:diagram}
 
 Setup of default plot size for \package{tikz}/\package{pgfplots} and in case of german text the decimal separator is set up as a comma.
 
@@ -807,6 +884,7 @@ Color series for pgfplots are defined in this file.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Text}
+\label{sec:style:text}
 
 Here the font for urls (package \package{url}) and the font in margins used by package \package{marginnote} is defined.
 
@@ -816,6 +894,7 @@ Here the font for urls (package \package{url}) and the font in margins used by p
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Footnotes}
+\label{sec:style:footnote}
 
 Several definitions to solve common problems with footnotes and example code for the redefinition of the footnote layout.
 
@@ -825,6 +904,7 @@ Several definitions to solve common problems with footnotes and example code for
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Quotes}
+\label{sec:style:quotes}
 
 Settings for package \package{csquotes}.
 
@@ -834,8 +914,9 @@ Settings for package \package{csquotes}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Citations / Style of Bibliography}
+\label{sec:style:bib}
 
-Loading of the settings file \file{preamble/style-biblatex.tex} for package \package{biblatex} and principle layout of the bibliography items.
+Loading of the settings file \file{preamble/style-biblatex.tex} for package \package{biblatex} and modification of the layout of the bibliography items in file \file{preamble/style-biblatex-alpha.tex}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
@@ -845,12 +926,21 @@ Loading of the settings file \file{preamble/style-biblatex.tex} for package \pac
 \subsubsection{preamble/style-biblatex.tex}
 \labelfile{preamble/style-biblatex.tex}
 
-Setting of bibliography options and redefinitions of bib-macros for an alpha style.
+Setting of bibliography options.
 
 \printCodeFromFile[1]{1000}{preamble/style-biblatex.tex}
 
+% .........................................................................
+\subsubsection{preamble/style-biblatex-alpha.tex}
+\labelfile{preamble/style-biblatex-alpha.tex}
+
+Redefinitions of bib-macros for an alpha style.
+
+\printCodeFromFile[1]{1000}{preamble/style-biblatex-alpha.tex}
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Figures, placement and floats}
+\label{sec:style:figures}
 
 Configuration of variable for package \package{wrapfig} (if loaded) and 
 general modifications of float placement variables to make the placement of 
@@ -862,6 +952,7 @@ many floating figures easier.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Captions}
+\label{sec:style:captions}
 
 In this section the visual appearance and numbering of captions is configured 
 for the packages \package{caption}, \package{subcaption}, 
@@ -894,6 +985,7 @@ Several settings of package \package{floatrow} are set up and float styles are d
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Tables}
+\label{sec:style:tables}
 
 Here new column types are defined if they are not yet defined.
 
@@ -903,6 +995,7 @@ Here new column types are defined if they are not yet defined.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Index and glossaries and other lists}
+\label{sec:style:index}
 
 The index settings are defined in file \file{preamble/style-index.tex} and all settings for package \package{glossaries} are defined in file \file{preamble/style-glossaries.tex}.
 
@@ -928,6 +1021,7 @@ Configuration for package \package{glossaries}. New styles are defined with \cs{
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Verbatim and listings packages}
+\label{sec:style:listings}
 
 The code for \package{listings} is defined in a separate file: \file{preamble/style-listings.tex}.
 
@@ -962,6 +1056,7 @@ Style definitions for language \emph{C++} saved as \emph{lstStyleCpp}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Fancy packages}
+\label{sec:style:fancy}
 
 Configuration for package \package{lettrine} and package \package{framed}.
 
@@ -971,6 +1066,7 @@ Configuration for package \package{lettrine} and package \package{framed}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout: paragraph}
+\label{sec:style:layout:paragraph}
 
 Definition of \emph{parskip}.
 
@@ -980,6 +1076,7 @@ Definition of \emph{parskip}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout: line spacing}
+\label{sec:style:layout:linespacing}
 
 Configuration of line spacing with package \package{setspace}.
 
@@ -989,8 +1086,9 @@ Configuration of line spacing with package \package{setspace}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout: page layout}
+\label{sec:style:layout:page}
 
-Configuration of package \package{goemtry} or package \package{typearea}.
+Configuration of package \package{geometry} or package \package{typearea}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
@@ -1000,13 +1098,15 @@ Configuration of package \package{goemtry} or package \package{typearea}.
 \subsubsection{preamble/style-geometry.tex}
 \labelfile{preamble/style-geometry.tex}
 
-Configuration of package \package{geometry}. 
+Configuration of page layout by package \package{geometry}. 
 
 \printCodeFromFile[1]{1000}{preamble/style-geometry.tex}
 
+
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Titlepage}
-
+\label{sec:style:titlepage}
 Configuration for the title page.
 
 %%?  file: preamble/style.tex
@@ -1015,6 +1115,7 @@ Configuration for the title page.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Header and footer lines}
+\label{sec:style:headfoot}
 
 Configuration of the (automatic) content in header and footer for \package{scrpage2} defined in file \file{preamble/style-scrpage2.tex}.
 
@@ -1032,6 +1133,7 @@ Configuration of header and footer defined by package \package{scrpage2}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Headings: numbering, sizes and page opening}
+\label{sec:style:headings}
 
 Configuration of heading numbering, sizes and page openings.
 
@@ -1041,6 +1143,7 @@ Configuration of heading numbering, sizes and page openings.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Headings: fonts}
+\label{sec:style:headings:fonts}
 
 Configuration of heading fonts.
 
@@ -1050,6 +1153,7 @@ Configuration of heading fonts.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Headings: custom layout}
+\label{sec:style:headings:custom}
 
 Custom layouts for headings are defined use the package \package{titlesec} in file \file{preamble/style-titlesec.tex}.
 
@@ -1067,6 +1171,7 @@ Changes to the layout of headings with package \package{titlesec}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Settings and layout of table of contents and other lists}
+\label{sec:style:toc}
 
 Configuration of counter \emph{tocdepth}, options of koma-script, package \package{tocstyle} and koma-script specific fonts and general options for lists.
 
@@ -1076,6 +1181,7 @@ Configuration of counter \emph{tocdepth}, options of koma-script, package \packa
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Settings and layout of pdf packages}
+\label{sec:style:pdf}
 
 Configuration of packages \package{hyperref} in file \file{preamble/style-hyperref.tex}, \package{bookmark} and the creation of \package{hyperref} depended reference commands in file \file{preamble/style-references.tex}.
 
@@ -1087,7 +1193,7 @@ Configuration of packages \package{hyperref} in file \file{preamble/style-hyperr
 \subsubsection{preamble/style-hyperref.tex}
 \labelfile{preamble/style-hyperref.tex}
 
-Configuration of package \package{hyperref}. The option \emph{pdfpagelayout} is not included here because it should be set up by the user of the template. It is therefore in file \file{LaTeXTemplate.tex}, see section \vref{sec:main:Configuration}.
+Configuration of package \package{hyperref}. The option \emph{pdfpagelayout} is not included here because it should be set up by the user of the template. It is therefore in file \file{LaTeXTemplate.tex}, see section \vref{sec:preamble:configuration}.
 
 \printCodeFromFile[1]{1000}{preamble/style-hyperref.tex}
 
@@ -1103,6 +1209,7 @@ Something similar and is achieved by the package \package{cleveref} which does t
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Fix remaining problems}
+\label{sec:style:fix}
 
 Several packages cause problems if they are loaded together or can cause problems in this template if the package is not loaded or a special command is not available. These things are fixed here.
 
@@ -1170,7 +1277,7 @@ Calls make commands that are required inside the preamble, such as
 % =========================================================================
 \chapter{Document content files}
 
-The structure of this part inside \file{LaTeXTemplate.tex} is described in  \vref{sec:main:document}.
+The structure of this part inside \file{LaTeXTemplate.tex} is described in  \vref{sec:document:content}.
 
 % -------------------------------------------------------------------------
 \section{content/Z-Acronyms.tex}

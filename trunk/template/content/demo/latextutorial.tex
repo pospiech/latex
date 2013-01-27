@@ -49,7 +49,7 @@ The default font in the template is Latin Modern (lmodern). It includes \textit{
 \label{sec:example:QuoteCite}
 \index{example!quote}
 \index{example!cite}
-
+%
 LaTeX provides the \enquote{quote} and \enquote{quotation} environments for typesetting quoted material or any other text that should be slightly indented 
 and set off from the normal text.
 
@@ -78,7 +78,7 @@ The following sections show lists, tables and math.
 \subsection{Lists}
 \label{sec:example:lists}
 \index{example!lists}
-
+%
 LaTeX has three types of lists with the environment names \emph{itemize}, \emph{enumerate} and \emph{description}. All lists have a separation between each item, to improve the reading of item texts spanning several lines. 
 This item text can contain multiple paragraphs. These paragraphs are appropriately spaced and indented according to their position in the list.
 
@@ -94,7 +94,7 @@ One type of list can be nested within another type.
   or \emph{bullets} as needed.
   \end{itemize}
 \end{itemize}
-
+%
 \begin{enumerate}
 \item The \enquote{enumerate} environment numbers the list elements.
 
@@ -106,7 +106,7 @@ normal text but separated from the previous paragraph.
   \item as shown in this nested enumerated list item.
   \end{enumerate}
 \end{enumerate}  
-
+%
 Don't forget to close off all list environments with the 
 appropriate \verb+\end{...}+ command.
 Indenting \verb+\begin{...}+, \verb+\item+, and \verb+\end{...}+
@@ -119,7 +119,7 @@ Description lists and other list environments and options for list are described
 \subsection{Tables}
 \label{sec:example:tables}
 \index{example!tables}
-
+%
 Tables are a little more difficult. One can achieve even the most complex and fancy layout, even spanning over multiple pages, but the code to create these tables is not necessarily the best readable one.
 
 Table \ref{tab:Computers} is a very simple table showing data lined up in columns, where each column width is automatically calculated by LaTeX.
@@ -250,7 +250,7 @@ letters are included here.
 \subsection{Literal text}
 \label{sec:example:verbatim}
 \index{example!verbatim}
-
+%
 It is desirable to print program code exactly as it is typed in a
 monospaced font. Use \cs{begin\{lstlisting\}} and
 \cs{end\{lstlisting\}} as in the following example:
@@ -269,7 +269,7 @@ allows you to list the file \texttt{latextutorial.tex} in the directory \path{co
 \subsection{Figures}
 \label{sec:example:figures}
 \index{example!figures}
-
+%
 Figures with captions are included in the \texttt{figure} environment in order to position the graphic inside the text. The size should be given in relation to natural text size. It is recommended to use a percentage value of the \cs{textwidth}. This size should not exceed 80\,\%  of the text width.
 
 \begin{figure}[htb]
@@ -304,7 +304,7 @@ For complex subfigure constructs and correct alignment of the subcaption the \te
 \subsection{Index}
 \label{sec:example:index}
 \index{example!index}
-
+%
 An index is easy to create with LaTeX, but should only be done if the time is available to do it right, since it requires substantial work to create an index which is really useful for the reader.
 
 A word is added to the index with the command \cs{index\{word\}} and these indexed words can be grouped with \cs{index\{group!word\}}. Within this document some index commands are inserted below the section headers of this tutorial for the purpose of demonstrating the indexing. The resulting index is displayed on page~\pageref{sec:Index}. 
