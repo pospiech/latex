@@ -3,19 +3,217 @@
 % =========================================================================
 \chapter{Overview}
 
+This chapter gives a general introduction to the usage of this template and enables the user to start with the actual work. 
+In the subsequent chapters and other parts of this documentation you will find a wide variety of further information. However, there is no need to read them all. Instead you might find it useful to look at individual sections later, when you are looking specifically for a solution to a problem.
+
+In the first \cref{sec:doc:targetusers} you find a general discussion on the typical user of this template followed by a tutorial (\cref{sec:doc:start}) on how to start working with this template. The chapter ends with the introduction of magic comments in \cref{sec:doc:magiccomments}.
+
+In the next \cref{chap:doc:faq} you will find a list of typical questions and answers that are specific for this template followed by a list of known problems in this template (\cref{chap:doc:problems}). For those who want to change the font in the template there is a short overview on fonts provided in \cref{chap:doc:fonts}.
+
+% -------------------------------------------------------------------------
 \section{Target Users}
+\label{sec:doc:targetusers}
 %Target users of this template
 %- thesis
 %- beginners
 %- experienced
 %- package authors
 %
+% -------------------------------------------------------------------------
 \section{Tutorial - how to start}
+\label{sec:doc:start}
 %- Files for the end user (not not mess with all the configuration files...)
 
-\section{magic comments}
+If you want to use this template for your work you should follow these three steps to configure everything for your needs.
 
-These \emph{magic comments} present a configuration for the editor, which is save inside the \latex file (at the beginning). These comments allow to define the program (pdflatex), the main file, the encoding (utf8) and the spell checking. 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Configure Editor and System Settings}
+
+The template needs to be configured for editor and system specific settings such as the encoding of the documents and the encoding of the file system. Both are configured in the main file in the section called \emph{encoding}.
+These settings must be configured to ensure that special characters such as: äüößêì are shown correct in the editor and the output pdf-file.
+
+The encoding of the editor must be configured in the editor its self or be set up with magic comments, see \cref{sec:doc:magiccomments:encoding}. Anyway, the setting should typically be set up as \texttt{utf8}.
+
+\latex detects the correct encoding with encoding specific characters (ä, ß, €) in the line with \cs{SelectInputMappings}. If you find that these characters are not printed correct in the editor reenter these characters. If your keyboard does not allow to enter ä and ß try at least if the euro character € is sufficient to detect an encoding. 
+
+If file names may have encoding specific characters the encoding of the operating system must be defined as well. Therefore the option \option{filenameencoding} should be configured for either \texttt{latin1} or \texttt{utf8}. Both should cover most demands.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Configure the document}
+The template is by default is configured for language English with double sided printing and chapters for the highest section level. Suppose you want to configure it instead for German texts with single side printing and Sections as the main level:
+
+The demand of Sections as the main level means that neither a book or report like document is wanted, but instead an article with only few pages that do not require a substantial differentiation with chapters. This is realized by changing the document class to \option{scrartcl} (main file at the \cs{documentclass} definition). The default is \option{scrbook}, which should not be changed for documents such as bachelor, master and phd thesis.
+
+The language of the text is chosen in the options of the documentclass. The default is \option{english}. The setting for new German orthography is \option{ngerman}. Other language options are documented in the babel documentation: \href{http://mirrors.ctan.org/macros/latex/required/babel/babel.pdf}{babel.pdf}
+
+The double vs single side printing is a bit more hidden in the file \file{preamble/style.tex} under the section \emph{Page Layout Options}. Change the option \option{twoside} from \texttt{true} to \texttt{false}.
+
+Other configurations of \latex are listed in \cref{chap:doc:faq}, for example the setting of the line spacing in \cref{sec:doc:faq:spacing}.
+
+The main file has a few further configurations that can be changed. They are headed with \emph{Configurations}. The first is the selection of colors in the hyperlinks further explained in \cref{sec:doc:faq:hyperlinks} and the second the default display of pages in the pdf viewer. The possible options are displayed in the comments, see \cref{sec:preamble:configuration}.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Configuration links}
+\clearpage
+
+ { % start a group 
+ \colorlet{tabledarkheadcolor}{black!60}
+  % style  
+  \small\renewcommand{\arraystretch}{1.4}\sffamily
+  % required if floatrow is loaded
+  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
+  % the table
+  \begin{longtabu} to \textwidth%
+  {X[2,l]>{\ttfamily}X[2,l]X[2,l]}
+% \captionabove{longtabu tabular with X columns} \\
+  \hline
+  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
+  \upshape
+  \sffamily\textcolor{white}{Setting} &
+  \sffamily\textcolor{white}{Option/Value}  &
+  \sffamily\textcolor{white}{Location} \\ \hline
+\endfirsthead
+  \hline
+  \upshape
+  \sffamily\textcolor{white}{Setting} &
+  \sffamily\textcolor{white}{Option/Value}  &
+  \sffamily\textcolor{white}{Location} \\ \hline
+\endhead
+  \hline 
+  \taburowcolors 1{white .. white}
+  \multicolumn{3}{r}{\emph{continued on next page \ldots}}
+\endfoot
+  \hline
+\endlastfoot
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Options in file: \file{LaTeXTemplate.tex}} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+paper size & paper=a4 & 
+	option of \hyperref[sec:main:class]{\cs{documentclass}} \\
+language   & english  & 
+	option of \hyperref[sec:main:class]{\cs{documentclass}} \\
+font size  & fontsize=11pt & 
+	option of \hyperref[sec:main:class]{\cs{documentclass}} \\
+color of hyperlinks & \UseDefinition{Target}{Web} & 		
+	Section  \\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Options in file: \file{preamble/packages.tex}} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+equation position & fleqn & 
+	Section: \hyperref[sec:packages:math]{PackagesMath} \\
+quotation style   & german=quotes & 
+	Section: \hyperref[sec:packages:quotes]{PackagesQuotes} \\
+citation style    & style=alphabetic & 
+	Section: \hyperref[sec:packages:bibliography]{PackagesCitation} \\
+bibliography backend & backend=biber & 
+	Section: \hyperref[sec:packages:bibliography]{PackagesCitation} \\
+header and footer & automark,komastyle &
+	Section: \hyperref[sec:packages:headfoot]{PackagesHeadFoot} \\
+backlinks in the bibliography & backref=page & 
+	Section: \hyperref[sec:packages:pdf]{PackagesPDF} \\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Settings and options in file: \file{preamble/style.tex}} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+url font 		& \cs{urlstyle}\arg{tt} &  
+	Section: \hyperref[sec:style:text]{StyleText} \\
+threshold for \cs{blockquote} & \cs{SetBlockThreshold}\arg{2} &
+	Section: \hyperref[sec:style:quotes]{StyleQuotes} \\
+numbering of figures & \cs{numberwithin}\arg{figure} & 
+ 	Section:  \hyperref[sec:style:captions]{StyleCaptions} \\
+paragraph skip or indentation & parskip=false &  
+	Section: \hyperref[sec:style:layout:paragraph]{StyleParagraph} \\
+line spacing 	& \cs{onehalfspacing} &  
+	Section: \hyperref[sec:style:layout:linespacing]{StyleLineSpacing} \\
+size of text body 	& DIV=11 & 
+	Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
+binding correction 	& BCOR=10mm & 
+	Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
+single/two side layout & twoside=true & 
+	Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
+separate title page & titlepage=true & 
+	Section: \hyperref[sec:style:titlepage]{StyleTitlepage} \\
+sections numbering depth & \cs{setcounter}\arg{secnumdepth}\arg{2} & 
+ 	Section: \hyperref[sec:style:headings]{StyleHeadings} \\
+headings size 	& headings=small &  
+	Section: \hyperref[sec:style:headings]{StyleHeadings} \\
+chapter prefix 	& headings=nochapterprefix & 
+	Section: \hyperref[sec:style:headings]{StyleHeadings} \\
+heading fonts  	& \cs{setkomafont}\arg{sectioning} & 
+	Section: \hyperref[sec:style:headings:fonts]{StyleHeadingsFonts} \\
+toc numbering depth & \cs{setcounter}\arg{tocdepth}\arg{3} & 
+	Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
+bibliography in TOC & bibliography=totoc & 
+	Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
+index in TOC 	& index=nottotoc & 
+	Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
+LOF in TOC 	& listof=notoc & 
+	Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
+%
+\end{longtabu}
+} % close the group
+
+
+{ % start a group 
+ \colorlet{tabledarkheadcolor}{black!60}
+  % style  
+  \small\renewcommand{\arraystretch}{1.4}\sffamily
+  % required if floatrow is loaded
+  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
+  % the table
+  \begin{longtabu} to \textwidth%
+  {X[2,l]X[3,l]}
+% \captionabove{longtabu tabular with X columns} \\
+  \hline
+  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
+  \upshape
+  \sffamily\textcolor{white}{Package / Topic} &
+  \sffamily\textcolor{white}{File}  \\ \hline
+\endfirsthead
+  \hline
+  \upshape
+  \sffamily\textcolor{white}{Package / Topic} &
+  \sffamily\textcolor{white}{File}  \\ \hline
+\endhead
+  \hline 
+  \taburowcolors 1{white .. white}
+  \multicolumn{2}{r}{\emph{continued on next page \ldots}}
+\endfoot
+  \hline
+\endlastfoot
+%
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+siunitx & \file{preamble/style-siunitx.tex} \\
+pgfplots & \file{preamble/style-pgfplots.tex} \\
+biblatex & \file{preamble/style-biblatex.tex} \\
+biblatex style & \file{preamble/style-biblatex-alpha.tex} \\
+caption, subcaption, subfig  & \file{preamble/style-caption.tex} \\
+floatrow & \file{preamble/style-floatrow.tex} \\
+imakeidx & \file{preamble/style-index.tex} \\
+glossaries & \file{preamble/style-glossaries.tex} \\
+listings & \file{preamble/style-listings.tex} \\
+geometry & \file{preamble/style-geometry.tex} \\
+scrpage2 & \file{preamble/style-scrpage2.tex} \\
+titlesec & \file{preamble/style-titlesec.tex} \\
+hyperref & \file{preamble/style-hyperref.tex} \\
+%
+\end{longtabu}
+} % close the group
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Start Writing your content}
+
+
+% -------------------------------------------------------------------------
+\section{magic comments}
+\label{sec:doc:magiccomments}
+
+The \emph{magic comments} discussed in this section present a configuration for the editor, which is saved inside the \latex file (at the beginning). They allow to define the program (pdflatex), the main file, the encoding (utf8) and the spell checking. 
 
 They were originally developed within the editor \href{http://pages.uoregon.edu/koch/texshop/index.html}{TexShop} and are used by the editors \href{http://www.tug.org/texworks/}{TeXWorks} and \href{http://texstudio.sourceforge.net/}{TeXStudio}.
 %
@@ -30,12 +228,16 @@ The following information on these magic comments is based on these publications
 %
 All these comments have in common that they have to be put in the beginning of each file and have to begin with \enquote{\texttt{\% !TeX}}. 
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Root file}
 \begin{latexcode}
 % !TeX root = manual.tex
 \end{latexcode}
 %
 Defines the main file for typesetting (often called the \emph{master file}). This enables a very basic project management by defining the master file for each file of the project.
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Program}
 \begin{latexcode}
 % !TeX program = pdflatex
 \end{latexcode}
@@ -43,6 +245,10 @@ Defines the main file for typesetting (often called the \emph{master file}). Thi
 Chooses the engine for compilation. Possible values are \texttt{pdflatex}, \texttt{LuaLaTeX}, \texttt{XeTeX}, \texttt{LaTeX} (and possibly others). Note that the engine name inserted is case-insensitive.
 
 Unless your code is set up for a different engine and the selection of  packages and fonts loaded is adapted for that engine the default should be kept as \texttt{pdflatex}. 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Spell checking}
+\label{sec:doc:magiccomments:spell}
 
 \begin{latexcode}
 % !TeX spellcheck = en_US
@@ -59,6 +265,10 @@ Selection of some languages:
 \item \texttt{fr\_FR} - French (France)
 \end{itemize}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Encoding}
+\label{sec:doc:magiccomments:encoding}
+
 \begin{latexcode}
 % !TeX encoding = UTF-8
 \end{latexcode}
@@ -66,14 +276,154 @@ Selection of some languages:
 Sets the file encoding for the current file. The default in current editors is UTF-8.
 
 
+
 %% =========================================================================
-%\chapter{How to list}
-%
+\chapter{Questions and Answers to \latex and this template}
+\label{chap:doc:faq}
+This list of possible questions and answers is neither complete nor a list of typical questions (which I have not statistics for). It is just a list of question that this template can provide a solution for or questions that can be answered with this documentation in \cref{part:demo}.
+
+% -------------------------------------------------------------------------
+\section{Selection of font(s)}
+\label{sec:doc:faq:fonts}
+
+The font selection is made in file \file{fonts/fonts.tex}. The standard font in this template is \emph{Latin Modern}. This selection is done for simplicity. It is the default \latex font and should be available in every distribution. If you prefer a different font you have a free choice out of many fonts that are installed on most systems and are available for free. See \cref{chap:doc:fonts} for a short overview. One should take care that for every roman font that a suitable sans serif font must be chosen as well.
+
+% -------------------------------------------------------------------------
+\section{Change the page layout}
+\label{sec:doc:faq:pagelayout}
+
+Two packages are supported for the page layout. Package \package{typearea} is very easy to use and modify and gives well suited results for a thesis document. If however a very customized page layout is demanded the package
+\package{geometry} provides the abilities to implement the page layout.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Package typearea}
+The page layout is by default set up with the package \package{typearea}, which is loaded automatically. It is configured with the \emph{DIV} parameter, which defines the amount of text on a page (the larger the more space for the text) and the \emph{BCOR} parameter, which defines the binding correction in millimeters. The basics of this layout mechanism is very well described in \href{http://mirrors.ctan.org/macros/latex/contrib/koma-script/doc/scrguien.pdf}{scrguien.pdf}. The parameters are set up in file \file{preamble/style.tex}, see \cref{sec:style:layout:page}.
+
+If the layout must be specified with very detailed parameters such as margin width, top and bottom space or exact amount of line numbers the package \package{geometry} is providing this functionality.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Package geometry}
+This package provides \enquote{a flexible and easy interface to page dimensions} as stated in its documentation. One can set up every possible parameter and all unspecified dimensions are automatically determined by the package accordingly.
+
+To enable this package it must be loaded in file \file{preamble/packages.tex}, see \cref{sec:packages:layout} and be configured in \file{preamble/style-geometry.tex}.
+
+% -------------------------------------------------------------------------
+\section{Change color of (hyper)links}
+\label{sec:doc:faq:hyperlinks}
+The hyper links are introduced by package \package{hyperref}. The colors are configured for the links in \file{preamble/style-hyperref.tex} and defined in \file{preamble/style.tex} (see \cref{sec:style:colors}). This template introduces introduces a simple mechanism to switch between colored and black links (the latter for printing) using the command \cs{UseDefinition}. This is configured in the main file (see \cref{sec:preamble:configuration}).
+
+% -------------------------------------------------------------------------
+\section{Generation of tables}
+\label{sec:doc:faq:tables}
+See the large list of examples in \cref{sec:demo:tables} on using the environments \env{tabular}, \env{tabularx}, \env{tabu}, \env{table} and further for printing tabular material in principle and how to print beautiful tables.
+
+% -------------------------------------------------------------------------
+\section{Include, align and position graphics}
+\label{sec:doc:faq:graphics}
+See the large list of examples on using the \cs{includegraphics} command, the \env{figure} environment and further commands in \cref{sec:demo:figures}.
+
+% -------------------------------------------------------------------------
+\section{Draw graphics, diagrams and plots}
+\label{sec:doc:faq:pgf}
+
+This template relies on the packages \package{pgf}, \package{tikz} and \package{pgfplots} for the creation of diagrams and plots, see \cref{sec:demo:diagram}. The \package{pstricks} is neither supported nor tested with this template. It may or may not work together with this template.
+
+% -------------------------------------------------------------------------
+\section{Print code with line numbers and syntax highlighting}
+\label{sec:doc:faq:listings}
+
+Syntax highlighting within \latex is provided by the package \package{listings}. The syntax highlighting of this package is defined in file \file{preamble/style-listings.tex}.
+Several styles are predefined:
+\begin{labeling}{\ttfamily lstStyleFramed}
+\item[\ttfamily lstStyleBase] basic code format
+\item[\ttfamily lstStyleFramed] basic format with frame
+\item[\ttfamily lstStyleCpp] style for C++ code
+\item[\ttfamily lstStyleLaTeX] style for \latex code.
+\end{labeling}
+See \cref{sec:demo:listings} for examples.
+
+% -------------------------------------------------------------------------
+\section{One-half and double spacing}
+\label{sec:doc:faq:spacing}
+
+The line spacing is controlled by \package{setspace}. It is configured in file \file{preamble/style.tex} in the section \emph{StyleLineSpacing}. The code is shown in \cref{sec:style:layout:linespacing}.
+
+% -------------------------------------------------------------------------
+\section{Line numbering}
+\label{sec:doc:faq:linenumbering}
+
+The package required for line numbering is not loaded by default, but it can be enabled in \file{preamble/packages.tex}, see \cref{sec:packages:misc}. Furthermore the command \cs{linenumbers} must be executed. This must be enabled in \file{preamble/makeCommands.tex}.
+
+% -------------------------------------------------------------------------
+\section{Creation of a bibliography and citations styles}
+\label{sec:doc:faq:biblatex}
+
+This template relies for the creation of a bibliography and the related citations styles entirely on the package \package{biblatex}. Any historic solution which was popular before \texttt{biblatex} came out is incompatible.
+For all further information refer to the official documentation \href{http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf}{biblatex.pdf}.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Define bibliography (bib) files}
+The file format is still the well known BibTeX format (file ending .bib). These files are loading in the preamble before the beginning of the document, see \cref{sec:preamble:bibfiles} with the command \cs{addbibresource}. The file name must be written without the \texttt{.bib} file extension.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Define the citation style}
+The package is loaded in file \file{preamble/packages.tex} and the style for the display of the bibliography and the citations is defined as an option of the package. The default style is \emph{alphabetic}. However several other styles exists, see \cref{sec:packages:bibliography}, the package documentation and the website \href{http://www.ctan.org/tex-archive/macros/latex/exptl/biblatex-contrib}{biblatex-contrib} for a list of further styles. 
+
+Furthermore the basic properties of the package are configured in file \file{preamble/style-biblatex.tex} whereas the style is modified for an \emph{alpha} style in file \file{preamble/style-biblatex-alpha.tex}.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Ways to insert citations}
+
+Citations ares inserted basically with the \cs{cite} command. Further possibilities are shown in \cref{sec:demo:biblatex}. For a complete list refer to the official documentation of \package{biblatex}. If the citations are supposed to be placed in the footnotes this is realized with the parameter \option{autocite} in file 
+\file{preamble/style-biblatex.tex}.
+
+% -------------------------------------------------------------------------
+\section{Quoting and citing text}
+\label{sec:doc:faq:quotes}
+The default quotation environments of  \latex (quote and quotation) are enhanced by the commands \cs{enquote} and \cs{blockquote} which are much better suited for very simple to very complex quotations with citations.
+See \cref{sec:demo:quote} for examples of its usage.
+
+% -------------------------------------------------------------------------
+\section{Tables of contents and other tables}
+\label{sec:doc:faq:toc}
+
+The contents and the style of the table of contents are defined in file \file{preamble/style.tex}, see \cref{sec:style:toc}.
+
+% -------------------------------------------------------------------------
+\section{Index, glossary and other lists}
+\label{sec:doc:faq:index}
+
+This template can handle an index and the creation of a glossary, an acronym list and a symbol list which are created using the package \package{glossaries}.
+
+The style settings for these list are loaded in file  \file{preamble/style-index.tex} and file \file{preamble/style-glossaries.tex}.
+
+They are printed in the main file, see \cref{sec:document:glossaries}.
+
+% -------------------------------------------------------------------------
+\section{Hyphenation}
+\label{sec:doc:faq:hyphenation}
+
+The hyphenation is enabled by default in \latex. In order to function correct the language must be specified in the document class, see \cref{sec:main:class}. Additional hyphenation patterns are added to file \file{content/hyphenation.tex}.
+
+In the text itself hyphenation marks can be added. These are however language specific. For german texts an overview is shown in \href{http://de.wikibooks.org/wiki/LaTeX-Wörterbuch:_Silbentrennung}{http://de.wikibooks.org/}.
+
+% -------------------------------------------------------------------------
+\section{Document management}
+\label{sec:doc:faq:documents}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Conditional compilation}
+
+
+
 %% =========================================================================
 \chapter{Known problems}
+\label{chap:doc:problems}
 
+% -------------------------------------------------------------------------
 \section{warnings}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{biblatex: No file \texorpdfstring{\argument{filename}}{filename}.bbl}
 
 If you have not executed \texttt{biber} you will get the following warning by
@@ -86,6 +436,7 @@ Package biblatex Info: ... file '<filename>.bbl' not found.
 No file <filename>.bbl.
 \end{verbatim}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %\subsection{glossaries: No \cs{printglossary} or \cs{printglossaries} found.}
 %
 %\begin{verbatim}
@@ -93,7 +444,7 @@ No file <filename>.bbl.
 %This document will not have a glossary.
 %\end{verbatim}
 
-
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{tocstyle: This is an alpha version}
 
 Package \package{tocstyle} prints out the following warning:
@@ -109,6 +460,7 @@ Package tocstyle Warning: THIS IS AN ALPHA VERSION!
 %
 This package is now in use with this template for several years (of development of the template before its release) and so far no problem has been found. Therefore I do not expect any problem because of this package and consider this warning to be ignorable.
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{hypennat: You have used the htt option}
 
 Package \package{hypennat} prints out the following warning:
@@ -123,6 +475,7 @@ Package hyphenat Warning: *******************************
 %
 It can be ignored as already stated by the package warning.
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{pageslts: Package pdfpages detected.}
 
 Package \package{hypennat} warns about the use of package \package{pdfpages}:
@@ -138,6 +491,261 @@ Package pageslts Warning: Package pdfpages detected.
 This can be savely ignored, see \url{http://tex.stackexchange.com/questions/73767/warning-about-pdfpages-with-hyperref} for a discussion.
 
 % -------------------------------------------------------------------------
-\section{errors}
+\section{Errors}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{No room for new write}
 \label{sec:problems:write}
+
+TeX uses output registers to write to files. Unfortunately TeX was designed to use only 16 of such registers of which the output registers 0, 1 and 2 are already used by (La)TeX itself. The remaining registers are consumed by additional packages that need to write to external files.
+
+If you come across this error you have reached a fixed limitation of the TeX engine and there is nothing that can directly be done about this error, as you can not extend the number of available registers without extending TeX itself.
+
+Typical packages that consume output registers are:
+\begin{itemize}
+\item glossaries (acronym list, symbol list, glossary)
+\item biblatex (bibliography)
+\item listings (list of listings)
+\item imakeidx (index)
+\item fancyvrb 
+\item pgf/tikz
+\item pgf/tikz with \texttt{external} option
+\end{itemize}
+
+The most promising solution about this problem is to reduce the number of used output registers. So for example if no index is required (package imakeidx) and the package fancyvrb is not needed both could be commented out and instead the list of listings could be activated.
+
+Further information about this issue can be found at
+\begin{itemize}
+\item \href{http://tex.stackexchange.com/questions/15665/making-efficient-use-of-writes}{tex.stackexchange.com}
+\item \href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom}{UK FAQ List}
+\end{itemize}
+
+%% =========================================================================
+\chapter{Short fonts overview}
+\label{chap:doc:fonts}
+
+The information given here is only a subset of the whole story. A more complete catalogue on \latex fonts can be found at \href{http://www.tug.dk/FontCatalogue/}{http://www.tug.dk/FontCatalogue/}.
+
+The fonts listed in the following sections are not only a list of very common fonts, but also those that are supported within this template. If this should not be the case the commands that are necessary to load the font is provided, so that the font loading can be integrated in this template. The first section (\ref{sec:doc:fonts:free}) lists most free fonts, that can be expected to be installed in a complete modern \latex distribution. The second section (\ref{sec:doc:fonts:commercial}) is about packages for commercial fonts. These packages are available for free, however the fonts itself are not. The last section (\ref{sec:doc:fonts:math}) is about fonts with math support.
+
+% -------------------------------------------------------------------------
+\section{Free fonts}
+\label{sec:doc:fonts:free}
+
+ { % start a group 
+ \colorlet{tabledarkheadcolor}{black!60}
+  % style  
+  \small\renewcommand{\arraystretch}{1.4}\sffamily
+  % required if floatrow is loaded
+  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
+  % the table
+  \begin{longtabu} to \textwidth{X[1,l]>{\ttfamily}X[2,l]X[1,l]}
+% \captionabove{longtabu tabular with X columns} \\
+  \hline
+  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
+  \upshape
+  \sffamily\textcolor{white}{Font} &
+  \sffamily\textcolor{white}{Loading command} &
+  \sffamily\textcolor{white}{Family} \\ \hline
+\endfirsthead
+  \hline
+\upshape
+  \sffamily\textcolor{white}{Font} &
+  \sffamily\textcolor{white}{Loading command} &
+  \sffamily\textcolor{white}{Family} \\ \hline
+\endhead
+  \hline 
+  \taburowcolors 1{white .. white}
+  \multicolumn{3}{r}{\emph{continued on next page \ldots}}
+\endfoot
+  \hline
+\endlastfoot
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Font families} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+Latin Modern   & \bs{}usepackage\arg{lmodern}  & (see below) \\
+Bera           & \bs{}usepackage\arg{bera}     & (see below) \\
+CM-Bright      & \bs{}usepackage\arg{cmbright} & (see below) \\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Latin Modern font family} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+LM Roman   & \bs{}renewcommand\arg{\bs{}rmdefault}\arg{lmr}  & lmr  \\
+LM Sans    & \bs{}renewcommand\arg{\bs{}sfdefault}\arg{lmss} & lmss \\
+LM Mono    & \bs{}renewcommand\arg{\bs{}ttdefault}\arg{lmtt} & lmtt \\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Bera font family} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+Bera Serif	& \bs{}usepackage\arg{beraserif} & fve \\
+Bera Sans	& \bs{}usepackage\arg{berasans}	 & fvs \\
+Bera Mono	& \bs{}usepackage\arg{beramono}	 & fvm \\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{CmBright font family} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+CmBright Mono	& \bs{}renewcommand\arg{\bs{}ttdefault}\arg{cmtl} & cmtl \\
+CmBright Sans	& \bs{}renewcommand\arg{\bs{}sfdefault}\arg{cmbr} & cmbr \\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Fonts in the PSNFSS collection (Type 1 postscript fonts)} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+Times		& \bs{}usepackage\arg{mathptmx}	& ptm \\
+Helvetica	& \bs{}usepackage\arg{helvet}	& phv \\
+Courier		& \bs{}usepackage\arg{courier}	& pcr \\
+Palantino	& \bs{}usepackage\arg{mathpazo}	& pplx, pplj \\
+Charter		& \bs{}usepackage\arg{charter}	& bch \\
+Bookman		& \bs{}usepackage\arg{bookman}	& pbk \\
+%Utopia		& \bs{}usepackage\arg{utopia}	& put \\
+New Century Schoolbook	& \bs{}usepackage\arg{newcent}	& pnc \\
+Avantgarde	& \bs{}usepackage\arg{avantgar}	& pag \\
+Zapf Chancery	& \bs{}usepackage\arg{chancery}	& pzc \\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Fonts supplied by the  \href{http://www.tug.org/fonts/getnonfreefonts/}{getnonfreefonts} script} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+Arial (URW) 	& \bs{}usepackage\arg{uarial} 				& ua1 \\
+Classico (URW) 	& \bs{}renewcommand\arg{\bs{}sfdefault}\arg{uop} 	& uop \\
+DayRoman  		& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{dayrom} & dayrom\\
+GaramondNo8 (URW) 	& \bs{}renewcomamnd\arg{\bs{}rmdefault}\arg{ugm} & ugm\\
+LetterGothic (URW) 	& \bs{}usepackage\arg{ulgothic} & ulg\\
+Luxi Mono		& \bs{}usepackage\arg{luximono}		& ul9\\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Other Type 1 postscript fonts} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+Fourier		& \bs{}usepackage\arg{fourier}	& futm \\
+\end{longtabu}
+} % close the group
+
+% -------------------------------------------------------------------------
+\section{Commercial fonts}
+\label{sec:doc:fonts:commercial}
+
+In order to use these fonts for documents that shall be published it is 
+absolutely essential to own a license. Most fonts can only be obtained by buying these fonts, others may be installed on the computer by programs. Nevertheless its use is restricted unless a license for using these fonts is owned!
+
+If the fonts are available they need to be renamed and installed using the according manuals provided by \href{http://cq131a.de/fonts.html}{Walter Schmidt}
+
+ { % start a group 
+ \colorlet{tabledarkheadcolor}{black!60}
+  % style  
+  \small\renewcommand{\arraystretch}{1.4}\sffamily
+  % required if floatrow is loaded
+  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
+  % the table
+  \begin{longtabu} to \textwidth{X[1,l]>{\ttfamily}X[2,l]X[1,l]}
+% \captionabove{longtabu tabular with X columns} \\
+  \hline
+  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
+  \upshape
+  \sffamily\textcolor{white}{Font} &
+  \sffamily\textcolor{white}{Loading command} &
+  \sffamily\textcolor{white}{Family} \\ \hline
+\endfirsthead
+  \hline
+\upshape
+  \sffamily\textcolor{white}{Font} &
+  \sffamily\textcolor{white}{Loading command} &
+  \sffamily\textcolor{white}{Family} \\ \hline
+\endhead
+  \hline 
+  \taburowcolors 1{white .. white}
+  \multicolumn{3}{r}{\emph{continued on next page \ldots}}
+\endfoot
+  \hline
+\endlastfoot
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Serif fonts} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+Adobe Optima	& \bs{}usepackage\arg{optima}	& pop, popm \\
+Adobe Aldus		& \bs{}renewcommand{\bs{}rmdefault}\arg{pasx}	& pasx, pasj \\
+Adobe Garamond	& \bs{}usepackage\arg{xagaramon}	& padx, padj \\
+Adobe Stempel Garamond & \bs{}renewcommand\arg{\bs{}rmdefault}\arg{pegx} & 	pegx, pegj \\
+Adobe Melior	& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{pml}	& pml \\
+Adobe Minion	& \bs{}usepackage\arg{minion} &	pmnx, pmnj \\
+Adobe Sabon		& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{psbx} & psbx, psbj \\
+Adobe Times		& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{ptmx} & ptmx, ptmj \\
+Adobe Rotis Serif	& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{pro} & pro \\
+Adobe Rotis Semi-Serif	& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{pr1} & pr1 \\
+Linotype Meridien		& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{lmd} & lmd \\
+Linotype ITC Charter	& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{lch} & lch \\
+%
+\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
+\multicolumn{3}{l}{Sans serif fonts} \\
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+Adobe Frutiger	& \bs{}usepackage\arg{frutiger}	& pfr \\
+Adobe Futura	& \bs{}usepackage\arg{futura}	& pfu \\
+Adobe Gill Sans	& \bs{}usepackage\arg{gillsans}	& pgs \\
+Adobe Myriad	& \bs{}renewcommand\arg{\bs{}sfdefault}\arg{pmy}	& pmy, pmyc \\
+Adobe Syntax	& \bs{}usepackage\arg{asyntax}	& psx \\
+Adobe Rotis Sans & \bs{}renewcommand\arg{\bs{}sfdefault}\arg{pr4}	& pr4 \\
+Adobe Rotis Semi-Sans & \bs{}renewcommand\arg{\bs{}sfdefault}\arg{pr3}	& pr3 \\
+Linotype ITC Officina Sans	& \bs{}renewcommand\arg{\bs{}sfdefault}\arg{lo9}	& lo9 \\
+\end{longtabu}
+} % close the group
+
+% -------------------------------------------------------------------------
+\section{Fonts with math support}
+\label{sec:doc:fonts:math}
+
+The following table lists font packages that do not only load the font but also the according math font. The only exceptions are the packages \package{mathdesign}, \package{MnSymbol} and \package{MdSymbol}, which only load a math font.
+
+Note that the package \package{MnSymbol} and \package{MdSymbol} have severe restrictions on the loading order and incompatible packages, which is taken care of in this template.
+
+The package \package{eulervm} is spacial in the respect that it does not provide a math font for a specific roman font, but instead provides a math font that fits well to many common (commercial) serif fonts such as Adobe Aldus, Adobe Melior, Adobe Sabon and others for which no \latex math font support exists.
+
+ { % start a group 
+ \colorlet{tabledarkheadcolor}{black!60}
+  % style  
+  \small\renewcommand{\arraystretch}{1.4}\sffamily
+  % required if floatrow is loaded
+  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
+  % the table
+  \begin{longtabu} to \textwidth{X[l,2]>{\ttfamily}X[l,3]}
+% \captionabove{longtabu tabular with X columns} \\
+  \hline
+  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
+  \upshape
+  \sffamily\textcolor{white}{Font} &
+  \sffamily\textcolor{white}{Loading command}\\ \hline
+\endfirsthead
+  \hline
+\upshape
+  \sffamily\textcolor{white}{Font} &
+  \sffamily\textcolor{white}{Loading command}\\ \hline
+\endhead
+  \hline 
+  \taburowcolors 1{white .. white}
+  \multicolumn{2}{r}{\emph{continued on next page \ldots}}
+\endfoot
+  \hline
+\endlastfoot
+%
+\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%
+Charter (Bitstream) & \bs{}usepackage[bitstream-charter]\arg{mathdesign} \\
+% Computer Concrete	& \bs{}usepackage\arg{concmath} \\
+% Computer Modern Bright & \bs{}usepackage\arg{cmbright}\\
+Garamond (URW)		& \bs{}usepackage[urw-garamond]\arg{mathdesign} \\
+Latin Modern    	& \bs{}usepackage\arg{lmodern} \\
+New Century Schoolbook & \bs{}usepackage\arg{fouriernc} \\
+Times (Nimbus Roman (URW))& \bs{}usepackage\arg{mathptmx} \\
+Palatino			& \bs{}usepackage[sc]\arg{mathpazo} \\
+Utopia (Fourier) 	& \bs{}usepackage\arg{fourier} \\
+Adobe Minion		& \bs{}usepackage\arg{MnSymbol} \\
+Adobe Myriad		& \bs{}usepackage\arg{MdSymbol} \\
+Euler				& \bs{}usepackage\arg{eulervm} \\
+\end{longtabu}
+} % close the group

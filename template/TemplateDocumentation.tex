@@ -69,8 +69,6 @@
 %% new commands / definitions (required by the template!)
 \input{preamble/commands.tex}
 
-%\input{../packages/publish/preamble/setup-doc-commands.tex}
-
 \usepackage{xstring}
 \usepackage{kvsetkeys}
 
@@ -145,6 +143,12 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \externaldocument[Tpl-]{LaTeXTemplate}[LaTeXTemplate.pdf]
 
+\includeonly{
+ doc/doc-introduction,
+ doc/doc-code-filled,
+ % content/demo/demo,
+} % end includeonly
+
 
 %%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -169,8 +173,23 @@
 
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter
-%% documentation of the code of the template
-\input{doc/documentation.tex}
+
+\newcommand\argument[1]{$\langle${\normalfont\slshape#1}$\rangle$}
+% #########################################################################
+\part{Template Introduction}
+\label{part:documentation}
+\include{doc/doc-introduction}
+
+% #########################################################################
+\part{Template code documentation}
+\label{part:code}
+\include{doc/doc-code-filled}
+
+% #########################################################################
+%% demonstration of the template
+\part{LaTeX Examples}
+\label{part:demo}
+\include{content/demo/demo}
 
 % -- bibliography --
 % (must be placed _before_ appendix)
