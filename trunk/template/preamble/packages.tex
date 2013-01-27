@@ -285,6 +285,10 @@
 
 %\usepackage[integrals]{wasysym}
 
+%% The European Currency Symbol
+\usepackage[gen]{eurosym}
+
+
 %% Common Symbols
 \usepackage{pifont}   %% ZapfDingbats
 
@@ -464,6 +468,8 @@
 % Incompatible: ucs and every previous bibtex package
 \usepackage[
   style=alphabetic, % Loads the bibliography and the citation style 
+  % bibstyle=alphabetic, % load a bibliography style
+  % citestyle=alphabetic, % load a citatio style
   natbib=true, % define natbib compatible cite commands
 %%--- Backend --- --- ---
   backend=biber,   % (bibtex, biber)
@@ -909,9 +915,6 @@
 \usepackage[NoDate]{currvita}
 
 % \usepackage{nicefilelist}
-
-% very buggy package (Oktober 2012)!
-% \usepackage[noaddmain]{dateiliste} % print file list to pdf
 
 \EndTemplateSection{PackagesAdditional}
 
