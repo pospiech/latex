@@ -67,6 +67,7 @@
 % table colors 
 \colorlet{tablebodycolor}{white!100}
 \colorlet{tablerowcolor}{gray!10}
+\colorlet{tablesubheadcolor}{gray!30}
 \colorlet{tableheadcolor}{gray!25}
 
 }{} % End: \IfMultDefined{definecolor}
@@ -216,11 +217,14 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleCiteBib}
 
+% biblatex bibliography options
 \input{preamble/style-biblatex.tex}
+% modifications for an alpha style
+\input{preamble/style-biblatex-alpha.tex}
 
 \KOMAoptions{%
-   bibliography=oldstyle%
-   % bibliography=openstyle%
+   % bibliography=oldstyle%
+   bibliography=openstyle%
 }%
 \EndTemplateSection{StyleCiteBib}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -377,7 +381,7 @@
 \raggedbottom     % allow variable (ragged) site heights
 
 \IfPackageLoaded{geometry}{%
-  \input{preamble/style-geometry}
+  \input{preamble/style-geometry.tex}
 } % Endif
 
 % Layout mit 'typearea'
@@ -390,7 +394,7 @@
    DIV=11,% (Size of Text Body, higher values = greater textbody)
    % DIV=calc % (also areaset/classic/current/default/last) 
    % -> after setting of spacing necessary!   
-   BCOR=10mm% (Bindekorrektur)
+   BCOR=10mm% (binding correction)
 }%
 %
 }% end: \IfPackageNotLoaded{geometry}
@@ -444,7 +448,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleTitlepage}
 \KOMAoptions{%
-   titlepage=true %
+   titlepage=true % % separate page for title
    %titlepage=false %
 }%
 \EndTemplateSection{StyleTitlepage}
@@ -574,18 +578,6 @@
    %%% Setting of 'Style' and 'Content' of TOC
    % toc=left, %
    toc=indented,%
-   %
-   toc=bib,
-   % toc=nobib,
-   % toc=bibnumbered,
-   %
-   % toc=index,%
-   toc=noindex,
-   %
-   % toc=listof,
-   toc=nolistof
-   % toc=listofnumbered,
-   %   
 }%  
 
 % Setup using tocstyle
@@ -632,10 +624,10 @@
    %%% Setting of 'Style' and 'Content' of Lists 
    %%% (figures, tables etc)
    % --- General List Style ---
-   listof=left, % tabular styles
+   % listof=left, % tabular styles
    listof=indented, % hierarchical style
    % --- Appearance of Lists in TOC
-   % listof=notoc, % Lists are not part of the TOC
+   listof=notoc, % Lists are not part of the TOC
    % listof=totoc, % add Lists to TOC without number
    % listof=totocnumbered, % add Lists to TOC with number
 %%% index in toc
@@ -662,9 +654,9 @@
  }
 }
 
-% Inhalte von List of Figures
+% Subfigures text in List of Figures
 \IfPackageLoaded{subfig}{
-   \setcounter{lofdepth}{1}  %1 = nur figures, 2 = figures + subfigures
+   \setcounter{lofdepth}{1}  %1 = only figures, 2 = figures and subfigures
 }
 
 \EndTemplateSection{StyleLayoutTOC}
