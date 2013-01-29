@@ -704,7 +704,7 @@ The following table lists font packages that do not only load the font but also 
 
 Note that the package \package{MnSymbol} and \package{MdSymbol} have severe restrictions on the loading order and incompatible packages, which is taken care of in this template.
 
-The package \package{eulervm} is spacial in the respect that it does not provide a math font for a specific roman font, but instead provides a math font that fits well to many common (commercial) serif fonts such as Adobe Aldus, Adobe Melior, Adobe Sabon and others for which no \latex math font support exists.
+The package \package{eulervm} is special in the respect that it does not provide a math font for a specific roman font, but instead provides a math font that fits well to many common (commercial) serif fonts such as Adobe Aldus, Adobe Melior, Adobe Sabon and others for which no \latex math font support exists.
 
  { % start a group 
  \colorlet{tabledarkheadcolor}{black!60}
@@ -749,3 +749,45 @@ Adobe Myriad		& \bs{}usepackage\arg{MdSymbol} \\
 Euler				& \bs{}usepackage\arg{eulervm} \\
 \end{longtabu}
 } % close the group
+
+% -------------------------------------------------------------------------
+\section{Fonts examples}
+\label{sec:doc:fonts:examples}
+
+The following pages show examples of several font combinations that were created with this template code. This selection was done with care on similar x-heights and glyph widths, but since this selection was not done by an font expert the resulting combinations might still be not perfect. Further reading on the topic of typeface combinations can be found here: 
+\href{http://www.smashingmagazine.com/2010/11/04/best-practices-of-combining-typefaces/}{http://www.smashingmagazine.com/}. The clear exception is the combination of Times with Arial and Courier. This combination is shown because it is widely used but absolutely not recommendable.
+
+\begin{itemize}
+\item \hyperref[sec:doc:fonts:Latin Modern Family]{Latin Modern Family}
+\item \hyperref[sec:doc:fonts:Charter-Bera Sans-Luxi Mono]{Charter, Bera Sans, Luxi Mono}
+\item \hyperref[sec:doc:fonts:Garamond-Bera Sans-Luxi Mono]{Garamond, Bera Sans, Luxi Mono}
+\item \hyperref[sec:doc:fonts:Fourier-Latin Modern]{Fourier (Utopia), Latin Modern (Sans and Typewriter)}
+\item \hyperref[sec:doc:fonts:Palantino-Arial-Courier]{Palantino, Arial, Courier} \\ Note that Palantino fits very well to Gill Sans, which however is a commercial font.
+\item \hyperref[sec:doc:fonts:Times-Arial-Courier]{Times, Arial, Courier}
+\end{itemize}
+
+\cleardoublestandardpage
+
+\phantomsection\label{sec:doc:fonts:Latin Modern Family}
+\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}]%
+	{fonts/fontsample - Latin Modern Family.pdf}
+%
+\phantomsection\label{sec:doc:fonts:Charter-Bera Sans-Luxi Mono}
+\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}]%
+	{fonts/fontsample - Charter-Bera Sans-Luxi Mono.pdf}
+%
+\phantomsection\label{sec:doc:fonts:Garamond-Bera Sans-Luxi Mono}
+\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
+	{fonts/fontsample - Garamond-Bera Sans-Luxi Mono.pdf}
+%
+\phantomsection\label{sec:doc:fonts:Fourier-Latin Modern}	
+\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
+	{fonts/fontsample - Fourier (Utopia)-Latin Modern (Sans and Typewriter).pdf}
+%
+\phantomsection\label{sec:doc:fonts:Palantino-Arial-Courier}
+\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
+	{fonts/fontsample - Palantino-Arial-Courier.pdf}
+%
+\phantomsection\label{sec:doc:fonts:Times-Arial-Courier}	
+\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
+	{fonts/fontsample - Times-Arial-Courier.pdf}

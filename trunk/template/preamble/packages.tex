@@ -187,7 +187,7 @@
 
 % Description: scales math mode output in all environments correct
 % Doc: Mathmode.pdf
-\IfPackageNotLoaded{MnSymbol}{
+\IfPackagesNotLoaded{MnSymbol,fourier}{
    \usepackage{exscale} 
 }
 
@@ -787,7 +787,10 @@
 %              total-for the LaTeX macros related with sections - namely
 %              titles, headers and contents.
 %%% Doc: titlesec.pdf
-\usepackage{titlesec}
+\ifcsdef{chapter}
+	{\usepackage{titlesec}}
+	{\usepackage{titlesec} \csundef{chapter}}
+
 
 \EndTemplateSection{PackagesHeadings}
 

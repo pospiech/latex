@@ -1,0 +1,205 @@
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
+
+%% Bug fixes and other packages to be loaded before the class
+\RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
+\RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
+%
+%% Document Class (Koma Script) -----------------------------------------
+\documentclass[%
+   %draft,     % draft mode (no images, layout errors shown)
+   final,      % final mode 
+%%% --- Paper Settings ---
+   paper=a4,% [Todo: add alternatives]
+   paper=portrait, % landscape
+   pagesize=auto, % driver
+%%% --- Base Font Size ---
+   fontsize=11pt,%
+%%% --- Koma Script Version ---
+   version=last, %
+%%% --- Global Package Options ---
+   english, % language (passed to babel and other packages)
+            % (german, ngerman, english, french, ...)
+ ]{scrbook} % Classes: scrartcl, scrreprt, scrbook
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Must be loaded first!
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{templatesection}
+\usepackage{templatetools}
+\usepackage{templatedemo}
+\RequirePackage{filecontents}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% encoding
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% Encoding of _text_% (required for special characters such as umlaute)
+% Recommended utf8%, except when using the packages: listings, soul, ?
+% In that case "latin1" is recommende instead.
+% -> set encoding of text using your text editor!
+
+% automatic selection of encoding
+% insert chars for umlaut a and sz
+\usepackage{selinput}
+\SelectInputMappings{adieresis={ä},germandbls={ß}} 
+
+% Encoding of _files and directories_
+% (ensures that any file can be loaded without problems)
+\usepackage[%
+   extendedchars, encoding, multidot, space,
+   filenameencoding=latin1, % Windows XP, Vista, 7
+   % filenameencoding=utf8,   % Linux, OS X
+]{grffile}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Fonts
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% select/load fonts
+
+% Make PDF files searchable and copyable
+% load before: fontenc
+\usepackage{cmap} 
+
+% T1 Schrift Encoding
+\usepackage[T1]{fontenc} 
+
+\newcommand{\fontdesc}{}
+
+%%? <*preamblefontcode*>
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% preamble
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% load packages
+\input{preamble/packages.tex}
+% apply style settings
+\input{preamble/style.tex}
+% new commands / definitions
+\input{preamble/commands.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% execute necessary commands
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\listfiles % list all loaded files at end of document
+
+\ifcsdef{url}{}{\newcommand\url[1]{\texttt{#1}}}
+
+\begin{document}
+
+% --- remove page numbers 
+\pagenumbering{alph}
+\pagestyle{empty}
+\ofoot[]{} 
+
+\chapter*{\fontdesc}
+The text on these pages demonstrates the appearance of the used fonts for serif, sans serif, math and typewriter fonts. The font(s) used in this document are \textit{\fontdesc}. The fonts are loaded with
+\begin{lstlisting}[style=demostyle]
+%%? <*fontcode*>
+\end{lstlisting}
+
+\section*{Plain text}
+The following paragraph is text taken from \url{http://www.blindtextgenerator.de} to show the appearance of the text. It is a text without any meaning translated from the original German text into English text. The translation was done automatic and thus the text has even less meaning after the translation.
+
+Far far away, behind the word mountains, far from the countries Vokalia and Consonantia live the blind texts. Separated they live in Bookmarksgrove on the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing the blind texts - an almost unorthographic life. One day however a small line of blind text by the name of Lorem Ipsum was to go out into the wide grammar. The Big Oxmox advised her not to, because there swarming of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text did not listen. She packed her seven capitals, pushing her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful was a rhetorical question on the cheek, then she continued her way. Her way she met a copy. The copy warned the Little Blind Text, where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word \enquote{and} and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it did not take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and made it dragged her into their agency, where they abused it for their projects again and again. And if it has not been rewritten, then they are still. 
+
+Two fast boxer chasing the vivacious Eva and her pug by Sylt. Fox jumps over the lazy dog Bavaria. Twelve boxer Viktor hunt across the big Sylt dike. Bird Quax tweaks Johnys horse Bim. Sylvia dares quick to joke at Pforzheim. Polyfon Mäxchens twittering birds ate beets, yogurt and cottage cheese. \enquote{Fix, Schwyz!} Jürgen squawks stupid from the pass. Victor chases twelve boxer across the great Sylt dike. Wrong practicing of xylophone music tortures every larger dwarf.
+
+\section*{Math formulas}
+These math formulas are taken from \url{wikipedia.org}. They show well known formulas used in math and physics.
+
+\subsection*{Green's theorem}
+%
+\begin{equation}
+  \underset{\mathcal{G}\quad}\iiint
+  \left[u\nabla^{2}v+\left(\nabla  u,\nabla  v\right)\right]\mathrm{d}^{3}V
+  =\underset{\mathcal{S}\quad}\oiint  u\,\frac{\partial v}{\partial n}
+  \,\,\mathrm{d}^{2}A
+\end{equation}
+%
+\subsection*{Jacobian matrix}
+%
+\begin{equation}
+  J_f(a) := \frac{\partial {f}}{\partial {x}}(a) 
+         := \frac{\partial(f_1,  \ldots, f_m)}{\partial(x_1, \ldots, x_n)}(a)
+         := \left(\frac{\partial f_i(a)}{\partial x_j}\right)_{i=1,\ldots,m;\
+             j=1,\ldots,n}
+\end{equation}
+
+\section*{Tables}
+The following table lists some properties of the material \emph{fused silica}. 
+
+\IfMathVersionDefined{sans}%
+{%% --- math sans defined ------------------------------------
+The left side in serif font, the right in sans serif font.
+\begin{center}
+% Style changes
+\small\rmfamily\renewcommand{\arraystretch}{1.4}
+\begin{minipage}{0.49\textwidth}
+\centering
+% tabular
+\captionsetup{type=table}
+\captionsetup{labelformat=empty} 
+\captionabove{Properties of fused silica}
+\begin{tabular}{l>{$}r<{$}!{$=$}>{$}l<{$}}
+\hline
+\rowcolor{tableheadcolor}
+description  &
+\multicolumn{2}{>{\columncolor{tableheadcolor}}l}{property} \\ 
+\hline
+density         &  \rho          &  \SI{2.2}{g/cm^3} \\
+heat capacity   &  c_\text{p}  &  \SI{703}{J/gK}   \\
+transmission    &  \multicolumn{2}{c}{185 - 2500\,\si{nm}} \\
+\hline
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}{0.49\textwidth}
+\centering\sffamily
+% tabular
+\captionsetup{type=table}
+\captionsetup{labelformat=empty} 
+\captionabove{Properties of fused silica}
+\IfMathVersionDefined{sans}{\mathversion{sans}}{}
+\begin{tabular}{l>{$}r<{$}!{$=$}>{$}l<{$}}
+\hline
+\rowcolor{tableheadcolor}
+description  &
+\multicolumn{2}{>{\columncolor{tableheadcolor}}l}{property} \\ 
+\hline
+density         &  \rho          &  \SI{2.2}{g/cm^3} \\
+heat capacity   &  c_\text{p}  &  \SI{703}{J/gK}   \\
+transmission    &  \multicolumn{2}{c}{185 - 2500\,\si{nm}} \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{center}
+The sans serif variant is realized with \texttt{\bs{}mathversion\arg{sans}}
+}%
+{%
+%% --- math sans is not defined --------------------------------
+\begin{center}
+% Style changes
+\small\rmfamily\renewcommand{\arraystretch}{1.4}
+% tabular
+\captionsetup{type=table}
+\captionsetup{labelformat=empty} 
+\captionabove{Properties of fused silica}
+\begin{tabular}{l>{$}r<{$}!{$=$}>{$}l<{$}}
+\hline
+\rowcolor{tableheadcolor}
+description  &
+\multicolumn{2}{>{\columncolor{tableheadcolor}}l}{property} \\ 
+\hline
+density         &  \rho          &  \SI{2.2}{g/cm^3} \\
+heat capacity   &  c_\text{p}  &  \SI{703}{J/gK}   \\
+transmission    &  \multicolumn{2}{c}{185 - 2500\,\si{nm}} \\
+\hline
+\end{tabular}
+\end{center}
+}%
+
+\end{document}

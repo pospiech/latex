@@ -168,10 +168,12 @@
 
 \IfPackagesLoaded{glossaries,longtable,tabu}{%
   \clearpage
-  % print out acronym list 
-  \printglossary[type=\acronymtype,style=longtabuFancyHeader]
+  % print out acronym list   
+  \IfGlossariesStyleDefined{longtabuFancyHeader}%
+   {\printglossary[type=\acronymtype,style=longtabuFancyHeader]}%
   % print out symbol list 
-  \printglossary[type=symbolslist,style=longtabuFancyHeader]
+  \IfGlossariesStyleDefined{longtabuFancyHeader}%
+   {\printglossary[type=symbolslist,style=longtabuFancyHeader]}%
   % print out glossary
   \printglossary[style=altlist]
 } % end of glossaries
