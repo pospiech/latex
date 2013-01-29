@@ -38,6 +38,7 @@
 \documentclass{ltxdoc}
 \usepackage{hypdoc}
 \RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools} % 
+\usepackage{lmodern}
 %
 %%% Configures doc.sty and its (outdated) index generation, which does
 %   not work together with any modern package and has no hyperref support
@@ -467,9 +468,9 @@ Files
 % \subsection{Preamble}
 % \subsubsection{Packages}
 % Most package are loaded at the beginning of the document to avoid clashes
-%  with other packages and make a correct loading order possible. Since the
-%  packages are only available at the end of the preamble, all commands
-%  defined by this package are also only available at the end of the preamble.
+% with other packages and make a correct loading order possible. Since the
+% packages are only available at the end of the preamble, all commands
+% defined by this package are also only available at the end of the preamble.
 %    \begin{macrocode}
 %%% ---- Packages ----
 %%% Programming
@@ -477,7 +478,8 @@ Files
 %%% Font packages
 \usepackage{cmap} 
 \usepackage[T1]{fontenc} % T1 Schrift Encoding
-\usepackage{lmodern}
+%\usepackage{lmodern} % Font not loaded, because this can lead
+%                     % to incompatibilities with other math fonts
 \usepackage{textcomp}
 %%% load all further packages and all commands 
 %%% at the beginning of the document and thus
