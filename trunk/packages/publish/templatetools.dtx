@@ -33,6 +33,7 @@
 \documentclass{ltxdoc}
 \usepackage{hypdoc}
 \RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools} % 
+\usepackage{lmodern}
 
 \usepackage{templatetools}[<*date*>]
 
@@ -333,14 +334,19 @@ text which is considerably longer than the width of the column \\
 % \DescribeMacro{\IfColorDefined} 
 % \marg{color name}\marg{is defined}\marg{is undefined} \AfterLastParam
 %
-% ^^A Also available as a command checking for multiple color definitions with a 
-% ^^A comma separated list: 
 %
 % \DescribeMacro{\IfColorsDefined}
 % \marg{list of color name}\marg{is defined}\marg{is undefined} \AfterLastParam
 %
-% ^^A \subsection{Math font version}
-% ^^A \DescribeMacro{\IfMathVersionDefined}
+% \subsection{Math font version}
+% \DescribeMacro{\IfMathVersionDefined}
+% \marg{font version}\marg{is defined}\marg{is undefined} \AfterLastParam
+%
+%
+% \subsection{Glossaries styles}
+% \DescribeMacro{\IfGlossariesStyleDefined} 
+% \marg{style name}\marg{is defined} \AfterLastParam
+%
 %
 % \subsection{Template Definitions}
 % The following commands in principle define only macros, but in contrast to 
@@ -777,7 +783,21 @@ text which is considerably longer than the width of the column \\
 % name definition on 
 % \href{http://tex.stackexchange.com/questions/40903/check-if-mathversion-font-is-defined}{tex.stackexchange.com}.
 %
-% Note, that this feature is untested.
+%
+% \subsection{Glossaries styles}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% tests the existens of glossaries styles
+% ------------------------------------------------------------------
+% \fi
+%
+% \begin{macro}{\IfGlossariesStyleDefined}
+% Checks if a glossaries style is defined.  
+%    \begin{macrocode}
+\newcommand{\IfGlossariesStyleDefined}[2]{\ifcsdef{@glsstyle@#1}{#2}{}}
+%    \end{macrocode}
+% \end{macro}
 %
 % \subsection{Template definitions}
 %

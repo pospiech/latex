@@ -53,26 +53,10 @@
 \lstset{style=lstStyleDefault}
 
 \lstdefinestyle{lstDocStyleBase}{
+%%% base style
+   ,style=lstStyleDefault
 %%% appearance
-   ,basicstyle=\small\ttfamily % Standardschrift
    ,commentstyle=\slshape
-%%%  Space and placement
-   ,floatplacement=tbp    % is used as float place specifier
-   ,aboveskip=\medskipamount % define the space above and 
-   ,belowskip=\medskipamount % below displayed listings.
-   ,lineskip=0pt          % specifies additional space between lines in listings.
-   ,boxpos=c              % c,b,t
-%%% The printed range
-   ,showlines=false       % prints empty lines at the end of listings
-%%% characters
-   ,extendedchars=true   % allows or prohibits extended characters 
-                         % in listings, that means (national)
-                         % characters of codes 128-255. 
-   ,upquote=true         % determines printing of quotes
-   ,tabsize=2,           % chars of tab
-   ,showtabs=false       % do not show tabs
-   ,showspaces=false     % do not show spaces
-   ,showstringspaces=false % do not show blank spaces in string
 %%% Line numbers
    ,numbers=left         % left, right, none
    ,stepnumber=1         % seperation between numbers
@@ -80,24 +64,6 @@
    ,numberstyle=\tiny\color{doc@numbercolor}    % style of numbers
    ,numbersep=5pt        % distance to text
    ,numberblanklines=true %
-%%% Captions
-   ,numberbychapter=true %
-   ,captionpos=b         % t,b
-   ,abovecaptionskip=\smallskipamount % the vertical space respectively above 
-   ,belowcaptionskip=\smallskipamount % or below each caption
-%%% Margins and line shape
-   ,linewidth=\linewidth % defines the base line width for listings.  
-   ,xleftmargin=0pt      % extra margins
-   ,xrightmargin=0pt     %
-   ,resetmargins=false   % indention from list environments like enumerate 
-                         % or itemize is reset, i.e. not used.
-   ,breaklines=true      % line breaking of long lines.
-   ,breakatwhitespace=false % allows line breaks only at white space.
-   ,breakindent=0pt     % is the indention of the second, third, ...  
-                         % line of broken lines.
-   ,breakautoindent=true % apply intendation
-   ,columns=flexible     %
-   ,keepspaces=true      %
 %%% language
    ,language = [LaTeX]TeX
 %%% commands
