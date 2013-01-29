@@ -1,3 +1,7 @@
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
+
 % LaTeX Tutorial for the latexthesistemplate
 % based on 
 % - https://pangea.stanford.edu/computing/unix/formatting/latexexample.php
@@ -6,12 +10,20 @@
 
 \ifcsdef{cs}{}{\newcommand{\cs}[1]{\texttt{\textbackslash{}#1}\relax}}%
 
+% Define colors in case they are not available because style.tex was 
+% not loaded
+% table colors 
+\colorlet{tablebodycolor}{white!100}
+\colorlet{tablerowcolor}{gray!10}
+\colorlet{tablesubheadcolor}{gray!30}
+\colorlet{tableheadcolor}{gray!25}
+
 \section{LaTeX Typesetting By Example}
 \label{sec:example:tutorial}
 This section demonstrates a basic set of LaTeX formatting commands and shows how they look like in this template. For comparison of the typeset output with the input document refer to the code listing starting on page \pageref{sec:example:code}.
 
 The content presented here is based on similar text by Phil Farrell\footnote{\url{https://pangea.stanford.edu/computing/unix/formatting/latexexample.php}} and Harvey Gould\footnote{\url{http://sip.clarku.edu/tutorials/TeX/}}.
-For further reading on the possibilities of this template please refer to the file \path{TemplateDocumentation.pdf}.
+For further reading on the possibilities of this template please refer to the documentation: \path{TemplateDocumentation.pdf}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Plain Text}
@@ -63,7 +75,7 @@ If not, \cs{blockquote} will behave like \cs{textquote}.
 Depending on the threshold type option, the threshold may be based on the number
 of lines required to typeset the text or on the number of words in the text.}
 
-The standard command for citations is \texttt{\textbackslash{}cite} which may have a prenote argument for adding a page number or something similar. To show how a citation is typeset we cite here a book about LaTeX \cite[59]{companion}. Further commands such as \cs{parencite} \parencite{companion} and \cs{textcite} \textcite{companion} allow a different typeset of the citation. The resulting bibliography is printed out on \cpageref{sec:bibliography}. Refer to the biblatex manual for further details on citation commands and modifications on the printout and the section on biblatex in \path{TemplateDocumentation.pdf}.
+The standard command for citations is \texttt{\textbackslash{}cite} which may have a prenote argument for adding a page number or something similar. To show how a citation is typeset we cite here a book about LaTeX \cite[59]{companion}. Further commands such as \cs{parencite} \parencite{companion} and \cs{textcite} \textcite{companion} allow a different typeset of the citation. The resulting bibliography is printed out on \cpageref{sec:bibliography}. Refer to the biblatex manual for further details on citation commands and modifications on the printout and the section on biblatex in the template documentation.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{References}
@@ -101,7 +113,7 @@ One type of list can be nested within another type.
 This is a new paragraph in the item text, which is not intended as in the 
 normal text but separated from the previous paragraph.
 %
-\item The enumration scheme changes with each nesting level
+\item The enumeration scheme changes with each nesting level
   \begin{enumerate}
   \item as shown in this nested enumerated list item.
   \end{enumerate}
@@ -112,8 +124,6 @@ appropriate \verb+\end{...}+ command.
 Indenting \verb+\begin{...}+, \verb+\item+, and \verb+\end{...}+
 commands in the input document according to their nesting level can help 
 clarify the structure.
-
-Description lists and other list environments and options for list are described in \path{TemplateDocumentation.pdf}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Tables}
@@ -169,7 +179,7 @@ fcc & 3 & 12 & 1.225 \\
 \end{tabularx}
 \end{table}
 
-The design and creating of complex tables is shown in much greater detail in \path{TemplateDocumentation.pdf} in the section about tables.
+The design and creating of complex tables is shown in much greater detail in documentation of this template.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Mathematical Equations}
@@ -232,7 +242,7 @@ or with only a single number
   \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
 \end{aligned}
 \end{equation}
-Many further possibilities of displaying equations exist. Some or shown in \path{TemplateDocumentation.pdf}
+Many further possibilities of displaying equations exist. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsubsection{Common Greek letters}
@@ -254,17 +264,19 @@ letters are included here.
 It is desirable to print program code exactly as it is typed in a
 monospaced font. Use \cs{begin\{lstlisting\}} and
 \cs{end\{lstlisting\}} as in the following example:
-\begin{lstlisting}[style=lstStyleCpp]
+
+\begin{lstlisting}
 double y0 = 10; // example of declaration and assignment statement
 double v0 = 0;  // initial velocity
 double t = 0;   // time
 double dt = 0.01; // time step
 double y = y0;
 \end{lstlisting}
-Two styles are predefined in this template: \texttt{lstStyleCpp} and \texttt{lstStyleLaTeX}.
+%
+Two styles are defined in this template: \texttt{lstStyleCpp} and \texttt{lstStyleLaTeX}.
 
-The command \cs{lstinputlisting\{content/demo/latextutorial.tex\}}
-allows you to list the file \texttt{latextutorial.tex} in the directory \path{content/demo/} as done with the listing in \cref{sec:example:code}.
+A complete file can be printed with listings using the 
+command \cs{lstinputlisting}, see \cref{sec:example:code} for an example.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Figures}
 \label{sec:example:figures}
@@ -294,11 +306,11 @@ All possibilities of grouping pictures side by side, on top or in matrices can b
     \caption{The second subfigure.}
     \label{fig:example:subfigures:b}
   \end{subfigure}
-  \caption{Demonstration of the \emph{subfigure} environment inside a figure environment.}
+  \caption{Demonstration of the \emph{subfigure} environment inside a figure environment using a test image (Origin of the image: \url{http://de.wikipedia.org/wiki/Testbild}).}
   \label{fig:example:subfigures}
 \end{figure}
-
-For complex subfigure constructs and correct alignment of the subcaption the \texttt{floatrow} provides powerful commands. These are described in \path{TemplateDocumentation.pdf}.
+%
+For complex subfigure constructs and correct alignment of the subcaption the \texttt{floatrow} provides powerful commands. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Index}
@@ -309,7 +321,11 @@ An index is easy to create with LaTeX, but should only be done if the time is av
 
 A word is added to the index with the command \cs{index\{word\}} and these indexed words can be grouped with \cs{index\{group!word\}}. Within this document some index commands are inserted below the section headers of this tutorial for the purpose of demonstrating the indexing. The resulting index is displayed on page~\pageref{sec:Index}. 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\clearpage
 \subsection{Code}
 \label{sec:example:code}
 
-\lstinputlisting[style=lstStyleLaTeX,nolol=true]{content/demo/latextutorial.tex}
+\ifcsdef{lstStyleLaTeX}{%
+  \lstinputlisting[style=lstStyleLaTeX,nolol=true]%
+  {content/demo/latextutorial.tex}
+}{}  
