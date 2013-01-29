@@ -326,6 +326,8 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
   {\@ifpackageloaded{doc}
     {\RequirePackage[loadHyperref=false,createIndexEntries=false]{doctools}}
     {}}
+%%% listings (must be loaded before \AtBeginDocument)
+\RequirePackage{listings}
 \PassOptionsToPackage{table}{xcolor}
 % This code needs to be executed at the beginning
 % of the document because some packages (eg. xcolor)

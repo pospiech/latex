@@ -481,6 +481,8 @@ Files
 %\usepackage{lmodern} % Font not loaded, because this can lead
 %                     % to incompatibilities with other math fonts
 \usepackage{textcomp}
+%%% listings (must be loaded before \AtBeginDocument)
+\RequirePackage{listings}
 %%% load all further packages and all commands 
 %%% at the beginning of the document and thus
 %%% after all other packages 
@@ -910,6 +912,6 @@ $\langle${\normalfont\slshape#1}$\rangle$
 % \iffalse
 %</doctools.sty>
 % \fi
-%
+% \clearpage
 % \Finale
 \endinput
