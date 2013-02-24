@@ -113,18 +113,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{StyleDiagrams}
 
-% tikz/pgf
-\IfPackagesLoaded{tikz,pgfplots}{%
-\pgfplotsset{width=0.8\textwidth,compat=1.5.1}
-% set decimal point to comma for german text
-\iflanguage{ngerman}{%
-  \pgfplotsset{%
-    x tick label style={/pgf/number format/use comma},%
-    y tick label style={/pgf/number format/use comma},%
-    z tick label style={/pgf/number format/use comma}}%
-  }{}
-}{}
-
 % setup of package pgfplots
 \input{preamble/style-pgfplots.tex}
 
