@@ -69,9 +69,6 @@
 %% new commands / definitions (required by the template!)
 \input{preamble/commands.tex}
 
-\usepackage{xstring}
-\usepackage{kvsetkeys}
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Configurations
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -95,16 +92,6 @@
   %  TwoPageLeft    Displays two pages, odd-numbered pages to the left 
   %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
 }%
-
-% The backend and encodings for biblatex 
-% are configured in file:
-%
-%    preamble/packages.tex
-%
-% in section
-%    PackagesCitation
-%
-%
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % custom definitions
@@ -139,9 +126,8 @@
 }%
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% cross references 
+% include list
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\externaldocument[Tpl-]{LaTeXTemplate}[LaTeXTemplate.pdf]
 
 \includeonly{
  doc/doc-introduction,
@@ -210,6 +196,16 @@
 %% -- List of Listings --
 % \cleardoublepage
 % \IfDefined{lstlistoflistings}{\lstlistoflistings}
+
+% --- Appendix --- --- --- --- --- --- ---
+\cleardoublepage
+\appendix
+% Add `Appendix` to TOC
+\addcontentsline{toc}{part}{\appendixname}
+% must be _input_, otherwise the TOC entry is at the wrong place
+\input{doc/doc-z-appendix.tex}
+% <------------------------
+
 
 %% -- Index --
 \IfDefined{printindex}{%

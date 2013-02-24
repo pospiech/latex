@@ -170,6 +170,9 @@
   % warning
   error
 ]{onlyamsmath}
+% fix incompatibilty problems with tikz and other packages
+% discussed here: http://tex.stackexchange.com/questions/31860/conflict-onlyamsmath-and-tikz
+\AtBeginDocument{\catcode`\$=3}
 
 } % end: IfPackageLoaded{amsmath}
 
