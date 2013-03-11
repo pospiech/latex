@@ -322,9 +322,13 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{templatedemo}[2012/12/01 v0.1 typeset code and resulting output]
 \@ifpackageloaded{hypdoc}
-  {\RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools}}
+  {\RequirePackage[loadHyperref=true,%
+                   createIndexEntries=false,%
+                   applyLayout=false]{doctools}}
   {\@ifpackageloaded{doc}
-    {\RequirePackage[loadHyperref=false,createIndexEntries=false]{doctools}}
+    {\RequirePackage[loadHyperref=false,%
+                    createIndexEntries=false,%
+                    applyLayout=false]{doctools}}
     {}}
 %%% listings (must be loaded before \AtBeginDocument)
 \RequirePackage{listings}
@@ -352,7 +356,9 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %% load doctools without hyperref if not loaded and no documentation
 %% package was loaded.
 \@ifpackageloaded{doctools}{}
-  {\RequirePackage[loadHyperref=false,createIndexEntries=true]{doctools}}
+  {\RequirePackage[loadHyperref=false,%
+                   createIndexEntries=true,%
+                   applyLayout=false]{doctools}}
 %    \end{macrocode}
 %
 % \subsubsection{Colors}
@@ -479,12 +485,13 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 \mdfdefinestyle{DemoStyleFrames}{
   linecolor=demo@rulecolor,%
   linewidth=0.8pt,
-  skipabove=0pt,
+  skipabove=0.5\baselineskip,
   skipbelow=0.5\baselineskip,
   leftmargin =-3.5pt,
   rightmargin=-3.5pt,
   innerleftmargin=3pt,
   innerrightmargin=3pt,
+  needspace=3\baselineskip,
 }% 
 %    \end{macrocode}
 %
@@ -494,7 +501,7 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 % Default skip at the beginning of a result
 %    \begin{macrocode}
 %% === Formating commands ============================
-\newcommand{\preResultSkip}{\vspace*{-0.5\baselineskip}}
+\newcommand{\preResultSkip}{}%\vspace*{-0.5\baselineskip}
 %    \end{macrocode}
 % \end{macro}
 %

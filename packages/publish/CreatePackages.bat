@@ -1,5 +1,8 @@
 @ECHO OFF
 cls
+
+echo %cd%
+
 SET PERLEXE=C:\texlive\2012\tlpkg\tlperl\bin\perl.exe
 SET TEXENGINE=pdflatex
 SET TARGETDIR=CTAN
@@ -36,7 +39,8 @@ call:createPackage %FOLDER% %PACKAGE%
 IF EXIST "%FOLDER%\%PACKAGE%\doctools.sty" del "%FOLDER%\%PACKAGE%\doctools.sty"
 
 call:CleanUP
-echo.&pause&goto:eof
+::echo.&pause&
+goto:eof
 
 
 
