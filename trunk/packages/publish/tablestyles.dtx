@@ -38,7 +38,12 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hypdoc}
-\RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools} % 
+\RequirePackage[%
+  loadHyperref=true,
+  createIndexEntries=false,
+  applyLayout=true]
+{doctools} % 
+%
 \usepackage{tablestyles}[<*date*>]
 \EnableCrossrefs
 \CodelineIndex

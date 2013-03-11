@@ -461,6 +461,7 @@ Files
 \DeclareBoolOption[false]{loadHyperref}
 \DeclareBoolOption[false]{loadHypdoc}
 \DeclareBoolOption[true]{createIndexEntries}
+\DeclareBoolOption[false]{applyLayout}
 \ProcessKeyvalOptions{doctools}
 %    \end{macrocode}
 %
@@ -519,10 +520,12 @@ Files
 %
 %    \begin{macrocode}
 %%% Set document layout / variables
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5\baselineskip}
-\setcounter{secnumdepth}{2}
-\setcounter{tocdepth}{2}
+\ifdoctools@applyLayout%
+  \setlength{\parindent}{0pt}
+  \setlength{\parskip}{0.5\baselineskip}
+  \setcounter{secnumdepth}{2}
+  \setcounter{tocdepth}{2}
+\fi
 %    \end{macrocode}
 %
 % ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
