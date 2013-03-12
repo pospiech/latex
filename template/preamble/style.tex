@@ -134,6 +134,11 @@
   }
 }
 
+% Options of enumitem
+\IfDefined{setlist}{%
+  \setlist{itemsep=0pt}
+}%
+
 \EndTemplateSection{StyleText}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -551,6 +556,7 @@
 %% Space below Chapter Title
 % \renewcommand*{\chapterheadendvskip}{\vspace{0.5\baselineskip}}%
 
+% setup of package titlesec
 \input{preamble/style-titlesec.tex}
 
 \EndTemplateSection{StyleHeadingsLayout}
@@ -567,6 +573,9 @@
    % toc=left, %
    toc=indented,%
 }%  
+
+% setup of package titletoc
+\input{preamble/style-titletoc.tex}
 
 % Setup using tocstyle
 \IfPackageLoaded{tocstyle}{

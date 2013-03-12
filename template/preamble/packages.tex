@@ -443,6 +443,15 @@
   \usepackage{enumitem}
 }
 %
+%%% Other Environments ================================================
+%
+% Description: The abstract package provides control over the typesetting of
+%              the abstract environment.
+% Doc: abstract.pdf
+\IfDefined{endabstract}{%
+  \usepackage{abstract}
+}
+
 \EndTemplateSection{PackagesText}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -608,16 +617,18 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginTemplateSection{PackagesIndexes}
 
-%% Description makeindex package with shell-escape makeindex call
-%% Doc: imakeidx.pdf
-\usepackage{imakeidx}
-
 % Description: print text of \index{entry} to the margin
 % Doc: makeidx.pdf
 % --> load only in draft mode
+% load before: imakeidx
 \IfDraft{
   \usepackage{showidx}
 }
+
+
+%% Description makeindex package with shell-escape makeindex call
+%% Doc: imakeidx.pdf
+\usepackage{imakeidx}
 
 % Description: Package for glossaries, nomenclatures and acronym lists
 % replaces: nomencl, acronym
@@ -653,7 +664,7 @@
 % Description: This package provides many facilities for reading, writing and
 %              changing the output style of verbatim code
 % Doc: fancyvrb.pdf
-\usepackage{fancyvrb} 
+% \usepackage{fancyvrb} 
 
 % Description: The listings package is a source code printer for LaTeX.
 %              You can typeset stand alone files as well as listings with an 
@@ -802,6 +813,12 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \BeginTemplateSection{PackagesTOC}
+
+% Description: The philosophy of this package is to use new commands which you
+%              can format the toc entries with in a generic way.
+% Doc: titlesec.pdf
+% load before: hyperref
+\usepackage{titletoc}
 
 % Description: apply different styles for the formating of the 
 %              table of contents and lists of floats.
