@@ -37,6 +37,19 @@
 
 \ifcsdef{chapter}{%
 \chapter{Template demonstration}
+
+Originally the code of this chapter served only as a test for the template code. It was used to verify that everything is displayed as expected. 
+It was then extended to a presentation of the possibilities of this template.
+
+All examples are presented together with the creation code side by side or on top of each other. 
+The code can be copied directly from the pdf document and inserted in the content files of this template. The basic \latex code example may also work in any other \latex template. However, most examples require a special package or even some code defined only in this template. 
+Therefore it is only guaranteed that the examples work in this template. If this should not be the case it should be reported as a bug. 
+
+All the examples are designed not to raise an error if some functionality is not available, but instead to display why they were not included in the document. 
+One example for this is the code for package \package{subfloat} in \cref{sec:demo:figures:subfloat}, which was intentionally removed because of incompatibilities and better alternatives. Therefore these `error´ messages do not indicate an error of the template. They only inform why an example could not be included. 
+
+This document (\path{content/demo/demo.tex}) could also be used in other templates provided that all depending packages are loaded. 
+And all users and package authors are encouraged to extend and improve the examples as well as use this file for testing of their own commands and packages.
 }{}
 
 \BeginTemplateSection{DemoText}
@@ -615,6 +628,7 @@ width of the largest element as a parameter.
 \IfElsePackageLoaded{graphicx}{%
 
 \subsection{figure environment}
+\label{sec:demo:figures:figure}
 
 \PrintDemo{style=stacked}%
 
@@ -631,7 +645,7 @@ width of the largest element as a parameter.
 \IfElsePackageLoaded{graphicx}{%
 
 \subsection{caption without figure environment using captionof (caption)}
-
+\label{sec:demo:figures:captionof}
 \ifcsdef{captionof}{%
 
 \enlargethispage{5\baselineskip}
@@ -652,6 +666,7 @@ width of the largest element as a parameter.
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{caption without figure environment using captionsetup (caption)}
+\label{sec:demo:figures:captionsetup}
 
 \ifcsdef{captionsetup}{%
 
@@ -683,6 +698,7 @@ width of the largest element as a parameter.
 \IfElsePackageLoaded{graphicx}{%
 
 \subsection{parallel figures with minipages}
+\label{sec:demo:figures:minipage}
 
 The \env{minipage} environment can be used to display figures in parallel.
 However if the \package{floatrow} package is loaded the standard \latex{} behaviour must be restored using \cs{RawFloats} at the beginning of the figure.
@@ -712,6 +728,7 @@ However if the \package{floatrow} package is loaded the standard \latex{} behavi
 \ifcsdef{subcaption}{%
 %%
 \subsection{subcaption in minipages (caption)}
+\label{sec:demo:figures:subcaption}
 
 The \cs{subcaption} command allows to define subfigure captions independent of the code used to display the pictures.
 
@@ -741,6 +758,7 @@ The \cs{subcaption} command allows to define subfigure captions independent of t
 \ifcsdef{endsubfigure}{%
 
 \subsection{subfigure environment (caption)}
+\label{sec:demo:figures:subfigure}
 
 The \env{subfigure} environment has a syntax equal to the normal figure environment, enhanced with the width and positioning arguments of a minipage environment.
 
@@ -766,7 +784,9 @@ The \env{subfigure} environment has a syntax equal to the normal figure environm
 \end{filecontents*}
 
 \IfElsePackageLoaded{graphicx}{%
+
 \subsection{subcaption with subfloat command (subfig)}
+\label{sec:demo:figures:subfloat}
 
 \ifcsdef{subfloat}{%
 
@@ -795,6 +815,7 @@ The \env{subfigure} environment has a syntax equal to the normal figure environm
 \IfElsePackageLoaded{graphicx}{%
 
 \subsection{parallel figures (floatrow)}
+\label{sec:demo:figures:floatrow:a}
 
 \IfElsePackageLoaded{floatrow}{%
 
@@ -829,6 +850,7 @@ The \package{floatrow} package provides many ways to layout pictures and tables 
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{parallel figures with vertical alignment (floatrow)}
+\label{sec:demo:figures:floatrow:b}
 
 \IfElsePackageLoaded{floatrow}{%
 
@@ -862,6 +884,7 @@ The general \cs{floatbox} command allows vertical alignment in the third optiona
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{subfigures with subfloatrow environment (floatrow)}
+\label{sec:demo:figures:floatrow:c}
 
 \IfElsePackageLoaded{floatrow}{%
 
@@ -885,6 +908,7 @@ text and a bit more text and a little more text to fill space}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{caption beside the figure (floatrow)}
+\label{sec:demo:figures:floatrow:d}
 
 \IfElsePackageLoaded{floatrow}{%
 
@@ -913,6 +937,7 @@ Using the first optional argument of \cs{floatbox} one can define a caption whic
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{caption beside the figure with captionbeside (koma script)}
+\label{sec:demo:figures:captionbeside}
 
 \ifcsdef{captionbeside}{%
 
@@ -936,6 +961,7 @@ If the \package{floatrow} package is loaded the standard \latex{} behaviour must
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{figure inside the paragraph (wrapfigure)}
+\label{sec:demo:figures:wrapfigure}
 
 \ifcsdef{wrapfigure}{%
 
@@ -988,6 +1014,7 @@ Donec luctus.
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{floating figure (or table) inside the paragraph (wrapfigure)}
+\label{sec:demo:figures:wrapfloat}
 
 \ifcsdef{wrapfigure}{%
 
@@ -1038,6 +1065,7 @@ Donec luctus.
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{floating figure inside the paragraph (floatflt)}
+\label{sec:demo:figures:floatflt}
 
 \ifcsdef{endfloatingfigure}{%
 
@@ -1107,6 +1135,7 @@ Suspendisse bibendum tellus.
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{Koma Script: addmargin (default)}
+\label{sec:demo:figures:addmargin}
 
 In this example the caption is as wide as the figure, which means that the caption spans into the margin.
 
@@ -1145,6 +1174,7 @@ Suspendisse bibendum tellus.
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{Koma Script: addmargin (with parboxrestore)}
+\label{sec:demo:figures:addmargin:b}
 
 Here the caption is only as wide as the textwidth, which is corrected using
 the code \texttt{\bs{}captionsetup\{parboxrestore=full\}}.
@@ -1181,6 +1211,7 @@ adipiscing lorem. Pellentesque nulla augue, nonummy vel, tincidunt at, blandit
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{caption inside the margin (mcaption)}
+\label{sec:demo:figures:mcaption}
 
 \ifcsdef{margincap}{%
 
@@ -1195,6 +1226,7 @@ adipiscing lorem. Pellentesque nulla augue, nonummy vel, tincidunt at, blandit
 
 %% ------------------------------------------------------------
 \subsection{document sizes}
+\label{sec:demo:figures:doctextwidth}
 
 \ifcslength{doctextwidth}{%
 
