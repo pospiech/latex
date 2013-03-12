@@ -3,7 +3,7 @@ cls
 
 call:CleanUP
 
-echo.&pause&goto:eof
+::echo.&pause&goto:eof
 
 ::--------------------------------------------------------
 ::-- Function section starts below here
@@ -11,6 +11,10 @@ echo.&pause&goto:eof
 
 :: clean up
 :CleanUP
+del *.mw
+del *.bbl
+del *.log
+del *.ptc
 del *.aux
 del *.dvi
 del *.acn

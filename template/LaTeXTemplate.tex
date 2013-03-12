@@ -26,6 +26,10 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Must be loaded first!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Description: This package is meant to be a solution for the 
+%              error “no room for a new \write”
+% Doc: morewrites.pdf
+\usepackage{morewrites}
 % see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom
 \usepackage{etex} 
 \reserveinserts{28}
@@ -125,7 +129,7 @@
 %% document content %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\includeonly{
-% content/title,
+% content/0-title,
 % content/0-Abstract,
 % content/0-Introduction,
 % content/1-Theory,
@@ -146,7 +150,7 @@
 \pagestyle{empty}
 
 % -- title page --
-\include{content/title}
+\include{content/0-title}
 \cleardoublepage
 
 % -- abstract --
