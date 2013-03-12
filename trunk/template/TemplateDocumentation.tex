@@ -30,6 +30,10 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Must be loaded first!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Description: This package is meant to be a solution for the 
+%              error “no room for a new \write”
+% Doc: morewrites.pdf
+\usepackage{morewrites}
 % see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom
 \usepackage{etex} 
 \reserveinserts{28}
@@ -130,9 +134,10 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \includeonly{
+ doc/0-title,
  doc/doc-introduction,
- % doc/doc-code-filled,
- % content/demo/demo,
+ doc/doc-code-filled,
+ content/demo/demo,
 } % end includeonly
 
 
@@ -145,7 +150,7 @@
 \pagestyle{empty}
 
 % -- title page --
-\include{doc/title}
+\include{doc/0-title}
 \cleardoublepage
 
 \frontmatter
@@ -162,20 +167,34 @@
 
 \newcommand\argument[1]{$\langle${\normalfont\slshape#1}$\rangle$}
 % #########################################################################
+\KOMAoptions{headings=openany} 
 \part{Template Introduction}
 \label{part:documentation}
+\KOMAoptions{headings=openright}
+\PartialToc{1}
+%
 \include{doc/doc-introduction}
 
 % #########################################################################
+\KOMAoptions{headings=openany} 
 \part{Template code documentation}
 \label{part:code}
+\PartialToc{1}
+\KOMAoptions{headings=openright}
+%
 \include{doc/doc-code-filled}
 
 % #########################################################################
 %% demonstration of the template
+\KOMAoptions{headings=openany} 
 \part{LaTeX Examples}
 \label{part:demo}
+\PartialToc{1}
+\KOMAoptions{headings=openright}
+%
 \include{content/demo/demo}
+%
+\stopcontents[part]
 
 % -- bibliography --
 % (must be placed _before_ appendix)

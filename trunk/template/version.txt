@@ -1,1 +1,4 @@
-Version 3.2 (alpha, not released)
+Version 3.2 (beta, not released) \\
+\normalsize
+The code is complete, makefiles are still missing \\
+and documentation is almost complete.

@@ -16,6 +16,6 @@ copy ..\packages\publish\CTAN\%package%\%package%.sty .
 SET package=templatetools
 copy ..\packages\publish\CTAN\%package%\%package%.sty .
 
-echo.&pause&goto:eof
+::echo.&pause&goto:eof
 
 :eof
