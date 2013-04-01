@@ -37,7 +37,11 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hypdoc}
-\RequirePackage[loadHyperref=true,createIndexEntries=false]{doctools} % 
+\RequirePackage[%
+   loadHyperref=true,%
+   createIndexEntries=false,%
+   applyLayout=true%
+]{doctools} % 
 \usepackage{lmodern}
 %
 %%% Configures doc.sty and its (outdated) index generation, which does
@@ -109,20 +113,27 @@
 %
 % ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % \subsection{Options}
-% This package has two options 
+% This package has three options 
 % \begin{Optionlist}
+%  \option{applyLayout}    &  true/false (default: false)  \\
 %  \option{loadHyperref}   &  true/false (default: false)  \\
 %  \option{createIndexEntries}   &  true/false (default: true)  \\
 % \end{Optionlist}
-% \package{doctools} is typically loaded before most other packages 
-% and in the case of a dtx file possible the only package which 
-% is necessary to load.
 %
-% The selection of these option should follow the following principles, which
+% The option \option{applyLayout} should only be used in dtx files for which
+% the layout of this package shall be applied. For normal documents setting
+% this option to true could disturb the layout.
+%
+% The selection of the other two options (\option{loadHyperref},
+% \option{createIndexEntries}) should follow the following principles, which
 % are mostly related to the fact that doc.sty does not support package 
 % \package{hyperref} (prohibits display of index entries) and requires 
 % the package \package{hypdoc} instead.
 % 
+% Package \package{doctools} is typically loaded before most other packages 
+% and in the case of a dtx file possible the only package which 
+% is necessary to load.
+%
 % \subsubsection{Selection of options inside a dtx file}
 % In a dtx file index entries are created by the package \package{doc.sty}
 % which have a format the requires the use of the format file 
@@ -336,7 +347,7 @@ makeindex.exe -s gind.ist filename.idx
 %
 % For convenience these style are provided with the following environments.
 %
-% \DescribeEnv{latexcode} Listings environment for code examples. The output of this style is shown in the example below.
+% \DescribeEnv{latexcode} Listings environment for code examples. The output of this style is shown in the example below. The lines are not numbered, so that the code can be directly copied from the PDF document.
 %
 % \iffalse
 %<*example>
@@ -731,7 +742,7 @@ $\langle${\normalfont\slshape#1}$\rangle$
 %    \begin{macrocode}
 \newenvironment{Optionlist}{%
 \begin{flushleft}%
-\vspace{-1\baselineskip}
+\vspace{-2\parskip}
 %%  Style  changes
 \small\renewcommand{\arraystretch}{1.4}%
 %%  table
