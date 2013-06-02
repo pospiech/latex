@@ -337,22 +337,24 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 % of the document because some packages (eg. xcolor)
 % could lead to option clashes otherwise
 %
+%% Programming
+\RequirePackage{xspace}
+\RequirePackage{etoolbox}
+%% Write contents to files
+\RequirePackage{filecontents}
+%% Packages for frames
+\RequirePackage{mdframed}
+\RequirePackage{framed}
+%
 \AtBeginDocument{%
 %    \end{macrocode}
 % \subsection{Preamble}
 % \subsubsection{Packages}
 % 
 %    \begin{macrocode}
-%% Programming
-\RequirePackage{xspace}
-\RequirePackage{etoolbox}
-%% Write contents to files
-\RequirePackage{filecontents}
 %% Package for colors
 \RequirePackage{xcolor}
-%% Packages for frames
-\RequirePackage{mdframed}
-\RequirePackage{framed}
+%
 %% load doctools without hyperref if not loaded and no documentation
 %% package was loaded.
 \@ifpackageloaded{doctools}{}

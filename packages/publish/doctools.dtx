@@ -470,7 +470,6 @@ Files
 % Define default option for style key: \emph{stacked}
 %    \begin{macrocode}
 \DeclareBoolOption[false]{loadHyperref}
-\DeclareBoolOption[false]{loadHypdoc}
 \DeclareBoolOption[true]{createIndexEntries}
 \DeclareBoolOption[false]{applyLayout}
 \ProcessKeyvalOptions{doctools}
@@ -512,7 +511,7 @@ Files
 %%% hyperref
 \ifdoctools@loadHyperref
 \input{preamble/setup-hyperref.tex}
-\fi
+\fi % end \ifdoctools@loadHyperref
 %    \end{macrocode}
 %
 % \subsubsection{color setup}
@@ -536,7 +535,7 @@ Files
   \setlength{\parskip}{0.5\baselineskip}
   \setcounter{secnumdepth}{2}
   \setcounter{tocdepth}{2}
-\fi
+\fi % end \ifdoctools@applyLayout%
 %    \end{macrocode}
 %
 % ^^A ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
