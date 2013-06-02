@@ -2,11 +2,22 @@ import sys
 import re
 
 
+
+
 class FileSearch:
     startline = 0
     endline = 0
     filename = None
     minline = 0
+
+
+def main():
+    baseFilePath = r"..\template\doc"
+    parseFile = baseFilePath + r"\doc-code.tex"
+    outputFile = baseFilePath + r"\doc-code-filled.tex"
+    baseInputPath = r"..\template"
+    #
+    parseDefinitionFile(parseFile, outputFile, baseInputPath)
 
 
 def prepareSearchString(strfind):
@@ -23,6 +34,7 @@ def findLinesInInputFile(inputFileName,
     lineNumber = 0
     lineStart = 0
     lineEnd = 0
+    debugOutput = False
     #
     # strStart = prepareSearchString(strStart)
     # strEnd = prepareSearchString(strEnd)
@@ -32,7 +44,7 @@ def findLinesInInputFile(inputFileName,
     #
     minimumLineNumber = fileSearch.minline
     #
-    with open(inputFileName, 'r') as inputFileHandle:
+    with open(inputFileName, 'r', encoding="utf8") as inputFileHandle:
         for lineInput in inputFileHandle:
             lineNumber = lineNumber + 1
             if lineNumber > minimumLineNumber:
@@ -78,7 +90,8 @@ def findLinesInInputFile(inputFileName,
         return outputStr
 
 
-def parseDefinitionFile(parseFile, outputFile):
+def parseDefinitionFile(parseFile, outputFile, baseInputPath):
+    debugOutput = False
     isSearchValid = False
     mapFiles = dict()
     with open(parseFile, 'r') as parseFileHandle:
@@ -121,15 +134,11 @@ def parseDefinitionFile(parseFile, outputFile):
                         outputStr = outputStr + '\n'
                         # print resulting string to output
                         outputFileHandle.write(outputStr)
-                        print (strStart)
-                        print (strEnd)
-                        print (outputStr)
+                        if debugOutput:
+                            print (strStart)
+                            print (strEnd)
+                            print (outputStr)
 
 
 if __name__ == "__main__":
-    baseFilePath = r"..\template\doc"
-    parseFile = baseFilePath + r"\doc-code.tex"
-    outputFile = baseFilePath + r"\doc-code-filled.tex"
-    baseInputPath = r"..\template"
-    #
-    parseDefinitionFile(parseFile, outputFile)
+    main()
