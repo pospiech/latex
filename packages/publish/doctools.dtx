@@ -312,11 +312,10 @@ makeindex.exe -s gind.ist filename.idx
 % \DescribeMacro{\Example}
 %    \cs{Example} is used to print out an example for the usage of a command. %    See documentation of \cs{AfterLastParam} for an example.
 %
-% \DescribeEnv{Optionlist} Table to print out all possible options 
-% of a command. See the following code for an example.
-%
 % \DescribeMacro{\latex}  New lower case command for printing out \latex.
 %
+% \DescribeEnv{Optionlist} Table to print out all possible options 
+% of a command. See the following code for an example.
 %
 % \iffalse
 %<*example>
@@ -489,13 +488,15 @@ Files
 \usepackage{xstring}
 \usepackage{kvsetkeys}
 %%% Font packages
+\ifdoctools@applyLayout
 \usepackage{cmap} 
 \usepackage[T1]{fontenc} % T1 Schrift Encoding
 %\usepackage{lmodern} % Font not loaded, because this can lead
 %                     % to incompatibilities with other math fonts
 \usepackage{textcomp}
+\fi % end \ifdoctools@applyLayout
 %%% listings (must be loaded before \AtBeginDocument)
-\RequirePackage{listings}
+\@ifpackageloaded{listings}{}{\RequirePackage{listings}}
 %%% load all further packages and all commands 
 %%% at the beginning of the document and thus
 %%% after all other packages 
