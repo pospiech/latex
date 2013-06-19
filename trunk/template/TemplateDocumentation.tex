@@ -168,10 +168,10 @@
 \newcommand\argument[1]{$\langle${\normalfont\slshape#1}$\rangle$}
 % #########################################################################
 \KOMAoptions{headings=openany} 
-\part{Template Introduction}
+\part{User documentation}
 \label{part:documentation}
 \KOMAoptions{headings=openright}
-\PartialToc{1}
+\ifcsdef{PartialToc}{\PartialToc{1}}{}
 %
 \include{doc/doc-introduction}
 
@@ -179,7 +179,7 @@
 \KOMAoptions{headings=openany} 
 \part{Template code documentation}
 \label{part:code}
-\PartialToc{1}
+\ifcsdef{PartialToc}{\PartialToc{1}}{}
 \KOMAoptions{headings=openright}
 %
 \include{doc/doc-code-filled}
@@ -189,12 +189,14 @@
 \KOMAoptions{headings=openany} 
 \part{LaTeX Examples}
 \label{part:demo}
-\PartialToc{1}
+\ifcsdef{PartialToc}{\PartialToc{1}}{}
 \KOMAoptions{headings=openright}
 %
 \include{content/demo/demo}
 %
-\stopcontents[part]
+\ifcsdef{PartialToc}{
+  \stopcontents[part]
+}{}
 
 % -- bibliography --
 % (must be placed _before_ appendix)
@@ -222,7 +224,9 @@
 % Add `Appendix` to TOC
 \addcontentsline{toc}{part}{\appendixname}
 % must be _input_, otherwise the TOC entry is at the wrong place
-\input{doc/doc-z-appendix.tex}
+\IfColorDefined{tablesubheadcolor}{
+  \input{doc/doc-z-appendix.tex}
+}{}
 % <------------------------
 
 

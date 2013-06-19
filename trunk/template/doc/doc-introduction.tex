@@ -14,60 +14,73 @@ In the next \cref{chap:doc:faq} you will find a list of typical questions and an
 \section{Target Users}
 \label{sec:doc:targetusers}
 
-This template was developed with all sorts of structured documents in mind that require a good citation and reference framework with a customizable layout. It has so far been used for bachelor, master and phd-thesis as well
-as the thesis of teachers in their practical year. These thesis had all a natural science background, which means that also this template is optimized for the needs of people in natural sciences. Nevertheless it should be easily adaptable to topics in humanities, linguistics or even arts.
+This template was developed with all sorts of structured documents in mind that require a good citation and reference framework with a customizable layout. It has so far been used for bachelor, master and phd-thesis as well as the thesis of teachers in their practical year. These theses had all a natural science background, which means that also this template is optimized for the needs of people in natural sciences. Nevertheless it should be easily adaptable to topics in humanities, linguistics or even arts.
 
 Since the code is rather complex one might have objections against this template. Here is a list why there is nevertheless a benefit for all sorts of users.
 
 \begin{description}
-\item[Beginners]
-\item[Experienced \latex users]
-\item[Package authors] The development of this template has shown that it is a valuable project to find incompatibilities between different packages and test packages in general in a large and complex but yet realistic project.
+\item[Beginners] have the advantage of a ready to use template that covers all major topics. They do not have to load packages therefore and do not need to fiddle with the preamble. This especially saves a lot of time. If the rare case should happen that a modification is necessary the preamble is very well documented. Typical configurations are listed in \cref{sec:doc:config:latex}.
+
+The other aspect very valuable for beginners is the large list of example codes in \cref{part:demo}. 
+%
+\item[Advanced \latex users] benefit from all aspects that are listed above for beginners. Furthermore they can make use of all functions and documentation of this template for simple up to extensive modifications. \Cref{sec:doc:features} provides useful information for a start.
+
+Complete different layouts created by significant changes in \file{preamble/style.tex} and subsequent files could be send to the maintainer of this template for a review and possibly an integration into the template. The same applies for users, who add new functionality to the template that might also be of interest for other users.
+%
+\item[Package authors] can also benefit from this template. The development has shown that it is a valuable project for finding incompatibilities between different packages and for testing of packages in general in a large and complex, but yet realistic project. 
 \end{description}
 
+This template and its predecessor has been used under the supervision of the maintainer by very early beginners and also advanced \latex users. The experience was that beginners as well as advanced users are more productive with it because \enquote{it just works}, while the more advanced users additionally know that they can find all options for later modifications because of the code documentation. And some even find bugs \ldots.
 
 % -------------------------------------------------------------------------
 \section{Features of the template}
 \label{sec:doc:features}
 
+This section is structured as follows: \cref{sec:doc:features:template} describes the features and advantages of the template in general, whereas \cref{sec:doc:features:doc} summarizes the possibilities for the creation of a document. The subsequent sections provide additional information.
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Template features}
+\label{sec:doc:features:template}
 This template provides a great variety of functionality for creating complex and demanding documents for the user, see \cref{sec:doc:features:doc}. To provide these the template itself is designed with some special respects:
 
 % .........................................................................
 \subsubsection{Separation between function and layout}
+\label{sec:doc:features:template:sep}
 The packages (functions) are loaded separated from the layout. This makes it possible the exchange the layout of the document while keeping all functionality and makes it easier to test problem without customizations in the layout.
 
-This principle is realized by loading all packages in the file \file{preamble/packags.tex} and all layout modifications in \file{preamble/style.tex} and its subsequent files. The only exceptions are packages that are necessary for the template itself and packages that should be configured before using the template, see \cref{sec:doc:config:editor}
+This principle is realized by loading all packages in the file \file{preamble/packages.tex} and all layout modifications in \file{preamble/style.tex} and its subsequent files. The only exceptions are packages that are necessary for the template itself and packages that should be configured before using the template, see \cref{sec:doc:config:editor}
 %
 % .........................................................................
 \subsubsection{Documentation of the code}
-All code was included with a minimal documentation. Packages are loaded with a short description and important information about package loading orders (if necessary). The code of the style modifications is also documented to some extend. If a certain code segment should be incomprehensible this should be reported as a bug.
+\label{sec:doc:features:template:doc(code)}
+All code was included with a minimal documentation. Packages are loaded with a short description and important information about package loading orders (if necessary). The code of the style modifications is also documented to some extent. If a certain code segment should be incomprehensible this should be reported as a bug.
 
 % .........................................................................
 \subsubsection{Extensive options}
+\label{sec:doc:features:template:options}
 Many packages provide a large number of options. This often means that one has to check the documentation several times for all modifications of the package configuration. To simplify this process this template tries to include all options of a package with a minimal description for each option. This itself is somehow a minimal documentation of a package.
 
 % .........................................................................
 \subsubsection{Comprehensive documentation}
+\label{sec:doc:features:template:doc(template)}
 The documentation of this template is very comprehensive. The code itself is documented as much as possible and necessary. Furthermore this documentation document provides an overview of the features and configuration possibilities (\cref{part:documentation}), a complete printout of the code of the template (\cref{part:code}) and a large collection of \latex application examples (\cref{part:demo}).
 
 % .........................................................................
 \subsubsection{Solving Incompatibilities and fixing bugs}
+\label{sec:doc:features:template:bugs}
 Incompatibilities between packages are take into consideration by putting all packages in the correct loading order and by preventing packages to load if this would raise an error.
 
-This is achieved mainly by using commands like \cs{IfPackageLoaded}, \cs{IfPackagesNotLoaded}, \cs{ExecuteAfterPackage}, \cs{IfFileExists}, \cs{IfMultDefined} and others mostly defined by the package \package{templatetools.sty}. 
+This is achieved mainly by using commands like \cs{IfPackageLoaded}, \cs{IfPackagesNotLoaded}, \cs{ExecuteAfterPackage}, \cs{IfFileExists}, \cs{IfMultDefined} and others mostly defined by the package \package{templatetools}. 
 
 The goal is to let the whole document compile without the inclusion of \file{preamble/style.tex} and as much as possible to compile without the loading of any or most packages in file \file{preamble/packages.tex}.
 
 Furthermore the template tries to fix bugs that do not get solved by the package authors. This requires, however, that the problems and its solutions are known. Anyway, this only applies to bugs that do not get solved. In principle all bugs that are encountered are reported to the package authors.
-It may happens that a bug fix in this template has become obsolete because it was in the meantime fixed in the package. In that case please inform the template maintainer.
+It may happen that a bug fix in this template has become obsolete because it was in the meantime fixed in the package. In that case please inform the template maintainer.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Document features}
 \label{sec:doc:features:doc}
-This template provides all methods (commands, environments, work flows) that are required for a complex scientific document. This is realized by 
-loading a large number of relevant and modern packages of \latex. It is difficult to provide a complete list of the resulting features therefore the following lists include only a subset of the most interesting ones.
+This template provides all methods (commands, environments, work flows) that are required for a complex scientific document. This is realized by loading a large number of relevant and modern packages of \latex. It is difficult to provide a complete list of the resulting features therefore the following lists include only a subset of the most interesting ones.
 
 % .........................................................................
 \subsubsection*{General}
@@ -79,7 +92,7 @@ loading a large number of relevant and modern packages of \latex. It is difficul
 % .........................................................................
 \subsubsection*{Math and scientific notations}
 \begin{itemize}
-\item Professional math typsetting with a large number of supported symbols and commands using \package{amsmath}, \package{mathtools} and others.
+\item Professional math typesetting with a large number of supported symbols and commands using \package{amsmath}, \package{mathtools} and others.
 %
 \item Professional display of scientific notations with automated processing of numbers and units and therefor consistent typesetting (\package{siunitx})
 %
@@ -101,7 +114,7 @@ loading a large number of relevant and modern packages of \latex. It is difficul
 % .........................................................................
 \subsubsection*{References}
 \begin{itemize}
-\item Enhanced cross-referencing with automatical determination of the type  (equation, section, etc.) (\package{cleveref}, \package{varioref})
+\item Enhanced cross-referencing with automatical determination of the type (equation, section, etc.) (\package{cleveref}, \package{varioref})
 \end{itemize}
 
 
@@ -123,8 +136,7 @@ loading a large number of relevant and modern packages of \latex. It is difficul
 \begin{itemize}
 \item Vector graphics with all features of a professional vector graphics program (\package{pgf}, \package{tikz})
 %
-\item High quality vector based function or data plots in normal or 
-logarithmic scaling (\package{pgfplots}, \package{pgfplotstable})
+\item High quality vector based function or data plots in normal or logarithmic scaling (\package{pgfplots}, \package{pgfplotstable})
 \end{itemize}
 
 % .........................................................................
@@ -132,7 +144,7 @@ logarithmic scaling (\package{pgfplots}, \package{pgfplotstable})
 \begin{itemize}
 \item Tables with the ability to create them with a professional design (\package{booktabs}, \package{tabu}, \package{xcolor}),
 %
-\item Table columns with variable width (so called \enquote{X} columns) and linebreak support (\package{tabularx}, \package{tabu}),
+\item Table columns with variable width (so called \enquote{X} columns) and line break support (\package{tabularx}, \package{tabu}),
 %
 \item Multi page tables (\package{tabu}, \package{ltxtable}),
 \end{itemize}
@@ -189,18 +201,15 @@ Note that all previous packages for bibliographies are incompatible because all 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Speed of compilation}
-Since the preamble of this template is much longer than most other templates the compilation time of the preamble is consequently also longer. This view however is misleading. The compilation time is in the range of 2 to 4 seconds for the preamble\footnote{Measured on a Windows System (7, 64 bit) with Intel i5 processor and the file system on a SSD. The times for a standard magentic hard disk should not differ much, since the files are in the memory cache anyway.}, however a real document (like a master thesis) with many pictures takes much longer. The templates main file takes about 7 seconds with very few pages. The template documentation with above 200 pages and many pictures takes more than 40 seconds. My own phd-thesis took minutes to compile due to many high resolution pictures. The compilation time of the preamble therefore is in reality negligible or in other words, even though this templates preamble is quote complex it compile fast enough.
+Since the preamble of this template is much longer than most other templates the compilation time of the preamble is consequently also longer. This view however is misleading. The compilation time is in the range of 2 to 4 seconds for the preamble\footnote{Measured on a Windows System (7, 64 bit) with Intel i5 processor and the file system on a SSD. The times for a standard magnetic hard disk should not differ much, since the files are in the memory cache anyway.}, however a real document (like a master thesis) with many pictures takes much longer. The templates main file takes about 7 seconds with very few pages. The template documentation with above 200 pages and many pictures takes more than 40 seconds. My own phd-thesis took minutes to compile due to many high resolution pictures. The compilation time of the preamble therefore is in reality negligible or in other words, even though this templates preamble is quote complex it compile fast enough.
 
 The concrete times of each part of the preamble are displayed in \cref{fig:doc:executiontimes}. The code was executed several times and the average of the last three runs was used. This ensures that all files are in the cache of the hard disk or system memory. The execution time was measured with a batch script based on code from \href{http://stackoverflow.com/questions/4313897/timer-in-dos-batch-file}{stackoverflow.com}. 
 
-The direct visible result of this survey is that not very surprisingly that the most complex packages such as \package{amsmath}, \package{biblatex}, \package{glossaries}, \package{listings}, \package{hyperref} consume most of the time. The loading of \package{pgf}, \package{tikz} and \package{pgfplots} stands out with more than 1000\,ms. This can be reduced by removing unused libraries or removing these packages completely, if they are not required.
+The direct visible result of this survey is, not very surprisingly, that the most complex packages such as \package{amsmath}, \package{biblatex}, \package{glossaries}, \package{listings}, \package{hyperref} consume most of the time. The loading of \package{pgf}, \package{tikz} and \package{pgfplots} stands out with more than 1000\,ms. This can be reduced by removing unused libraries or removing these packages completely, if they are not required.
 
-% What is so special about it
-%
-% USP
 \begin{figure}[p]
 \input{doc/plot.executiontimes.tex}
-\caption[Execution times of the template divided into compilation steps]{Execution times of the template divided into compilation steps. The largest execution times come from the major packages. The packages loaded in each step are listed in \cref{tab:doc:packages}}
+\caption[Execution times of the template divided into compilation steps]{Execution times of the template divided into compilation steps. The largest execution times come from the major packages. The packages loaded in each step are listed in \cref{tab:doc:packages}. Note that these times were measured with the packages loaded by the version of January 2013.}
 \label{fig:doc:executiontimes}
 \end{figure}
 
@@ -209,7 +218,6 @@ The direct visible result of this survey is that not very surprisingly that the 
 % -------------------------------------------------------------------------
 \section{Tutorial - how to start}
 \label{sec:doc:start}
-%- Files for the end user (not not mess with all the configuration files...)
 
 If you want to use this template for your work you should follow these three steps to configure everything for your needs.
 
@@ -247,14 +255,17 @@ for example the setting of the line spacing in \cref{sec:doc:faq:spacing}.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Start Writing your content}
 
-The content files are organized in files that belong to the front pages (\emph{frontmatter}):
+At the beginning, the documents in the front and the end should be adapted to the documents content. For example the users name, institution, title can be inserted in \path{content/0-title}. This file comes with other content files before the actual document start with the front pages (\emph{frontmatter}):
 %
 \begin{itemize}
+\item \path{content/Z-Acronyms.tex}
 \item \path{content/0-title},
-\item \path{content/0-Abstract}.
+\item \path{content/0-Abstract}
+\item \path{content/Z-Declaration.tex}.
 \end{itemize}
 %
-Further files that belong to the main content (\emph{mainmatter}). These should for example be named according to the chapter contents such as: 
+
+Next the main files should be renamed according to the chapter organization of the document. The following files are preconfigured for the main content (\emph{mainmatter}). 
 %
 \begin{itemize}
 \item \path{content/0-Introduction}
@@ -264,27 +275,27 @@ Further files that belong to the main content (\emph{mainmatter}). These should 
 \item \path{content/4-Summery}
 \end{itemize}
 %
-And at the end of the document files are included that belong to the appendix:
+If certain automatic generated lists such as the index, a glossary or others are not needed these should be disabled in the main file.
 %
+%
+And at the end of the document files are included that belong to the appendix. %
 \begin{itemize}
 \item \path{content/Z-Appendix.tex}
 \item \path{content/Z-Publications.tex}
 \item \path{content/Z-CV.tex}
 \item \path{content/Z-Thanks.tex}
-\item \path{content/Z-Declaration.tex}.
 \end{itemize}
 %
 The naming scheme of these files and their loading mechanism is further explained in \cref{sec:doc:faq:documents}.
 
-At the beginning, the documents in the front and the end should be adapted to the documents content. For example the users name, institution, title can be inserted. Next the main files should be renamed according to the chapter organization of the document. If certain automatic generated lists such as the index, a glossary or others are not needed these should be disabled in the main file.
-
 From this point on there is not much more to be done, except writing down the content for the project this template is supposed to be used for.
 
 
+
 %% =========================================================================
-\chapter{Settings, locations and solutions}
+\chapter{Settings, locations, questions and solutions}
 \label{chap:doc:faq}
-This chapters contains all sorts of answers to typical questions, locations of settings and general solutions with \latex. Further examples of the possibilities of this template are shown with code and examples in \cref{part:demo}.
+This chapter contains all sorts of answers to typical questions, locations of settings and general solutions with \latex. Further examples of the possibilities of this template are shown with code and examples in \cref{part:demo}.
 
 %This list of possible questions and answers is neither complete nor a list of typical questions (which I have not statistics for). It is just a list of question that this template can provide a solution for or questions that can be answered with this documentation in \cref{part:demo}.
 
@@ -292,7 +303,7 @@ This chapters contains all sorts of answers to typical questions, locations of s
 \section{Layout and style configuration}
 \label{sec:doc:faq:style}
 
-This template tries to differentiate clearly between functionality (package loading) and configuration of the layout. The first is done primarily in file \file{preamble/package.tex} the latter mainly in file \file{preamble/style.tex}. Nevertheless this separation can not be fully realized and further are the options spread over several files.
+This template tries to differentiate clearly between functionality (package loading) and configuration of the layout and the packages. The first is done primarily in file \file{preamble/packages.tex} the latter mainly in file \file{preamble/style.tex}. Nevertheless this separation cannot be fully realized because many options must be specified with the loading of the package.
 
 The following tables \ref{tab:doc:configurationlinks} and \ref{tab:doc:configurationfiles} show links to the most important configuration options and their location in the template files.
 
@@ -489,7 +500,7 @@ Defines the main file for typesetting (often called the \emph{master file}). Thi
 %
 Chooses the engine for compilation. Possible values are \texttt{pdflatex}, \texttt{LuaLaTeX}, \texttt{XeTeX}, \texttt{LaTeX} (and possibly others). Note that the engine name inserted is case-insensitive.
 
-Unless your code is set up for a different engine and the selection of  packages and fonts loaded is adapted for that engine the default should be kept as \texttt{pdflatex}. 
+Unless your code is set up for a different engine and the selection of packages and fonts loaded is adapted for that engine the default should be kept as \texttt{pdflatex}. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Spell checking}
@@ -530,8 +541,7 @@ The font selection is made in file \file{fonts/fonts.tex}. The standard font in 
 \section{Change of the page layout}
 \label{sec:doc:faq:pagelayout}
 
-Two packages are supported for the page layout. Package \package{typearea} is very easy to use and modify and gives well suited results for a thesis document. If however a very customized page layout is demanded the package
-\package{geometry} provides the abilities to implement the page layout.
+Two packages are supported for the page layout. Package \package{typearea} is very easy to use and modify and gives well suited results for a thesis document. If however a much customized page layout is demanded the package \package{geometry} provides the abilities to implement the page layout.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Package typearea}
@@ -548,7 +558,7 @@ To enable this package it must be loaded in file \file{preamble/packages.tex}, s
 % -------------------------------------------------------------------------
 \section{Change color of (hyper)links}
 \label{sec:doc:faq:hyperlinks}
-The hyper links are introduced by package \package{hyperref}. The colors are configured for the links in \file{preamble/style-hyperref.tex} and defined in \file{preamble/style.tex} (see \cref{sec:style:colors}). This template introduces introduces a simple mechanism to switch between colored and black links (the latter for printing) using the command \cs{UseDefinition}. This is configured in the main file (see \cref{sec:preamble:configuration}).
+The hyperlinks are introduced by package \package{hyperref}. The colors are configured for the links in \file{preamble/style-hyperref.tex} and defined in \file{preamble/style.tex} (see \cref{sec:style:colors}). This template introduces a simple mechanism to switch between colored and black links (the latter for printing) using the command \cs{UseDefinition}. This is configured in the main file (see \cref{sec:preamble:configuration}).
 
 % -------------------------------------------------------------------------
 \section{Generation of tables}
@@ -601,24 +611,24 @@ For all further information refer to the official documentation \href{http://mir
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Define bibliography (bib) files}
-The file format is still the well known BibTeX format (file ending .bib). These files are loading in the preamble before the beginning of the document, see \cref{sec:preamble:bibfiles} with the command \cs{addbibresource}. The file name must be written without the \texttt{.bib} file extension.
+The file format is still the well-known BibTeX format (file ending .bib). These files are loading in the preamble before the beginning of the document, see \cref{sec:preamble:bibfiles} with the command \cs{addbibresource}. The file name must be written without the \texttt{.bib} file extension.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Define the citation style}
-The package is loaded in file \file{preamble/packages.tex} and the style for the display of the bibliography and the citations is defined as an option of the package. The default style is \emph{alphabetic}. However several other styles exists, see \cref{sec:packages:bibliography}, the package documentation and the website \href{http://www.ctan.org/tex-archive/macros/latex/exptl/biblatex-contrib}{biblatex-contrib} for a list of further styles. 
+The package is loaded in file \file{preamble/packages.tex} and the style for the display of the bibliography and the citations is defined as an option of the package. The default style is \emph{alphabetic}. However, several other styles exists, see \cref{sec:packages:bibliography}, the package documentation and the website \href{http://www.ctan.org/tex-archive/macros/latex/exptl/biblatex-contrib}{biblatex-contrib} for a list of further styles. 
 
 Furthermore the basic properties of the package are configured in file \file{preamble/style-biblatex.tex} whereas the style is modified for an \emph{alpha} style in file \file{preamble/style-biblatex-alpha.tex}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Ways to insert citations}
 
-Citations ares inserted basically with the \cs{cite} command. Further possibilities are shown in \cref{sec:demo:biblatex}. For a complete list refer to the official documentation of \package{biblatex}. If the citations are supposed to be placed in the footnotes this is realized with the parameter \option{autocite} in file 
+Citations are inserted basically with the \cs{cite} command. Further possibilities are shown in \cref{sec:demo:biblatex}. For a complete list refer to the official documentation of \package{biblatex}. If the citations are supposed to be placed in the footnotes this is realized with the parameter \option{autocite} in file 
 \file{preamble/style-biblatex.tex}.
 
 % -------------------------------------------------------------------------
 \section{Quoting and citing text}
 \label{sec:doc:faq:quotes}
-The default quotation environments of  \latex (quote and quotation) are enhanced by the commands \cs{enquote} and \cs{blockquote} which are much better suited for very simple to very complex quotations with citations.
+The default quotation environments of \latex (quote and quotation) are enhanced by the commands \cs{enquote} and \cs{blockquote} which are much better suited for very simple to very complex quotations with citations.
 See \cref{sec:demo:quote} for examples of its usage.
 
 % -------------------------------------------------------------------------
@@ -633,7 +643,7 @@ The contents and the style of the table of contents are defined in file \file{pr
 
 This template can handle an index and the creation of a glossary, an acronym list and a symbol list which are created using the package \package{glossaries}.
 
-The style settings for these list are loaded in file  \file{preamble/style-index.tex} and file \file{preamble/style-glossaries.tex}.
+The style settings for these list are loaded in file \file{preamble/style-index.tex} and file \file{preamble/style-glossaries.tex}.
 
 They are printed in the main file, see \cref{sec:document:glossaries}.
 
@@ -643,7 +653,7 @@ They are printed in the main file, see \cref{sec:document:glossaries}.
 
 The hyphenation is enabled by default in \latex. In order to function correct the language must be specified in the document class, see \cref{sec:main:class}. Additional hyphenation patterns are added to file \file{content/hyphenation.tex}.
 
-In the text itself hyphenation marks can be added. These are however language specific. For german texts an overview is shown in \href{http://de.wikibooks.org/wiki/LaTeX-Wörterbuch:_Silbentrennung}{http://de.wikibooks.org/}.
+In the text itself hyphenation marks can be added. These are however language specific. For German texts an overview is shown in \href{http://de.wikibooks.org/wiki/LaTeX-Wörterbuch:_Silbentrennung}{http://de.wikibooks.org/}.
 
 % -------------------------------------------------------------------------
 \section{Document management}
@@ -669,8 +679,7 @@ The default content files of this template are located in the path \path{content
 The prefix is chosen as numbers for all main content files in the sequence in which the chapters are loaded and with a prefix \texttt{Z-} for all minor important files that mostly come after the main content. This naming scheme thus shows the files in the order of their appearance in the resulting document.
 
 To speed up the compile times it is recommended to include only those chapters, on which is currently being worked on, into the compilation.
-This is realized with \latex using the command \cs{includeonly}. This list
-contains all files loaded with \cs{include} that shall be included in the current compilation. All information on those files not included into the compilation, such as labels, is nevertheless included. This only requires that each files was at least once included in the compilation.
+This is realized with \latex using the command \cs{includeonly}. This list contains all files loaded with \cs{include} that shall be included in the current compilation. All information on those files not included into the compilation, such as labels, is nevertheless included. This only requires that each file was at least once included in the compilation.
 
 % -------------------------------------------------------------------------
 \section{Creation of a minimal working example}
@@ -678,7 +687,7 @@ contains all files loaded with \cs{include} that shall be included in the curren
 
 This template is complex in terms of its division in different files that makes it rather difficult to track a problem. Due to the deactivatable code section created with the command \cs{DefineTemplateSection} this can be even easier than in any other large \latex project.
 
-In order to ask people for a solution to a problem with \latex it is generally expected to provide a minimum working example. That means a single file \latex complete document that illustrates the problem. Complete means that it must contain a document class and the document environment and the relevant code inside the the document environment. It however must not contain any package or code that does not contribute to the problem.
+In order to ask people for a solution to a problem with \latex it is generally expected to provide a minimum working example. That means a single file \latex complete document that illustrates the problem. `Complete’ means that it must contain a document class and the document environment and the relevant code inside the document environment. It however must not contain any package or code that does not contribute to the problem.
 
 In order to create a minimum document from this template it is absolutely necessary to copy the whole document code including all sub folders. If these contain too many images these can be left out. The copy is essential, because next most files are going to be modified or deleted.
 
@@ -690,7 +699,7 @@ To check if the problem is in \file{preamble/style.tex} or if this file contribu
 
 If the code section(s) in \file{preamble/packages.tex} or \file{preamble/style.tex} that generates the error is identified copy all these parts to the main document and remove the loading of these files. Note, that in cases of incompatible packages it could be more than a single code section that contributes to the error. If still files are included in the main file remove them or copy their code to the main file if necessary. As a result all code should not reside in the main file. From this point it should be able to remove all packages, all options and all remaining content that do not contribute to the problem. As a result the minimum working example is ready.
 
-Typically most self created errors are already found while processing these procedure to track down the problem. If not a good place to ask for further help is \href{http://tex.stackexchange.com}{tex.stackexchange.com}.
+Typically most self-created errors are already found while processing these procedure to track down the problem. If not a good place to ask for further help is \href{http://tex.stackexchange.com}{tex.stackexchange.com}.
 
 Further reading on how to generate a minimum working example can be found at:
 \begin{itemize}
@@ -788,7 +797,7 @@ This can be savely ignored, see \url{http://tex.stackexchange.com/questions/7376
 
 TeX uses output registers to write to files. Unfortunately TeX was designed to use only 16 of such registers of which the output registers 0, 1 and 2 are already used by (La)TeX itself. The remaining registers are consumed by additional packages that need to write to external files.
 
-If you come across this error you have reached a fixed limitation of the TeX engine and there is nothing that can directly be done about this error, as you can not extend the number of available registers without extending TeX itself.
+If you come across this error you have reached a fixed limitation of the TeX engine and there is nothing that can directly be done about this error, as you cannot extend the number of available registers without extending TeX itself.
 
 Typical packages that consume output registers are:
 \begin{itemize}
@@ -804,8 +813,7 @@ Typical packages that consume output registers are:
 
 The most promising solution about this problem is to reduce the number of used output registers. So for example if no index is required (package imakeidx) and the package fancyvrb is not needed both could be commented out and instead the list of listings could be activated.
 
-The approach of this template is to use the package \package{morewrites}, which
-hooks at the lowest level (\TeX primitives) to solve this problem. This package however itself might cause problems since it is not tested extensively. 
+The approach of this template is to use the package \package{morewrites}, which hooks at the lowest level (\TeX primitives) to solve this problem. This package however itself might cause problems since it is not tested extensively. 
 
 Further information about this issue can be found at
 \begin{itemize}
@@ -819,7 +827,7 @@ Further information about this issue can be found at
 
 The information given here is only a subset of the whole story. A more complete catalogue on \latex fonts can be found at \href{http://www.tug.dk/FontCatalogue/}{http://www.tug.dk/FontCatalogue/}.
 
-The fonts listed in the following sections are not only a list of very common fonts, but also those that are supported within this template. If this should not be the case the commands that are necessary to load the font is provided, so that the font loading can be integrated in this template. The first section (\ref{sec:doc:fonts:free}) lists most free fonts, that can be expected to be installed in a complete modern \latex distribution. The second section (\ref{sec:doc:fonts:commercial}) is about packages for commercial fonts. These packages are available for free, however the fonts itself are not. The last section (\ref{sec:doc:fonts:math}) is about fonts with math support.
+The fonts listed in the following sections are not only a list of very common fonts, but also those that are supported within this template. If this should not be the case the commands that are necessary to load the font is provided, so that the font loading can be integrated in this template. The first section (\ref{sec:doc:fonts:free}) lists most free fonts, which can be expected to be installed in a complete modern \latex distribution. The second section (\ref{sec:doc:fonts:commercial}) is about packages for commercial fonts. These packages are available for free, however the fonts itself are not. The last section (\ref{sec:doc:fonts:math}) is about fonts with math support.
 
 % -------------------------------------------------------------------------
 \section{Free fonts}
@@ -923,8 +931,7 @@ Fourier		& \bs{}usepackage\arg{fourier}	& futm \\
 \section{Commercial fonts}
 \label{sec:doc:fonts:commercial}
 
-In order to use these fonts for documents that shall be published it is 
-absolutely essential to own a license. Most fonts can only be obtained by buying these fonts, others may be installed on the computer by programs. Nevertheless its use is restricted unless a license for using these fonts is owned!
+In order to use these fonts for documents that shall be published it is absolutely essential to own a license. Most fonts can only be obtained by buying these fonts; others may be installed on the computer by programs. Nevertheless its use is restricted unless a license for using these fonts is owned!
 
 If the fonts are available they need to be renamed and installed using the according manuals provided by \href{http://cq131a.de/fonts.html}{Walter Schmidt}
 
@@ -1047,7 +1054,7 @@ Euler				& \bs{}usepackage\arg{eulervm} \\
 \section{Font examples}
 \label{sec:doc:fonts:examples}
 
-The following pages show examples of several font combinations that were created with this template code. This selection was done with care on similar x-heights and glyph widths, but since this selection was not done by an font expert the resulting combinations might still be not perfect. Further reading on the topic of typeface combinations can be found here: 
+The following pages show examples of several font combinations that were created with this template code. This selection was done with care on similar x-heights and glyph widths, but since this selection was not done by a font expert the resulting combinations might still be not perfect. Further reading on the topic of typeface combinations can be found here: 
 \href{http://www.smashingmagazine.com/2010/11/04/best-practices-of-combining-typefaces/}{http://www.smashingmagazine.com/}. The clear exception is the combination of Times with Arial and Courier. This combination is shown because it is widely used but absolutely not recommendable.
 
 \begin{itemize}

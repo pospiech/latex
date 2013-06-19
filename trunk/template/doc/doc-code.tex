@@ -754,11 +754,15 @@ All headings can be redefined using package \package{titlesec}.
 \subsection{Layout of table of contents}
 \label{sec:packages:TOC}
 
+The \package{titletoc} package is a companion to the \package{titlesec} package and it handles toc entries. It provides new commands with which one
+can format the toc entries in a generic way. It is used to define the layout of the part-pages.
+
 The format of the table of contents and other lists can defined by package \package{tocstyle}. It is currently unused because it lacks interaction with the \cs{setkomafont} command. If a manual setting in the table of contents is however not required the usage of this package is still encouraged.
 
 The appendix title can be modified with package \package{appendix}. In this template it was so far not required, but other users might find its possibilities helpful.
 
 \begin{itemize}[noitemsep]
+\item \package{titletoc}
 \item \package{tocstyle} (unused)
 \item \package{appendix} (unused)
 \end{itemize}
@@ -803,6 +807,18 @@ These packages here have nothing in common except that they can be loaded after 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
 %%?   end: \EndTemplateSection{PackagesAdditional}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Last Package}
+\label{sec:packages:last}
+
+This package indicates the point after which no other package is loaded.
+It is required by this template.
+
+%%?  file: preamble/packages.tex
+%%? start: % ~~~~~~~
+%%?   end: \usepackage{lastpackage}
+
 
 % -------------------------------------------------------------------------
 \section{preamble/style.tex}

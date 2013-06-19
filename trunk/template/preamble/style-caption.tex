@@ -81,7 +81,9 @@
 \IfDefined{margincap}{%
   \IfDefined{preto}{\preto\margincap{
   \captionsetup{style=captionStyleTemplateShortDefault}}}}
-
+  % see http://tex.stackexchange.com/questions/37721/captionsetup-for-margin-caption
+  % for an explanation of the extra code.
+  %
 } % end \IfPackageLoaded{caption}
 
 % options for subcaptions

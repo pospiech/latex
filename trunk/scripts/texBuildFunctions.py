@@ -121,6 +121,9 @@ def compileLatexDocument(texfile):
     # call pdflatex
     callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texName + '.tex'])
 
+    # call pdflatex
+    callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texName + '.tex'])
+
     # clean up temp files
     print ('cleaning up temp files')
     cleanupAuxFiles(texName + '.')
