@@ -417,21 +417,25 @@
       \typearea[current]{last}
 %
 % BCOR
-%    current  % Satzspiegelberechnung mit dem aktuell gültigen BCOR-Wert erneut
-%             % durchführen.
+%    current  % Recalculate type-area with the currently valid BCOR value.
+%
 % DIV
-%    calc     % Satzspiegelberechnung einschließlich Ermittlung eines guten
-%             % DIV-Wertes erneut durchführen.
-%    classic  % Satzspiegelberechnung nach dem
-%             % mittelalterlichen Buchseitenkanon
-%             % (Kreisberechnung) erneut durchführen.
-%    current  % Satzspiegelberechnung mit dem aktuell gültigen DIV-Wert erneut
-%             % durchführen.
-%    default  % Satzspiegelberechnung mit dem Standardwert für das aktuelle
-%             % Seitenformat und die aktuelle Schriftgröße erneut durchführen.
-%             % Falls kein Standardwert existiert calc anwenden.
-%    last     % Satzspiegelberechnung mit demselben DIV -Argument, das beim
-%             % letzten Aufruf angegeben wurde, erneut durchführen
+%    areaset  % Recalculate page layout.
+%
+%    calc     % Recalculate type-area including choice of appropriate DIV
+%             % value.
+%
+%    classic  % Recalculate type-area using Middle Age book design canon
+%             % (circle-based calculation).
+%
+%    current  % Recalculate type-area using current DIV value.
+%
+%    default  % Recalculate type-area using the standard value for the current
+%             % page format and current font size. If no standard value
+%             % exists, calc is used.
+%
+%    last     % Recalculate type-area using the same DIV argument as was used
+%             % in the last call.
 %
    } % \IfPackageNotLoaded{geometry}
 } % \IfPackageLoaded{typearea}
@@ -721,8 +725,15 @@
 % together with the tabu package
 \input{preamble/fix-tabu-onlyamsmath.tex}
 
+% fix Problem with onlyamsmath active $ char 
+% together with the tikz package
+\input{preamble/fix-tikz-onlyamsmath.tex}
+
+
 % fix problems with framed and marginnote
 \input{preamble/fix-framed-marginnote.tex}
+
+
 
 % ------------------------------------------------------------------
 \EndTemplateSection{StyleFixProblems}

@@ -2,25 +2,14 @@
 
 Todo: biblatex: make style 
 
-10.01
-
-Check: demo of template specific commands
 
 18.01:
 - remove framed from demo.tex ?
   -> requires additional code in templatedemo.sty for second input file
 
-24.04:
-
-Work (in progress): create general docu for the template
-
-- improve templatedemo.sty documentation. 
- --> 2012-11-19: mostly done, improve text
 
 01.05
 - remove BibtexDatabase.bib
-  --> stil required, but content replaced
+  --> still required, but content replaced
 
-2012-10-20
-- TODO: create pgfplots options file
 

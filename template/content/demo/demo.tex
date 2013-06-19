@@ -17,7 +17,7 @@
 \renewcommand\FrameCommand{\fcolorbox{demo@rulecolor}{demo@resultbackcolor}}
 \makeatother
 
-\ifcsdef{}{\newcommand{\latex}{\LaTeX{}}}
+\ifcsdef{latex}{}{\newcommand{\latex}{\LaTeX{}}}
 \newcommand{\democodepath}{content/demo/}
 \renewcommand{\democodefile}{content/demo/democode}
 
@@ -48,7 +48,7 @@ Therefore it is only guaranteed that the examples work in this template. If this
 All the examples are designed not to raise an error if some functionality is not available, but instead to display why they were not included in the document. 
 One example for this is the code for package \package{subfloat} in \cref{sec:demo:figures:subfloat}, which was intentionally removed because of incompatibilities and better alternatives. Therefore these `error´ messages do not indicate an error of the template. They only inform why an example could not be included. 
 
-This document (\path{content/demo/demo.tex}) could also be used in other templates provided that all depending packages are loaded. 
+This document (\path{content/demo/demo.tex}) could also be used in other templates provided that all depending packages\footnote{\package{templatesection}, \package{templatetools} and \package{templatedemo}} are loaded. 
 And all users and package authors are encouraged to extend and improve the examples as well as use this file for testing of their own commands and packages.
 }{}
 
@@ -227,6 +227,26 @@ reference equations.
 \PrintDemo{style=stacked}%
 
 }{\DemoError{Package \package{cleveref} not loaded}}%
+% ------------------------------------------------------------
+\subsection{references with the reference name}
+
+The template provides the commands \cs{eqnref}, \cs{figref}, \cs{tabref}, \cs{secref} and \cs{chapref} which print out the name of the object to reference to (similar) to \package{cleveref} and include this name in the hyperlink.
+
+\begin{filecontents*}{\democodefile}
+Some math formulas to reference:
+\begin{equation}
+a = b + c \label{eqn:abc}
+\end{equation}
+%
+The \eqnref{eqn:abc} shows how to add variables.
+\end{filecontents*}
+
+\ifcsdef{eqnref}{%
+
+\PrintDemo{style=stacked}%
+
+}{\DemoError{Package \package{cleveref} not loaded}}%
+
 %% ============================================================
 %
 \section{Other environments}
@@ -2724,6 +2744,56 @@ You take \sfrac{1}{2} cup of sugar, \ldots
 
 }{\DemoError{Command \cs{sfrac} not available.}}%
 
+%% ------------------------------------------------------------
+\begin{filecontents*}{\democodefile}
+New commands (absolute, norm, trace):
+\begin{equation}
+\abs{-x} + \Abs{(x-3)^2} + \norm{\vec a - \vec b}
+\end{equation}
+%
+\begin{equation}
+\Trace{M} = \Trace{\begin{pmatrix} 
+			  \alpha & \beta\\ 
+			  \gamma & \delta 
+				   \end{pmatrix}} = \alpha + \delta
+\end{equation}
+%
+Differentials (partial and total):
+\begin{equation}
+	\int x y \, \pd x \td y
+\end{equation}
+%
+Abbreviations (real and imaginary)
+\begin{equation}
+\Re\{\i - 1\} + \Im\{\i - 1\}
+\end{equation}
+%
+Characters for: complex, real, hamiltonian, probability, unity
+\begin{equation}
+\complex, \real, \Ham, \Prob, \unity
+\end{equation} 
+%
+New operators
+\begin{equation}
+\rot \vec{a} + \grad \vec{a} + \div \vec{a} + \rect f(x) + \e^{-\i x} = \const
+\end{equation} 
+%
+New Symbols (laplace, dalembert)
+\begin{gather}
+\laplace f(x,y) = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} \\
+\dalembert = \frac{\partial ^2}{c^2\partial t^2} - \laplace
+\end{gather} 
+%
+\end{filecontents*}
+
+\subsection{Math and Physics symbols defined in the template}
+
+\ifcsdef{pmatrix}{%
+
+\PrintDemo{style=stacked}%
+
+}{\DemoError{Command \cs{pmatrix} from amsmath not available.}}%
+
 \EndTemplateSection{DemoMath}
 %%% ============================================================
 \BeginTemplateSection{DemoScience}
@@ -3525,23 +3595,7 @@ Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi eu 
 
 }{\DemoError{Environment \env{boxedminipage} not available.}}%
 
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\ovalbox{Pellentesque mollis nunc sed mauris tempor molestie.}
-  \vspace{0.5\baselineskip}\newline
-\Ovalbox{Pellentesque mollis nunc sed mauris tempor molestie.}
-  \vspace{0.5\baselineskip}\newline
-\shadowbox{Pellentesque mollis nunc sed mauris tempor molestie.}
-\end{filecontents*}
 
-\subsection{fancybox}
-
-\ifcsdef{ovalbox}{%
-
-\PrintDemo{style=stacked}%
-
-}{\DemoError{Command \cs{ovalbox} not available.}}%
-%
 %% ------------------------------------------------------------
 \begin{filecontents*}{\democodefile}
 \begin{framed}
@@ -3892,12 +3946,14 @@ be defined in every detail.
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
 
-\subsubsection{Path Library: Curves}
+\subsubsection{Automata Drawing and To Path Library}
 
+\IfTikzLibraryLoaded{automata}{
 \IfTikzLibraryLoaded{topaths}{
 \PrintDemo{style=stacked}%
 
 }{\DemoError{tikz library `topaths' not loaded}}%
+}{\DemoError{tikz library `automata' not loaded}}%
 }{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
 

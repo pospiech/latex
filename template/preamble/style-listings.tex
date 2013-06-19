@@ -78,6 +78,29 @@
   {€}{{\geneuro{}}}1
 }
 
+%% provide command \addmoretexcs
+% Code from Heiko Oberdiek, see
+% http://tex.stackexchange.com/questions/84207/define-moretexcs-listings
+% 
+% Description:
+% The following example defines macro \addmoretexcs. The optional argument
+%  specifies the dialect (default is common). The language is loaded if it is
+%  not yet available. Then the language definition, internally stored in
+%  \lstlang@<language>$<dialect>, is extended by setting the additional
+%  moretexcs list
+% ------------>
+\makeatletter
+\newcommand*{\addmoretexcs}[2][common]{%
+  \lowercase{\@ifundefined{lstlang@tex$#1}}{%
+    \lstloadlanguages{[#1]TeX}%
+  }{}%
+  \lowercase{\expandafter\g@addto@macro\csname lstlang@tex$#1\endcsname}{%
+    \lstset{moretexcs={#2}}%
+  }%
+}
+\makeatother
+% <------------
+
 \IfDefined{colorlet}{
   % style files make use of colors and require \colorlet
   \input{preamble/listings-latex.tex}

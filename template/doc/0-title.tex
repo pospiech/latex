@@ -1,12 +1,16 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = en-US
+
 \begin{titlepage}
    \mbox{}\vspace{5\baselineskip}\\
-   \sffamily\huge
+   \rmfamily\huge
    \centering
    % Titel
-   Template Documentation
+   \textsc{\LaTeX{} Thesis Template} \\[2ex]
+   Documentation
    \rmfamily\Large
    \vspace{1\baselineskip}\\
-   \input{version.txt}
+   \input{version.txt}\mbox{}
    \vspace{5\baselineskip}\\
    \rmfamily\Large
    Matthias Pospiech
@@ -14,3 +18,117 @@
    \today
 \end{titlepage}
  
+ 
+% \uppertitleback{% % only in together with \maketitle
+\section*{Thanks}
+to all who helped in the creation of this template by answering my question on LaTeX and TeX programming, documenation of code and pgfplots issues mostly on \href{http://tex.stackexchange.com}{tex.stackexchange.com}, especially (in no particular order): 
+Markus Kohm, % 
+Axel Sommerfeldt, %
+% - http://tex.stackexchange.com/questions/37721/captionsetup-for-margin-caption
+% - http://tex.stackexchange.com/questions/33428/floatrow-destroys-common-solution-for-parallel-figures
+egreg, %
+% - http://tex.stackexchange.com/questions/73767/warning-about-pdfpages-with-hyperref
+% - http://tex.stackexchange.com/questions/48453/how-to-test-if-tikz-library-is-loaded
+% - http://tex.stackexchange.com/questions/41776/keyvalue-with-kvoptions-and-switch-structure
+% - http://tex.stackexchange.com/questions/39321/sans-math-version-of-latin-modern
+% - http://tex.stackexchange.com/questions/37909/check-if-multiple-column-types-are-defined-fails
+% - http://tex.stackexchange.com/questions/35530/latex-tempswa-commands
+% - http://tex.stackexchange.com/questions/35527/how-to-check-if-a-column-type-is-defined
+% - http://tex.stackexchange.com/questions/35282/how-to-implement-a-command-that-checks-for-loaded-packages
+% - http://tex.stackexchange.com/questions/35139/restore-original-definition-of
+% - http://tex.stackexchange.com/questions/31547/color-changes-cell-height-in-tabular
+% - http://tex.stackexchange.com/questions/30022/how-to-select-latin-modern-font-for-small-sizes
+% - http://tex.stackexchange.com/questions/29282/how-to-write-content-of-a-command-into-a-file
+% - http://tex.stackexchange.com/questions/29256/code-fails-with-emergency-stop-when-using-expandafter-csname-and-such-in-listi
+% - http://tex.stackexchange.com/questions/29153/how-to-compare-two-booleans
+% - http://tex.stackexchange.com/questions/101773/write-to-back-page-of-part
+% - http://tex.stackexchange.com/questions/95734/test-if-chapter-is-a-valid-command
+% - http://tex.stackexchange.com/questions/84870/index-completely-messed-up-in-dtx-file
+% - http://tex.stackexchange.com/questions/73767/warning-about-pdfpages-with-hyperref
+Heiko Oberdiek, %
+% - http://tex.stackexchange.com/questions/75049/error-at-ifnum-luatexversion68
+% - http://tex.stackexchange.com/questions/65991/replace-folder-separation-char-for-index
+% - http://tex.stackexchange.com/questions/65639/how-to-create-my-own-ref-label-system
+% - http://tex.stackexchange.com/questions/87670/disable-index-creation-in-dtx-file
+% - http://tex.stackexchange.com/questions/84207/define-moretexcs-listings
+% - http://tex.stackexchange.com/questions/75049/error-at-ifnum-luatexversion68
+% - http://tex.stackexchange.com/questions/65991/replace-folder-separation-char-for-index
+% - http://tex.stackexchange.com/questions/65639/how-to-create-my-own-ref-label-system
+Joseph Wright, %
+% - http://tex.stackexchange.com/questions/64281/mark-latex-keywords-in-listings
+% - http://tex.stackexchange.com/questions/35287/sans-serif-font-with-siunitx
+% - http://tex.stackexchange.com/questions/34797/sans-serif-math-in-tables-and-siunitx
+% - http://tex.stackexchange.com/questions/31022/how-to-add-listings-environment-to-dtx-files
+% - http://tex.stackexchange.com/questions/29199/tex-evaluates-document-code-in-preamble
+% - http://tex.stackexchange.com/questions/29133/how-to-create-switch-structure-comparing-strings-in-latex
+% - http://tex.stackexchange.com/questions/64281/mark-latex-keywords-in-listings
+Stefan Kottwitz, %
+% - http://tex.stackexchange.com/questions/36089/bug-in-tabu-when-rowcolors-are-defined
+% - http://tex.stackexchange.com/questions/35293/p-m-and-b-columns-in-tables
+% - http://tex.stackexchange.com/questions/34797/sans-serif-math-in-tables-and-siunitx
+% - http://tex.stackexchange.com/questions/31547/color-changes-cell-height-in-tabular
+% - http://tex.stackexchange.com/questions/29019/xkeyval-example-does-not-compile
+David Carlisle, %
+% - http://tex.stackexchange.com/questions/62644/how-to-organise-common-preamble-of-dtx-files
+% - http://tex.stackexchange.com/questions/58401/dtx-add-code-to-sty-file-without-printing-it-to-pdf
+% - http://tex.stackexchange.com/questions/107367/use-of-getidinfoauxi-doesnt-match-its-definition-and-other-errors
+% - http://tex.stackexchange.com/questions/95882/avoid-multicol-error-error-saving-partial-page
+Marco Daniel, %
+% - http://tex.stackexchange.com/questions/48456/tikz-example-from-manual-fails
+% - http://tex.stackexchange.com/questions/43236/endless-loop-with-mdframed
+% - http://tex.stackexchange.com/questions/41769/code-fails-when-loading-boolexpr
+% - http://tex.stackexchange.com/questions/41066/margins-of-mdframed-without-any-effect
+Martin Scharrer, %
+% - http://tex.stackexchange.com/questions/34923/tables-across-page-ltxtable-vs-ltablex
+% - http://tex.stackexchange.com/questions/30730/packages-for-documenting-self-written-packages-sty-files
+% - http://tex.stackexchange.com/questions/30284/how-to-make-listings-code-correct-copyable-from-pdf-and-with-hyperlink
+% - http://tex.stackexchange.com/questions/29971/why-can-lstlisting-not-be-saved-in-a-command
+Jake, %
+% - http://tex.stackexchange.com/questions/96387/pgfplots-xbar-example-fails
+% - http://tex.stackexchange.com/questions/81691/set-minor-grid-values-in-pgfplots
+% - http://tex.stackexchange.com/questions/78074/weibull-plot-with-arbitrary-y-axis-scale
+lockstep, %
+% - http://tex.stackexchange.com/questions/41143/longtable-and-floatrow-font-commands-ignored
+% - http://tex.stackexchange.com/questions/37590/load-package-after-other-package-with-afterpackage
+% - http://tex.stackexchange.com/questions/37537/add-appendix-with-correct-page-to-toc
+Peter Grill, %
+% - http://tex.stackexchange.com/questions/42289/remove-unwanted-contents-from-list-of-listings
+% - http://tex.stackexchange.com/questions/30375/tex-capacity-exceeded
+% - http://tex.stackexchange.com/questions/29968/newenvironment-fails-with-special-listings-environment
+Ulrike Fischer, %
+% - http://tex.stackexchange.com/questions/35302/problem-with-dtx-code-rowcolors-unknown
+% - http://tex.stackexchange.com/questions/35156/requirepackage-without-option-clashes-because-of-the-package-loading-order
+% - http://tex.stackexchange.com/questions/30375/tex-capacity-exceeded
+Werner, %
+% - http://tex.stackexchange.com/questions/42282/sync-listings-caption-numbers-and-add-all-to-list-of-listings
+% - http://tex.stackexchange.com/questions/40903/check-if-mathversion-font-is-defined
+% - http://tex.stackexchange.com/questions/37529/pifont-zapf-dingbats-shows-wrong-letters
+Christian Feuersänger, %
+% - http://tex.stackexchange.com/questions/75049/error-at-ifnum-luatexversion68
+% - http://tex.stackexchange.com/questions/99526/bug-in-pgfplots-or-other-packages
+cmhughes, %
+% - http://tex.stackexchange.com/questions/48620/pgfplots-alignment-and-size-of-math-in-legend
+% - http://tex.stackexchange.com/questions/48530/pgfplots-spline-and-colorseries-do-not-work
+Mico, %
+% - http://tex.stackexchange.com/questions/35287/sans-serif-font-with-siunitx
+% - http://tex.stackexchange.com/questions/30049/how-to-select-math-font-in-document
+Martin Schröder, %
+%  - http://tex.stackexchange.com/questions/39198/how-to-debug-an-infinite-loop-in-pdflatex-code
+cgnieder, %
+% - http://tex.stackexchange.com/questions/95639/test-if-a-listings-or-glossaries-style-is-valid
+percusse, %
+%  - http://tex.stackexchange.com/questions/77790/pgf-math-error-division-by-zero
+Schweinebacke, %
+% - http://tex.stackexchange.com/questions/35302/problem-with-dtx-code-rowcolors-unknown
+Herbert, %
+% - http://tex.stackexchange.com/questions/34909/understanding-xcolor-color-mixing-model
+Gonzalo Medina.%
+% - http://tex.stackexchange.com/questions/99314/change-color-of-pgfplot-bar-plot
+%
+
+Contributors to the template are welcome. Currently there is no direct input (suggestions, bug fixing, documentation, new features) from anybody.
+
+\section*{Source}
+The source code is hosted at \url{code.google.com/p/latexthesistemplate/}. Downloads contain only the user code including this documentation. The full source is available via the source code repository.
+
+% } % end of \uppertitleback
