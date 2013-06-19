@@ -1,35 +1,35 @@
 %% -- style section selections -->
-\DefineTemplateSection[true]{StyleColors}
-\DefineTemplateSection[true]{StyleMath}
-\DefineTemplateSection[true]{StyleDiagrams}
-\DefineTemplateSection[true]{StyleScience}
-\DefineTemplateSection[true]{StyleText}
-\DefineTemplateSection[true]{StyleFootnote}
-\DefineTemplateSection[true]{StyleQuotes}
-\DefineTemplateSection[true]{StyleCiteBib}
-\DefineTemplateSection[true]{StyleFigures}
-\DefineTemplateSection[true]{StyleCaptions}
-\DefineTemplateSection[true]{StyleTables}
-\DefineTemplateSection[true]{StyleIndexes}
-\DefineTemplateSection[true]{StyleVerbatim}
-\DefineTemplateSection[true]{StyleFancy}
-\DefineTemplateSection[true]{StyleParagraph}
-\DefineTemplateSection[true]{StyleLineSpacing}
-\DefineTemplateSection[true]{StylePageLayout}
-\DefineTemplateSection[true]{StyleTitlepage}
-\DefineTemplateSection[true]{StyleHeadFoot}
-\DefineTemplateSection[true]{StyleHeadings}
-\DefineTemplateSection[true]{StyleHeadingsFonts}
-\DefineTemplateSection[true]{StyleHeadingsLayout}
-\DefineTemplateSection[true]{StyleLayoutTOC}
-\DefineTemplateSection[true]{StylePdf}
-\DefineTemplateSection[true]{StyleFixProblems}
+\DefineCodeSection[true]{StyleColors}
+\DefineCodeSection[true]{StyleMath}
+\DefineCodeSection[true]{StyleDiagrams}
+\DefineCodeSection[true]{StyleScience}
+\DefineCodeSection[true]{StyleText}
+\DefineCodeSection[true]{StyleFootnote}
+\DefineCodeSection[true]{StyleQuotes}
+\DefineCodeSection[true]{StyleCiteBib}
+\DefineCodeSection[true]{StyleFigures}
+\DefineCodeSection[true]{StyleCaptions}
+\DefineCodeSection[true]{StyleTables}
+\DefineCodeSection[true]{StyleIndexes}
+\DefineCodeSection[true]{StyleVerbatim}
+\DefineCodeSection[true]{StyleFancy}
+\DefineCodeSection[true]{StyleParagraph}
+\DefineCodeSection[true]{StyleLineSpacing}
+\DefineCodeSection[true]{StylePageLayout}
+\DefineCodeSection[true]{StyleTitlepage}
+\DefineCodeSection[true]{StyleHeadFoot}
+\DefineCodeSection[true]{StyleHeadings}
+\DefineCodeSection[true]{StyleHeadingsFonts}
+\DefineCodeSection[true]{StyleHeadingsLayout}
+\DefineCodeSection[true]{StyleLayoutTOC}
+\DefineCodeSection[true]{StylePdf}
+\DefineCodeSection[true]{StyleFixProblems}
 %% <--------------------------------
  
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Colors
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleColors}
+\BeginCodeSection{StyleColors}
 \IfMultDefined{definecolor,colorlet}{%
 
 % color of headings
@@ -71,11 +71,11 @@
 \colorlet{tableheadcolor}{gray!25}
 
 }{} % End: \IfMultDefined{definecolor}
-\EndTemplateSection{StyleColors}
+\EndCodeSection{StyleColors}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Math Settings
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleMath}
+\BeginCodeSection{StyleMath}
 
 %%% print vector in bold
 %\let\oldvec\vec
@@ -98,29 +98,29 @@
 % \let\ORGvarphi=\varphi
 % \let\varphi=\phi
 % \let\phi=\ORGvarphi
-\EndTemplateSection{StyleMath}
+\EndCodeSection{StyleMath}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Science Settings
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleScience}
+\BeginCodeSection{StyleScience}
 
 % style setup of siunitx
 \input{preamble/style-siunitx.tex}
 
-\EndTemplateSection{StyleScience}
+\EndCodeSection{StyleScience}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % diagrams
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleDiagrams}
+\BeginCodeSection{StyleDiagrams}
 
 % setup of package pgfplots
 \input{preamble/style-pgfplots.tex}
 
-\EndTemplateSection{StyleDiagrams}
+\EndCodeSection{StyleDiagrams}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % text related 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleText}
+\BeginCodeSection{StyleText}
 
 %% style of URL
 \IfDefined{urlstyle}{
@@ -139,12 +139,12 @@
   \setlist{itemsep=0pt}
 }%
 
-\EndTemplateSection{StyleText}
+\EndCodeSection{StyleText}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Footnotes
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleFootnote}
+\BeginCodeSection{StyleFootnote}
 
 % separation text to footnote
 \addtolength{\skip\footins}{\baselineskip}
@@ -180,12 +180,12 @@
 % at facing page
 \interfootnotelinepenalty=10000 
 
-\EndTemplateSection{StyleFootnote}
+\EndCodeSection{StyleFootnote}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Quotes
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleQuotes}
+\BeginCodeSection{StyleQuotes}
 \IfPackageLoaded{csquotes}{
 
 % All facilities which take a 'cite' argument will not insert
@@ -204,11 +204,11 @@
 %\SetCiteCommand{} % Changes citation command
 
 } %end: \IfPackageLoaded{csquotes}
-\EndTemplateSection{StyleQuotes}
+\EndCodeSection{StyleQuotes}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Citations / Style of Bibliography
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleCiteBib}
+\BeginCodeSection{StyleCiteBib}
 
 % biblatex bibliography options
 \input{preamble/style-biblatex.tex}
@@ -219,11 +219,11 @@
    % bibliography=oldstyle%
    bibliography=openstyle%
 }%
-\EndTemplateSection{StyleCiteBib}
+\EndCodeSection{StyleCiteBib}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % figures, placement and floats
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleFigures}
+\BeginCodeSection{StyleFigures}
 \IfPackageLoaded{float} {
 % \floatplacement{figure}{H} % default placement
 }
@@ -245,11 +245,11 @@
 \setcounter{bottomnumber}{2}     % previous: 1
 \setcounter{totalnumber}{5}      % previous: 3
 
-\EndTemplateSection{StyleFigures}
+\EndCodeSection{StyleFigures}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Captions
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleCaptions}
+\BeginCodeSection{StyleCaptions}
 
 \IfPackageLoaded{amsmath}{
 % Numbering of figures and table in each chapter
@@ -263,11 +263,11 @@
 % Style of figure placement with floatrow
 \input{preamble/style-floatrow.tex}
 
-\EndTemplateSection{StyleCaptions}
+\EndCodeSection{StyleCaptions}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % table packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleTables}
+\BeginCodeSection{StyleTables}
 
 % for Package tabu
 \IfDefined{tabulinesep}{%
@@ -296,28 +296,28 @@
     {\newcolumntype{C}[1]{>{\Centering\arraybackslash\hspace{0pt}}p{#1}}}
 }
 
-\EndTemplateSection{StyleTables}
+\EndCodeSection{StyleTables}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Index and other lists
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleIndexes}
+\BeginCodeSection{StyleIndexes}
 
 \input{preamble/style-index.tex}
 \input{preamble/style-glossaries.tex}
 
-\EndTemplateSection{StyleIndexes}
+\EndCodeSection{StyleIndexes}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % verbatim packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleVerbatim}
+\BeginCodeSection{StyleVerbatim}
 
 \input{preamble/style-listings.tex}
 
-\EndTemplateSection{StyleVerbatim}
+\EndCodeSection{StyleVerbatim}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % fancy packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleFancy}
+\BeginCodeSection{StyleFancy}
 \IfPackageLoaded{lettrine}{
   \setcounter{DefaultLines}{2}
   \renewcommand{\DefaultLoversize}{0}
@@ -332,11 +332,11 @@
 \IfPackageLoaded{framed}{
   \renewcommand\FrameCommand{\fcolorbox{black}{frameshadecolor}}
 }
-\EndTemplateSection{StyleFancy}
+\EndCodeSection{StyleFancy}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % layout:  Paragraph
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleParagraph}
+\BeginCodeSection{StyleParagraph}
 %\nonfrenchspacing     % provides extra space after sentence endings 
                        % Must be switched of for german and english text!
 
@@ -354,22 +354,22 @@
    % parskip=half+  % parksip of 1/2 line - with free space in last line of 1/3
    % parskip=half*  % parksip of 1/2 line - with free space in last line of 1em
 }%
-\EndTemplateSection{StyleParagraph}
+\EndCodeSection{StyleParagraph}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % layout:  line spacing
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %
-\BeginTemplateSection{StyleLineSpacing}
+\BeginCodeSection{StyleLineSpacing}
 \IfPackageLoaded{setspace}{
   %\onehalfspacing    % 1,5-times spacing
   %\doublespacing     % 2-times spacing
 }
-\EndTemplateSection{StyleLineSpacing}
+\EndCodeSection{StyleLineSpacing}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % layout:  page layout
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %
-\BeginTemplateSection{StylePageLayout}
+\BeginCodeSection{StylePageLayout}
 
 \raggedbottom     % allow variable (ragged) site heights
 
@@ -439,28 +439,28 @@
 %
    } % \IfPackageNotLoaded{geometry}
 } % \IfPackageLoaded{typearea}
-\EndTemplateSection{StylePageLayout}
+\EndCodeSection{StylePageLayout}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Titlepage
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleTitlepage}
+\BeginCodeSection{StyleTitlepage}
 \KOMAoptions{%
    titlepage=true % % separate page for title
    %titlepage=false %
 }%
-\EndTemplateSection{StyleTitlepage}
+\EndCodeSection{StyleTitlepage}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % head and foot lines
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleHeadFoot}
+\BeginCodeSection{StyleHeadFoot}
 
 \input{preamble/style-scrpage2.tex}
 
-\EndTemplateSection{StyleHeadFoot}
+\EndCodeSection{StyleHeadFoot}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % headings / page opening
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleHeadings}
+\BeginCodeSection{StyleHeadings}
 
 % depth of sections numbering
 \setcounter{secnumdepth}{2}
@@ -496,11 +496,11 @@
 % headings left aligned and ragged
 \renewcommand*{\raggedsection}{\raggedright} 
 
-\EndTemplateSection{StyleHeadings}
+\EndCodeSection{StyleHeadings}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % fonts of headings
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleHeadingsFonts}
+\BeginCodeSection{StyleHeadingsFonts}
 
 
 % Default font for sections
@@ -548,11 +548,11 @@
   }
 }
 
-\EndTemplateSection{StyleHeadingsFonts}
+\EndCodeSection{StyleHeadingsFonts}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % layout of headings 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleHeadingsLayout}
+\BeginCodeSection{StyleHeadingsLayout}
 %%% Remove Space above Chapter.
 %%% (NOT recommanded!)
 %% Space above Chapter Title
@@ -563,11 +563,11 @@
 % setup of package titlesec
 \input{preamble/style-titlesec.tex}
 
-\EndTemplateSection{StyleHeadingsLayout}
+\EndCodeSection{StyleHeadingsLayout}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % settings and layout of TOC, LOF 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleLayoutTOC}
+\BeginCodeSection{StyleLayoutTOC}
 %%% === Table of Contents ==============================
 
 \setcounter{tocdepth}{3} % Depth of TOC Display
@@ -660,11 +660,11 @@
    \setcounter{lofdepth}{1}  %1 = only figures, 2 = figures and subfigures
 }
 
-\EndTemplateSection{StyleLayoutTOC}
+\EndCodeSection{StyleLayoutTOC}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % pdf packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StylePdf}
+\BeginCodeSection{StylePdf}
 
 \input{preamble/style-hyperref.tex}
 
@@ -688,11 +688,11 @@
 % Make figure and not only the number to a link
 \input{preamble/style-references.tex}
 
-\EndTemplateSection{StylePdf}
+\EndCodeSection{StylePdf}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % fix remaining problems
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{StyleFixProblems}
+\BeginCodeSection{StyleFixProblems}
 % ------------------------------------------------------------------
 % Define frontmatter, mainmatter and backmatter if not defined
 % because this template shall compile in any koma script class
@@ -736,4 +736,4 @@
 
 
 % ------------------------------------------------------------------
-\EndTemplateSection{StyleFixProblems}
+\EndCodeSection{StyleFixProblems}

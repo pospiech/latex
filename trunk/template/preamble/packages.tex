@@ -1,34 +1,34 @@
 %% -- package section selections -->
-\DefineTemplateSection[true]{PackagesBase}
-\DefineTemplateSection[true]{PackagesBugfixes}
-\DefineTemplateSection[true]{PackagesFonts}
-\DefineTemplateSection[true]{PackagesDiagrams}
-\DefineTemplateSection[true]{PackagesMath}
-\DefineTemplateSection[true]{PackagesScience}
-\DefineTemplateSection[true]{PackagesSymbols}
-\DefineTemplateSection[true]{PackagesTables}
-\DefineTemplateSection[true]{PackagesText}
-\DefineTemplateSection[true]{PackagesQuotes}
-\DefineTemplateSection[true]{PackagesCitation}
-\DefineTemplateSection[true]{PackagesFigures}
-\DefineTemplateSection[true]{PackagesCaptions}
-\DefineTemplateSection[true]{PackagesIndexes}
-\DefineTemplateSection[true]{PackagesMisc}
-\DefineTemplateSection[true]{PackagesVerbatim}
-\DefineTemplateSection[true]{PackagesFancy}
-\DefineTemplateSection[true]{PackagesLayout}
-\DefineTemplateSection[true]{PackagesHeadFoot}
-\DefineTemplateSection[true]{PackagesHeadings}
-\DefineTemplateSection[true]{PackagesTOC}
-\DefineTemplateSection[true]{PackagesPDF}
-\DefineTemplateSection[true]{PackagesAdditional}
+\DefineCodeSection[true]{PackagesBase}
+\DefineCodeSection[true]{PackagesBugfixes}
+\DefineCodeSection[true]{PackagesFonts}
+\DefineCodeSection[true]{PackagesDiagrams}
+\DefineCodeSection[true]{PackagesMath}
+\DefineCodeSection[true]{PackagesScience}
+\DefineCodeSection[true]{PackagesSymbols}
+\DefineCodeSection[true]{PackagesTables}
+\DefineCodeSection[true]{PackagesText}
+\DefineCodeSection[true]{PackagesQuotes}
+\DefineCodeSection[true]{PackagesCitation}
+\DefineCodeSection[true]{PackagesFigures}
+\DefineCodeSection[true]{PackagesCaptions}
+\DefineCodeSection[true]{PackagesIndexes}
+\DefineCodeSection[true]{PackagesMisc}
+\DefineCodeSection[true]{PackagesVerbatim}
+\DefineCodeSection[true]{PackagesFancy}
+\DefineCodeSection[true]{PackagesLayout}
+\DefineCodeSection[true]{PackagesHeadFoot}
+\DefineCodeSection[true]{PackagesHeadings}
+\DefineCodeSection[true]{PackagesTOC}
+\DefineCodeSection[true]{PackagesPDF}
+\DefineCodeSection[true]{PackagesAdditional}
 %% <--------------------------------
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % These packages must be loaded before all others
 % (primarily because they are required by other packages)
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesBase}
+\BeginCodeSection{PackagesBase}
 
 % Description: Calculation with LaTeX 
 % Doc: calc.pdf
@@ -75,11 +75,11 @@
 % Doc: ragged2e.pdf
 \usepackage{ragged2e}
 
-\EndTemplateSection{PackagesBase}
+\EndCodeSection{PackagesBase}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % LaTeX bug fixing packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesBugfixes}
+\BeginCodeSection{PackagesBugfixes}
 
 % Description: Fix known LaTeX2e bugs
 % Doc: fixltx2e.pdf
@@ -111,23 +111,23 @@
 % Doc: xspace.pdf
 \RequirePackage{xspace}
 
-\EndTemplateSection{PackagesBugfixes}
+\EndCodeSection{PackagesBugfixes}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Fonts
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\BeginTemplateSection{PackagesFonts}
+\BeginCodeSection{PackagesFonts}
 
 %% Description: Set the font size relative to the current font size
 %% Doc: relsize-doc.pdf
 \usepackage{relsize}
 
-\EndTemplateSection{PackagesFonts}
+\EndCodeSection{PackagesFonts}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Math Packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesMath}
+\BeginCodeSection{PackagesMath}
 
 
 % Description: basic math package
@@ -211,11 +211,11 @@
 % Doc: xfrac.pdf 
 \usepackage{xfrac} 
 
-\EndTemplateSection{PackagesMath}
+\EndCodeSection{PackagesMath}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % diagrams
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesDiagrams}
+\BeginCodeSection{PackagesDiagrams}
 
 % tikz and pgf
 \input{preamble/packages-tikzpgf.tex}
@@ -232,11 +232,11 @@
 
 \input{preamble/fix-pgfplots.tex} % fix bug in pgfplots with \directlua
 
-\EndTemplateSection{PackagesDiagrams}
+\EndCodeSection{PackagesDiagrams}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % science packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesScience}
+\BeginCodeSection{PackagesScience}
  
 % Description: upright symbols from euler package
 %              [Euler] or Adobe Symbols [Symbol]
@@ -264,12 +264,12 @@
   \usepackage{siunitx}
 }
 
-\EndTemplateSection{PackagesScience}
+\EndCodeSection{PackagesScience}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Symbols
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesSymbols}
+\BeginCodeSection{PackagesSymbols}
 %%% General Doc: symbols-a4.pdf
 %
 %% Math symbols
@@ -297,12 +297,12 @@
 %% Common Symbols
 \usepackage{pifont}   %% ZapfDingbats
 
-\EndTemplateSection{PackagesSymbols}
+\EndCodeSection{PackagesSymbols}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Tables (Tabular)
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesTables}
+\BeginCodeSection{PackagesTables}
 
 % Description:  some additional commands to enhance
 %               the quality of tables
@@ -333,13 +333,13 @@
 }{}
 
 
-\EndTemplateSection{PackagesTables}
+\EndCodeSection{PackagesTables}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % text related packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\BeginTemplateSection{PackagesText}
+\BeginCodeSection{PackagesText}
 
 %%% bug fixing ===========================================
 % description: fixes bug in ellipsis (...) 
@@ -454,12 +454,12 @@
   \usepackage{abstract}
 }
 
-\EndTemplateSection{PackagesText}
+\EndCodeSection{PackagesText}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Quotes
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesQuotes}
+\BeginCodeSection{PackagesQuotes}
 %
 % Description: Advanced features for clever quotations
 % Doc: csquotes.pdf
@@ -471,11 +471,11 @@
    french=guillemets
 ]{csquotes}
 
-\EndTemplateSection{PackagesQuotes}
+\EndCodeSection{PackagesQuotes}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Citations
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesCitation}
+\BeginCodeSection{PackagesCitation}
 
 % Description: Modern Bibliographie package with full customizability
 % Doc:  biblatex.pdf
@@ -509,11 +509,11 @@
 %  style=authortitle-tcomp,
 %  style=authortitle-ticomp,
 
-\EndTemplateSection{PackagesCitation}
+\EndCodeSection{PackagesCitation}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % figures, placement, floats and captions
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesFigures}
+\BeginCodeSection{PackagesFigures}
 
 %% Description: provides new floats and enables H float modifier option
 %%             (in future incompatible with Koma Script)
@@ -547,11 +547,11 @@
 %% Doc: floatflt.pdf
 % \usepackage{floatflt}
 
-\EndTemplateSection{PackagesFigures}
+\EndCodeSection{PackagesFigures}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % caption packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesCaptions}
+\BeginCodeSection{PackagesCaptions}
 
 % Description: extents the float mechanism of LaTeX and
 %              provides macros for precise placement of 
@@ -598,11 +598,11 @@
 % Doc: rotating.pdf
 \usepackage[figuresright]{rotating}
 
-\EndTemplateSection{PackagesCaptions}
+\EndCodeSection{PackagesCaptions}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % misc packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesMisc}
+\BeginCodeSection{PackagesMisc}
 
 % Description: adds line numbers to the main text
 % Doc: ulineno
@@ -612,12 +612,12 @@
 %  ,modulo   %  Print line numbers only if they are multiples of five.
 %]{lineno}
 
-\EndTemplateSection{PackagesMisc}
+\EndCodeSection{PackagesMisc}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Index and other lists
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesIndexes}
+\BeginCodeSection{PackagesIndexes}
 
 % Description: print text of \index{entry} to the margin
 % Doc: makeidx.pdf
@@ -650,12 +650,12 @@
 \newglossary[slg]{symbolslist}{syi}{syg}{List of Symbols}
 }
 
-\EndTemplateSection{PackagesIndexes}
+\EndCodeSection{PackagesIndexes}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % verbatim packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesVerbatim}
+\BeginCodeSection{PackagesVerbatim}
 %%% Doc: upquote.sty
 \usepackage{upquote} % print correct quotes in verbatim-environments
 
@@ -677,12 +677,12 @@
 % Doc: listings.pdf
 \usepackage{listings}
 
-\EndTemplateSection{PackagesVerbatim}
+\EndCodeSection{PackagesVerbatim}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % fancy packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesFancy}
+\BeginCodeSection{PackagesFancy}
 
 % Description: Dropping capitals
 % Doc: lettrine.pdf
@@ -702,12 +702,12 @@
 % Doc: mdframed-doc-en.pdf
 \usepackage{mdframed}
 
-\EndTemplateSection{PackagesFancy}
+\EndCodeSection{PackagesFancy}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % layout packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesLayout}
+\BeginCodeSection{PackagesLayout}
 
 %%% indentation =========================================
 
@@ -747,12 +747,12 @@
 % Doc: changepage.pdf
 % \usepackage[strict]{changepage}
 
-\EndTemplateSection{PackagesLayout}
+\EndCodeSection{PackagesLayout}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % head and foot lines
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\BeginTemplateSection{PackagesHeadFoot}
+\BeginCodeSection{PackagesHeadFoot}
 
 %%% Doc: scrguide.pdf
 \usepackage[%
@@ -785,13 +785,13 @@
 % Doc: pageslts.pdf
 \ExecuteAfterPackage{hyperref}{\usepackage{pageslts}}
 
-\EndTemplateSection{PackagesHeadFoot}
+\EndCodeSection{PackagesHeadFoot}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % layout of headings 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\BeginTemplateSection{PackagesHeadings}
+\BeginCodeSection{PackagesHeadings}
 
 % Description: The titlesec package is essentially a replacement - partial or
 %              total-for the LaTeX macros related with sections - namely
@@ -802,13 +802,13 @@
 	{\usepackage{titlesec} \csundef{chapter}}
 
 
-\EndTemplateSection{PackagesHeadings}
+\EndCodeSection{PackagesHeadings}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % settings and layout of TOC
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\BeginTemplateSection{PackagesTOC}
+\BeginCodeSection{PackagesTOC}
 
 % Description: The philosophy of this package is to use new commands which you
 %              can format the toc entries with in a generic way.
@@ -854,13 +854,13 @@
 %]{appendix}
 %\renewcommand{\appendixtocname}{\appendixname}
 
-\EndTemplateSection{PackagesTOC}
+\EndCodeSection{PackagesTOC}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % pdf packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\BeginTemplateSection{PackagesPDF}
+\BeginCodeSection{PackagesPDF}
 
 % Description: Include pages from external PDF documents in LaTeX documents
 % Doc: pdfpages.pdf
@@ -911,7 +911,7 @@
   \usepackage[]{bookmark}
 }
 
-\EndTemplateSection{PackagesPDF}
+\EndCodeSection{PackagesPDF}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -920,7 +920,7 @@
 % All packages added here MUST be loadeable after hyperref!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\BeginTemplateSection{PackagesAdditional}
+\BeginCodeSection{PackagesAdditional}
 
 % Description: enable hyphenation of typewriter text word (\texttt)
 % Doc:  hyphenat.pdf
@@ -935,7 +935,7 @@
 
 % \usepackage{nicefilelist}
 
-\EndTemplateSection{PackagesAdditional}
+\EndCodeSection{PackagesAdditional}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % last package

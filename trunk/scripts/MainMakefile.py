@@ -94,8 +94,8 @@ def copyPackages():
     copyPackage('doctools')
     copyPackage('lastpackage')
     copyPackage('tablestyles')
-    copyPackage('templatedemo')
-    copyPackage('templatesection')
+    copyPackage('latexdemo')
+    copyPackage('codesection')
     copyPackage('templatetools')
 
 if __name__ == '__main__':

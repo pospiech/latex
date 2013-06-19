@@ -1,17 +1,17 @@
 % !TeX encoding=utf8
 % !TeX spellcheck = en-US
 
-\DefineTemplateSection[true]{DemoText}
-\DefineTemplateSection[true]{DemoFigures}
-\DefineTemplateSection[true]{DemoTables}
-\DefineTemplateSection[true]{DemoMath}
-\DefineTemplateSection[true]{DemoScience}
-\DefineTemplateSection[true]{DemoSymbols}
-\DefineTemplateSection[true]{DemoFancy}
-\DefineTemplateSection[true]{DemoBib}
-\DefineTemplateSection[true]{DemoIndexGlossar}
-\DefineTemplateSection[true]{DemoVerbatim}
-\DefineTemplateSection[true]{DemoDiagrams}
+\DefineCodeSection[true]{DemoText}
+\DefineCodeSection[true]{DemoFigures}
+\DefineCodeSection[true]{DemoTables}
+\DefineCodeSection[true]{DemoMath}
+\DefineCodeSection[true]{DemoScience}
+\DefineCodeSection[true]{DemoSymbols}
+\DefineCodeSection[true]{DemoFancy}
+\DefineCodeSection[true]{DemoBib}
+\DefineCodeSection[true]{DemoIndexGlossar}
+\DefineCodeSection[true]{DemoVerbatim}
+\DefineCodeSection[true]{DemoDiagrams}
 
 \makeatletter
 \renewcommand\FrameCommand{\fcolorbox{demo@rulecolor}{demo@resultbackcolor}}
@@ -48,11 +48,11 @@ Therefore it is only guaranteed that the examples work in this template. If this
 All the examples are designed not to raise an error if some functionality is not available, but instead to display why they were not included in the document. 
 One example for this is the code for package \package{subfloat} in \cref{sec:demo:figures:subfloat}, which was intentionally removed because of incompatibilities and better alternatives. Therefore these `error´ messages do not indicate an error of the template. They only inform why an example could not be included. 
 
-This document (\path{content/demo/demo.tex}) could also be used in other templates provided that all depending packages\footnote{\package{templatesection}, \package{templatetools} and \package{templatedemo}} are loaded. 
+This document (\path{content/demo/demo.tex}) could also be used in other templates provided that all depending packages\footnote{\package{codesection}, \package{templatetools} and \package{latexdemo}} are loaded. 
 And all users and package authors are encouraged to extend and improve the examples as well as use this file for testing of their own commands and packages.
 }{}
 
-\BeginTemplateSection{DemoText}
+\BeginCodeSection{DemoText}
 % ============================================================
 \section{Text markup}
 
@@ -625,11 +625,11 @@ width of the largest element as a parameter.
 }{\DemoError{Environment \env{labeling} not available}}%
 
 
-\EndTemplateSection{DemoText}
+\EndCodeSection{DemoText}
 
 %
 %% ============================================================
-\BeginTemplateSection{DemoFigures}
+\BeginCodeSection{DemoFigures}
 \clearpage
 \section{Figures and captions}
 \label{sec:demo:figures}
@@ -1272,9 +1272,9 @@ These sizes can be used in figures to specify the width in fixed paper depended 
 
 }{\DemoError{Length \env{doctextwidth} not defined}}%
 
-\EndTemplateSection{DemoFigures}
+\EndCodeSection{DemoFigures}
 %% ============================================================
-\BeginTemplateSection{DemoTables}
+\BeginCodeSection{DemoTables}
 \clearpage
 \section{Tables}
 \label{sec:demo:tables}
@@ -2506,9 +2506,9 @@ The table orientated in landscape created by the environment \cs{sidewaystable} 
 }{\DemoError{Packages \package{xcolor} or \package{rotating} not loaded}}%
 
 %
-\EndTemplateSection{DemoTables}
+\EndCodeSection{DemoTables}
 %% ============================================================
-\BeginTemplateSection{DemoMath}
+\BeginCodeSection{DemoMath}
 \clearpage
 \section{Math}
 
@@ -2794,9 +2794,9 @@ New Symbols (laplace, dalembert)
 
 }{\DemoError{Command \cs{pmatrix} from amsmath not available.}}%
 
-\EndTemplateSection{DemoMath}
+\EndCodeSection{DemoMath}
 %%% ============================================================
-\BeginTemplateSection{DemoScience}
+\BeginCodeSection{DemoScience}
 \clearpage
 \section{Science}
 This section is mainly about packages that are useful for special professions,
@@ -2843,9 +2843,9 @@ Note that the numbers must be provided in the siunitx format.
 
 }{\DemoError{Package \cs{siunitx} not loaded.}}%
 
-\EndTemplateSection{DemoScience}
+\EndCodeSection{DemoScience}
 %% ============================================================
-\BeginTemplateSection{DemoSymbols}
+\BeginCodeSection{DemoSymbols}
 \clearpage
 \section{Symbols}
 %% ------------------------------------------------------------
@@ -2862,9 +2862,9 @@ Note that the numbers must be provided in the siunitx format.
 
 }{\DemoError{Command \cs{ding} not available.}}%
 
-\EndTemplateSection{DemoSymbols}
+\EndCodeSection{DemoSymbols}
 %% ============================================================
-\BeginTemplateSection{DemoBib}
+\BeginCodeSection{DemoBib}
 \clearpage
 \section{Bibliographies and Citations}
 
@@ -3070,10 +3070,10 @@ enable sorting by setting the `sortcites' package option.
 }{\DemoError{Package \package{biblatex} not loaded.}}%
 
 
-\EndTemplateSection{DemoBib}
+\EndCodeSection{DemoBib}
 
 % ============================================================
-\BeginTemplateSection{DemoIndexGlossar}
+\BeginCodeSection{DemoIndexGlossar}
 \clearpage
 \section{Index, glossaries, list of symbols, list of acronyms, \ldots}
 
@@ -3346,9 +3346,9 @@ The \cs{missingfigure} command is supposed to indicate missing figures. It can b
 
 
 
-\EndTemplateSection{DemoIndexGlossar} 
+\EndCodeSection{DemoIndexGlossar} 
 %% ============================================================
-\BeginTemplateSection{DemoVerbatim}
+\BeginCodeSection{DemoVerbatim}
 
 \clearpage
 \section{Verbatim, Listings}
@@ -3526,10 +3526,10 @@ Some text ...
 }{}%
 
 
-\EndTemplateSection{DemoVerbatim}
+\EndCodeSection{DemoVerbatim}
  
 % ============================================================
-\BeginTemplateSection{DemoFancy}
+\BeginCodeSection{DemoFancy}
 \clearpage
 \section{Fancy Packages.}
 
@@ -3647,10 +3647,10 @@ be defined in every detail.
 
 }{\DemoError{Package \cs{mdframed} not loaded.}}%
 
-\EndTemplateSection{DemoFancy}
+\EndCodeSection{DemoFancy}
 
 %% ============================================================
-\BeginTemplateSection{DemoDiagrams}
+\BeginCodeSection{DemoDiagrams}
 \clearpage
 \section{Diagrams and plots with LaTeX}
 \label{sec:demo:diagram}
@@ -4500,4 +4500,4 @@ x1	y1	y2	y3	y4
 
 
 
-\EndTemplateSection{DemoDiagrams}
+\EndCodeSection{DemoDiagrams}
