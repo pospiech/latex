@@ -1,11 +1,12 @@
 % \iffalse meta-comment 
+% !TeX spellcheck = en-US
 % 
-% File:      templatesection.sty
+% File:      codesection.sty
 % Version:   <*date*> v0.1
 % Author:    Matthias Pospiech
 % Email:     <matthias@pospiech.eu>
 %
-% Copyright (C) 2012 by Matthias Pospiech <matthias@pospiech.eu>
+% Copyright (C) <*year*> by Matthias Pospiech <matthias@pospiech.eu>
 % ---------------------------------------------------------------------------
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -19,17 +20,17 @@
 %
 % The Current Maintainer of this work is Matthias Pospiech.
 %
-% This work consists of the files templatesection.dtx and templatesection.ins
-% and the derived filebase templatesection.sty.
+% This work consists of the files codesection.dtx and codesection.ins
+% and the derived filebase codesection.sty.
 %
 % \fi
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{templatesection.dtx}
+\ProvidesFile{codesection.dtx}
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<package>\ProvidesPackage{templatesection}
+%<package>\ProvidesPackage{codesection}
 %<*package>
     [<*date*> v0.1 disableable code sections]
 %</package>
@@ -45,13 +46,13 @@
 %
 \usepackage{lmodern}
 
-\usepackage{templatesection}[<*date*>]
+\usepackage{codesection}[<*date*>]
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
 
 \begin{document}
-  \DocInput{templatesection.dtx}
+  \DocInput{codesection.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -82,8 +83,8 @@
 % \DoNotIndex{\newcommand,\newenvironment}
 %
 % \providecommand*{\url}{\texttt}
-% \GetFileInfo{templatesection.dtx}
-% \title{The \textsf{templatesection} package}
+% \GetFileInfo{codesection.dtx}
+% \title{The \textsf{codesection} package}
 % \author{Matthias Pospiech \\ \url{matthias@pospiech.eu}}
 % \date{\fileversion~from \filedate}
 %
@@ -112,23 +113,23 @@
 % commands or which is not executed at all. To use that section it must be defined
 % with \emph{true} (execute code) or \emph{false} (skip code).
 % 
-% \DescribeMacro{\DefineTemplateSection} \oarg{true/false}\marg{name}
+% \DescribeMacro{\DefineCodeSection} \oarg{true/false}\marg{name}
 % \AfterLastParam
 % Defines a code section with a \emph{name}. The default is \emph{true},
 % thus the code will be executed.
 % 
-% \DescribeMacro{\SetTemplateSection} \marg{name}\marg{true/false} 
+% \DescribeMacro{\SetCodeSection} \marg{name}\marg{true/false} 
 % \AfterLastParam
-% is like \cs{DefineTemplateSection}, but with both arguments mandatory.
+% is like \cs{DefineCodeSection}, but with both arguments mandatory.
 % 
-% \DescribeMacro{\BeginTemplateSection} \marg{name} \AfterLastParam
+% \DescribeMacro{\BeginCodeSection} \marg{name} \AfterLastParam
 % starts the code section with the given name and
 % 
-% \DescribeMacro{\EndTemplateSection} \marg{name} \AfterLastParam
+% \DescribeMacro{\EndCodeSection} \marg{name} \AfterLastParam
 % ends the code section with the given name. Note that both commands need to
 %  be paired and not to be nested with other code sections.
 % 
-% \cs{BeginTemplateSection} and \cs{EndTemplateSection} \AfterLastParam 
+% \cs{BeginCodeSection} and \cs{EndCodeSection} \AfterLastParam 
 % mimic an environment. It would be preferable to define them as an
 % environment, but that opens a group in \TeX{}, which has many disadvantages.
 %  For example this would make it impossible to load packages. Therefore this
@@ -142,92 +143,92 @@
 %<*example>
 % \fi
 \begin{lstlisting}[style=lstDemoStyleLaTeXCode]
-\DefineTemplateSection[true]{ExecuteMe}
-\DefineTemplateSection[false]{SkipMe}
+\DefineCodeSection[true]{ExecuteMe}
+\DefineCodeSection[false]{SkipMe}
 %
-\BeginTemplateSection{ExecuteMe}
+\BeginCodeSection{ExecuteMe}
   This sentence has ...
-\EndTemplateSection{ExecuteMe}
+\EndCodeSection{ExecuteMe}
 %
-\BeginTemplateSection{SkipMe}
+\BeginCodeSection{SkipMe}
   no end.
-\EndTemplateSection{SkipMe}
+\EndCodeSection{SkipMe}
 %
-\SetTemplateSection{ExecuteMe}{false}
+\SetCodeSection{ExecuteMe}{false}
 %
-\BeginTemplateSection{ExecuteMe}
+\BeginCodeSection{ExecuteMe}
   a different ending.
-\EndTemplateSection{ExecuteMe}
+\EndCodeSection{ExecuteMe}
 \end{lstlisting}
 % \iffalse
 %</example>
 % \fi
 %
-% \DefineTemplateSection[true]{ExecuteMe}
-% \DefineTemplateSection[false]{SkipMe}
-% \BeginTemplateSection{ExecuteMe}
+% \DefineCodeSection[true]{ExecuteMe}
+% \DefineCodeSection[false]{SkipMe}
+% \BeginCodeSection{ExecuteMe}
 %   This sentence has ...
-% \EndTemplateSection{ExecuteMe}
+% \EndCodeSection{ExecuteMe}
 % % 
-% \BeginTemplateSection{SkipMe}
+% \BeginCodeSection{SkipMe}
 %   no end.
-% \EndTemplateSection{SkipMe}
+% \EndCodeSection{SkipMe}
 % % 
-% \SetTemplateSection{ExecuteMe}{false}
+% \SetCodeSection{ExecuteMe}{false}
 % % 
-% \BeginTemplateSection{ExecuteMe}
+% \BeginCodeSection{ExecuteMe}
 %   a different ending.
-% \EndTemplateSection{ExecuteMe}%
+% \EndCodeSection{ExecuteMe}%
 %
 % \StopEventually{}
 %
 % \section{Implementation}
 %
 % \iffalse
-%<*templatesection.sty>
+%<*codesection.sty>
 % \fi
 %
 %
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
-\ProvidesPackage{templatesection}
+\ProvidesPackage{codesection}
           [<*date*>  v0.1  disableable code sections]
 \RequirePackage{etoolbox}
 %    \end{macrocode}
 %
-% \begin{macro}{\DefineTemplateSection}
+% \begin{macro}{\DefineCodeSection}
 %    \begin{macrocode}
 %%----------------------------------------------------------------------
-%% provide new if (\ifTemplateSection<name>) 
-%% with definition \TemplateSection<name><true>
+%% provide new if (\ifCodeSection<name>) 
+%% with definition \CodeSection<name><true>
 %% 
-\newcommand{\DefineTemplateSection}[2][true]{%
-  \expandafter\newif\csname ifTemplateSection#2\endcsname
-  \csname TemplateSection#2#1\endcsname
+\newcommand{\DefineCodeSection}[2][true]{%
+  \expandafter\newif\csname ifCodeSection#2\endcsname
+  \csname CodeSection#2#1\endcsname
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\SetTemplateSection}
+% \begin{macro}{\SetCodeSection}
 %    \begin{macrocode}
 %%----------------------------------------------------------------------
-%% Alternative to \DefineTemplateSection
-\newcommand{\SetTemplateSection}[2]{%
-  \DefineTemplateSection[#2]{#1}
+%% Alternative to \DefineCodeSection
+\newcommand{\SetCodeSection}[2]{%
+  \DefineCodeSection[#2]{#1}
 }%
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\BeginTemplateSection}
+% \begin{macro}{\BeginCodeSection}
 %    \begin{macrocode}
 %%----------------------------------------------------------------------
-\newcommand\BeginTemplateSection[1]{%
-  \ifcsdef{ifTemplateSection#1}{}{%
-    \PackageError{templatesection}{Section #1 is unknown\MessageBreak}{}%
+\newcommand\BeginCodeSection[1]{%
+  \ifcsdef{ifCodeSection#1}{}{%
+    \PackageError{codesection}{Section #1 is unknown\MessageBreak}{}%
   }
-  \csname ifTemplateSection#1\endcsname
+  \csname ifCodeSection#1\endcsname
     \expandafter\@secondoftwo
   \else
     \expandafter\@firstoftwo
@@ -241,7 +242,7 @@
     \let\do\@makeother\dospecials
     \catcode`\^^M\active
 %% enter main loop
-    \templateSection@
+    \codeSection@
   }%
   {% execute all code inside template section
 %% = do nothing except trimming spaces
@@ -252,7 +253,7 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\EndTemplateSection}
+% \begin{macro}{\EndCodeSection}
 %    \begin{macrocode}
 %%----------------------------------------------------------------------
 %%  The macros \@bsphack and  \@esphack are internal to LaTeX;
@@ -260,7 +261,7 @@
 %%  label definition does not introduce any extra space
 %%  into a paragraph, independently of whether or not
 %%  it is attached to a word.
-\newcommand\EndTemplateSection[1]{\@bsphack\@esphack}
+\newcommand\EndCodeSection[1]{\@bsphack\@esphack}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -285,38 +286,38 @@
 \lccode`\C=`\C
 \lowercase{%
 %%----------------------------------------------------------------------
-  \def\templateSection@#1{%
+  \def\codeSection@#1{%
     \endgroup
 %% ----
-    \def\templateSection@##1~{\templateSection@@##1!#1\@nil}%
+    \def\codeSection@##1~{\codeSection@@##1!#1\@nil}%
 %% ----
-    \def\templateSection@@##1!#1{\futurelet\next\templateSection@@@}%
+    \def\codeSection@@##1!#1{\futurelet\next\codeSection@@@}%
 %% ----
-    \def\templateSection@@@##1\@nil{%
+    \def\codeSection@@@##1\@nil{%
        \ifx\next\@nil
-         \let\next\templateSection@
+         \let\next\codeSection@
        \else
          \def\@tempa####1!#1\@nil{####1}%
-         \def\next{\expandafter\templateSection@test\@tempa##1\@nil~}%
+         \def\next{\expandafter\codeSection@test\@tempa##1\@nil~}%
        \fi
        \next
     }%
 %% ----
-    \def\templateSection@test##1{%
-      \let\next\templateSection@test
-      \if\noexpand##1\noexpand~\let\next\templateSection@
+    \def\codeSection@test##1{%
+      \let\next\codeSection@test
+      \if\noexpand##1\noexpand~\let\next\codeSection@
       \else \if\noexpand##1
       \else \if\noexpand##1\noexpand[\let\@tempc\@empty
-                                     \let\next\templateSection@testend
-      \else \def\next{\templateSection@##1}%
+                                     \let\next\codeSection@testend
+      \else \def\next{\codeSection@##1}%
       \fi\fi\fi
       \next
     }%
 %% ----
-    \def\templateSection@testend##1{%
-      \if\noexpand##1\noexpand~\let\next\templateSection@
-      \else \if\noexpand##1\noexpand]\let\next\templateSection@@testend
-      \else\if\noexpand##1\noexpand!\def\next{\templateSection@!}%
+    \def\codeSection@testend##1{%
+      \if\noexpand##1\noexpand~\let\next\codeSection@
+      \else \if\noexpand##1\noexpand]\let\next\codeSection@@testend
+      \else\if\noexpand##1\noexpand!\def\next{\codeSection@!}%
       \else \expandafter\def\expandafter\@tempc\expandafter
             {\@tempc##1}%
       \fi\fi\fi
@@ -324,37 +325,37 @@
     }%
 %% ---- test if end statement belongs to current section
 %%      saved in \@currtemplate
-    \def\templateSection@@testend{%
+    \def\codeSection@@testend{%
       \ifx\@tempc\@currtemplate
 %% end group and call rescan
          \edef\next{\noexpand\endgroup\noexpand\@esphack
-                    \noexpand\templateSection@rescan{\@currtemplate}}%
+                    \noexpand\codeSection@rescan{\@currtemplate}}%
        \else 
 %% start loop gain
-         \let\next\templateSection@
+         \let\next\codeSection@
        \fi
        \next
     }%
 %% ---- does what ???
-    \def\templateSection@rescan##1##2~{%
+    \def\codeSection@rescan##1##2~{%
       \if\noexpand~\noexpand##2~%
       \else
         \@warning{%
           Characters dropped after
-          `\string\EndTemplateSection{##1}'%
+          `\string\EndCodeSection{##1}'%
         }%
       \fi
     }%
   }%
 %%----------------------------------------------------------------------  
 } % lowercase
-\templateSection@{EndTemplateSection}%
+\codeSection@{EndCodeSection}%
 %%----------------------------------------------------------------------
 %    \end{macrocode}
 %
 %
 % \iffalse
-%</templatesection.sty>
+%</codesection.sty>
 % \fi
 %
 % \Finale

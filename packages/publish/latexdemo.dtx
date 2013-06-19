@@ -1,11 +1,12 @@
 % \iffalse meta-comment
+% !TeX spellcheck = en-US
 %   
-% File:      templatedemo.sty
+% File:      latexdemo.sty
 % Version:   <*date*> v0.1
 % Author:    Matthias Pospiech
 % Email:     <matthias@pospiech.eu>
 %
-% Copyright (C) 2012 by Matthias Pospiech (matthias@pospiech.eu)
+% Copyright (C) <*year*> by Matthias Pospiech (matthias@pospiech.eu)
 % ---------------------------------------------------------------------------
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -19,17 +20,17 @@
 %
 % The Current Maintainer of this work is Matthias Pospiech.
 %
-% This work consists of the files templatedemo.dtx and templatedemo.ins
-% and the derived filebase templatedemo.sty.
+% This work consists of the files latexdemo.dtx and latexdemo.ins
+% and the derived filebase latexdemo.sty.
 %
 % \fi
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{templatedemo.dtx}
+\ProvidesFile{latexdemo.dtx}
 %</driver>
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<package>\ProvidesPackage{templatedemo}
+%<package>\ProvidesPackage{latexdemo}
 %<*package>
    [<*date*> v0.1 typeset code and resulting output]
 %</package>
@@ -37,7 +38,7 @@
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage{hypdoc}
-\RequirePackage{templatedemo}
+\RequirePackage{latexdemo}
 \usepackage{lmodern}
 %%%% Additional packages
 \usepackage{soulutf8}
@@ -66,7 +67,7 @@
 \listfiles
 
 \begin{document}
-  \DocInput{templatedemo.dtx}
+  \DocInput{latexdemo.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -97,8 +98,8 @@
 % \DoNotIndex{\newcommand,\newenvironment}
 %
 % \providecommand*{\url}{\texttt}
-% \GetFileInfo{templatedemo.dtx}
-% \title{The \textsf{templatedemo} package}
+% \GetFileInfo{latexdemo.dtx}
+% \title{The \textsf{latexdemo} package}
 % \author{<*author*> \\ \url{<*email*>}}
 % \date{\fileversion~from \filedate}
 %
@@ -106,7 +107,7 @@
 % \section{Introduction}
 % In order to demonstrate \latex{} code it is very useful to have the code and
 % the resulting output together in the same document.
-% \package{templatedemo} 
+% \package{latexdemo} 
 % is a package that provides configurable tools to print out \latex{} code and the
 % resulting output in the same document.
 %
@@ -315,12 +316,12 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 % \section{Implementation}
 %
 % \iffalse
-%<*templatedemo.sty>
+%<*latexdemo.sty>
 % \fi
 %
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{templatedemo}[2012/12/01 v0.1 typeset code and resulting output]
+\ProvidesPackage{latexdemo}[2012/12/01 v0.1 typeset code and resulting output]
 \@ifpackageloaded{hypdoc}
   {\RequirePackage[loadHyperref=true,%
                    createIndexEntries=false,%
@@ -447,7 +448,7 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
   \else\ifnum\pdf@strcmp{\demo@style}{none}=0%
     \PrintCodeAndResultsNone%
   \else%
-     \PackageError{templatedemo}{%
+     \PackageError{latexdemo}{%
        \MessageBreak%
        value >\tplbugs@style< unkown \MessageBreak%
      }{}%
@@ -678,7 +679,7 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %
 %
 % \iffalse
-%</templatedemo.sty>
+%</latexdemo.sty>
 % \fi
 %
 % \Finale

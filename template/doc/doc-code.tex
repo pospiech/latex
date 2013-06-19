@@ -375,7 +375,7 @@ File that loads MyriadPro and takes care of the package loaded order. MyriadPro 
 
 This is the file that loads all packages. The packages are grouped together according to there usage. However in many cases the loading order must be different. Therefore the loading order is corrected by commands such as \cs{ExecuteAfterPackage}. If packages can only be loaded after other packages have been loaded or must not be loaded in a special combination this is recognized and the package either loaded or not in order to prevent the template from not compiling. 
 
-All package groups, named within this text \emph{sections}, start with \cs{BeginTemplateSection} and end with \cs{EndTemplateSection}. If these section are included in the compilation or excludes (not compiled) is defined at the beginning of the file:
+All package groups, named within this text \emph{sections}, start with \cs{BeginTemplateSection} and end with \cs{EndCodeSection}. If these section are included in the compilation or excludes (not compiled) is defined at the beginning of the file:
 
 %%?  file: preamble/packages.tex
 %%? start: %% -- package section selections -->
@@ -403,7 +403,7 @@ The application of each package is given with a short description in the source 
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesBase}
+%%?   end: \EndCodeSection{PackagesBase}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Bug fixing packages}
@@ -421,7 +421,7 @@ The application of each package is given with a short description in the source 
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesBugfixes}
+%%?   end: \EndCodeSection{PackagesBugfixes}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Font packages}
@@ -435,7 +435,7 @@ This section is rather empty since the fonts and most of the related packages ar
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesFonts}
+%%?   end: \EndCodeSection{PackagesFonts}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Math packages}
@@ -458,7 +458,7 @@ The base package for all math in \latex is the package \package{amsmath}. The ot
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesMath}
+%%?   end: \EndCodeSection{PackagesMath}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -481,7 +481,7 @@ provides an extension for scientific plots.
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesDiagrams}
+%%?   end: \EndCodeSection{PackagesDiagrams}
 
 % .........................................................................
 \subsubsection{preamble/packages-tikzpgf.tex}
@@ -503,7 +503,7 @@ The recommended package is \package{siunitx}. The other packages are not activat
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesScience}
+%%?   end: \EndCodeSection{PackagesScience}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Symbol packages}
@@ -521,7 +521,7 @@ There are many packages that provide additional symbols to \latex . Since these 
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesSymbols}
+%%?   end: \EndCodeSection{PackagesSymbols}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Table packages}
@@ -539,7 +539,7 @@ Standard \latex tables are just ugly. In order to create good looking or even fa
  
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesTables}
+%%?   end: \EndCodeSection{PackagesTables}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Text related packages}
@@ -562,7 +562,7 @@ This code is divided into bug fixing packages and packages for text-decoration, 
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesText}
+%%?   end: \EndCodeSection{PackagesText}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Quotes}
@@ -576,7 +576,7 @@ The package \package{csquotes} is a very powerful package that makes quotes lang
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesQuotes}
+%%?   end: \EndCodeSection{PackagesQuotes}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Citation/bibliography packages}
@@ -590,7 +590,7 @@ There are many packages for citations and creation or modification or the biblio
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesCitation}
+%%?   end: \EndCodeSection{PackagesCitation}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for figures, placement and floats}
@@ -608,7 +608,7 @@ The basic package \package{graphicx} for figures is already loaded at the beginn
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesFigures}
+%%?   end: \EndCodeSection{PackagesFigures}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Caption packages}
@@ -626,7 +626,7 @@ The fundamental package for captions is the package \package{caption}.  Its poss
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesCaptions}
+%%?   end: \EndCodeSection{PackagesCaptions}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Misc packages}
@@ -641,7 +641,7 @@ in the document. It is not loaded by default, but can be activated by removing t
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesMisc}
+%%?   end: \EndCodeSection{PackagesMisc}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for index and other lists}
@@ -657,7 +657,7 @@ For the index package \package{imakeidx} is loaded and for almost anything else 
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesIndexes}
+%%?   end: \EndCodeSection{PackagesIndexes}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Verbatim packages}
@@ -677,7 +677,7 @@ The style of \package{listings} is defined in file
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesVerbatim}
+%%?   end: \EndCodeSection{PackagesVerbatim}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Fancy packages}
@@ -695,7 +695,7 @@ Two different types of fancy packages are loaded. \package{lettrine} for droppin
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesFancy}
+%%?   end: \EndCodeSection{PackagesFancy}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout packages}
@@ -719,7 +719,7 @@ for package \package{geometry} in file \file{preamble/style-geometry.tex}.
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesLayout}
+%%?   end: \EndCodeSection{PackagesLayout}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Packages for header and footer}
@@ -738,7 +738,7 @@ The total number of page is provided by package \package{pageslts}.
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesHeadFoot}
+%%?   end: \EndCodeSection{PackagesHeadFoot}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout of headings}
@@ -748,7 +748,7 @@ All headings can be redefined using package \package{titlesec}.
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesHeadings}
+%%?   end: \EndCodeSection{PackagesHeadings}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout of table of contents}
@@ -769,7 +769,7 @@ The appendix title can be modified with package \package{appendix}. In this temp
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesTOC}
+%%?   end: \EndCodeSection{PackagesTOC}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{PDF packages (including hyperref)}
@@ -796,7 +796,7 @@ The settings of hyperref are defined in file
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesPDF}
+%%?   end: \EndCodeSection{PackagesPDF}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Additional packages  (explicitly after package hyperref)}
@@ -806,7 +806,7 @@ These packages here have nothing in common except that they can be loaded after 
 
 %%?  file: preamble/packages.tex
 %%? start: % ~~~~~~~
-%%?   end: \EndTemplateSection{PackagesAdditional}
+%%?   end: \EndCodeSection{PackagesAdditional}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Last Package}
@@ -845,7 +845,7 @@ If package \package{xcolor} is loaded then colors for the sections, the tables a
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleColors}
+%%?   end: \EndCodeSection{StyleColors}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Math}
@@ -855,7 +855,7 @@ This code shows how to exchange the vector symbol arrow with a bold font and how
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleMath}
+%%?   end: \EndCodeSection{StyleMath}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Science}
@@ -865,7 +865,7 @@ Loading of \file{preamble/style-siunitx.tex}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleScience}
+%%?   end: \EndCodeSection{StyleScience}
 
 % .........................................................................
 \subsubsection{preamble/style-siunitx.tex}
@@ -888,7 +888,7 @@ Further settings for \package{pgfplots} are in a separate file:
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleDiagrams}
+%%?   end: \EndCodeSection{StyleDiagrams}
 
 % .........................................................................
 \subsubsection{preamble/style-pgfplots.tex}
@@ -906,7 +906,7 @@ Here the font for urls (package \package{url}) and the font in margins used by p
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleText}
+%%?   end: \EndCodeSection{StyleText}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Footnotes}
@@ -916,7 +916,7 @@ Several definitions to solve common problems with footnotes and example code for
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleFootnote}
+%%?   end: \EndCodeSection{StyleFootnote}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Quotes}
@@ -926,7 +926,7 @@ Settings for package \package{csquotes}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleQuotes}
+%%?   end: \EndCodeSection{StyleQuotes}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Citations / Style of Bibliography}
@@ -936,7 +936,7 @@ Loading of the settings file \file{preamble/style-biblatex.tex} for package \pac
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleCiteBib}
+%%?   end: \EndCodeSection{StyleCiteBib}
 
 % .........................................................................
 \subsubsection{preamble/style-biblatex.tex}
@@ -964,7 +964,7 @@ many floating figures easier.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleFigures}
+%%?   end: \EndCodeSection{StyleFigures}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Captions}
@@ -978,7 +978,7 @@ recommended and can only be used without \package{subcaption}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleCaptions}
+%%?   end: \EndCodeSection{StyleCaptions}
 
 % .........................................................................
 \subsubsection{preamble/style-caption.tex}
@@ -1007,7 +1007,7 @@ Here new column types are defined if they are not yet defined.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleTables}
+%%?   end: \EndCodeSection{StyleTables}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Index and glossaries and other lists}
@@ -1017,7 +1017,7 @@ The index settings are defined in file \file{preamble/style-index.tex} and all s
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleIndexes}
+%%?   end: \EndCodeSection{StyleIndexes}
 
 % .........................................................................
 \subsubsection{preamble/style-index.tex}
@@ -1043,7 +1043,7 @@ The code for \package{listings} is defined in a separate file: \file{preamble/st
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleVerbatim}
+%%?   end: \EndCodeSection{StyleVerbatim}
 
 % .........................................................................
 \subsubsection{preamble/style-listings.tex}
@@ -1078,7 +1078,7 @@ Configuration for package \package{lettrine} and package \package{framed}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleFancy}
+%%?   end: \EndCodeSection{StyleFancy}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout: paragraph}
@@ -1088,7 +1088,7 @@ Definition of \emph{parskip}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleParagraph}
+%%?   end: \EndCodeSection{StyleParagraph}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout: line spacing}
@@ -1098,7 +1098,7 @@ Configuration of line spacing with package \package{setspace}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleLineSpacing}
+%%?   end: \EndCodeSection{StyleLineSpacing}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Layout: page layout}
@@ -1108,7 +1108,7 @@ Configuration of package \package{geometry} or package \package{typearea}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StylePageLayout}
+%%?   end: \EndCodeSection{StylePageLayout}
 
 % .........................................................................
 \subsubsection{preamble/style-geometry.tex}
@@ -1127,7 +1127,7 @@ Configuration for the title page.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleTitlepage}
+%%?   end: \EndCodeSection{StyleTitlepage}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Header and footer lines}
@@ -1137,7 +1137,7 @@ Configuration of the (automatic) content in header and footer for \package{scrpa
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleHeadFoot}
+%%?   end: \EndCodeSection{StyleHeadFoot}
 
 % .........................................................................
 \subsubsection{preamble/style-scrpage2.tex}
@@ -1155,7 +1155,7 @@ Configuration of heading numbering, sizes and page openings.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleHeadings}
+%%?   end: \EndCodeSection{StyleHeadings}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Headings: fonts}
@@ -1165,7 +1165,7 @@ Configuration of heading fonts.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleHeadingsFonts}
+%%?   end: \EndCodeSection{StyleHeadingsFonts}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Headings: custom layout}
@@ -1175,7 +1175,7 @@ Custom layouts for headings are defined use the package \package{titlesec} in fi
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleHeadingsLayout}
+%%?   end: \EndCodeSection{StyleHeadingsLayout}
 
 % .........................................................................
 \subsubsection{preamble/style-titlesec.tex}
@@ -1193,7 +1193,7 @@ Configuration of counter \emph{tocdepth}, options of koma-script, package \packa
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleLayoutTOC}
+%%?   end: \EndCodeSection{StyleLayoutTOC}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Settings and layout of pdf packages}
@@ -1203,7 +1203,7 @@ Configuration of packages \package{hyperref} in file \file{preamble/style-hyperr
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StylePdf}
+%%?   end: \EndCodeSection{StylePdf}
 
 % .........................................................................
 \subsubsection{preamble/style-hyperref.tex}
@@ -1233,7 +1233,7 @@ The commands \cs{frontmatter}, \cs{mainmatter} and \cs{backmatter} are defined i
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
-%%?   end: \EndTemplateSection{StyleFixProblems}
+%%?   end: \EndCodeSection{StyleFixProblems}
 
 % .........................................................................
 \subsubsection{preamble/fix-tabu-onlyamsmath.tex}

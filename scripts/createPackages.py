@@ -10,8 +10,8 @@ def main():
     createPackage('doctools', strTargetDir)
     createPackage('lastpackage', strTargetDir)
     createPackage('tablestyles', strTargetDir)
-    createPackage('templatedemo', strTargetDir)
-    createPackage('templatesection', strTargetDir)
+    createPackage('latexdemo', strTargetDir)
+    createPackage('codesection', strTargetDir)
     createPackage('templatetools', strTargetDir)
 
 
@@ -80,9 +80,12 @@ def exchangeInputByFile(package, targetFolder):
     outputFile = targetFolder + "\\" + package + "\\" + package + ".dtx"
 
     currentDateStr = datetime.datetime.now().strftime("%Y/%m/%d")
+    currentYearStr = datetime.datetime.now().strftime("%Y")
     with open(parseFile, 'r') as parseFileHandle:
         with open(outputFile, 'w') as outputFileHandle:
             for lineParse in parseFileHandle:
+                # replace <*date*> by date
+                lineParse = lineParse.replace("<*year*>", currentYearStr)
                 # replace <*date*> by date
                 lineParse = lineParse.replace("<*date*>", currentDateStr)
                 # replace <*author*> by Author
