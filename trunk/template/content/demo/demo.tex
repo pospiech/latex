@@ -3104,6 +3104,10 @@ You need to configure the editor to execute the command \texttt{makeglossaries t
 
 You can also execute makeindex directly. See the documentation of the glossaries package for further details.
 
+\IfPackageLoaded{glossaries}{%
+  % disable overwriting of marks
+  \renewcommand{\glossarymark}[1]{}
+}  
 
 %% ------------------------------------------------------------
 \subsubsection{List of acronyms (glossaries)}
