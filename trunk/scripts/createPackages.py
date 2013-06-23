@@ -137,6 +137,14 @@ def createPackage(package, targetFolder):
     # remove doctools.sty
     if package != 'doctools':
         tex.unfailingRemoveFile(strTargetDir + "\\doctools.sty")
+
+    # zip package folder
+    os.chdir(targetFolder)
+    filename = package + '.zip'
+    executeCode = 'zip ' +  filename + ' ' + package + '/*'
+    print (executeCode)
+    result = os.system(executeCode)
+
     # change folder back to origin
     os.chdir(oldPath)
 

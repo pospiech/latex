@@ -11,6 +11,7 @@
 
 import os
 import shutil
+import datetime
 import texBuildFunctions as tex
 import insertPrintCode as importInsertPrintCode
 import fontexamples as importFontExamples
@@ -18,25 +19,25 @@ import createPackages as importCreatePackages
 
 def main():
     print ("--- Creation of Packages ---")
-    importCreatePackages.main()
+    #importCreatePackages.main()
 
     print ("--- Copy Packages ---")
-    copyPackages()
+    #copyPackages()
 
     print ("--- Create Font Examaples ---")
-    importFontExamples.main()
+    #importFontExamples.main()
 
     print ("--- fill doc-code.tex ---")
-    importInsertPrintCode.main()
+    #importInsertPrintCode.main()
 
     print ("--- compiling LaTeXTemplate.tex ---")
     texfile = '../template/LaTeXTemplate.tex'
-    tex.compileLatexDocument(texfile)
+    # tex.compileLatexDocument(texfile)
     copyTeXFile(texfile)
 
     print ("--- compiling TemplateDocumentation.tex ---")
     texfile = '../template/TemplateDocumentation.tex'
-    tex.compileLatexDocument(texfile)
+    # tex.compileLatexDocument(texfile)
     copyFile(texfile.replace('.tex', '.pdf'), '')
     tex.cleanupRecursiveAuxFiles('../template/', '*.aux')
     tex.unfailingRemoveFile('../template/content/demo/democode.tex')
@@ -44,7 +45,6 @@ def main():
 
 
     copyFile('bib/BibtexDatabase.bib', 'bib')
-    copyFile('content/demo/demo.tex', 'content/demo/')
     copyFile('content/demo/latextutorial.tex', 'content/demo/')
     copyFile('content/*.tex', 'content')
     copyFile('fonts/*.tex', 'fonts')
@@ -57,12 +57,26 @@ def main():
     copyFile('preamble/packages*.tex', 'preamble')
     copyFile('preamble/style*.tex', 'preamble')
     copyFile('version.txt', '')
+    copyFile('licence.txt', '')
     copyFile('*.sty', '')
 
 
+    # zip publish folder
+
+    oldPath = os.getcwd()
+    os.chdir('../template/')
+
+    currentDateStr = datetime.datetime.now().strftime("%Y-%m-%d")
+    filename = 'latexthesistemplate-' + currentDateStr + '.zip'
+    executeCode = 'zip ' +  filename + ' latexthesistemplate/*'
+    print (executeCode)
+    result = os.system(executeCode)
+
+    os.chdir(oldPath)
+
 
 def copyFile(filename, targetFolder):
-    strBaseDir = '../template/publish/'
+    strBaseDir = '../template/latexthesistemplate/'
     tex.ensureDirectoryExists(strBaseDir)
     strTargetDir = strBaseDir + targetFolder
     tex.ensureDirectoryExists(strTargetDir)
@@ -71,7 +85,7 @@ def copyFile(filename, targetFolder):
 
 
 def copyTeXFile(texfile):
-    strTargetDir = '../template/publish'
+    strTargetDir = '../template/latexthesistemplate'
     tex.ensureDirectoryExists(strTargetDir)
     shutil.copy(texfile, strTargetDir)
     shutil.copy(texfile.replace('.tex', '.pdf'), strTargetDir)
