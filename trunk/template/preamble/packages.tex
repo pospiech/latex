@@ -734,10 +734,12 @@
 % Layout with 'geometry'
 % Doc: geometry.pdf
 % load after: hyperref
-\ExecuteAfterPackage{hyperref}{\usepackage{geometry}}
-% make sure geometry is loaded before settings to typearea are set.
-\ExecuteAfterPackage{lastpackage}
-  {\IfPackageNotLoaded{geometry}{\usepackage{geometry}}}
+% ---> remove all comments to load geometry
+% \ExecuteAfterPackage{hyperref}{\usepackage{geometry}}
+% % make sure geometry is loaded before settings to typearea are set.
+% \ExecuteAfterPackage{lastpackage}
+%   {\IfPackageNotLoaded{geometry}{\usepackage{geometry}}}
+% <---
 
 % Layout with 'typearea' 
 % -> loaded automatically if geometry not loaded
@@ -908,7 +910,7 @@
 % load: after hyperref
 % Doc: bookmark.pdf
 \IfNotDraft{%
-  \usepackage[]{bookmark}
+  \usepackage{bookmark}
 }
 
 \EndCodeSection{PackagesPDF}
