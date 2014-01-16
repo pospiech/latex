@@ -542,10 +542,12 @@
 
 % colors of headings
 \IfDefined{color}{%
-  \addtokomafont{sectioning}{\color{sectioncolor}}
-  \IfDefined{chapter}{%
-    \addtokomafont{chapter}{\color{sectioncolor}}
-  }
+  \IfColorDefined{sectioncolor}{%
+    \addtokomafont{sectioning}{\color{sectioncolor}}%
+    \IfDefined{chapter}{%
+      \addtokomafont{chapter}{\color{sectioncolor}}%
+    }%
+  }{}%
 }
 
 \EndCodeSection{StyleHeadingsFonts}
@@ -640,20 +642,19 @@
    bibliography=totoc % add Bibliography to TOC without number
 }%  
 
-\IfDefined{chapter}{%
- \KOMAoptions{%
-   % --- chapter highlighting ---
-   % listof=chapterentry, % ??? Chapter starts are marked in figure/table
-   % listof=chaptergapline, % New chapter starts are marked by a gap 
-                            % of a single line
-   listof=chaptergapsmall, % New chapter starts are marked by a gap 
-                            % of a smallsingle line
-   % listof=nochaptergap, % No Gap between chapters
-   % chapteratlists=10pt, % define gap explicitly
-   %
-   % listof=leveldown, % lists are moved one level down ???
- }
-}
+%\IfDefined{chapter}{%
+% \KOMAoptions{%
+%   % --- chapter highlighting ---
+%   % listof=chapterentry, % ??? Chapter starts are marked in figure/table
+%   % listof=chaptergapline, % New chapter starts are marked by a gap 
+%                            % of a single line
+%   listof=chaptergapsmall, % New chapter starts are marked by a gap 
+%                            % of a smallsingle line
+%   % listof=nochaptergap, % No Gap between chapters
+%   %
+%   % listof=leveldown, % lists are moved one level down ???
+% }
+%}
 
 % Subfigures text in List of Figures
 \IfPackageLoaded{subfig}{

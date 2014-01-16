@@ -7,7 +7,7 @@
 \renewcommand*{\glspostdescription}{}
 
 \newglossarystyle{longFancy}{%
-  \glossarystyle{long}%
+  \setglossarystyle{long}%
   \renewenvironment{theglossary}%
      {%
         \vspace*{-1\baselineskip}
@@ -28,7 +28,7 @@
 \setlength{\glsdescwidth}{0.75\textwidth}
 
 \newglossarystyle{longFancyHeader}{%
-  \glossarystyle{longFancy}%
+  \setglossarystyle{longFancy}%
   \renewcommand*{\glossaryheader}{%
     \hline\rowcolor{tableheadcolor}
       \bfseries \entryname & 
@@ -38,11 +38,11 @@
     }%
 }
 
-\glossarystyle{longFancyHeader}
+\setglossarystyle{longFancyHeader}
 
 \IfPackageLoaded{tabu}{%
   \newglossarystyle{longtabuFancy}{%
-    \glossarystyle{long}%
+    \setglossarystyle{long}%
     \renewenvironment{theglossary}%
        {%
           \vspace*{-1\baselineskip}       
@@ -61,7 +61,7 @@
   } % end of newglossarystyle
   
   \newglossarystyle{longtabuFancyHeader}{%
-    \glossarystyle{longtabuFancy}%
+    \setglossarystyle{longtabuFancy}%
     \renewcommand*{\glossaryheader}{%
       \hline\rowcolor{tableheadcolor}
         \bfseries \entryname & 
@@ -70,7 +70,7 @@
       \hline\endfoot%
       }%
   }
-  \glossarystyle{longtabuFancyHeader}
+  \setglossarystyle{longtabuFancyHeader}
 } % end of IfPackage
 
 

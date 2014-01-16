@@ -176,15 +176,6 @@
 \include{doc/doc-introduction}
 
 % #########################################################################
-\KOMAoptions{headings=openany} 
-\part{Template code documentation}
-\label{part:code}
-\ifcsdef{PartialToc}{\PartialToc{1}}{}
-\KOMAoptions{headings=openright}
-%
-\include{doc/doc-code-filled}
-
-% #########################################################################
 %% demonstration of the template
 \KOMAoptions{headings=openany} 
 \part{LaTeX Examples}
@@ -197,6 +188,16 @@
 \ifcsdef{PartialToc}{
   \stopcontents[part]
 }{}
+
+% #########################################################################
+\KOMAoptions{headings=openany} 
+\part{Template code documentation}
+\label{part:code}
+\ifcsdef{PartialToc}{\PartialToc{1}}{}
+\KOMAoptions{headings=openright}
+%
+\include{doc/doc-code-filled}
+% #########################################################################
 
 % -- bibliography --
 % (must be placed _before_ appendix)
