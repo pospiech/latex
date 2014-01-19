@@ -121,6 +121,15 @@ They are loaded with the command \cs{addbibresource} and the file is included wi
 %%?   end: }% end: biblatex
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Glossary entries}
+\label{sec:document:acronyms}
+If you want to use acronyms, symbols lists or a glossary you can fill these definitions in the file 
+\file{content/Z-GlossaryEntries.tex} loaded here:
+%%?  file: LaTeXTemplate.tex
+%%? start: % ~~~~~~~~~~
+%%?   end: \input{content/Z-GlossaryEntries.tex}
+%
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Document chapters: includeonly}
 \label{sec:preamble:includeonly}
 The chapters which are included in the compilation can be chosen using the \cs{includeonly} command. If \cs{includeonly} is not specified in the preamble \latex will assume that all \cs{include} commands should be evaluated. The advantage of \cs{includeonly} is that it creates aux files for each \cs{include} command, so that all references are kept. Note that all files loaded with \cs{input} are included in the compilation regardless of the \cs{includeonly} usage.
@@ -139,20 +148,11 @@ The code in-between includes all the content for the document. Nevertheless the 
 %%?   end: %%%%%%%
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{Acronyms}
-\label{sec:document:acronyms}
-If you want to use acronyms you can fill them in the file 
-\file{content/Z-Acronyms.tex} loaded here:
-%%?  file: LaTeXTemplate.tex
-%%? start: % Definition of acronyms
-%%?   end: \input{content/Z-Acronyms.tex}
-%
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Title page}
 \label{sec:document:title}
 The page style and the page numbering for the title page is set up with this code
 %%?  file: LaTeXTemplate.tex
-%%? start: % required for hyperref
+%%? start: % Configure page numbering
 %%?   end: \pagestyle{empty}
 %
 followed by the title page in file \file{content/title.tex}.
@@ -1296,12 +1296,12 @@ Calls make commands that are required inside the preamble, such as
 The structure of this part inside \file{LaTeXTemplate.tex} is described in  \vref{sec:document:content}.
 
 % -------------------------------------------------------------------------
-\section{content/Z-Acronyms.tex}
-\labelfile{content/Z-Acronyms.tex}
+\section{content/Z-GlossaryEntries.tex}
+\labelfile{content/Z-GlossaryEntries.tex}
 
-Definition of acronyms using command \cs{newacronym} from package \package{glossaries}.
+Definition of acronyms, symbol list and glossary entries using commands \cs{newacronym}  and \cs{newglossaryentry} from package \package{glossaries}.
 
-\printCodeFromFile[1]{100}{content/Z-Acronyms.tex}
+\printCodeFromFile[1]{100}{content/Z-GlossaryEntries.tex}
 
 % -------------------------------------------------------------------------
 \section{content/title.tex}

@@ -130,6 +130,11 @@
 }%
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Definition of glossaries Entries (before document!)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{content/demo/glossariesEntries.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % include list
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -216,8 +221,7 @@
 \listoftables
 
 %% -- List of Listings --
-% \cleardoublepage
-% \IfDefined{lstlistoflistings}{\lstlistoflistings}
+\IfDefined{lstlistoflistings}{\cleardoublepage\lstlistoflistings}
 
 % --- Appendix --- --- --- --- --- --- ---
 \cleardoublepage

@@ -3112,13 +3112,7 @@ You can also execute makeindex directly. See the documentation of the glossaries
 %% ------------------------------------------------------------
 \subsubsection{List of acronyms (glossaries)}
 
-
 \begin{filecontents*}{\democodefile}
-% place these definitions before \begin{document}
-\newacronym{NA}{NA}{numerical Apertur}
-\newacronym{DOF}{DOF}{depth of field}
-\newacronym{PSF}{PSF}{point spread function}
-
 % use the acronyms in a document.
 The \gls{NA} of an microscope objective is defined by
 $\mathrm{NA} = n \sin(\alpha)$, where and $\alpha$ is the
@@ -3130,11 +3124,14 @@ focal area through the whole imaging system is termed \gls{PSF}. Both, the
 
 % print out acronym list (style can be modified)
 \printglossary[type=\acronymtype]
-
 \end{filecontents*}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
+  \printlatexcode[\fileAcronym]
+  % \PrintCodeAndResultsStacked
+    
+  % \printlatexresult
   \PrintDemo{style=stacked}%
 }{\DemoError{Command \cs{gls} not available.}}%
 }{\DemoError{Package \package{glossaries} not loaded.}}%
@@ -3143,22 +3140,6 @@ focal area through the whole imaging system is termed \gls{PSF}. Both, the
 \subsubsection{List of symbols (glossaries)}
 
 \begin{filecontents*}{\democodefile}
-% place these definitions before \begin{document}
-\newglossaryentry{symb:Pi}{%
-  name=$\pi$,%
-  description={mathematical constant},%
-  sort=symbolpi, type=symbolslist%
-}
-\newglossaryentry{symb:Phi}{%
-  name=$\varphi$,%
-  description={arbitrary angle},%
-  sort=symbolphi, type=symbolslist%
-}
-\newglossaryentry{symb:Lambda}{%
-  name=$\lambda$,%
-  description={wavelength},%
-  sort=symbollambda, type=symbolslist%
-}
 % use the symbols in a document.
 Calculations with \gls{symb:Pi} always give an inaccurate result,
 because \gls{symb:Pi} is an irrational number.
@@ -3173,6 +3154,7 @@ because \gls{symb:Pi} is an irrational number.
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
+  \printlatexcode[\fileSymbolslist]
   \PrintDemo{style=stacked}%
 }{\DemoError{Command \cs{gls} not available.}}%
 }{\DemoError{Package \package{glossaries} not loaded.}}%
@@ -3181,17 +3163,6 @@ because \gls{symb:Pi} is an irrational number.
 \subsubsection{Glossary (package glossaries)}
 
 \begin{filecontents*}{\democodefile}
-% place these definitions before \begin{document}
-\newglossaryentry{glos:CD}{name=Compact disc (CD),
-  description={The Compact Disc (also known as a CD) is an optical disc used
-  to store digital data. It was originally developed to store and playback sound recordings exclusively, but later expanded to encompass storage of data (Source: wikipedia)}
-}
-\newglossaryentry{glos:DVD}{name=DVD,
-  description={DVD is an optical disc storage media format, invented and
-  developed by Philips, Sony, Toshiba, and Panasonic in 1995. DVDs offer
-  higher storage capacity than Compact Discs while having the same dimensions.
-  The basis of the DVD name stems from the term \textit{digital versatile disc}. (Source: wikipedia)}
-}
 % use the symbols in a document.
 The \gls{glos:CD} was originally developed to play sound recordings, but later extended to data storage. Later the \gls{glos:DVD} replaced the CD for the usage of data storage.
 
@@ -3201,6 +3172,7 @@ The \gls{glos:CD} was originally developed to play sound recordings, but later e
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
+  \printlatexcode[\fileGlossary]
   \PrintDemo{style=stacked}%
 }{\DemoError{Command \cs{gls} not available.}}%
 }{\DemoError{Package \package{glossaries} not loaded.}}%
