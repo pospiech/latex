@@ -126,6 +126,13 @@
   % \addbibresource{bib/BibtexData-anytopic.bib}
 }% end: biblatex
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Definition of glossaries Entries (before document!)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% glossary, acronym, symoblist and such
+\input{content/Z-GlossaryEntries.tex}
+
+
 %% document content %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\includeonly{
@@ -142,10 +149,7 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Definition of acronyms
-\input{content/Z-Acronyms.tex}
-
-% required for hyperref (not displayed)
+% Configure page numbering - required for hyperref (not displayed)
 \pagenumbering{alph}\setcounter{page}{1}%
 \pagestyle{empty}
 

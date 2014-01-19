@@ -285,7 +285,9 @@
   % such as \tcmu, \tcperthousand, \tcdegree
   \usepackage{mathcomp} 
   \usepackage[mathcal]{euscript} %% adds euler mathcal font
-  \usepackage{mathrsfs} % script font (\mathscr)
+  \IfPackagesNotLoaded{mdbch}{
+    \usepackage{mathrsfs} % script font (\mathscr)
+  }{}
 }{}
 
 %\usepackage[integrals]{wasysym}
@@ -637,6 +639,18 @@
 % load after: hyperref!, inputenc, babel and ngerman.
 \ExecuteAfterPackage{hyperref}{%
 \usepackage[
+%%% General Options
+  % nomain, % This suppresses the creation of the main glossary and associated
+          % .glo file, if unrequired. Note that if you use this option,
+          % you must create another glossary in which to put all your
+          % entries (either via the acronym (or acronyms) package option
+  % sanitizesort, % This is a boolean option that determines whether or not
+                % to sanitize the sort value when writing to the external glossary
+                % file.          
+  savewrites, % This is a boolean option to minimise the number of
+              % write registers used by the glossaries package. 
+              % (Default is savewrites=false.)
+%  
   shortcuts,    % define shortcuts (\ac for acronym)
   nonumberlist, % no page numbers
   acronym,      % create a separate acronym list
