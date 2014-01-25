@@ -50,6 +50,8 @@ def main():
     tex.cleanupRecursiveAuxFiles('../template/', '*.aux')
     tex.unfailingRemoveFile('../template/content/demo/democode.tex')
     tex.unfailingRemoveFile('../template/content/longtable.tex')
+    tex.unfailingRemoveFile('../template/demo-glossaries-*')
+
 
 
     copyFile('bib/BibtexDatabase.bib', 'bib')
