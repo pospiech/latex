@@ -103,7 +103,6 @@ def cleanupAuxFiles(filename):
     unfailingRemoveFile(filename + 'filelist')
     unfailingRemoveFile(filename + 'gz')
     unfailingRemoveFile(filename + 'run.xml')
-    unfailingRemoveFile(filename + 'log')
     unfailingRemoveFile(filename + 'out')
     unfailingRemoveFile(filename + 'hd')
     unfailingRemoveFile(filename + 'ptc')
@@ -120,6 +119,8 @@ def cleanupAuxFiles(filename):
     unfailingRemoveFile(filename + 'synctex.gz')
     unfailingRemoveFile('plotdata.txt')
     unfailingRemoveFile('fit.log')
+    unfailingRemoveFile('*FileList.txt')
+    # unfailingRemoveFile(filename + 'log')
 
 
 
@@ -134,6 +135,8 @@ def callSystemCommand(command):
         retcode = subprocess.call(command, shell=True)
         if retcode != 0:
             print("System command was terminated by signal", -retcode, file=sys.stderr)
+            print(os.getcwd())
+            sys.exit()
     except OSError as e:
         print("Execution failed:", e, file=sys.stderr)
 
@@ -185,5 +188,4 @@ def compileLatexDocument(texfile):
     # move back to original path
     os.chdir(oldPath)
 
-
-main()
+# main()

@@ -90,15 +90,23 @@ def insertSelectionInTemplate(fontSelectionList, fontTemplateFile, outputFile):
         # compile file in folder of file
         oldPath = os.getcwd()
         os.chdir(newPath)
-        executeCode = 'pdflatex.exe -interaction=nonstopmode  -shell-escape "' \
-                    + filename + '"'
-        os.system(executeCode)
+        tex.callSystemCommand(['pdflatex', '-interaction=nonstopmode', '-shell-escape', filename])
+        # executeCode = 'pdflatex.exe -interaction=nonstopmode  -shell-escape "' \
+        #              + filename + '"'
+        # os.system(executeCode)
+
         # move pdf to different folder "fonts/"
         filenamepdf = filename.replace('.tex', '.pdf')
-        shutil.move(filenamepdf, 'fonts/' + filenamepdf)
+        if os.path.isfile(filenamepdf):
+            shutil.move(filenamepdf, 'fonts/' + filenamepdf)
+        else:
+            print('file ' + filenamepdf + ' not found, aborting!')
+            sys.exit()
+
         # remove all aux files
         tex.cleanupAuxFiles(filename.replace('.tex', '.'))
         tex.unfailingRemoveFile(filename)
+        tex.unfailingRemoveFile(filename.replace('.tex', '.log'))
         # change to previous folder
         os.chdir(oldPath)
 
