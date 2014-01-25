@@ -141,7 +141,7 @@ def createPackage(package, targetFolder):
     # zip package folder
     os.chdir(targetFolder)
     filename = package + '.zip'
-    executeCode = 'zip ' +  filename + ' ' + package + '/*'
+    executeCode = 'zip -r ' +  filename + ' ' + package + '/*'
     print (executeCode)
     result = os.system(executeCode)
 
