@@ -11,6 +11,7 @@
 \RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
 %
 %% Document Class (Koma Script) -----------------------------------------
+%% Doc: scrguien.pdf
 \documentclass[%
    %draft=true,     % draft mode (no images, layout errors shown)
    draft=false,     % final mode 
@@ -30,13 +31,8 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Must be loaded first!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Description: This package is meant to be a solution for the 
-%              error “no room for a new \write”
-% Doc: morewrites.pdf
-\usepackage{morewrites}
-% see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom
-\usepackage{etex} 
-\reserveinserts{28}
+% packages to allow more \write outputs
+\input{preamble/packages-SolutionsNoRoomForNewWrite.tex}
 % packages required for the template
 \usepackage{codesection}
 \usepackage{templatetools}
@@ -150,6 +146,8 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% \KOMAoptions{parskip=half} % parksip of 1/2 line
+
 % required for hyperref (not displayed)
 \pagenumbering{alph}\setcounter{page}{1}%
 \pagestyle{empty}
@@ -170,7 +168,7 @@
 % --- Main Document --- --- --- --- --- --- ---
 \mainmatter
 
-\newcommand\argument[1]{$\langle${\normalfont\slshape#1}$\rangle$}
+\newcommand\argument[1]{$\langle${\normalfont\slshape#1}$\rangle$}%
 % #########################################################################
 \KOMAoptions{headings=openany} 
 \part{User documentation}
@@ -230,8 +228,9 @@
 \addcontentsline{toc}{part}{\appendixname}
 % must be _input_, otherwise the TOC entry is at the wrong place
 \IfColorDefined{tablesubheadcolor}{
-  \input{doc/doc-z-appendix.tex}
+  \input{doc/doc-z-appendix.tex}  
 }{}
+\input{doc/history.tex}
 % <------------------------
 
 

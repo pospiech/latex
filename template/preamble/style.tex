@@ -586,8 +586,9 @@
 % Setup using tocstyle
 \IfPackageLoaded{tocstyle}{
 % predefined styles
-\usetocstyle{standard} % A style similar to the standard classes. 
-% \usetocstyle{KOMAlike} % A style similar to the KOMA-Script classes.  
+% \usetocstyle{standard} % A style similar to the standard classes. 
+%                        % \setkomafont has no effect!
+\usetocstyle{KOMAlike} % A style similar to the KOMA-Script classes.  
 %%            % This is almost the same like standard, but instead 
 %%            % of bold face \usekomafont { disposition } will be used if 
 %%            % \usekomafont was defined and sans serif, bold face
@@ -603,12 +604,11 @@
 %                           % text and page numbersis omited.  
 }
 
-%\newcommand{\fontTOC}{\sffamily}
+% \newcommand{\fontTOC}{\sffamily}
 \newcommand{\fontTOC}{\rmfamily}
 
 
 \IfPackageNotLoaded{tocloft}{ % inkompatible
-\IfPackageNotLoaded{tocstyle}{ % tocstyle does not work with \setkomafont
    % apply style of TOC using koma script
    \setkomafont{partentry}{\fontTOC\bfseries\large}
    \setkomafont{partentrypagenumber}{\fontTOC\bfseries}
@@ -619,7 +619,7 @@
       \setkomafont{sectionentry}{\bfseries\fontTOC}
       \setkomafont{sectionentrypagenumber}{\bfseries\fontTOC}
    }
-}}
+}
 
 
 %%% === Appereance of Lists of figures, tables etc.  ===

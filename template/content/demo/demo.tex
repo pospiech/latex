@@ -48,8 +48,8 @@ Therefore it is only guaranteed that the examples work in this template. If this
 All the examples are designed not to raise an error if some functionality is not available, but instead to display why they were not included in the document. 
 One example for this is the code for package \package{subfloat} in \cref{sec:demo:figures:subfloat}, which was intentionally removed because of incompatibilities and better alternatives. Therefore these `error´ messages do not indicate an error of the template. They only inform why an example could not be included. 
 
-This document (\path{content/demo/demo.tex}) could also be used in other templates provided that all depending packages\footnote{\package{codesection}, \package{templatetools} and \package{latexdemo}} are loaded. 
-And all users and package authors are encouraged to extend and improve the examples as well as use this file for testing of their own commands and packages.
+This document (\path{content/demo/demo.tex}) could also be used in other templates provided that all depending packages\footnote{\package{codesection}, \package{templatetools} and \package{latexdemo}} are loaded. In the case of \package{glossaries} some definitions need to be loaded from an extra file \path{content/demo/glossariesEntries.tex}.
+All users and package authors are encouraged to extend and improve the examples as well as use this file for testing of their own commands and packages.
 }{}
 
 \BeginCodeSection{DemoText}
@@ -235,10 +235,10 @@ The template provides the commands \cs{eqnref}, \cs{figref}, \cs{tabref}, \cs{se
 \begin{filecontents*}{\democodefile}
 Some math formulas to reference:
 \begin{equation}
-a = b + c \label{eqn:abc}
+q = w + s \label{eqn:qws}
 \end{equation}
 %
-The \eqnref{eqn:abc} shows how to add variables.
+The \eqnref{eqn:qws} shows how to add variables.
 \end{filecontents*}
 
 \ifcsdef{eqnref}{%
@@ -273,19 +273,21 @@ produce high-quality typesetting, especially for mathematical text.
 \subsection{\env{addmargin} environment (Koma Script)}
 \label{sec:EnvAddmargin}
 
+
 \begin{filecontents*}{\democodefile}
-\begin{addmargin}[0cm]{-0.5\marginwidth}
+\begin{addmargin*}[0cm]{-0.5\marginwidth}
 The \LaTeX{} document preparation system is a special version of Donald
 Knuth's \TeX{} program. \TeX{} is a sophisticated program designed to 
 produce high-quality typesetting, especially for mathematical text.
-\end{addmargin}
+\end{addmargin*}
 \end{filecontents*}
 
 \ifcsdef{endaddmargin}{%
 
-The \env{addmargin}-environment allows to enlarge or shrink the textwidth in both sides of the textbody. It is however recommended to let the wide parts span into the outer margin.
+The \env{addmargin}-environment allows to enlarge or shrink the textwidth in both sides of the textbody. It is however recommended to let the wide parts span into the outer margin. The environment \env{addmargin} has the options \oarg{left}\marg{right}, whereas the starred version \env{addmargin} differs in a two-sided layout by using the arguments as \oarg{inner}\marg{outer}. For further information refer to the KOMA-script documentation.
 
-\PrintDemo{style=stacked}%%
+% \PrintDemo{style=stacked}%% % \begin{addmargin*} does not work together with \PrintDemo (box wrong)
+\PrintDemo{style=lines}
 
 }{\DemoError{Environment \env{addmargin} not available}}%
 
@@ -2833,7 +2835,7 @@ unitfrac: & $\unitfrac[2.34]{\micro m}{s}$ \\
 
 \subsection{compatible commands for units}
 
-The old units package defines the commands \cs{unit} and \cs{nicefrac}. The following commands are defined to provide some compatibility while the basic packages is switched to siunitx.
+The old \package{units} package defines the commands \cs{unit} and \cs{nicefrac}. The following commands are defined to provide some compatibility while the basic packages is switched to siunitx.
 
 Note that the numbers must be provided in the siunitx format.
 

@@ -63,7 +63,7 @@ Many packages provide a large number of options. This often means that one has t
 % .........................................................................
 \subsubsection{Comprehensive documentation}
 \label{sec:doc:features:template:doc(template)}
-The documentation of this template is very comprehensive. The code itself is documented as much as possible and necessary. Furthermore this documentation document provides an overview of the features and configuration possibilities (\cref{part:documentation}), a complete printout of the code of the template (\cref{part:code}) and a large collection of \latex application examples (\cref{part:demo}).
+The documentation of this template is very comprehensive. The code itself is documented as much as possible and necessary. Furthermore this documentation document provides an overview of the features and configuration possibilities (\cref{part:documentation}), a large collection of \latex application examples (\cref{part:demo}) and a complete printout of the code of the template (\cref{part:code}).
 
 % .........................................................................
 \subsubsection{Solving Incompatibilities and fixing bugs}
@@ -722,6 +722,30 @@ This chapter provides a collection a known warnings and possible errors with an 
 \section{Warnings}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{scrbook: Usage of package `titlesec' together with a KOMA-Script class is not recommended}
+
+The \package{titlesec} is not compatible with KOMA-Script classes as in
+detail described in the warning message. Unless these features of KOMA-Script
+are not required it should cause no problem to load both together. 
+
+\package{titlesec} is used in this template to redefine the appearance of 
+chapter and part headings as well as the spacing before and after 
+sections in different levels.
+
+\begin{verbatim}
+Class scrbook Warning: Usage of package `titlesec' together
+(scrbook)              with a KOMA-Script class is not recommended.
+(scrbook)              I'd suggest to use the package only
+(scrbook)              if you really need it, because it breaks several
+(scrbook)              KOMA-Script features, i.e., option `headings' and
+(scrbook)              the extended optional argument of the section
+(scrbook)              commands .
+(scrbook)              Nevertheless, using requested
+(scrbook)              package `titlesec' on input line 824.
+\end{verbatim}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{biblatex: No file \texorpdfstring{\argument{filename}}{filename}.bbl}
 
 If you have not executed \texttt{biber} you will get the following warning by
@@ -813,7 +837,8 @@ Typical packages that consume output registers are:
 
 The most promising solution about this problem is to reduce the number of used output registers. So for example if no index is required (package imakeidx) and the package fancyvrb is not needed both could be commented out and instead the list of listings could be activated.
 
-The approach of this template is to use the package \package{morewrites}, which hooks at the lowest level (\TeX primitives) to solve this problem. This package however itself might cause problems since it is not tested extensively. 
+The approach of this template is to use either the package \package{morewrites} or \package{scrwfile}, which hook at the lowest level (\TeX primitives) to solve this problem. These packages however might cause problems since they modify \LaTeX at a very basic level and can thus cause incompatibilities. For \package{scrwfile} it is know to that \package{titletoc} does no longer work. If however \package{titletoc} is not required \package{scrwfile} is recommended.
+These packages are loaded in \file{preamble/packages-SolutionsNoRoomForNewWrite.tex}.
 
 Further information about this issue can be found at
 \begin{itemize}

@@ -1,8 +1,15 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = en-US
+
 \chapter{List of packages loaded}
 
-The packages listed in \cref{tab:doc:packages} were recorded including in each step more code and comparing the log files for changes in the list of packages. Here only .sty files are listed, all further files that are loaded by packages, such as .cfg or .fd files are not included in the list.
+\section{Sorted list for speed measurement}
+The packages listed in \cref{tab:doc:packages} were recorded by adding step by step more code and comparing the log files for changes in the list of packages. The execution times for each part were monitored as well. These numbers are presented in \cref{fig:doc:executiontimes}. Here only .sty files are listed, all further files that are loaded by packages, such as .cfg or .fd files are not included in the list. For a complete list 
 
-The execution times for each part were monitored as well. These numbers are presented in \cref{fig:doc:executiontimes}.
+This evaluation was done during the development of this template and not updated since then. 
+The number of packages is thus not consistent with the current template. A recent list of all packages 
+is presented in \cref{sec:appendix:filelist}
+
 % .........................................................................
  { % start a group 
  \colorlet{tabledarkheadcolor}{black!60}
@@ -112,3 +119,13 @@ Document &  \\
 %
 \end{longtabu}
 } % close the group
+
+\clearpage
+
+\section{Complete File list}
+\label{sec:appendix:filelist}
+The following list is extracted from the log file of \path{TemplateDocumentation.tex} from the compilation of this document. It thus shows the most recent list of files used.
+
+\IfFileExists{TemplateDocumentation-FileList.txt}%
+	{\lstinputlisting[style=lstStyleFramed,nolol=true]{TemplateDocumentation-FileList.txt}}
+	{Error: No Filelist found.}

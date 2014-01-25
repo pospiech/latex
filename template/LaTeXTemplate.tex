@@ -7,6 +7,7 @@
 \RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
 %
 %% Document Class (Koma Script) -----------------------------------------
+%% Doc: scrguien.pdf
 \documentclass[%
    %draft=true,     % draft mode (no images, layout errors shown)
    draft=false,     % final mode 
@@ -21,18 +22,13 @@
 %%% --- Global Package Options ---
    english, % language (passed to babel and other packages)
             % (ngerman, english, french, ...)
- ]{scrbook} % Classes: scrartcl, scrreprt, scrbook
+]{scrbook} % Classes: scrartcl, scrreprt, scrbook
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Must be loaded first!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Description: This package is meant to be a solution for the 
-%              error "no room for a new \write"
-% Doc: morewrites.pdf
-\usepackage{morewrites}
-% see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom
-\usepackage{etex} 
-\reserveinserts{28}
+% packages to allow more \write outputs
+\input{preamble/packages-SolutionsNoRoomForNewWrite.tex}
 % packages required for the template
 \usepackage{codesection}
 \usepackage{templatetools}
@@ -132,7 +128,6 @@
 % glossary, acronym, symoblist and such
 \input{content/Z-GlossaryEntries.tex}
 
-
 %% document content %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\includeonly{
@@ -216,8 +211,8 @@
 \listoftables
 
 %% -- List of Listings --
-% \cleardoublepage
-% \IfDefined{lstlistoflistings}{\lstlistoflistings}
+% _Remove_ if no listing with caption is defined
+\IfDefined{lstlistoflistings}{\cleardoublepage\lstlistoflistings}
 
 % --- Appendix --- --- --- --- --- --- ---
 \cleardoublepage
@@ -233,6 +228,8 @@
 % <------------------------
 
 %% -- Index --
+% _Remove_ Index unless you really want to invest a large amount
+% of time and effort to create a good index!
 \IfDefined{printindex}{%
   \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
   \printindex%

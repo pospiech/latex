@@ -27,10 +27,10 @@
 In this template only classes from Koma-Script (Version 3) can be used.
 Other classes would result in a non compiling template and are not supported therefore. 
 
-In document class options some of the most important settings for the document are configured, such as paper size, font size and language of the document.
+In the document class options some of the most important settings for the document are configured, such as paper size, font size and language of the document.
 %%?  file: LaTeXTemplate.tex
 %%? start: %% Document Class
-%%?   end:  ]{scrbook}
+%%?   end: ]{scrbook}
 
 % -------------------------------------------------------------------------
 \section{Preamble (packages and settings)}
@@ -42,7 +42,13 @@ The code after \texttt{documentclass} and before the document starts is called p
 \subsection{Packages that come first}
 \label{sec:preamble:firstpackages}
 
-The following code loades all packages that must be loaded before anything else. In this template this is necessary for all packages that are used by the template itself in control sequences.
+The following code loads all packages that must be loaded before anything else.
+This applies to all packages that modify \TeX internals and in this template 
+loaded in 
+\begin{itemize}[noitemsep]
+\item \file{preamble/packages-SolutionsNoRoomForNewWrite.tex}
+\end{itemize}
+and for all packages that provide control sequences that are used within the template.
 %%?  file: LaTeXTemplate.tex
 %%? start: % ~~~~~~~~~
 %%?   end: \usepackage{templatetools}
@@ -95,7 +101,7 @@ The backend and encodings for \package{biblatex} are configured in \file{preambl
 \subsection{Custom definitions}
 \label{sec:preamble:custom}
 
-With the following files custom macros (\file{macros/newcommands.tex} and additional hypernation patterns \file{content/hyphenation.tex} are loaded. 
+With the following files custom macros (\file{macros/newcommands.tex}) and additional hyphenation patterns \file{content/hyphenation.tex} are loaded. 
 %%?  file: LaTeXTemplate.tex
 %%? start: % ~~~~~~~~~
 %%?   end: \input{content/hyphenation.tex}
@@ -248,17 +254,20 @@ Several lists are automatically created by \latex. The most common are the list 
 \label{sec:document:listings}
 
 The list of listings is one of the additional lists that can be created. 
-It can only be created if the total number of list stays below the total number of possible file outputs. For more information see \cref{sec:problems:write}.
+It should only be included if code listings with captions are created anyway.
+If you experience problems with the number of \cs{write} outputs used it could
+help to disable this list.
+For more information see \cref{sec:problems:write}.
 
 %%?  file: LaTeXTemplate.tex
 %%? start: %% -- List of Listings --
-%%?   end: % \IfDefined{lstlistoflistings}{\lstlistoflistings}
+%%?   end: \IfDefined{lstlistoflistings}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Appendix}
 \label{sec:document:appendix}
 
-The appendix contains contains additional information that do not fit into the main text of the thesis and must contain only information which is \emph{not} necessary for the understanding of the main text. Therefore the appendix is not treated as part of the thesis in the valuation.
+The appendix contains additional information that do not fit into the main text of the thesis and must contain only information which is \emph{not} necessary for the understanding of the main text. Therefore the appendix is not treated as part of the thesis in the evaluation.
 
 The appendix is started with \cs{appendix} and manually added to the table of contents. In the last line the file \file{content/Z-Appendix.tex} is loaded which contains all further chapters and sections of the appendix.
 %
@@ -322,6 +331,15 @@ Any content after this line will not be executed.
 
 % =========================================================================
 \chapter{Preamble files}
+
+% -------------------------------------------------------------------------
+\section{preamble/packages-SolutionsNoRoomForNewWrite.tex}
+\labelfile{preamble/packages-SolutionsNoRoomForNewWrite.tex}
+
+This file loads either the packages \package{scrwfile} or \package{morewrites} and
+\package{etex}. 
+
+\printCodeFromFile[1]{1000}{preamble/packages-SolutionsNoRoomForNewWrite.tex}
 
 % -------------------------------------------------------------------------
 \section{fonts/fonts.tex}
@@ -1301,6 +1319,8 @@ The structure of this part inside \file{LaTeXTemplate.tex} is described in  \vre
 
 Definition of acronyms, symbol list and glossary entries using commands \cs{newacronym}  and \cs{newglossaryentry} from package \package{glossaries}.
 
+Note that this file must be loaded before \cs{begin}\arg{document}.
+
 \printCodeFromFile[1]{100}{content/Z-GlossaryEntries.tex}
 
 % -------------------------------------------------------------------------
@@ -1333,7 +1353,7 @@ It may belong to a phd thesis, but often this is on a separated document. In all
 % -------------------------------------------------------------------------
 \section{content/0-Introduction.tex, content/1-Theory.tex, \ldots}
 
-These document contain \emph{your} content. Fill them with the content of the thesis. The command available for creating your document are shown in the separate demonstration document of this template.
+These document contain \emph{your} content. Fill them with the content of the thesis. The commands available for creating your document are shown in the example code demonstration in documentation in \cref{part:demo}.
 
 % -------------------------------------------------------------------------
 \section{content/Z-Appendix.tex}
