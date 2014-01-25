@@ -1,3 +1,7 @@
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
+
 %% -- package section selections -->
 \DefineCodeSection[true]{PackagesBase}
 \DefineCodeSection[true]{PackagesBugfixes}
@@ -218,6 +222,7 @@
 \BeginCodeSection{PackagesDiagrams}
 
 % tikz and pgf
+% consumes at least one \write (more if external is used)
 \input{preamble/packages-tikzpgf.tex}
 
 % pgfplots
@@ -621,10 +626,10 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginCodeSection{PackagesIndexes}
 
-% Description: print text of \index{entry} to the margin
-% Doc: makeidx.pdf
-% --> load only in draft mode
-% load before: imakeidx
+%% Description: print text of \index{entry} to the margin
+%% Doc: makeidx.pdf
+%% --> load only in draft mode
+%% load before: imakeidx
 \IfDraft{
   \usepackage{showidx}
 }
@@ -632,11 +637,13 @@
 
 %% Description makeindex package with shell-escape makeindex call
 %% Doc: imakeidx.pdf
+% consumes \write
 \usepackage{imakeidx}
 
-% Description: Package for glossaries, nomenclatures and acronym lists
-% replaces: nomencl, acronym
-% load after: hyperref!, inputenc, babel and ngerman.
+%% Description: Package for glossaries, nomenclatures and acronym lists
+%% replaces: nomencl, acronym
+%% load after: hyperref!, inputenc, babel and ngerman.
+% consumes \write (1 in general, 2 if entries are defined inside the document)
 \ExecuteAfterPackage{hyperref}{%
 \usepackage[
 %%% General Options
@@ -647,16 +654,61 @@
   % sanitizesort, % This is a boolean option that determines whether or not
                 % to sanitize the sort value when writing to the external glossary
                 % file.          
-  savewrites, % This is a boolean option to minimise the number of
+  % savewrites, % This is a boolean option to minimise the number of
               % write registers used by the glossaries package. 
               % (Default is savewrites=false.)
-%  
-  shortcuts,    % define shortcuts (\ac for acronym)
-  nonumberlist, % no page numbers
-  acronym,      % create a separate acronym list
-  % toc,        % Add entries to toc
-  section,      % add to toc on section level
-  sort = standard,    % (standard, def, use)
+              % WARNING: does not work in this template, 
+              % Error "\glswritefiles undefined."
+  translate=true, % If babel has been loaded and the translator package
+                  % is installed, translator will be loaded and the translations
+                  % will be provided by the translator package interface.
+  hyperfirst=true, % options: (*true*, false)
+                  % This is a boolean option that specifies whether each term
+                  %  has a hyperlink on first use.
+%
+%%% Sectioning, Headings and TOC Options
+  % toc,          % Add the glossaries to the table of contents.
+  numberline,     % When used with toc, this will add \numberline{} in
+                  % the final argument of \addcontentsline. This will align the
+                  % table of contents entry with the numbered section titles.
+  section=section, % Its value should be the name of a sectional unit (e.g. chapter). 
+                  % This will make the glossaries appear in the named sectional unit, 
+                  % otherwise each glossary will appear in a chapter, 
+                  % if chapters exist, otherwise in a section.                  
+  numberedsection = false,%
+  	% The glossaries are placed in unnumbered sectional
+  	% units by default, but this can be changed using numberedsection.
+  	% options
+  	% - false: no number, i.e. use starred form of sectioning command
+  	% - nolabel: use a numbered section, but the section not labelled
+  	% - autolabel: numbered with automatic labelling.
+%
+%%%  Glossary Appearance Options
+  % entrycounter=false % (true, *false*)
+                       % If set, each main (level 0) glossary entry will
+                       % be numbered when using the standard glossary styles.
+  % counterwithin=0 % if set will reset the glossaryentry counter every
+                    % time the defined level is reset. 
+  % nolong,  % prevents loading of glossary-long and thus the longtable package                 
+  % nosuper, % prevents loading of glossary-super and thus the supertabular package
+  % nolist,  % prevents loading of glossary-list
+  % notree,  % prevents loading of glossary-tree
+  nonumberlist, %  This option will suppress the 
+                % associated number lists in the glossaries
+  counter=page, % The value should be the name of the default counter 
+                % to use in the number lists ).
+%%% Sorting Options
+  sort=standard,%
+    % options
+    % - standard : entries are sorted according to the value of the
+    %              sort key used in \newglossaryentry (if present) 
+    %              or the name key (if sort key is missing);
+    % - def : entries are sorted in the order in which they were defined
+    % - use : entries are sorted according to the order in which they
+    %         are used in the document 
+%%% Acronym Options    
+  acronym,    % Creates a separate acronym list
+  shortcuts,  % define shortcuts (\ac for acronym)
 ]{glossaries}
 % further styles
 \usepackage{glossary-longragged}
@@ -680,6 +732,7 @@
 % Description: This package provides many facilities for reading, writing and
 %              changing the output style of verbatim code
 % Doc: fancyvrb.pdf
+% consumes \write
 % \usepackage{fancyvrb} 
 
 % Description: The listings package is a source code printer for LaTeX.
@@ -689,6 +742,7 @@
 %              language is not already supported, you can make your own
 %              definition.
 % Doc: listings.pdf
+% consumes \write
 \usepackage{listings}
 
 \EndCodeSection{PackagesVerbatim}
@@ -830,30 +884,32 @@
 %              can format the toc entries with in a generic way.
 % Doc: titlesec.pdf
 % load before: hyperref
+% consumes \write
 \usepackage{titletoc}
 
 % Description: apply different styles for the formating of the 
 %              table of contents and lists of floats.
 %%% Doc: tocstyle.pdf (Koma Script)
-%% Alpha package, does not work together with Koma Scripts \setkomafont{}{}
-%% functions. If these are not required it is however a very usefull package.
-%\usepackage[%
-%  tocindentauto,     % all widths at the TOCs are calculated by tocindentauto
-%%  tocindentmanual,  % opposite of auto
-%%%% 
-%  tocgraduated,      % standard
-%%  tocflat,          % no intendation, text aligned
-%%  tocfullflat,      % no intendation, no alignment
-%%%%  
-%  tocbreaksstrict,   % sets a lot of penalties before and after TOC entries 
-%                     % to avoid page break between a TOC entry and it's parent. 
-%%  tocbreakscareless,% allow more page breaks.  
-%%%%  
-%%  toctextentriesindented, % unnumbered TOC entrie are indented only as wide 
-%%                          % as the number of numbered TOC entries of the same 
-%%level. 
-%  toctextentriesleft,% indented as if they have an empty number.
-%]{tocstyle}
+%% Alpha package, uses koma fonts (\setkomafont{}{}) only if KOMAlike is selected
+%
+\usepackage[%
+%%% toc width calculation 
+  tocindentauto,     % all widths at the TOCs are calculated by tocindentauto
+%  tocindentmanual,  % opposite of auto
+%%% indentation of toc
+  tocgraduated,      % standard
+%  tocflat,          % no intendation, text aligned
+%  tocfullflat,      % no intendation, no alignment
+%%%  page breaking rules
+  tocbreaksstrict,   % sets a lot of penalties before and after TOC entries 
+                     % to avoid page break between a TOC entry and it's parent. 
+%  tocbreakscareless,% allow more page breaks.  
+%%%  indentation of unnumbered TOC entries
+% toctextentriesindented, % unnumbered TOC entrie are indented only as wide 
+%                         % as the number of numbered TOC entries of the same 
+%                         % level. 
+  toctextentriesleft,   % indented as if they have an empty number.
+]{tocstyle}
 
 % Description: The appendix package provides some facilities for 
 %              modifying the typesetting of appendix titles.
