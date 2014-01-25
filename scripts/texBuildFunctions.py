@@ -1,18 +1,62 @@
 import os
+import glob
 import fnmatch
 import subprocess
 import sys
 import glob
 import shutil
+import re
+
+def main():
+    logfile = '../template/TemplateDocumentation.log'
+    outputFile = '../template/TemplateDocumentation-FileList.txt'
+    extractFileList(logfile, outputFile)
+
+def extractFileList(logfile, outputFile):
+    strStart = ' *File List*'
+    strEnd = ' ***********'
+    logFileListValid = False
+    array = []
+
+    with open(logfile, 'r') as parseFileHandle:
+        with open(outputFile, 'w') as outputFileHandle:
+            for lineParse in parseFileHandle:
+                # test for string '%%?'
+                if lineParse.startswith(strEnd):
+                    logFileListValid = False
+                    break
+
+                if lineParse.startswith(strStart):
+                    logFileListValid = True
+                    continue
+
+                if (logFileListValid):
+                    array.append( lineParse )
+                    logFileEntryNumbers = 0
+                    for lineInput in array:
+                        if lineInput == lineParse:
+                            logFileEntryNumbers = logFileEntryNumbers + 1
+                            # print (lineInput)
+                        if logFileEntryNumbers > 2:
+                            # print(lineParse)
+                            break
+                    # output only if entry is unique
+                    if logFileEntryNumbers < 2:
+                        # write line to output
+                        outputFileHandle.write(lineParse)
 
 def ensureDirectoryExists(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
 def unfailingRemoveFile(filename):
-    if os.path.exists(filename):
-        os.remove(filename)
-        # print("removed: " + filename)
+    for filePath in glob.glob(filename):
+        print(filePath)
+        if os.path.isfile(filePath):
+            os.remove(filePath)
+            print("removed: " + filePath)
+        else:
+            print(filePath + " not found")
 
 def cleanupRecursiveAuxFiles(rootPath, filetype):
     for root, dirs, files in os.walk(rootPath):
@@ -69,9 +113,15 @@ def cleanupAuxFiles(filename):
     unfailingRemoveFile(filename + 'pgf-plot.table')
     unfailingRemoveFile(filename + 'plotdata.gnuplot')
     unfailingRemoveFile(filename + 'plotdata.table')
-    unfailingRemoveFile(filename + '.tex.blg')
+    unfailingRemoveFile(filename + 'tex.blg')
+    unfailingRemoveFile(filename + 'wrt')
+    unfailingRemoveFile(filename + 'auxlock')
+    unfailingRemoveFile(filename + 'glsdefs')
+    unfailingRemoveFile(filename + 'synctex.gz')
     unfailingRemoveFile('plotdata.txt')
     unfailingRemoveFile('fit.log')
+
+
 
 # executes python script
 def execfile(filename):
@@ -118,6 +168,10 @@ def compileLatexDocument(texfile):
     # call pdflatex
     callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texName + '.tex'])
 
+    logfile = texName + '.log'
+    outputFile = texName + '-FileList' + '.txt'
+    extractFileList(logfile, outputFile)
+
     # call pdflatex
     callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texName + '.tex'])
 
@@ -130,3 +184,6 @@ def compileLatexDocument(texfile):
     cleanupRecursiveAuxFiles(newPath, '*.aux')
     # move back to original path
     os.chdir(oldPath)
+
+
+main()

@@ -18,26 +18,34 @@ import fontexamples as importFontExamples
 import createPackages as importCreatePackages
 
 def main():
+    print ("--- clean up main folder before compilation ---")
+    tex.unfailingRemoveFile('../template/TemplateDocumentation-figure*.log')
+    tex.cleanupRecursiveAuxFiles('../template/', '*.aux')
+    texfile = '../template/LaTeXTemplate.'
+    tex.cleanupAuxFiles(texfile)
+    texfile = '../template/TemplateDocumentation.'
+    tex.cleanupAuxFiles(texfile)
+
     print ("--- Creation of Packages ---")
-    #importCreatePackages.main()
+    importCreatePackages.main()
 
     print ("--- Copy Packages ---")
-    #copyPackages()
+    copyPackages()
 
     print ("--- Create Font Examaples ---")
-    #importFontExamples.main()
+    importFontExamples.main()
 
     print ("--- fill doc-code.tex ---")
-    #importInsertPrintCode.main()
+    importInsertPrintCode.main()
 
     print ("--- compiling LaTeXTemplate.tex ---")
     texfile = '../template/LaTeXTemplate.tex'
-    # tex.compileLatexDocument(texfile)
+    tex.compileLatexDocument(texfile)
     copyTeXFile(texfile)
 
     print ("--- compiling TemplateDocumentation.tex ---")
     texfile = '../template/TemplateDocumentation.tex'
-    # tex.compileLatexDocument(texfile)
+    tex.compileLatexDocument(texfile)
     copyFile(texfile.replace('.tex', '.pdf'), '')
     tex.cleanupRecursiveAuxFiles('../template/', '*.aux')
     tex.unfailingRemoveFile('../template/content/demo/democode.tex')
@@ -68,7 +76,7 @@ def main():
 
     currentDateStr = datetime.datetime.now().strftime("%Y-%m-%d")
     filename = 'latexthesistemplate-' + currentDateStr + '.zip'
-    executeCode = 'zip ' +  filename + ' latexthesistemplate/*'
+    executeCode = 'zip -r ' +  filename + ' latexthesistemplate/*'
     print (executeCode)
     result = os.system(executeCode)
 
