@@ -554,9 +554,11 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %    \begin{macrocode}
 %% === Output commands ===============================
 %% Print Code with prefix
-\newcommand{\printlatexcode}{%
-\democodeprefix
-\lstinputlisting[style=demostyle,nolol=true]{\democodefile}%
+\newcommand{\printlatexcode}[1][\democodefile]{%
+\def\demoInputFile{#1}%
+\IfFileExists{\demoInputFile.tex}{%
+\democodeprefix%
+\lstinputlisting[style=demostyle,nolol=true]{\demoInputFile}}{}%
 }%
 %    \end{macrocode}
 % \end{macro}
@@ -568,9 +570,10 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 % \cs{input}.
 %    \begin{macrocode}
 %% Print Result with standard box
-\newcommand{\printlatexresult}{%
+\newcommand{\printlatexresult}[1][\democodefile]{%
+\def\demoInputFile{#1}%
 \begin{latexresult}%
-\IfFileExists{\democodefile}{\input{\democodefile}}{}%
+\IfFileExists{\demoInputFile.tex}{\input{\demoInputFile.tex}}{}%
 \end{latexresult}%
 }%
 %    \end{macrocode}

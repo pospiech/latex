@@ -641,9 +641,9 @@ Files
 \ifcsdef{marg}{}{% if not defined
 \ifcsdef{meta}%
   {\newcommand\marg[1]{\texttt{\{}\meta{#1}\texttt{\}}}}%
-  {\newcommand\marg[1]{
+  {\newcommand\marg[1]{%
 \texttt{\{}%
-$\langle${\normalfont\slshape#1}$\rangle$
+$\langle${\normalfont\slshape#1}$\rangle$%
 \texttt{\}}}}%
 }%
 %    \end{macrocode}
@@ -656,9 +656,9 @@ $\langle${\normalfont\slshape#1}$\rangle$
 \ifcsdef{oarg}{}{% if not defined
 \ifcsdef{meta}%
   {\newcommand\oarg[1]{\texttt{[}\meta{#1}\texttt{]}}}%
-  {\newcommand\oarg[1]{
+  {\newcommand\oarg[1]{%
 \texttt{[}%
-$\langle${\normalfont\slshape#1}$\rangle$
+$\langle${\normalfont\slshape#1}$\rangle$%
 \texttt{]}}}%
 }%
 %    \end{macrocode}
@@ -671,7 +671,7 @@ $\langle${\normalfont\slshape#1}$\rangle$
 %% \arg
 \ifcsdef{arg}{%
   \csundef{arg}%
-  \newcommand\arg[1]{\{\texttt{#1}\}}
+  \newcommand\arg[1]{\{\texttt{#1}\}}%
 }{}%
 %    \end{macrocode}
 % \end{macro}
@@ -682,7 +682,7 @@ $\langle${\normalfont\slshape#1}$\rangle$
 %% \option
 \newcommand{\option}[1]{%
 \texttt{#1}%
-\ifdoctools@createIndexEntries
+\ifdoctools@createIndexEntries%
 \index{option!#1}%
 \fi
 }%
