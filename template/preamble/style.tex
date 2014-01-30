@@ -373,48 +373,47 @@
 
 \raggedbottom     % allow variable (ragged) site heights
 
+% Layout with 'geometry'
 \IfPackageLoaded{geometry}{%
   \input{preamble/style-geometry.tex}
 } % Endif
 
-% Layout mit 'typearea'
-%%% Doc: scrguide.pdf
-
-\IfPackageNotLoaded{geometry}{% 
-%
-% Koma Script text area layout
-\KOMAoptions{%
-   DIV=11,% (Size of Text Body, higher values = greater textbody)
-   % DIV=calc % (also areaset/classic/current/default/last) 
-   % -> after setting of spacing necessary!   
-   BCOR=10mm% (binding correction)
-}%
-%
-}% end: \IfPackageNotLoaded{geometry}
 
 %%% === Page Layout Options ===
-\KOMAoptions{% (most options are for package typearea)
-   twoside=true, % two side layout (alternating margins, standard in books)
-   % twoside=false, % single side layout 
-   % twoside=semi,  % two side layout (non alternating margins!)
-   %
-   twocolumn=false, % (true)
-   %
-   headinclude=false,%
-   footinclude=false,%
-   mpinclude=false,%      
+\KOMAoptions{% 
    %
    headlines=2.1,%
    % headheight=2em,%
-   headsepline=true,%
-   footsepline=false,%
    cleardoublepage=empty %plain, headings
 }%
 
-% reloading of typearea, necessary if setting of spacing changed
+% Layout with 'typearea'
+%%% Doc: scrguide.pdf
 \IfPackageLoaded{typearea}{% If typearea is loaded
    \IfPackageNotLoaded{geometry}{% and geometry is not loaded
-      \typearea[current]{last}
+     % Koma Script text area layout
+     \KOMAoptions{%
+        DIV=12,% (Size of Text Body, higher values = greater textbody)
+        % DIV=calc % (also areaset/classic/current/default/last) 
+        % -> after setting of spacing necessary!   
+        BCOR=10mm% (binding correction)
+     }%
+ 
+     \KOMAoptions{% (most options are for package typearea)
+       twoside=true, % two side layout (alternating margins, standard in books)
+       % twoside=false, % single side layout 
+       % twoside=semi,  % two side layout (non alternating margins!)
+       %
+       twocolumn=false, % (true)
+       %
+       headinclude=false,%
+       footinclude=false,%
+       mpinclude=false,%    
+       headsepline=true,%
+       footsepline=false,%
+     }%
+     % reloading of typearea, necessary if setting of spacing changed 
+      \typearea[current]{last}      
 %
 % BCOR
 %    current  % Recalculate type-area with the currently valid BCOR value.
