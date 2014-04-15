@@ -1,0 +1,83 @@
+\IfPackageLoaded{glossaries}{%
+
+% disable hyperref links for glossaries
+\glsdisablehyper
+
+% disable point at the end of each description
+\renewcommand*{\glspostdescription}{}
+
+\newglossarystyle{longFancy}{%
+  \setglossarystyle{long}%
+  \renewenvironment{theglossary}%
+     {%
+        \vspace*{-1\baselineskip}
+        \renewcommand{\arraystretch}{1.6}%
+        \normalfont\normalsize%
+        \centering%           
+        \rowcolors{1}{tablerowcolor}{tablebodycolor}
+        \begin{longtable}{l>{\RaggedRight}p{\glsdescwidth}}%
+     }%
+     {\end{longtable}}%
+  \renewcommand*{\glsgroupskip}{}%
+  \renewcommand*{\glossaryheader}{%
+    \hline\endhead%
+    \hline\endfoot%
+  }%  
+}
+
+\setlength{\glsdescwidth}{0.75\textwidth}
+
+\newglossarystyle{longFancyHeader}{%
+  \setglossarystyle{longFancy}%
+  \renewcommand*{\glossaryheader}{%
+    \hline\rowcolor{tableheadcolor}
+      \bfseries \entryname & 
+      \bfseries \descriptionname \tabularnewline
+    \hline\endhead%
+    \hline\endfoot%
+    }%
+}
+
+\setglossarystyle{longFancyHeader}
+
+\IfPackageLoaded{tabu}{%
+  \newglossarystyle{longtabuFancy}{%
+    \setglossarystyle{long}%
+    \renewenvironment{theglossary}%
+       {%
+          \vspace*{-1\baselineskip}       
+          \renewcommand{\arraystretch}{1.6}%
+          \normalfont\normalsize%
+          \centering%           
+          \rowcolors{1}{tablerowcolor}{tablebodycolor}
+            \begin{longtabu} to 0.95\textwidth{lX[L]}
+       }%
+       {\end{longtabu}}%
+    \renewcommand*{\glsgroupskip}{}%
+    \renewcommand*{\glossaryheader}{%
+      \hline\endhead%
+      \hline\endfoot%
+    }%  
+  } % end of newglossarystyle
+  
+  \newglossarystyle{longtabuFancyHeader}{%
+    \setglossarystyle{longtabuFancy}%
+    \renewcommand*{\glossaryheader}{%
+      \hline\rowcolor{tableheadcolor}
+        \bfseries \entryname & 
+        \bfseries \descriptionname \tabularnewline
+      \hline\endhead%
+      \hline\endfoot%
+      }%
+  }
+  \setglossarystyle{longtabuFancyHeader}
+} % end of IfPackage
+
+
+\IfPackageLoaded{translator}{% 
+   \deftranslation[to=German]{Acronyms}{Abkürzungsverzeichnis}%
+   \deftranslation[to=German]{List of Symbols}{Symbolverzeichnis}%
+   \deftranslation[to=German]{Glossary}{Glossar}%
+}% 
+
+}% end if 

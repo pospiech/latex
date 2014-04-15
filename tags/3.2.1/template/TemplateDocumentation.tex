@@ -1,0 +1,245 @@
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
+
+% Description: This is the main file for the documentation of the 
+% latex-thesis-template. It not meant to be used by the users
+% of the template.
+
+%% Bug fixes and other packages to be loaded before the class
+\RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
+\RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
+%
+%% Document Class (Koma Script) -----------------------------------------
+%% Doc: scrguien.pdf
+\documentclass[%
+   %draft=true,     % draft mode (no images, layout errors shown)
+   draft=false,     % final mode 
+%%% --- Paper Settings ---
+   paper=a4,% [Todo: add alternatives]
+   paper=portrait, % landscape
+   pagesize=auto, % driver
+%%% --- Base Font Size ---
+   fontsize=11pt,%
+%%% --- Koma Script Version ---
+   version=last, %
+%%% --- Global Package Options ---
+   english, % language (passed to babel and other packages)
+            % (ngerman, english, french, ...)
+ ]{scrbook} % Classes: scrartcl, scrreprt, scrbook
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Must be loaded first!
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% packages to allow more \write outputs
+\input{preamble/packages-SolutionsNoRoomForNewWrite.tex}
+% packages required for the template
+\usepackage{codesection}
+\usepackage{templatetools}
+\usepackage{latexdemo}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% encoding
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% automatic selection of encoding
+% insert chars for umlaut a and sz
+\usepackage{selinput}
+\SelectInputMappings{adieresis={ä},germandbls={ß}} 
+
+% Encoding of _files and directories_
+% (ensures that any file can be loaded without problems)
+\usepackage[%
+   extendedchars, encoding, multidot, space,
+   filenameencoding=latin1, % Windows XP, Vista, 7
+   % filenameencoding=utf8,   % Linux, OS X
+]{grffile}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% preamble
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%% select/load fonts
+\input{fonts/fonts.tex}
+%\input{fonts/font-commercial.tex}
+%% load packages
+\input{preamble/packages.tex}
+%% apply style settings
+\input{preamble/style.tex}
+%% new commands / definitions (required by the template!)
+\input{preamble/commands.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Configurations
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%% Switch between colored links (web) and black links (print)
+\IfDefined{UseDefinition}{%
+  %\UseDefinition{Target}{Print}
+  \UseDefinition{Target}{Web}
+}%
+
+\IfPackageLoaded{hyperref}{%
+%%% set layout of PDF pages
+\hypersetup{pdfpagelayout=OneColumn}
+  % options:
+  %  SinglePage     Displays a single page; advancing flips the page
+  %  OneColumn      Displays the document in one column; continuous scrolling.
+  %  TwoColumnLeft  Displays the document in two columns, 
+  %                 odd-numbered pages to the left.
+  %  TwoColumnRight Displays the document in two columns, 
+  %                 odd-numbered pages to the right.
+  %  TwoPageLeft    Displays two pages, odd-numbered pages to the left 
+  %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
+}%
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% custom definitions
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\input{macros/newcommands.tex}
+
+%%% Hyphenation (Silbentrennung)
+\input{content/hyphenation.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% execute necessary commands
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% (... if the according package is loaded or not)
+
+\input{preamble/makeCommands.tex}
+
+\listfiles % list all loaded files at end of document
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% bibliography (now in preamble !)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%% bibtex file(s)
+% add multiple files with comma separation
+% biblatex requires files before document
+\IfPackageLoaded{biblatex}{
+  % add all .bib files:
+  \addbibresource{bib/BibtexDatabase.bib}
+  \addbibresource{bib/demo.bib}
+  % \addbibresource{bib/BibtexData-anytopic.bib}
+}%
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Definition of glossaries Entries (before document!)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{content/demo/glossariesEntries.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% include list
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\includeonly{
+ doc/0-title,
+ doc/doc-introduction,
+ doc/doc-code-filled,
+ content/demo/demo,
+} % end includeonly
+
+
+%%% Document Start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \KOMAoptions{parskip=half} % parksip of 1/2 line
+
+% required for hyperref (not displayed)
+\pagenumbering{alph}\setcounter{page}{1}%
+\pagestyle{empty}
+
+% -- title page --
+\include{doc/0-title}
+\cleardoublepage
+
+\frontmatter
+\IfPackageLoaded{scrpage2}{\pagestyle{scrheadings}}
+
+% -- table of contents --
+%
+% add table of contents to pdf bookmarks
+\IfPackageLoaded{hyperref}{\pdfbookmark[1]{\contentsname}{toc}}
+\tableofcontents
+
+% --- Main Document --- --- --- --- --- --- ---
+\mainmatter
+
+\newcommand\argument[1]{$\langle${\normalfont\slshape#1}$\rangle$}%
+% #########################################################################
+\KOMAoptions{headings=openany} 
+\part{User documentation}
+\label{part:documentation}
+\KOMAoptions{headings=openright}
+\ifcsdef{PartialToc}{\PartialToc{1}}{}
+%
+\include{doc/doc-introduction}
+
+% #########################################################################
+%% demonstration of the template
+\KOMAoptions{headings=openany} 
+\part{LaTeX Examples}
+\label{part:demo}
+\ifcsdef{PartialToc}{\PartialToc{1}}{}
+\KOMAoptions{headings=openright}
+%
+\include{content/demo/demo}
+%
+\ifcsdef{PartialToc}{
+  \stopcontents[part]
+}{}
+
+% #########################################################################
+\KOMAoptions{headings=openany} 
+\part{Template code documentation}
+\label{part:code}
+\ifcsdef{PartialToc}{\PartialToc{1}}{}
+\KOMAoptions{headings=openright}
+%
+\include{doc/doc-code-filled}
+% #########################################################################
+
+% -- bibliography --
+% (must be placed _before_ appendix)
+\IfPackageLoaded{biblatex}{
+  \cleardoublepage
+  \IfDefined{phantomsection}{\phantomsection}\label{sec:bibliography}
+  \printbibliography[%
+    heading=bibintoc, % (bibintoc, bibnumbered)
+  ]	
+}
+
+%% -- list of figures and tables --
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lof}
+\listoffigures
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lot}
+\listoftables
+
+%% -- List of Listings --
+\IfDefined{lstlistoflistings}{\cleardoublepage\lstlistoflistings}
+
+% --- Appendix --- --- --- --- --- --- ---
+\cleardoublepage
+\appendix
+% Add `Appendix` to TOC
+\addcontentsline{toc}{part}{\appendixname}
+% must be _input_, otherwise the TOC entry is at the wrong place
+\IfColorDefined{tablesubheadcolor}{
+  \input{doc/doc-z-appendix.tex}  
+}{}
+\input{doc/history.tex}
+% <------------------------
+
+
+%% -- Index --
+\IfDefined{printindex}{%
+  \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
+  \printindex%
+}%
+
+%%% Dokument END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

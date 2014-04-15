@@ -1,0 +1,470 @@
+    \pgfplotstableread[header=false, col sep=comma]{ % Read data table. 
+    % First row doesn't have column names, hence the "header=false"
+    LaTeX Kernel,0.34,340
+    pre document class,0.36,20
+    document class,0.48,120
+    template packages,0.54,60
+    encoding (documents),0.64,100
+    encoding (files),0.72,80
+    Fonts,0.88,160
+    Packages: Base,0.98,100
+    Packages: Bugfix,1.01,30
+    relsize,1.03,20
+    Math,1.13,100
+    Math (using LaTeX 3),1.43,300
+    pgf/tikz,2.64,1210
+    siunitx,2.72,80
+    Symbols,2.81,90
+    Tables,2.85,40
+    Text,3.01,160
+    Quotes (csquotes),3.04,30
+    Bibliography (biblatex),3.3475,308
+    Figures,3.365,18
+    Captions,3.48,115
+    Index,3.58,100
+    Glossary,3.745,165
+    Verbatim and Listings,3.85,105
+    Fancy,3.91,60
+    Layout,3.92,10
+    Head and Foot,4.015,95
+    Headings,4.03,15
+    PDF,4.33,300
+    Additional,4.46,130
+    Style.tex,4.55,90
+    }\compilationtimes
+    
+\begin{tikzpicture}
+  \begin{axis}[
+    ,name=plot1
+%%% 4.8.3 Labels
+    ,xlabel={compilation time / seconds}
+    ,ylabel={}
+    ,zlabel={}
+    ,title={}
+%%% 4.9.2 Scaling Descriptions: Predefined Styles    
+    %% Re-initialises the standard scaling options of pgfplots.    
+    %,normalsize
+	,small
+	%,footnotesize
+	%,tiny
+%%%% 4.2.3 Computing Coordinates with Mathematical Expressions	
+	% ,domain y=<y1>:<y2> % sets the function's domain(s)
+	% ,samples=<number>   % number of points
+	% ,samples at=<coordinate list>
+%%%% 4.4 Two Dimensional Plot Types
+%%%% 4.4.1 Linear Plots
+	%,sharp plot
+%%%% 4.4.2 Smooth Plots
+	%,smooth
+%%%% 4.4.3 Constant Plots
+	%,const plot mark left
+	%,const plot mark right  
+	%,const plot mark mid
+	%,jump mark left
+	%,jump mark right
+	%,jump mark mid
+%%%% 4.4.4 Bar Plots
+	,xbar
+	%,xbar interval % = value, or noneqidistant
+	%,ybar
+	%,ybar interval % = value, or noneqidistant
+	%% Set the y unit vector, that way, the plot will 
+	%% stretch to accommodate all bars
+	,bar width=2ex, y=3ex
+	%,bar shift=0pt % Configures a shift between multiple (stacked) bars
+%%%% 4.4.6 Comb Plots
+	% ,xcomb
+	% ,ycomb
+%%%% 4.4.8 Stacked Plots
+	% ,stack plots=<x,y,false>
+	% ,xbar stacked
+	% ,ybar stacked
+	%% (options)
+	% ,stack dir=plus,minus
+	% ,reverse stacked plots=true,false
+%%%% 4.4.10 Scatter Plots
+	% ,only marks % all markers have the same appearance.
+	% ,scatter    % uses colormap for marker visualization
+	%% write numbers to points/bars (useful for bar plots)	
+	,nodes near coords 
+	,nodes near coords align={horizontal} 
+	,every node near coord/.append style={color=black}
+	% auto, horizontal, vertical (initially auto)	
+%%%% 4.6 Markers, Linestyles, (Background-) Colors and Colormaps
+%%%% 4.6.1 Markers
+    % ,mark=* % circle
+    % ,mark=x % cross
+    % ,mark=+ % plus
+    % ,mark=o % empty circle
+    %% require \usetikzlibrary{plotmarks}
+    % ,mark=asterisk
+    % ,mark=star
+    % ,mark=10-pointed star
+    % ,mark=oplus
+    % ,mark=oplus*
+    % ,mark=otimes
+    % ,mark=otimes*
+    % ,mark=square
+    % ,mark=square*
+    % ,mark=triangle
+    % ,mark=triangle*
+    % ,mark=diamond
+    % ,mark=diamond*
+    % ,mark=halfdiamond*
+    % ,mark=halfsquare*
+    % ,mark=halfsquare right*
+    % ,mark=halfsquare left*
+    % ,mark=Mercedes star
+    % ,mark=Mercedes star flipped
+    % ,mark=halfcircle
+    %%
+    %,mark size={} % (dimension)
+    %% Disables plot marks.
+    ,no markers 
+%%%% 4.6.2 Line Styles
+    %% since these styles apply to markers as well, 
+    %% you may want to consider using
+    ,every mark/.append style={solid}
+    %%
+    % ,solid
+    % ,dotted
+    % ,densely dotted
+    % ,loosely dotted
+    % ,dashed 
+    % ,densely dashed 
+    % ,loosely dashed 
+    % ,dashdotted 
+    % ,densely dashdotted 
+    % ,loosely dashdotted 
+    % ,dashdotdotted
+    % ,densely dashdotdotted 
+    % ,loosely dashdotdotted
+%%%% 4.6.3 Edges and Their Parameters
+    ,line cap=butt   % (round,rect,butt)
+    ,line join=miter % (round,bevel,miter)
+    ,miter limit=10  % (initially 10)
+%%%% 4.6.4 Font Size and Line Width
+    %% Sets the font which is to be used for text in nodes 
+    %% (like tick labels, legends or descriptions).
+    % ,font=\normalfont
+    %% it my be useful to specify the font for other elements as well
+    % ,tick label style={font=\small},
+    % ,label style     ={font=\small},
+    % ,legend style    ={font=\footnotesize}
+    %% line width
+    ,line width=0.4 % (default 0.4)
+    % to change the linewidth of all element:
+    % ,every axis/.append style={line width=1pt}
+%%%% 4.6.5 Colors
+    ,/tikz/color=black % axis and tic labels
+    ,/tikz/draw=black % stroke color (box of plot)
+    %,/tikz/fill=red % fill color, when used ?
+%%%% 4.6.6 Color Maps
+    ,colormap name=jet % (hot, hot2, jet, blackwhite, bluered, cool, 
+                       %  greenyellow, redyellow, violet)
+	% ,cycle list name=colorseries-office
+%%%% 4.6.8 Axis Background                       
+    % ,axis background/.style={shade,left color=gray,right color=white},
+%%%% 4.8 Axis Descriptions
+	% Axis lines
+	% ,axis x line=box % (top,middle,center,bottom,none)
+	% ,axis y line=box % (left,middle,center,right,none)
+	,axis lines=box  % (left,middle,center,right,none)
+%%%% 4.8.11 Axis Discontinuities
+	% ,axis x discontinuity=none % (crunch,parallel)
+	% ,axis y discontinuity=none % (crunch,parallel)
+	% ,axis z discontinuity=none % (crunch,parallel)
+	% ,xtickmin={} % (default axis limits)
+	% ,ytickmin={} % (default axis limits)
+	% ,ztickmin={} % (default axis limits)
+	,xtickmax={5} % (default axis limits)
+	% ,ytickmax={} % (default axis limits)
+	% ,ztickmax={} % (default axis limits)
+	% ,hide x axis=false % (true)
+	% ,hide y axis=false % (true)
+	% ,hide z axis=false % (true)
+	% ,hide axis  =false % (true)
+%%%% 4.8.12 Color Bars
+	% ,colorbar=false	% (true)
+	% ,colorbar=right (left, horizontal)
+%%%% 4.8.5 Legend Appearance
+    %% The style "every axis legend" determines the legend's position 
+    %% and outer appearance:
+    %,every axis legend/.append style={at={(0,0)}, anchor=south west}}
+    %,legend pos={} %(south west, south east, north west,
+                   % north east,outer north east)
+    %% These keys provide horizontal alignment of legend cells.
+    ,legend cell align=center % (left,right,center)
+    %% Allows to congure the maximum number of adjacent legend entries. 
+    %% The default value 1 places legend entries vertically below each other.
+    %% Use legend columns=-1 to draw all entries horizontally.
+    ,legend columns={1}
+    %% Configures where the small line specifications will be drawn: 
+    %% left of the description, right of the description or not at all.
+    ,legend plot pos=left % (left,right,none)
+%%%% 4.9 Scaling Options
+	,width={0.45\textwidth} % (initially empty) Sets the width of the picture
+	% ,height={} % if empty scales proportionally with the width
+	% ,scale only axis % apply width value only to axis
+	%% Allows to choose between linear (=normal) or logarithmic axis scaling or logplots for each x; y; zcombination:
+	,xmode=normal % (linear,log) (initially normal)
+	,ymode=normal % (linear,log) (initially normal)
+	,zmode=normal % (linear,log) (initially normal)
+	%% Allows to reverse axis directions such that values are given in decreasing order:
+	,x dir=normal % (reverse) (initially normal)
+	,y dir=normal % (reverse) (initially normal)
+	,z dir=normal % (reverse) (initially normal)
+	,axis equal=false % (true) - axis limits will be enlarged 
+	,axis equal image=false % (true) - axis limits will stay
+%%%% 4.13 Specifying the Plotted Range	
+	% These options allow to define the axis limits, i.e. the lower left and
+	% the upper right corner. Everything outside of the axis limits will be
+	% clipped away.
+    ,xmin={0}
+    % ,ymin={}
+    % ,zmin={}
+    ,xmax={6}
+    % ,ymax={}
+    % ,zmax={}
+    % ,min={}
+    % ,max={}
+	%,enlarge x limits={abs=0.75}
+    % auto,true,false,upper,lower,rel=<val>,abs=<val> (initially auto)
+    ,enlarge y limits={abs=0.75}
+    % ,enlarge z limits=auto
+%%%% 4.14 Tick Options
+%%%% 4.14.1 Tick Coordinates and Label Texts
+	%% 'data' is usefull for bar plots
+    ,xtick={0,1,...,5} % (\empty,data,{coordinate list})
+    ,ytick={data} % (\empty,data,{coordinate list})
+    % ,ztick={} % (\empty,data,{coordinate list})
+	%% minor tick numbers between major ticks
+    % ,minor x tick num={0} 
+    % ,minor y tick num={0} 
+    % ,minor z tick num={0} 
+    % ,minor tick num={0}
+	%% Allows to provide a list of minor tick positions manually:    
+    % ,minor xtick= %(data,{coordinate list}) (initially empty)
+    % ,minor ytick= %(data,{coordinate list}) (initially empty)
+    % ,minor ztick= %(data,{coordinate list}) (initially empty)
+    % ,minor tick = %(data,{coordinate list}) (initially empty)
+	%% Adds additional tick positions and tick labels to the x or y axis.
+    % ,extra x ticks={coordinate list}
+    % ,extra y ticks={coordinate list}
+    % ,extra z ticks={coordinate list}
+	%% Assigns a list of tick labels to each tick position.
+    % ,xticklabels={label list}
+    % ,yticklabels={label list}
+    % ,zticklabels={label list}
+	%% Enables/disables the small tick lines either for single axis or for all of them.
+    % ,xminorticks=true % (false)
+    % ,yminorticks=true % (false)
+    % ,zminorticks=true % (false)
+    % ,xmajorticks=true % (false)
+    % ,ymajorticks=true % (false)
+    % ,zmajorticks=true % (false)
+    % ,ticks=both % (minor,major,both,none) (initially both)
+    %% A variant of xticklabels={list} which uses each entry in the column
+    %% named colname from a table as tick labels.
+	% ,xticklabels from table={\table or filename}{colname}
+	,yticklabels from table={\compilationtimes}{0}
+	% ,zticklabels from table={\table or filename}{colname}
+%%%% 4.14.2 Tick Alignment: Positions and Shifts
+	%% Allows to choose where to place the small tick lines.
+    % ,xtick pos=both % (left,right,both) (initially both)
+    ,ytick pos=left % (left,right,both) (initially both)
+    % ,ztick pos=both % (left,right,both) (initially both)
+    % ,tick pos =both % (left,right,both) (initially both)
+	%% Allows to choose where to place tick labels.
+    % ,xticklabel pos=default % (left,right,default) (initially default)
+    % ,yticklabel pos=default % (left,right,default) (initially default)
+    % ,zticklabel pos=default % (left,right,default) (initially default)
+    % ,ticklabel pos =default % (left,right,default) (initially default)
+	%% Allows to change the location of the ticks relative to the axis lines.
+    ,xtick align=inside % (inside,center,outside) (initially inside)
+    ,ytick align=inside % (inside,center,outside) (initially inside)
+    % ,ztick align=inside % (inside,center,outside) (initially inside)
+    % ,tick align =inside % (inside,center,outside) (initially inside)
+%%%% 4.14.3 Tick Scaling - Common Factors In Ticks
+    ,scaled ticks=true % (true,false,base 10:e,real:<num>,manual:{label}{code} (initially true)
+    % ,scaled x ticks=true % (initially true)
+    % ,scaled y ticks=true % (initially true)
+    % ,scaled z ticks=true % (initially true)
+%%%% 4.14.4 Tick Fine-Tuning
+    ,major tick length={0.15cm} % (initially 0.15cm)
+    ,minor tick length={0.1cm}  % (initially 0.1cm)
+	%% Allows to change the logarithms used for logarithmic axes.
+    % ,log basis x={number} % (initially empty)
+    % ,log basis y={number} % (initially empty)
+    % ,log basis z={number} % (initially empty)
+%%%% 4.15 Grid Options
+    ,xminorgrids=false % (true, false) (initially false)
+    % ,yminorgrids=false % (true, false) (initially false)
+    % ,zminorgrids=false % (true, false) (initially false)
+    ,xmajorgrids=false % (true, false) (initially false)
+    % ,ymajorgrids=false % (true, false) (initially false)
+    % ,zmajorgrids=false % (true, false) (initially false)
+    % ,grid=false % (minor,major,both,none,false) (initially false)
+%%%% 4.17 Style Options
+	%% Styles installed for linear/logarithmic axis	
+    % ,every axis 
+    % ,every semilogx axis
+    % ,every semilogy axis
+    % ,every loglog axis
+    % ,every linear axis
+	%% Styles installed for single plots
+    % ,every axis plot
+    % ,every axis plot post
+    % ,every axis plot no #
+	%% Styles for axis descriptions
+    % ,every axis label
+    % ,every axis x label
+    % ,every axis y label
+    % ,every axis z label
+    % ,every axis title
+    % ,every axis legend
+    % ,every legend image post
+    % ,every legend to name picture
+    % ,every colorbar
+	%% Styles for ticks
+    % ,every tick
+    % ,every minor tick
+    % ,every major tick
+    % ,every tick label
+    % ,every x tick label
+    % ,every y tick label
+    % ,every z tick label
+    % ,every x tick scale label
+    % ,every y tick scale label
+    % ,every z tick scale label
+    % ,every x tick
+    % ,every y tick
+    % ,every z tick
+    % ,every minor x tick
+    % ,every minor y tick
+    % ,every minor z tick
+    % ,every major x tick
+    % ,every major y tick
+    % ,every major z tick
+    % ,every extra x tick
+    % ,every extra y tick
+    % ,every extra z tick
+	%% Styles for grid lines
+    % ,every axis grid
+    % ,every minor grid
+    % ,every major grid
+    % ,every axis x grid
+    % ,every axis y grid
+    % ,every axis z grid
+    % ,every minor x grid
+    % ,every minor y grid
+    % ,every minor z grid
+    % ,every major x grid
+    % ,every major y grid
+    % ,every major z grid
+	%% Styles for error bars
+    % ,every error bar
+%%%% 4.21 Skipping Or Changing Coordinates - Filters
+    % ,restrict x to domain=<min>:<max>
+    % ,restrict y to domain=<min>:<max>
+    % ,restrict z to domain=<min>:<max>
+  ]
+  \addplot table [
+	y expr=-\coordindex, % Use negative coordinate index as y coordinate
+    x index=1 % Use first column as x coordinate
+  ] {\compilationtimes};
+
+  \end{axis}
+
+
+  \begin{axis}[
+    name=plot2,at={($(plot1.east)+(0cm,0)$)},anchor=west,
+%%% 4.8.3 Labels
+    ,xlabel={incremental time / milliseconds}
+    ,ylabel={}
+    ,zlabel={}
+    ,title={}
+%%% 4.9.2 Scaling Descriptions: Predefined Styles    
+    %% Re-initialises the standard scaling options of pgfplots.    
+    %,normalsize
+	,small
+	%,footnotesize
+%%%% 4.4.4 Bar Plots
+	,xbar
+	,bar width=2ex, y=3ex
+	%,bar shift=0pt % Configures a shift between multiple (stacked) bars
+%%%% 4.4.10 Scatter Plots
+	%% write numbers to points/bars (useful for bar plots)	
+	,nodes near coords 
+	,nodes near coords align={horizontal} 
+	,every node near coord/.append style={color=black}
+	% auto, horizontal, vertical (initially auto)	
+%%%% 4.6 Markers, Linestyles, (Background-) Colors and Colormaps
+%%%% 4.6.1 Markers
+    ,no markers 
+%%%% 4.6.2 Line Styles
+    ,every mark/.append style={solid}
+%%%% 4.6.3 Edges and Their Parameters
+%%%% 4.6.4 Font Size and Line Width
+    ,line width=0.4 % (default 0.4)
+%%%% 4.6.5 Colors
+%%%% 4.6.6 Color Maps
+%%%% 4.6.8 Axis Background                       
+%%%% 4.8 Axis Descriptions
+	,axis lines=box  % (left,middle,center,right,none)
+%%%% 4.8.11 Axis Discontinuities
+	% ,axis x discontinuity=none % (crunch,parallel)
+	% ,axis y discontinuity=none % (crunch,parallel)
+	% ,axis z discontinuity=none % (crunch,parallel)
+	% ,xtickmin={} % (default axis limits)
+	% ,ytickmin={} % (default axis limits)
+	% ,ztickmin={} % (default axis limits)
+	% ,xtickmax={} % (default axis limits)
+	% ,ytickmax={} % (default axis limits)
+	% ,ztickmax={} % (default axis limits)
+	% ,hide x axis=false % (true)
+	%,hide y axis=true % (true)
+%%%% 4.8.12 Color Bars
+%%%% 4.8.5 Legend Appearance
+%%%% 4.9 Scaling Options
+	,width={0.45\textwidth} % (initially empty) Sets the width of the picture
+	,xmode=normal % (linear,log) (initially normal)
+	,ymode=normal % (linear,log) (initially normal)
+	,zmode=normal % (linear,log) (initially normal)
+	%% Allows to reverse axis directions such that values are given in decreasing order:
+	,x dir=normal % (reverse) (initially normal)
+	,y dir=normal % (reverse) (initially normal)
+	,z dir=normal % (reverse) (initially normal)
+	,axis equal=false % (true) - axis limits will be enlarged 
+	,axis equal image=false % (true) - axis limits will stay
+    ,axis lines=box
+%%%% 4.13 Specifying the Plotted Range	
+    ,xmin={0}
+    ,xmax={1550}
+    ,enlarge y limits={abs=0.75}
+%%%% 4.14 Tick Options
+%%%% 4.14.1 Tick Coordinates and Label Texts
+    ,xtick={0,300,...,1200}
+    ,ytick={data} % (\empty,data,{coordinate list})
+	%,yticklabels from table={\compilationtimes}{0}
+	,yticklabels={}
+%%%% 4.14.2 Tick Alignment: Positions and Shifts
+    ,ytick pos=left % (left,right,both) (initially both)
+    ,xtick align=inside % (inside,center,outside) (initially inside)
+    ,ytick align=inside % (inside,center,outside) (initially inside)
+%%%% 4.14.3 Tick Scaling - Common Factors In Ticks
+    ,scaled ticks=true % (true,false,base 10:e,real:<num>,manual:{label}{code} 
+%%%% 4.14.4 Tick Fine-Tuning
+    ,major tick length={0.15cm} % (initially 0.15cm)
+    ,minor tick length={0.1cm}  % (initially 0.1cm)
+    %,xmajorgrids=true % (true, false) (initially false)
+  ]
+  \addplot [colorseriesOffice2!20!black,fill=colorseriesOffice2!80!white] 
+  	table [
+	y expr=-\coordindex, % Use negative coordinate index as y coordinate
+    x index=2 % Use first column as x coordinate
+  ] {\compilationtimes};
+
+  \end{axis}
+  
+\end{tikzpicture}

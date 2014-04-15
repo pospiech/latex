@@ -1,0 +1,120 @@
+\IfPackageLoaded{caption}{%
+% Style of captions
+\DeclareCaptionStyle{captionStyleTemplateDefault}
+[ % single line captions
+  justification = centering
+]
+{ % multiline captions
+% -- Formatting
+  format    = plain,  % plain, hang
+  indention  = 0em,   % indention of text 
+  labelformat = default,% default, empty, simple, brace, parens
+  labelsep   = colon,  % none, colon, period, space, quad, newline, endash
+  textformat  = simple, % simple, period
+% -- Justification
+  justification = justified, %RaggedRight, justified, centering
+  singlelinecheck = true, % false (true=ignore justification setting in 
+%single line)
+% -- Fonts
+  labelfont  = {small,bf},
+  textfont   = {small,rm},
+% valid values:
+% scriptsize, footnotesize, small, normalsize, large, Large
+% normalfont, ip, it, sl, sc, md, bf, rm, sf, tt
+% singlespacing, onehalfspacing, doublespacing
+% normalcolor, color=<...>
+%
+% -- Margins and further paragraph options
+  margin = 10pt, %.1\textwidth,
+  % width=.8\linewidth,
+% -- Skips
+  skip    = 10pt, % vertical space between the caption and the figure
+  position = auto, % top, auto, bottom
+% -- Lists
+  % list=no, % suppress any entry to list of figure 
+  listformat = subsimple, % empty, simple, parens, subsimple, subparens
+% -- Names & Numbering
+  % figurename = Abb. %
+  % tablename  = Tab. %
+  % listfigurename=
+  % listtablename=
+  % figurewithin=chapter
+  % tablewithin=chapter
+%-- hyperref related options
+  hypcap=true, % (true, false) 
+  % true=all hyperlink anchors are placed at the 
+  % beginning of the (floating) environment
+  %
+  hypcapspace=0.5\baselineskip
+}
+
+% apply caption style
+\captionsetup{
+  style = captionStyleTemplateDefault % base
+}
+
+% Predefinded skip setup for different floats
+\captionsetup[table]{position=top}
+\captionsetup[figure]{position=bottom}
+
+\newcommand\FigureAbbrevition{Fig.}
+\IfDefined{iflanguage}{%
+  \iflanguage{ngerman}{%
+    \renewcommand\FigureAbbrevition{Abb.}
+  }{}
+}
+
+\DeclareCaptionStyle{captionStyleTemplateShortDefault}{%
+  style=captionStyleTemplateDefault,
+  name=\FigureAbbrevition,
+  indention=0pt,
+  justification=RaggedRight
+}
+
+% Short Names 
+\IfDefined{wrapfigure}{%
+  \captionsetup[wrapfigure]{style=captionStyleTemplateShortDefault}}
+\IfDefined{wrapfloat}{%
+  \captionsetup[wrapfloat]{style=captionStyleTemplateShortDefault}}
+\IfDefined{floatingfigure}{%
+  \captionsetup[floatingfigure]{style=captionStyleTemplateShortDefault}}
+\IfDefined{margincap}{%
+  \IfDefined{preto}{\preto\margincap{
+  \captionsetup{style=captionStyleTemplateShortDefault}}}}
+  % see http://tex.stackexchange.com/questions/37721/captionsetup-for-margin-caption
+  % for an explanation of the extra code.
+  %
+} % end \IfPackageLoaded{caption}
+
+% options for subcaptions
+\IfPackageLoaded{subcaption}{
+  \captionsetup[sub]{ %
+    style = captionStyleTemplateDefault, % base
+    labelfont  = {footnotesize,bf},
+    textfont   = {footnotesize,rm},
+    justification = RaggedRight, %RaggedRight, justified, centering
+    skip=6pt,
+    margin=5pt,
+    labelformat = simple,% default, empty, simple, brace, parens
+    labelsep    = space,
+    list=false,
+    hypcap=false
+  }
+  % make subcaptions be referenced as 5.3(b)
+  \renewcommand\thesubfigure{(\alph{subfigure})} 
+}
+
+% style options for subfig
+\IfPackageLoaded{caption}{%
+ \IfPackageLoaded{subfig}{%
+  \captionsetup[subfloat]{%
+   style = captionStyleTemplateDefault, % base
+   skip=6pt,
+   margin=5pt,
+   labelformat = parens,% default, empty, simple, brace
+   labelsep    = space,
+   list=false,
+   hypcap=false
+  }
+ } % end \IfPackageLoaded{subfig}
+} % end \IfPackageLoaded{caption}

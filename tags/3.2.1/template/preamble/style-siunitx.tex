@@ -1,0 +1,36 @@
+\IfDefined{sisetup}{%
+
+%  detect-family,
+%  detect-weight,  
+
+\sisetup{%
+  mode = math, % text is printed using a math font
+  detect-all,
+  separate-uncertainty=true,
+}
+
+\IfDefined{iflanguage}{%
+  \iflanguage{ngerman}{%
+    \sisetup{%
+      exponent-product = \cdot,
+      number-unit-separator=\text{\,},
+      output-decimal-marker={\text{,}},
+    }
+  }
+}
+
+\let\nicefrac\sfrac
+
+% Emulate units package, sort of
+\NewDocumentCommand\unit{om}{%
+  \IfNoValueTF{#1}
+    {\si{#2}}
+    {\SI{#1}{#2}}%
+}
+\NewDocumentCommand\unitfrac{omm}{%
+  \IfNoValueTF{#1}
+    {\si{\sfrac{#2}{#3}}}
+    {\SI{#1}{\sfrac{#2}{#3}}}%
+}
+
+} % end: \IfDefined

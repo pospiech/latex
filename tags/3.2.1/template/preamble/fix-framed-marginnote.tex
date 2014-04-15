@@ -1,0 +1,14 @@
+\IfPackagesLoaded{marginnote, framed}{%
+\ifpdftex{%
+ \ifpdfoutput{}{%
+     \begingroup
+         \makeatletter
+         \g@addto@macro\framed{%
+            \let\marginnoteleftadjust\FrameSep
+            \let\marginnoterightadjust\FrameSep
+         }
+         \makeatother
+     \endgroup
+   }% ifpdfoutput
+ }{}% ifpdftex
+}{}

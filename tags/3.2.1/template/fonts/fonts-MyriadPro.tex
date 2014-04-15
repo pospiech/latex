@@ -1,0 +1,35 @@
+\IfFileExists{MyriadPro.sty}{
+% load after textcomp, amsmath and MnSymbol
+\ExecuteAfterPackage{amsmath}{
+%% Myriad Math Fonts 
+%\usepackage[onlysansmath]{MdSymbol}
+%
+\usepackage[%
+%%% Font selection
+  % smallfamily, % (std) use only regular and bold face
+  medfamily,   % use semibold face in addition to smallfamily
+  onlytext,    % only change the text fonts
+  % onlymath   % only change the math fonts
+  sansmath,     % provide math version sans and sansbold 
+%%% Figure selection
+  % textosf, % use text figures in text mode
+  % mathosf, % use text figures in math mode
+  % osf,       % (std) use text figures in text and math mode
+  textlf,  % use lining figures in text mode
+  mathlf,    % use lining figures in math mode
+  % lf,      % use lining figures in text and math mode
+  mathtabular, % use tabular figures in math mode
+%%% Miscellaneous options
+  % scaled=1.0, % scale the font size by <factor>
+]{MyriadPro}[2012/01/07 v0.1c]
+
+} % end of ExecuteAfter
+%
+% file not found:
+}{\PackageWarning{template}{File 'MyriadPro.sty' not found!\MessageBreak}{}}
+
+% set bold to medium bold by default
+\renewcommand{\bfdefault}{sb}
+
+%% If you want to use MyriadPro as your mainfont:
+% \renewcommand{\familydefault}{\sfdefault}

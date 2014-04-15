@@ -1,0 +1,33 @@
+% load after textcomp, amsmath and MnSymbol
+\IfFileExists{MinionPro.sty}{
+%
+\ExecuteAfterPackage{amsmath}{
+% Minion Pro
+\usepackage[%
+%%% Font selection
+  %smallfamily, % (std) use only regular and bold face
+  medfamily,    % use semibold face in addition to smallfamily
+  %fullfamily,  % use medium face in addition to medfamily
+  noopticals,   % (std) use only the optical size Text
+  %opticals     % use the optical sizes Caption, Text, Subhead, and Display
+  %slides,      % use only the optical size Caption (useful for slides)
+  normalsize,   % (std) adapt optical sizes to the normal font size 
+  %nonormalsize,% use static settings for the optical sizes
+  % onlytext,   % only change the text fonts
+  % onlymath,   % only change the math fonts
+%%% Figure selection
+  % textosf,    % use text figures in text mode
+  % mathosf,    % use text figures in math mode
+  % osf,        % (std) use text figures in text and math mode
+  % textlf,     % use lining figures in text mode
+  % mathlf,     % use lining figures in math mode
+  lf,,          % use lining figures in text and math mode
+  mathtabular,  % use tabular figures in math mode
+%%% Miscellaneous options
+  % scaled=1.0, % scale the font size by <factor>
+%  minionint,    % take the integral symbols from MyriadPro, not from MnSymbol
+]{MinionPro}
+} % end of ExecuteAfter
+%
+% file not found:
+}{\PackageWarning{template}{File 'MinionPro.sty' not found!\MessageBreak}{}}

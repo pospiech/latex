@@ -1,0 +1,74 @@
+\IfPackageLoaded{scrpage2}{%
+
+\IfElseDefined{chapter}{%
+   \pagestyle{scrheadings} % pages with header
+}{
+   \pagestyle{scrplain} % pages without header but page numbers
+}
+%\pagestyle{empty} % empty pages
+%
+% delete predefined styles
+\clearscrheadings
+\clearscrplain
+%
+% What is printed where ...
+\IfElseDefined{chapter}{
+   \ohead{\pagemark} % header outside: page number
+   \ihead{\headmark} % header inside: chapter and section titles
+   \ofoot[\pagemark]{} % footer outside: page numbers on plain pages
+}{
+   \cfoot[\pagemark]{\pagemark} % Mitte unten: Seitenzahlen bei plain
+}
+% Complete list of possible positions
+%\lehead[scrplain-left-even   ]{scrheadings-left-even }
+%\cehead[scrplain-center-even ]{scrheadings-center-even }
+%\rehead[scrplain-right-even  ]{scrheadings-right-even }
+%\lefoot[scrplain-left-even   ]{scrheadings-left-even }
+%\cefoot[scrplain-center-even ]{scrheadings-center-even }
+%\refoot[scrplain-right-even  ]{scrheadings-right-even }
+%\lohead[scrplain-left-odd    ]{scrheadings-left-odd }
+%\cohead[scrplain-center-odd  ]{scrheadings-center-odd }
+%\rohead[scrplain-right-odd   ]{scrheadings-right-odd }
+%\lofoot[scrplain-left-odd    ]{scrheadings-left-odd }
+%\cofoot[scrplain-center-odd  ]{scrheadings-center-odd }
+%\rofoot[scrplain-right-odd   ]{scrheadings-right-odd }
+%\ihead[scrplain-inside       ]{scrheadings-inside }
+%\chead[scrplain-centered     ]{scrheadings-centered }
+%\ohead[scrplain-outside      ]{scrheadings-outside }
+%\ifoot[scrplain-inside       ]{scrheadings-inside }
+%\cfoot[scrplain-centered     ]{scrheadings-centered }
+%\ofoot[scrplain-outside      ]{scrheadings-outside }
+
+% Shown sections in the header
+\IfElseDefined{chapter}{
+   \automark[section]{chapter} %[right]{left}
+}{
+   \automark[subsection]{section} %[right]{left}
+}
+%
+% Lines
+\IfDefined{chapter}{%
+   % \setheadtopline{} % configures the line above the header
+   \setheadsepline{.4pt}[\color{black}] % configures the line below the header
+   % \setfootsepline{} % configures the line above the footer
+   % \setfootbotline{} % configures the line below the footer
+}
+
+%% width of head and foot
+\setheadwidth[0pt]{text}
+\setfootwidth[0pt]{text}
+%   paper % width of paper
+%   page  % width of page (paper - BCOR)
+%   text  % \textwidth
+%   textwithmarginpar % width of text plus margin
+%   head  % current width of head
+%   foot  % current width of foot
+
+% set chapter pages with heading (or other) style
+%\renewcommand*{\chapterpagestyle}{scrheadings}
+
+%\renewcommand*{\partpagestyle}{empty}
+%\renewcommand*{\titlepagestyle}{empty}
+%\renewcommand*{\indexpagestyle}{empty}
+
+} % end: \IfPackageLoaded{scrpage2}

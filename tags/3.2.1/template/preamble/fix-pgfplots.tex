@@ -1,0 +1,12 @@
+% Package imakeidx tests for \directlua and finds it defined, because it uses 
+% eTeX's \ifdefined, however pgfplots redefines it to \relax. That causes
+% an error in imakeidx.
+% This is a workaround to make it work again. 
+% However, this must be fixed in pgfplots, since it is a bug in that package.
+\ifx\directlua\relax
+  \let\directlua\undefinedBecauseOfBugInPgfplots
+\fi
+
+% Thanks to Heiko Oberdiek and Christian Feuersänger for providing this
+% fix. See http://tex.stackexchange.com/questions/75049/error-at-ifnum-luatexversion68
+% for more information

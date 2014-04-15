@@ -1,0 +1,8 @@
+% fix incompatibilty problems with tikz and onlyamsmath
+\IfPackagesLoaded{onlyamsmath,tikz}{%
+	\AtBeginDocument{\catcode`\$=3}
+}{}
+% thanks to Peter Grill and Christian Feuersänger for providing this fix.
+% The discussion on why this is necessary can be read at
+% http://tex.stackexchange.com/questions/31860/conflict-onlyamsmath-and-tikz
+% http://tex.stackexchange.com/questions/99526/bug-in-pgfplots-or-other-packages

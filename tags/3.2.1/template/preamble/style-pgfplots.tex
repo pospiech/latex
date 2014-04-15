@@ -1,0 +1,68 @@
+\IfPackagesLoaded{tikz,pgfplots}{%
+
+% tikz/pgf
+\pgfplotsset{width=0.8\textwidth,compat=1.5.1}
+%% See pgfplotstable documentation (4.12.1) for further options
+% set decimal point to comma for german text
+\IfDefined{iflanguage}{
+  \iflanguage{ngerman}{%
+    \pgfplotsset{%
+      every tick label/.append style={/pgf/number format/use comma}
+%      x tick label style={/pgf/number format/use comma},%
+%      y tick label style={/pgf/number format/use comma},%
+%      z tick label style={/pgf/number format/use comma}%      
+    }%
+  }{} % end of \iflanguage
+  % for all languages
+  \pgfplotsset{%
+  	every tick label/.append style={/pgf/number format/set thousands separator={\,}},
+  	every node near coord/.append style={/pgf/number format/set thousands separator={\,}}
+  }% 
+}{} % end of \IfDefined
+
+
+
+\definecolor{colorseriesRGB1}{RGB}{0,     0, 192}
+\definecolor{colorseriesRGB2}{RGB}{192,   0,   0}
+\definecolor{colorseriesRGB3}{RGB}{0  , 128,   0}
+\definecolor{colorseriesRGB4}{RGB}{192,   0, 192}
+
+\pgfplotscreateplotcyclelist{colorseries-rgb}{
+  {colorseriesRGB1},
+  {colorseriesRGB2},
+  {colorseriesRGB3},
+  {colorseriesRGB4},
+}
+
+
+\definecolor{colorseriesOffice1}{RGB}{ 49,  93, 152}
+\definecolor{colorseriesOffice2}{RGB}{154,  50,  47}
+\definecolor{colorseriesOffice3}{RGB}{117, 150,  57}
+\definecolor{colorseriesOffice4}{RGB}{ 92,  67, 125}
+\definecolor{colorseriesOffice5}{RGB}{211, 112,  40}
+\definecolor{colorseriesOffice6}{RGB}{ 45, 134, 161}
+
+\pgfplotscreateplotcyclelist{colorseries-office}{%
+  {colorseriesOffice1},%
+  {colorseriesOffice2},%
+  {colorseriesOffice3},%
+  {colorseriesOffice4},%
+  {colorseriesOffice5},%
+  {colorseriesOffice6},%
+}
+
+% color cycle list for bar plots
+\pgfplotsset{
+  /pgfplots/bar cycle list/.style={/pgfplots/cycle list={%
+    {colorseriesOffice1!20!black,fill=colorseriesOffice1!80!white,mark=none},%
+    {colorseriesOffice2!20!black,fill=colorseriesOffice2!80!white,mark=none},%
+    {colorseriesOffice3!20!black,fill=colorseriesOffice3!80!white,mark=none},%
+    {colorseriesOffice4!20!black,fill=colorseriesOffice4!80!white,mark=none},%
+    {colorseriesOffice5!20!black,fill=colorseriesOffice5!80!white,mark=none},%
+    {colorseriesOffice6!20!black,fill=colorseriesOffice6!80!white,mark=none},%
+    }
+  },
+}
+
+
+}{} % end if pgfplots

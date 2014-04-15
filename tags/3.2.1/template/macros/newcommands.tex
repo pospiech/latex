@@ -1,0 +1,43 @@
+% --| other new definitions |-----------------------------------------
+
+
+
+% --| Math |-------------------------------------------------------
+
+
+% -- new commands --
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\Abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\Trace}[1]{\ensuremath{\Tr\left\{\,#1\,\right\}}} % Trace /Spur
+%
+
+% -- differentials --
+\newcommand{\pd}{\partial\mspace{1mu}} % partial diff
+\newcommand{\td}{\,\mathrm{d}}	% total diff
+
+% -- Abbreviations --
+\renewcommand{\Re}{\text{Re}}			% Real value
+\renewcommand{\Im}{\text{Im}}			% Real value
+\newcommand{\complex}{\mathbb{C}} % Complex
+\newcommand{\real}{\mathbb{R}}    % Real
+\renewcommand{\i}{\mathrm{i}}   
+%
+\newcommand{\Ham}{\mathcal{H}}    
+\newcommand{\Prob}{\mathscr{P}}   
+\newcommand{\unity}{\mathds{1}}   
+%
+% -- New Operators --
+\IfDefined{DeclareMathOperator}{
+  \DeclareMathOperator{\rot}{rot}
+  \DeclareMathOperator{\grad}{grad}
+  \DeclareMathOperator{\rect}{rect}
+  \renewcommand{\div}{\text{div}\,}
+  \DeclareMathOperator{\Tr}{Tr}
+  \DeclareMathOperator{\const}{const}
+  \DeclareMathOperator{\e}{e} 			% exponatial Function
+}
+
+% -- new symbols --
+\newcommand{\laplace}{\Delta}
+\newcommand{\dalembert}{\Box}

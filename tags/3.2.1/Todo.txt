@@ -1,0 +1,15 @@
+22.12.
+
+Todo: biblatex: make style 
+
+
+18.01:
+- remove framed from demo.tex ?
+  -> requires additional code in templatedemo.sty for second input file
+
+
+01.05
+- remove BibtexDatabase.bib
+  --> still required, but content replaced
+
+
