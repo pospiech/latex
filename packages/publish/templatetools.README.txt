@@ -1,0 +1,25 @@
+templatetools
+=============
+New conditional commands helpful for LaTeX templates
+
+== Description ==
+
+Collection of tools, which are helpful for the creation of 
+a LaTeX template if conditional paths for code execution 
+are required. 
+All commands work in the preamble and in the document.
+
+
+== Contents ==
+
+This work contains:
+- The templatetools files: 
+  - templatetools.dtx
+  - templatetools.ins
+- The documentation:
+  - templatetools.pdf
+- This README file
+
+== Maintained by ==
+Matthias Pospiech
+matthias@pospiech.eu

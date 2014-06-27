@@ -1,0 +1,24 @@
+tablestyles
+===========
+Styles for tables with new commands.
+
+== Description ==
+
+This package tries introduce a separation of text and style
+in tables by defining reusable table commands and a simple 
+interface to define a style for a table.
+Furthermore the package defines common used column styles.
+
+== Contents ==
+
+This work contains:
+- The tablestyles files: 
+  - tablestyles.dtx
+  - tablestyles.ins
+- The documentation:
+  - tablestyles.pdf
+- This README file
+
+== Maintained by ==
+Matthias Pospiech
+matthias@pospiech.eu
