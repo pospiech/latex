@@ -1,0 +1,25 @@
+codesection
+===========
+Provides an Environment which can be included or excluded from compilation.
+
+== Description ==
+
+This packages provides an environment to switch a section of code on or off. The
+code can be placed anywhere in the file and is not limited to the document or the
+preamble. 
+The motivation for this package was to have commands which allow to
+preselect if sections of code in a preamble of a template are executed or not.
+
+== Contents ==
+
+This work contains:
+- The codesection files: 
+  - codesection.dtx
+  - codesection.ins
+- The documentation:
+  - codesection.pdf
+- This README file
+
+== Maintained by ==
+Matthias Pospiech
+matthias@pospiech.eu

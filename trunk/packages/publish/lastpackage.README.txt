@@ -1,0 +1,23 @@
+lastpackage
+===========
+Indicates the last loaded package. Does not provide any function.
+
+== Description ==
+
+This package can be used to define the last point where some code shall be
+executed. It does not provide any function. 
+Usage examples are provided in the documentation.
+
+== Contents ==
+
+This work contains:
+- The lastpackage files: 
+  - lastpackage.dtx
+  - lastpackage.ins
+- The documentation:
+  - lastpackage.pdf
+- This README file
+
+== Maintained by ==
+Matthias Pospiech
+matthias@pospiech.eu

@@ -1,0 +1,37 @@
+latexdemo
+=========
+Demonstrate LaTeX code with its resulting output.
+
+== Description ==
+
+This package provides configurable tools to print out LaTeX code and
+the resulting output in the same document. It supports to print out
+the result inside a conditional sequence. This allows to print the
+result only if it would compile, which can be done with code such
+as:
+
+\begin{filecontents*}{\democodefile}
+\so{letterspacing}
+\end{filecontents*}
+
+\ifcsdef{so}{%
+Commands of package \package{soul}:
+\PrintDemo{style=parallel}%
+}{}%
+
+This package is comprehensively used in the documentation of the 
+LaTeX Thesis template: https://code.google.com/p/latexthesistemplate/
+
+== Contents ==
+
+This work contains:
+- The latexdemo files: 
+  - latexdemo.dtx
+  - latexdemo.ins
+- The documentation:
+  - latexdemo.pdf
+- This README file
+
+== Maintained by ==
+Matthias Pospiech
+matthias@pospiech.eu

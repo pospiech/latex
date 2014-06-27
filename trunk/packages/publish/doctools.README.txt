@@ -1,0 +1,22 @@
+doctools
+========
+Collection of tools for the documentation of LaTeX code.
+
+== Description ==
+
+This package is a collections of tools for the documentation of LaTeX 
+code either in a normal document or within a dtx file.
+
+== Contents ==
+
+This work contains:
+- The doctools files: 
+  - doctools.dtx
+  - doctools.ins
+- The documentation:
+  - doctools.pdf
+- This README file
+
+== Maintained by ==
+Matthias Pospiech
+matthias@pospiech.eu

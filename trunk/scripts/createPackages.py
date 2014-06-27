@@ -8,9 +8,10 @@ import texBuildFunctions as tex
 def main():
     strTargetDir = "CTAN"
     createPackage('doctools', strTargetDir)
+    createPackage('latexdemo', strTargetDir)
+    return
     createPackage('lastpackage', strTargetDir)
     createPackage('tablestyles', strTargetDir)
-    createPackage('latexdemo', strTargetDir)
     createPackage('codesection', strTargetDir)
     createPackage('templatetools', strTargetDir)
 
@@ -137,11 +138,25 @@ def createPackage(package, targetFolder):
     # remove doctools.sty
     if package != 'doctools':
         tex.unfailingRemoveFile(strTargetDir + "\\doctools.sty")
+    # remove package.log
+    tex.unfailingRemoveFile(strTargetDir + "\\" + package + '.log')
+    # remove package.sty
+    # tex.unfailingRemoveFile(strTargetDir + "\\" + package + '.sty')
+    # remove any .tex file
+    tex.unfailingRemoveFile(strTargetDir + "\\" + '*.tex')
+
+
+    # copy README
+    readmeOriginFile = package + ".README.txt"
+    readmeTargetFile = strTargetDir + "\\README"
+    if os.path.exists(readmeOriginFile):
+        shutil.copy(readmeOriginFile, readmeTargetFile)
+        print ('copying README file')
 
     # zip package folder
     os.chdir(targetFolder)
     filename = package + '.zip'
-    executeCode = 'zip -r ' +  filename + ' ' + package + '/*'
+    executeCode = 'zip -x *.sty -r ' +  filename + ' ' + package + '/*'
     print (executeCode)
     result = os.system(executeCode)
 
