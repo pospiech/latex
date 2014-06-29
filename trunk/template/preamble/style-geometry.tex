@@ -18,10 +18,11 @@
    %totalwidth=,    % width of total body % (Generally, width >= textwidth)
    %totalheight=,   % height of total body, excluding header and footer by default
    %total=,        % total={ width , height }
-   %textwidth=,    % modifies \textwidth, the width of body
-   %textheight=,   % modifies \textheight, the height of body
+   % value similar to koma script with DIV=12
+   textwidth=426.8pt,    % modifies \textwidth, the width of body
+   textheight=595.8pt,   % modifies \textheight, the height of body
    %body=,        % { width , height } sets both \textwidth and \textheight of the body of page.
-   lines=45,       % enables users to specify \textheight by the number of lines.
+   %lines=45,       % enables users to specify \textheight by the number of lines.
    %includehead,  % includes the head of the page, \headheight and \headsep, into total body.
    %includefoot,  % includes the foot of the page, \footskip, into body.
    %includeheadfoot, % sets both includehead and includefoot to true
@@ -31,7 +32,7 @@
    %ignorefoot,   % disregards the foot of page, footskip, in determining vertical layout
    %ignoreheadfoot, % sets both ignorehead and ignorefoot to true.
    %ignoremp,     % disregards the marginal notes in determining the horizontal margins
-   ignoreall,     % sets both ignoreheadfoot and ignoremp to true
+   %ignoreall,     % sets both ignoreheadfoot and ignoremp to true
    heightrounded, % This option rounds \textheight to n-times (n: an integer) of \baselineskip
    %hdivide=,     % { left margin , width , right margin }
                   % Note that you should not specify all of the three parameters
@@ -42,6 +43,13 @@
                   % alias: lmargin, inner
    %right=,       % right or outer margin of total body
                   % alias: rmargin outer
+   % set \oddsidemargin to 3.6pt 
+   %  can not be set directly, must be calculated:
+   %  inner = 1inch - bindingoffset + oddsidemargin
+   inner=\dimexpr1in-10mm+3.6pt\relax,
+   % set top (sets multiple values, for example \topmargin)
+   %  such that it matches typearea with DIV 12 approx.
+   top = 120pt, 
    %top=,         % top margin of the page.
                   % Alias : tmargin
    %bottom=,      % bottom margin of the page
@@ -60,7 +68,7 @@
                   % and in which the marginal notes stay always on the same side.
    bindingoffset=10mm,  % removes a specified space for binding
 %%% Dimensionen
-   %headheight=,  % Alias:  head
+   headheight=28.5pt,  % Alias:  head
    %headsep=,     % separation between header and text
    %footskip=,    % distance separation between baseline of last line of text and baseline of footer
                   % Alias: foot
@@ -71,7 +79,7 @@
    %noheadfoot,   % equivalent to nohead and nofoot.
    %footnotesep=, % changes the dimension \skip\footins,.
                   % separation between the bottom of text body and the top of footnote text
-   marginparwidth=0pt, % width of the marginal notes
+   %marginparwidth=22pt, % width of the marginal notes
                   % Alias: marginpar
    %marginparsep=,% separation between body and marginal notes.
    %nomarginpar,  % shrinks spaces for marginal notes to 0pt
@@ -82,8 +90,6 @@
                   % offset={ hoffset , voffset }
    %twocolumn,    % twocolumn=false denotes onecolumn
    twoside,
-   textwidth=400pt,   % sets \textwidth directly
-   %textheight=,  % sets \textheight directly
    %reversemp,    % makes the marginal notes appear in the left (inner) margin
                   % Alias: reversemarginpar
 }
