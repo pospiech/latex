@@ -6,10 +6,28 @@
 This chapter gives a general introduction to the usage of this template and enables the user to start with the actual work. 
 In the subsequent chapters and other parts of this documentation you will find a wide variety of further information. However, there is no need to read them all. Instead you might find it useful to look at individual sections later, when you are looking specifically for a solution to a problem.
 
-In the first \cref{sec:doc:targetusers} you find a general discussion on the typical user of this template followed by a tutorial (\cref{sec:doc:start}) on how to start working with this template. The chapter ends with the introduction of magic comments in \cref{sec:doc:magiccomments}.
+The latest changes in the template are shortly presented in the first \cref{sec:doc:changes}. The full history can be found in \cref{appendix:doc:changes}.
+
+In the second \cref{sec:doc:targetusers} you find a general discussion on the typical user of this template followed by a tutorial (\cref{sec:doc:start}) on how to start working with this template. The chapter ends with the introduction of magic comments in \cref{sec:doc:magiccomments}.
 
 In the next \cref{chap:doc:faq} you will find a list of typical questions and answers that are specific for this template followed by a list of known problems in this template (\cref{chap:doc:problems}). For those who want to change the font in the template there is a short overview on fonts provided in \cref{chap:doc:fonts}.
+% -------------------------------------------------------------------------
+\section{Changes in the latest release}
+\label{sec:doc:changes}
 
+These changes were introduced in the latest release:
+
+\minisec{2014/07 v3.2.2} %
+Bug fixes, Improvements and other changes
+\begin{itemize}
+\item The template failed to compile with TeX Live 2014. The error was in the definition of \cs{addmoretexcs}. 
+\item The options of \package{geometry} were not well thought out. If a spacing factor was introduced this could lead to an ugly page layout. All options of \package{geometry} are now such that the page layout is similar to the one of \package{typearea} with DIV12. 
+\item The publications lists are now bibliography lists create with \cs{printbibliography}. Previously these needed to be created completely manual.
+\item New magic comment for the bibliography tool added.
+\item Removed packages. These are now available from CTAN or better the distribution package manager. 
+\end{itemize}
+
+See \cref{appendix:doc:changes} for all full list of the previous development process of this template.
 % -------------------------------------------------------------------------
 \section{Target Users}
 \label{sec:doc:targetusers}
@@ -530,6 +548,17 @@ Selection of some languages:
 \end{latexcode}
 %
 Sets the file encoding for the current file. The default in current editors is UTF-8.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{bibliography tool}
+\label{sec:doc:magiccomments:bib}
+
+\begin{latexcode}
+% !BIB = biber
+\end{latexcode}
+%
+The alternative is \texttt{bibtex}, which is no longer recommended and with this template
+not supported! 
 
 % -------------------------------------------------------------------------
 \section{Selection of font(s)}
