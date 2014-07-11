@@ -26,17 +26,17 @@ def main():
     texfile = '../template/TemplateDocumentation.'
     tex.cleanupAuxFiles(texfile)
 
-    print ("--- Creation of Packages ---")
-    importCreatePackages.main()
+    # print ("--- Creation of Packages ---")
+    # importCreatePackages.main()
 
-    print ("--- Copy Packages ---")
-    copyPackages()
+    # print ("--- Copy Packages ---")
+    # copyPackages()
 
     print ("--- Create Font Examaples ---")
-    importFontExamples.main()
+    # importFontExamples.main()
 
     print ("--- fill doc-code.tex ---")
-    importInsertPrintCode.main()
+    # importInsertPrintCode.main()
 
     print ("--- compiling LaTeXTemplate.tex ---")
     texfile = '../template/LaTeXTemplate.tex'
@@ -55,7 +55,8 @@ def main():
 
 
     copyFile('bib/BibtexDatabase.bib', 'bib')
-    copyFile('content/demo/latextutorial.tex', 'content/demo/')
+    copyFile('bib/publications.bib', 'bib')
+    copyFile('content/template/latextutorial.tex', 'content/template/')
     copyFile('content/*.tex', 'content')
     copyFile('fonts/*.tex', 'fonts')
     copyFile('images/*', 'images')
@@ -68,7 +69,7 @@ def main():
     copyFile('preamble/style*.tex', 'preamble')
     copyFile('version.txt', '')
     copyFile('licence.txt', '')
-    copyFile('*.sty', '')
+    # copyFile('*.sty', '')
 
 
     # zip publish folder

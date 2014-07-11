@@ -1,6 +1,7 @@
 % !TeX encoding=utf8
 % !TeX program = pdflatex
 % !TeX spellcheck = en-US
+% !BIB = biber
 
 % Description: This is the main file for the documentation of the 
 % latex-thesis-template. It not meant to be used by the users
@@ -128,7 +129,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Definition of glossaries Entries (before document!)
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{content/demo/glossariesEntries.tex}
+\input{doc/demo/glossariesEntries.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % include list
@@ -138,7 +139,7 @@
  doc/0-title,
  doc/doc-introduction,
  doc/doc-code-filled,
- content/demo/demo,
+ doc/demo/demo,
 } % end includeonly
 
 
@@ -186,7 +187,7 @@
 \ifcsdef{PartialToc}{\PartialToc{1}}{}
 \KOMAoptions{headings=openright}
 %
-\include{content/demo/demo}
+\include{doc/demo/demo}
 %
 \ifcsdef{PartialToc}{
   \stopcontents[part]
