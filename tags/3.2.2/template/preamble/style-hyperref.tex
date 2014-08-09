@@ -1,0 +1,73 @@
+\IfPackageLoaded{hyperref}{
+
+\hypersetup{
+%%% General options
+  ,draft=false, % all hypertext options are turned off
+  ,final=true   % all hypertext options are turned on
+  ,debug=false  % extra diagnostic messages are printed in the log file
+  ,hypertexnames=true % use guessable names for links
+  ,naturalnames=false % use LaTeX-computed names for links
+  ,setpagesize=true   % sets page size by special driver commands
+%%% Configuration options
+  ,raiselinks=true    % forces commands to reflect the
+                      % real height of the link 
+  ,breaklinks=true    % Allows link text to break across lines
+  ,pageanchor=true    % Determines whether every page is given an implicit
+                      % anchor at the top left corner. 
+  ,plainpages=false   % Forces page anchors to be named by the arabic
+                      % form of the page number, rather than the formatted form.
+%%% Extension options
+  ,linktocpage=true   % make page number, not text, be link on TOC, LOF and LOT
+  ,colorlinks=true    % Colors the text of links and anchors.
+}%
+\IfColorDefined{pdflinkcolor}{\hypersetup{%
+%%% Colors for links
+  ,linkcolor  =pdflinkcolor   % Color for normal internal links.
+  ,anchorcolor=pdfanchorcolor % Color for anchor text.
+  ,citecolor  =pdfcitecolor   % Color for bibliographical citations in text.
+  ,filecolor  =pdffilecolor   % Color for URLs which open local files.
+  ,menucolor  =pdfmenucolor   % Color for Acrobat menu items.
+  ,runcolor   =pdfruncolor    % Color for run links (launch annotations).
+  ,urlcolor   =pdfurlcolor    % color magenta Color for linked URLs.
+}}{}
+\hypersetup{%
+%%% PDF-specific display options
+  ,bookmarksopen=true     % If Acrobat bookmarks are requested, show them
+                          % with all the subtrees expanded.
+  ,bookmarksopenlevel=2   % level (\maxdimen) to which bookmarks are open
+  ,bookmarksnumbered=true %
+  ,bookmarkstype=toc      %
+%%% PDF display and information options
+  ,pdfpagemode=UseOutlines % Determines how the file is opening in Acrobat:
+                          %  UseNone, UseThumbs (show thumbnails),
+                          %  UseOutlines (show bookmarks), FullScreen,
+                          %  UseOC (PDF 1.5), and UseAttachments (PDF 1.6).
+                          %
+  ,pdfstartpage=1         % Determines on which page the PDF file is opened.
+  ,pdfstartview=FitV      % Set the startup page view
+  % options: (same for pdfview, pdfremotestartview)
+  %  Fit   Fits the page to the window.
+  %  FitH  Fits the width of the page to the window.
+  %  FitV  Fits the height of the page to the window.
+  %  FitB  Fits the page bounding box to the window.
+  %  FitBH Fits the width of the page bounding box to  the window.
+  %  FitBV Fits the height of the page bounding box to the window.
+  ,pdfremotestartview=Fit % Set the startup page view of remote PDF files
+  ,pdfcenterwindow=false  %
+  ,pdffitwindow=false     % resize document window to fit document size
+  ,pdfnewwindow=false     % make links that open another PDF file 
+                          % start a new window
+  % options:
+  %  SinglePage     Displays a single page; advancing flips the page
+  %  OneColumn      Displays the document in one column; continuous scrolling.
+  %  TwoColumnLeft  Displays the document in two columns, 
+  %                 odd-numbered pages to the left.
+  %  TwoColumnRight Displays the document in two columns, 
+  %                 odd-numbered pages to the right.
+  %  TwoPageLeft    Displays two pages, odd-numbered pages to the left 
+  %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
+  %
+  ,pdfdisplaydoctitle=true  % display document title instead of file name 
+} % end: hypersetup
+
+} % end: IfPackageLoaded{hyperref}

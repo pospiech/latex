@@ -1,0 +1,23 @@
+\IfPackageLoaded{titletoc}{
+
+% default definition of the toc format of sections
+%\titlecontents{section}
+%[3.8em] % left
+%{}  % above code
+%{\contentslabel{2.3em}}    % numbered-entry-format
+%{\hspace*{-2.3em}}         % numberless-entry-format
+%{\titlerule*[1pc]{.}\contentspage} % filler-page-format
+%[]      % below code
+
+% Define partial toc for part pages
+\newcommand{\PartialToc}[1]{%
+    \thispagestyle{plain}
+    \startcontents[part]
+    \section*{\contentsname}
+    \printcontents[part]{}{0}{\setcounter{tocdepth}{#1}}
+}
+
+% Thanks to egreg, for providing this code at
+% http://tex.stackexchange.com/questions/101773/write-to-back-page-of-part
+
+} % end of \IfPackageLoaded{titletoc}

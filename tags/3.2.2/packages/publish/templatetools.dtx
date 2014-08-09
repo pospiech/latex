@@ -1,0 +1,856 @@
+% \iffalse meta-comment
+% !TeX spellcheck = en-US
+% 
+% File:      templatetools.sty
+% Version:   <*date*> v0.1
+% Author:    Matthias Pospiech
+% Email:     <matthias@pospiech.eu>
+%
+% Copyright (C) <*year*> by Matthias Pospiech <matthias@pospiech.eu>
+% ---------------------------------------------------------------------------
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Matthias Pospiech.
+%
+% This work consists of the files templatetools.dtx and templatetools.ins
+% and the derived filebase templatetools.sty.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{templatetools.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<package>\ProvidesPackage{templatetools}
+%<*package>
+    [<*date*> v0.1 Collection of conditional commands useful inside templates]
+%</package>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{hypdoc}
+\RequirePackage[%
+  loadHyperref=true,
+  createIndexEntries=false,
+  applyLayout=true]
+{doctools} % 
+%
+\usepackage{lmodern}
+
+\usepackage{templatetools}[<*date*>]
+
+\EnableCrossrefs  % (default) Every new macro name used within a macrocode or
+                  % macrocode∗ environment will produce an index entry.
+% \DisableCrossrefs % turn off this feature
+%
+% If an index is created is determined by the use of the following
+% declarations in the driver file preamble; if neither is used, no index is 
+% produced.
+\PageIndex     % all index entries refer to their page number
+% \CodelineIndex % index entries produced by \DescribeMacro and \DescribeEnv
+               %  refer to page number but those produced by the macro
+               %  environment refer to the code lines, 
+               % which will be numbered automatically.
+% \CodelineNumbered % no index is created, but the code lines are numbered
+
+\RecordChanges
+
+
+\begin{document}
+  \DocInput{templatetools.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v0.1}{<*date*>}{Converted to DTX file}
+%
+% \DoNotIndex{\newcommand,\newenvironment}
+%
+% \providecommand*{\url}{\texttt}
+% \GetFileInfo{templatetools.dtx}
+% \title{The \textsf{templatetools} package}
+% \author{Matthias Pospiech \\ \url{matthias@pospiech.eu}}
+% \date{\fileversion~from \filedate}
+%
+% \maketitle
+% \begin{abstract}\noindent
+% Collection of tools, which are helpful for the creation of a \LaTeX{}
+% template if conditional paths for code execution are required. 
+% \end{abstract}
+%
+% \section{Usage}
+%
+% \subsection{Commands}
+% The following commands check if a command sequence is defined or not. 
+%
+% \DescribeMacro{\IfDefined} \marg{command}\marg{code defined} \AfterLastParam
+% Executes the code if the command is defined. 
+%
+%
+% \DescribeMacro{\IfUndefined} \marg{command}\marg{code undefined}
+% \AfterLastParam 
+% Executes the code if the command is not defined.
+%
+% \DescribeMacro{\IfElseDefined} \marg{command}\marg{defined}\marg{undefined}
+% \AfterLastParam
+% Executes either the code in the \emph{defined} bracket if the command is
+% defined or in the \emph{undefined} bracket if the code is undefined.
+%
+% \DescribeMacro{\IfElseUndefined} \marg{command}\marg{undefined}\marg{defined}
+% \AfterLastParam
+% As \cs{IfElseDefined}, but with switched brackets for defined and undefined.
+%
+%
+% \subsubsection{Example}
+% The \cs{usepackage} code is only executed if the required \cs{upmu} command
+% is defined.
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+% Requires: Command \upmu
+\IfDefined{upmu}{\usepackage[upmu]{gensymb}}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+%
+% \DescribeMacro{\IfMultDefined} 
+% \marg{list of commands}\marg{defined}\marg{undefined} \AfterLastParam
+% Checks a comma separated list of commands before it executes the defined
+% code path if all commands were defined or the undefined code path else.
+%
+% \subsubsection{Example}
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+% Requires: Command longtable and rowcolors
+\IfMultDefined{longtable,rowcolors}
+  {... longtable with rowcolors ...}
+  {Error: Neither longtable nor rowcolors are defined}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \subsection{Draft mode}
+%
+% The following commands check if draft mode is active or not.
+%
+% \DescribeMacro{\IfDraft}\marg{draft mode active}
+% \AfterLastParam
+%
+% \DescribeMacro{\IfNotDraft}\marg{draft mode disabled}
+% \AfterLastParam
+%
+% \DescribeMacro{\IfNotDraftElse}\marg{draft mode disabled}\marg{draft mode active}
+% \AfterLastParam
+%
+% \subsubsection{Example}
+% The \package{bookmark} is not loaded in draft mode:
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+\IfNotDraft{\usepackage[]{bookmark}}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+%
+% \subsection{Packages}
+%
+% These commands check if a package was loaded or not. 
+% This can be achieved in different ways with commands from other packages.
+% The key point of these commands here is that they work not only in 
+% the preamble and include no @-char. 
+% 
+% \DescribeMacro{\IfPackageLoaded}\marg{package}\marg{is loaded}
+% \AfterLastParam
+%
+% \DescribeMacro{\IfPackageNotLoaded}\marg{package}\marg{is not loaded}
+% \AfterLastParam
+%
+% \DescribeMacro{\IfPackagesLoaded}\marg{list of packages}\marg{all are loaded}
+% \AfterLastParam
+%
+% \DescribeMacro{\IfPackagesNotLoaded}\marg{list of packages}\marg{none is loaded}
+% \AfterLastParam
+%
+% \subsubsection{Example}
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+% Load epstopdf only if graphicx was loaded
+\IfPackageLoaded{graphicx}{%
+  \usepackage{epstopdf}
+}
+% Do not load subcaption if subfig was loaded (incompatible)
+\IfPackageNotLoaded{subfig}{
+  \usepackage{subcaption}[2011/08/17]
+}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+%
+% \subsection{Package Loading order}
+% In \latex{} documents it is quite often essential
+% to load packages in the right order to ensure that everything works.
+% However this makes it impossible to group similar packages together.
+%
+% The following commands allow to execute code after or before a 
+% specified package and thus also allows to load packages in a specified order
+% using \cs{usepackage} commands.
+%
+% If the reference package was not loaded in the preamble
+% the code will nevertheless be executed before \texttt{\cs{begin}\{document\}}
+%
+% 
+% \DescribeMacro{\ExecuteAfterPackage}
+% \marg{after this package}\marg{execute this code}\AfterLastParam
+%
+% \DescribeMacro{\ExecuteBeforePackage}
+% \marg{before this package}\marg{execute this code}\AfterLastParam
+%
+% \subsubsection{Example}
+% \package{cleveref} package must be loaded after package \package{hyperref}.
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+% loading: must be loaded after hyperref and after varioref
+\ExecuteAfterPackage{hyperref}{
+% caption and cleveref incompatible in Versions before 2011/12/24
+  \usepackage{cleveref}[2011/12/24]
+}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \subsection{Tikz Library}
+% Checks if a tikz library was loaded.
+%
+% \DescribeMacro{\IfTikzLibraryLoaded}\marg{library}\marg{if loaded}
+%
+% 
+% \subsubsection{Example}
+% Executes the code only of the tikz library was loaded.
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+\IfTikzLibraryLoaded{lindenmayersystems}{%
+% code origin: pgf/tikz manual
+\begin{tikzpicture}
+\pgfdeclarelindenmayersystem{Koch curve}{
+   \rule{F -> F-F++F-F}
+}
+\shadedraw [top color=white, bottom color=blue!50, draw=blue!50!black]
+           [l-system={Koch curve, step=2pt, angle=60, axiom=F++F++F, order=3}]
+           lindenmayer system -- cycle;
+\end{tikzpicture}
+}%
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \subsection{Column types}
+%
+% \LaTeX{} provides no tool to check for the existence of a column type. 
+% This is provided by the following commands:
+%
+% \DescribeMacro{\IfColumntypeDefined}\marg{columntype character}\marg{is 
+% defined}\marg{is undefined} \AfterLastParam
+%
+% ^^A which is also available as a command checking a comma separated list for 
+% ^^A column type characters
+%
+% \DescribeMacro{\IfColumntypesDefined}
+% \marg{columntype character list}\marg{is defined}\marg{is undefined}
+% \AfterLastParam
+%
+% \subsubsection{Example}
+% Executes the code only of the X column type is defined and the tabularx package was 
+% loaded by checking that \cs{tabularx} is defined.
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+\IfColumntypeDefined{X}{%
+\IfDefined{tabularx}{%
+%
+\begin{tabularx}{0.9\textwidth}{llXX}
+\hline
+l & l & X & X \\\hline
+%
+left column & left column & 
+text which is considerably longer than the width of the column & 
+text which is considerably longer than the width of the column \\
+\hline
+\end{tabularx}
+%
+}}%
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+
+% \subsection{Color definitions}
+%
+% Color definitions are saved in \latex{} as names. The following commands
+% provide a convenient way to check the existence of these color definitions.
+% 
+% \DescribeMacro{\IfColorDefined} 
+% \marg{color name}\marg{is defined}\marg{is undefined} \AfterLastParam
+%
+%
+% \DescribeMacro{\IfColorsDefined}
+% \marg{list of color name}\marg{is defined}\marg{is undefined} \AfterLastParam
+%
+% \subsection{Math font version}
+% \DescribeMacro{\IfMathVersionDefined}
+% \marg{font version}\marg{is defined}\marg{is undefined} \AfterLastParam
+%
+%
+% \subsection{Glossaries styles}
+% \DescribeMacro{\IfGlossariesStyleDefined} 
+% \marg{style name}\marg{is defined} \AfterLastParam
+%
+%
+% \subsection{Template Definitions}
+% The following commands in principle define only macros, but in contrast to 
+% normal methods these are saved using two keys named \emph{group} 
+% and \emph{property}. With a matching command for the execution this
+% allows to generate macros in an object like naming structure, which
+% can be used to toggle settings. 
+%
+% \DescribeMacro{\SetTemplateDefinition} \marg{Group}\marg{Property}\marg{Code}
+% \AfterLastParam
+% Defines a collection of commands (a macro) with a \emph{group} and 
+% \emph{property}.
+%
+% \DescribeMacro{\UseDefinition} \marg{Group}\marg{Property} \AfterLastParam
+% Execute macro save with the \emph{group} and \emph{property}.
+%
+% \subsubsection{Example}
+% The following code allows to switch the colors anywhere in the document:
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}[style=lstDemoStyleLaTeXCode]
+\SetTemplateDefinition{Target}{Web}{%
+  \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
+}%
+\SetTemplateDefinition{Target}{Print}{%
+  \definecolor{pdfurlcolor}{rgb}{0,0,0}
+}%
+% Apply colors for web
+\UseDefinition{Target}{Web}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%
+% \StopEventually{}
+% \clearpage
+% \section{Implementation}
+%
+% \iffalse
+%<*templatetools.sty>
+% \fi
+%
+%
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\ProvidesPackage{templatetools}
+          [<*date*> v0.1 Collection of conditional commands useful inside templates]
+%    \end{macrocode}
+%    \begin{macrocode}
+%%% --- Necessary Packages
+%%% ------------------------------------------------------------------
+\RequirePackage{ifpdf}
+\RequirePackage{etoolbox}
+\RequirePackage{ltxcmds}
+\RequirePackage{array} % for column types
+\RequirePackage{ifdraft} % check draft
+\RequirePackage{scrlfile}
+%    \end{macrocode}
+%
+% \subsection{Command sequences}
+%
+% \iffalse
+%%% --- Check if command is defined
+%%% ------------------------------------------------------------------
+% \fi
+%
+%
+% \begin{macro}{\IfDefined}
+% Wrapper to \cs{ifcsdef} with only true path.
+%    \begin{macrocode}
+\newcommand{\IfDefined}[2]{\ifcsdef{#1}{#2}{}}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfUndefined}
+% Wrapper to \cs{ifcsdef} with only false path.
+%    \begin{macrocode}
+\newcommand{\IfUndefined}[2]{\ifcsdef{#1}{}{#2}}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfElseDefined}
+% Wrapper to \cs{ifcsdef} with true and false path.
+%    \begin{macrocode}
+\newcommand{\IfElseDefined}[3]{\ifcsdef{#1}{#2}{#3}}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfElseUndefined}
+% Wrapper to \cs{ifcsdef} with true and false path in reverse order.
+%    \begin{macrocode}
+\newcommand{\IfElseUndefined}[3]{\ifcsdef{#1}{#3}{#2}}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfMultDefined}
+% Checks if more than one command is defined
+%    \begin{macrocode}
+\newcommand{\IfMultDefined}[1]{%
+  \@tempswatrue
+  \def\do##1{%
+%% define \@tempa with trimmed index element.
+    \edef\@tempa{\zap@space##1 \@empty}%
+%% check if package of current index is loaded
+    \ifcsdef{\@tempa}{}{\@tempswafalse}%
+  }%
+%% Process csv list with command \do (etoolbox)
+  \docsvlist{#1}%
+%% makes sure that the conditional works with one or two (if, else) parameters.
+  \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
+}
+%    \end{macrocode}
+% \end{macro}
+% 
+% Thanks to \person{egreg,Andrey Vihrov, Martin Scharrer} on 
+%\href{http://tex.stackexchange.com/questions/35282/how-to-implement-a-command-that-checks-for-loaded-packages}{tex.stackexchange.com}
+% for the help to implement a command that checks a comma separated list. 
+%
+% \subsection{Draft mode}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% Check for 'draft' mode - commands.
+% ------------------------------------------------------------------
+% \fi
+%
+%
+% \begin{macro}{\IfDraft}
+% Tests if \cs{@draft} is undefined and executed false path in case draft string 
+% is defined.
+%    \begin{macrocode}
+\newcommand{\IfDraft}[1]{\ifx\@draft\@undefined \else #1 \fi}
+%    \end{macrocode}
+% \end{macro}
+
+%
+% \begin{macro}{\IfNotDraft}
+% Similar to \cs{IfDraft} but executes only path for draft mode undefined.
+%    \begin{macrocode}
+\newcommand{\IfNotDraft}[1]{\ifx\@draft\@undefined #1 \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfNotDraftElse}
+% Similar to \cs{IfDraft} but executes true and fals path.
+%    \begin{macrocode}
+\newcommand{\IfNotDraftElse}[2]{\ifx\@draft\@undefined #1 \else #2 \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \subsection{Packages}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% Check load status of packages
+% ------------------------------------------------------------------
+% \fi
+%
+% If a package is loaded can be checked in many ways, but here the 
+% \cs{ltx@ifpackageloaded} is used because it can be executed anywhere
+% in the document. 
+%
+% \begin{macro}{\IfPackageLoaded}
+% Wrapper to \cs{ltx@ifpackageloaded} with only true path.
+%    \begin{macrocode}
+\newcommand{\IfPackageLoaded}[2]{\ltx@ifpackageloaded{#1}{#2}{}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfPackageNotLoaded}
+% Wrapper to \cs{ltx@ifpackageloaded} with only false path.
+%    \begin{macrocode}
+\newcommand{\IfPackageNotLoaded}[2]{\ltx@ifpackageloaded{#1}{}{#2}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\IfElsePackageLoaded\}
+% Wrapper to \cs{ltx@ifpackageloaded}
+%    \begin{macrocode}
+\let\IfElsePackageLoaded\ltx@ifpackageloaded
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\IfPackagesLoaded}
+% Checks a list of packages
+%    \begin{macrocode}
+\newcommand{\IfPackagesLoaded}[1]{%
+  \@tempswatrue
+  \def\do##1{%
+    \edef\@tempa{\zap@space##1 \@empty}%
+    \ltx@ifpackageloaded{\@tempa}{}{\@tempswafalse}%
+  }%
+  \docsvlist{#1}%
+  \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfPackagesNotLoaded}
+% Invers check if all packages in a list are not loaded
+%    \begin{macrocode}
+\newcommand{\IfPackagesNotLoaded}[1]{%
+  \@tempswatrue
+  \def\do##1{%
+    \edef\@tempa{\zap@space##1 \@empty}%
+    \ltx@ifpackageloaded{\@tempa}{\@tempswafalse}{}%
+  }%
+  \docsvlist{#1}%
+  \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ExecuteAfterPackage}
+% Executes the code after the reference package has been loaded (using
+% \cs{AfterAtEndOfPackage}) or finally at the end of the preamble
+% if the reference package was not loaded until then.
+%
+%    \begin{macrocode}
+\newcommand{\ExecuteAfterPackage}[2]{%
+%% #1: after this package
+%% #2: code to execute
+  \AfterAtEndOfPackage{#1}{
+    #2%
+  }
+  \AtEndPreamble{%
+    \IfPackageNotLoaded{#1}{%
+     #2%
+    }
+  }
+} 
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ExecuteBeforePackage}
+% Executes the code directly before the reference package is loaded (using
+% \cs{BeforePackage}) or finally at the end of the preamble
+% if the reference package was not loaded until then.
+%
+%    \begin{macrocode}
+\newcommand{\ExecuteBeforePackage}[2]{%
+%% #1: before this package
+%% #2: code to execute
+  \BeforePackage{#1}{
+    #2%
+  }
+  \AtEndPreamble{%
+    \IfPackageNotLoaded{#1}{%
+     #2%
+    }
+  }
+} 
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Tikz library}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% The command sequence that is created for each tikz library when it is loaded is 
+% used to check if it is loaded.
+% \fi
+%
+%
+% \begin{macro}{\IfTikzLibraryLoaded}
+% Checks if the tikz library is loaded
+%    \begin{macrocode}
+\def\IfTikzLibraryLoaded#1{%
+  \ifcsname tikz@library@#1@loaded\endcsname
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Thanks to \person{egreg} and \person{Marco Daniel} on \href{http://tex.stackexchange.com/questions/48453/how-to-test-if-tikz-library-is-loaded}{tex.stackexchange.com} for their help with this command.
+%
+% \subsection{Column types in tables}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% table columns
+% ------------------------------------------------------------------
+% \fi
+%
+% The code in this section was inspired by the discussion with \person{egreg} on \href{http://tex.stackexchange.com/questions/35527/how-to-check-if-a-column-type-is-defined}{tex.stackexchange.com} on the detection of column definitions.
+%
+% Creates a list of predefined columntypes
+%    \begin{macrocode}
+\expandafter\let\csname columntype@l\endcsname\@empty
+\expandafter\let\csname columntype@c\endcsname\@empty
+\expandafter\let\csname columntype@r\endcsname\@empty
+\expandafter\let\csname columntype@p\endcsname\@empty
+\expandafter\let\csname columntype@m\endcsname\@empty
+\expandafter\let\csname columntype@b\endcsname\@empty
+\expandafter\let\csname columntype@@\endcsname\@empty
+\expandafter\let\csname columntype@!\endcsname\@empty
+\expandafter\let\csname columntype@|\endcsname\@empty
+\expandafter\let\csname columntype@<\endcsname\@empty
+\expandafter\let\csname columntype@>\endcsname\@empty
+\expandafter\let\csname columntype@=\endcsname\@empty
+%    \end{macrocode}
+%
+% \begin{macro}{\CheckIfColumntypeDefined}
+% Creates a bool variable that saves the status of the column type.
+%    \begin{macrocode}
+\newcommand\CheckIfColumntypeDefined[1]{%
+%% create the bool variable for column type
+  \providebool{tpl@coltype@#1}
+%% check if new column type of this name was created
+  \ifcsdef{NC@find@\string#1}%
+    {\setbool{tpl@coltype@#1}{true}}%
+%% if not check if it is a predefined column type
+    {\ifcsdef{columntype@\string#1}
+      {\setbool{tpl@coltype@#1}{true}}%
+      {\setbool{tpl@coltype@#1}{false}}%
+    }%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\isColumntypeDefined}
+% Returns the bool variable which can be interpreted by \cs{ifboolexpr}.
+% This should only be used internally and fails for nonexistent bool variables.
+%    \begin{macrocode}
+\newcommand\isColumntypeDefined[1]{tpl@coltype@#1}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfColumntypeDefined}
+% Executes \cs{CheckIfColumntypeDefined} and uses the resulting bool
+% variable with \cs{isColumntypeDefined} in a conditional sequence with 
+% \cs{ifboolexpr}.
+%    \begin{macrocode}
+\newcommand\IfColumntypeDefined[3]{%
+%% Execute check which create bool variable
+  \CheckIfColumntypeDefined{#1}
+%% use bool variable for if sequence
+  \ifboolexpr{ bool{\isColumntypeDefined{#1}} }{#2}{#3}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfColumntypesDefined}
+% Checks a comma separated list instead of a single string.
+%    \begin{macrocode}
+\newcommand{\IfColumntypesDefined}[1]{%
+  \@tempswatrue
+  \def\do##1{%
+    \edef\@tempa{\zap@space##1 \@empty}%
+%% check if column is defined.
+%%   Here with \expandafter because of the \string definition 
+%%   in \CheckIfColumntypeDefined. 
+    \expandafter\IfColumntypeDefined
+        \expandafter{\@tempa}{}{\@tempswafalse}
+  }%
+  \docsvlist{#1}%
+  \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsection{Color definitions}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% test color definitions
+% ------------------------------------------------------------------
+% \fi
+%
+%
+% \begin{macro}{\IfColorDefined}
+% Tests if a color is defined
+%    \begin{macrocode}
+\newcommand{\IfColorDefined}[3]{%
+  \ifcsdef{\string\color @#1}
+    {#2} % color string is defined
+    {#3}} % color string is not defined
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\IfColorsDefined}
+% Does the same for a list (comma separated) of color names.
+%    \begin{macrocode}
+\newcommand{\IfColorsDefined}[1]{%
+  \@tempswatrue
+  \def\do##1{%
+    \edef\@tempa{\zap@space##1 \@empty}%
+    \expandafter\IfColorDefined
+        \expandafter{\@tempa}{}{\@tempswafalse}
+  }%
+  \docsvlist{#1}%
+  \if@tempswa\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Math font version}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% test math versions
+% ------------------------------------------------------------------
+% \fi
+%
+% \begin{macro}{\IfMathVersionDefined}
+% Checks if a mathversion font is defined.  
+%    \begin{macrocode}
+\newcommand{\IfMathVersionDefined}[3]{\ifcsdef{mv@#1}{#2}{#3}}
+%    \end{macrocode}
+% \end{macro}
+%
+% Thanks to \person{Werner} and \person{Ulrike Fischer} for pointing me to this
+% name definition on 
+% \href{http://tex.stackexchange.com/questions/40903/check-if-mathversion-font-is-defined}{tex.stackexchange.com}.
+%
+%
+% \subsection{Glossaries styles}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% tests the existens of glossaries styles
+% ------------------------------------------------------------------
+% \fi
+%
+% \begin{macro}{\IfGlossariesStyleDefined}
+% Checks if a glossaries style is defined.  
+%    \begin{macrocode}
+\newcommand{\IfGlossariesStyleDefined}[2]{\ifcsdef{@glsstyle@#1}{#2}{}}
+%    \end{macrocode}
+% \end{macro}
+%
+% Thanks to \person{cgnieder} on 
+%\href{http://tex.stackexchange.com/questions/95639/test-if-a-listings-or-glossaries-style-is-valid}{tex.stackexchange.com}
+% for the help to implement the command.
+
+
+% \subsection{Template definitions}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% template definitions
+% ------------------------------------------------------------------
+% \fi
+%
+%
+% \begin{macro}{\SetTemplateDefinition}
+% Defines a macro with the \emph{group} and \emph{property} parameter names.
+%    \begin{macrocode}
+\newcommand\SetTemplateDefinition[3]{% 1: group, 2: property, 3: code
+  \csdef{tpl@definition@#1@#2}{#3}
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\UseDefinition}
+% Executes the macro using \cs{csuse} if it is defined. Otherwise a warning is 
+% thrown.
+%    \begin{macrocode}
+\newcommand\UseDefinition[2]{%
+  \ifcsdef{tpl@definition@#1@#2}
+    {\csuse{tpl@definition@#1@#2}}
+    {\PackageWarning{templatetools}%
+      {Definition #1->#2 is unknown\MessageBreak}{}}%
+}%
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \iffalse
+%</templatetools.sty>
+% \fi
+%
+% \Finale
+\endinput

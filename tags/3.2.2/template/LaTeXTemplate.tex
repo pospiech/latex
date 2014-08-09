@@ -1,0 +1,248 @@
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
+% !BIB = biber
+
+%% Bug fixes and other packages to be loaded before the class
+\RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
+\RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
+%
+%% Document Class (Koma Script) -----------------------------------------
+%% Doc: scrguien.pdf
+\documentclass[%
+   %draft=true,     % draft mode (no images, layout errors shown)
+   draft=false,     % final mode 
+%%% --- Paper Settings ---
+   paper=a4,% [Todo: add alternatives]
+   paper=portrait, % landscape
+   pagesize=auto, % driver
+%%% --- Base Font Size ---
+   fontsize=11pt,%
+%%% --- Koma Script Version ---
+   version=last, %
+%%% --- Global Package Options ---
+   english, % language (passed to babel and other packages)
+            % (ngerman, english, french, ...)
+]{scrbook} % Classes: scrartcl, scrreprt, scrbook
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Must be loaded first!
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% packages to allow more \write outputs
+\input{preamble/packages-SolutionsNoRoomForNewWrite.tex}
+% packages required for the template
+\usepackage{codesection}
+\usepackage{templatetools}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% encoding
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% automatic selection of encoding
+% insert chars for umlaut a and sz
+\usepackage{selinput}
+\SelectInputMappings{adieresis={ä},germandbls={ß},Euro={€}} 
+
+% Encoding of _files and directories_
+% (ensures that any file can be loaded without problems)
+\usepackage[%
+   extendedchars, encoding, multidot, space,
+   filenameencoding=latin1, % Windows XP, Vista, 7
+   % filenameencoding=utf8,   % Linux, OS X
+]{grffile}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% preamble
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%% select/load fonts
+\input{fonts/fonts.tex}
+%\input{fonts/font-commercial.tex}
+%% load packages
+\input{preamble/packages.tex}
+%% apply style settings
+\input{preamble/style.tex}
+%% new commands / definitions (required by the template!)
+\input{preamble/commands.tex}
+
+%% Test the page layout
+% display the layout
+%\IfPackageLoaded{geometry}{\geometry{showframe}}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Configurations
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%% Switch between colored links (web) and black links (print)
+\IfDefined{UseDefinition}{%
+  %\UseDefinition{Target}{Print}
+  \UseDefinition{Target}{Web}
+}% end of UseDefinition
+
+\IfPackageLoaded{hyperref}{%
+%%% set layout of PDF pages
+\hypersetup{pdfpagelayout=OneColumn}
+  % options:
+  %  SinglePage     Displays a single page; advancing flips the page
+  %  OneColumn      Displays the document in one column; continuous scrolling.
+  %  TwoColumnLeft  Displays the document in two columns, 
+  %                 odd-numbered pages to the left.
+  %  TwoColumnRight Displays the document in two columns, 
+  %                 odd-numbered pages to the right.
+  %  TwoPageLeft    Displays two pages, odd-numbered pages to the left 
+  %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
+}% (end of hyperref)
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% custom definitions
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\input{macros/newcommands.tex}
+
+%%% Hyphenation (Silbentrennung)
+\input{content/hyphenation.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% execute necessary commands
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% (... if the according package is loaded or not)
+
+\input{preamble/makeCommands.tex}
+
+\listfiles % list all loaded files at end of document
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% bibliography (now in preamble !)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%%% bibtex file(s)
+% add multiple files with comma separation
+% biblatex requires files before document
+\IfPackageLoaded{biblatex}{
+  % add all .bib files:
+  \addbibresource{bib/BibtexDatabase.bib}
+  \addbibresource{bib/publications.bib}
+  % \addbibresource{bib/BibtexData-anytopic.bib}
+}% end: biblatex
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Definition of glossaries Entries (before document!)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% glossary, acronym, symoblist and such
+\input{content/Z-GlossaryEntries.tex}
+
+%% document content %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\includeonly{
+% content/0-title,
+% content/0-Abstract,
+% content/0-Introduction,
+% content/1-Theory,
+% content/2-Experiments,
+% content/3-Results,
+% content/4-Summery,
+%} % end includeonly
+
+%%% document start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Configure page numbering - required for hyperref (not displayed)
+\pagenumbering{alph}\setcounter{page}{1}%
+\pagestyle{empty}
+
+% -- title page --
+\include{content/0-title}
+\cleardoublepage
+
+% -- abstract --
+% (only in phd thesis)
+\include{content/0-Abstract} 
+\cleardoublepage
+% -- declaration --
+% (only in bachelor/master thesis)
+\input{content/Z-Declaration.tex}
+
+\frontmatter
+\IfPackageLoaded{scrpage2}{\pagestyle{scrheadings}}
+
+% -- table of contents --
+%
+% add table of contents to pdf bookmarks
+\IfPackageLoaded{hyperref}{\pdfbookmark[1]{\contentsname}{toc}}
+\tableofcontents
+
+\IfPackagesLoaded{glossaries,longtable,tabu}{%
+  \clearpage
+  % print out acronym list   
+  \IfGlossariesStyleDefined{longtabuFancyHeader}%
+   {\printglossary[type=\acronymtype,style=longtabuFancyHeader]}%
+  % print out symbol list 
+  \IfGlossariesStyleDefined{longtabuFancyHeader}%
+   {\printglossary[type=symbolslist,style=longtabuFancyHeader]}%
+  % print out glossary
+  \printglossary[style=altlist]
+} % end of glossaries
+
+% --- Main Document --- --- --- --- --- --- ---
+\mainmatter
+%
+% (files loaded with include must not have the prefix .tex)
+%
+\include{content/0-Introduction}
+\include{content/1-Theory}
+\include{content/2-Experiments}
+\include{content/3-Results}
+\include{content/4-Summery}
+
+%%% -- end of main content
+
+% -- bibliography --
+% (must be placed _before_ appendix)
+\IfPackageLoaded{biblatex}{
+  \cleardoublepage
+  \IfDefined{phantomsection}{\phantomsection}\label{sec:bibliography}
+  \printbibliography[%
+    heading=bibintoc, % (bibintoc, bibnumbered)
+  ]	
+}% end of bibliography
+
+%% -- list of figures and tables --
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lof}
+\listoffigures
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lot}
+\listoftables
+
+%% -- List of Listings --
+% _Remove_ if no listing with caption is defined
+\IfDefined{lstlistoflistings}{\cleardoublepage\lstlistoflistings}
+
+% --- Appendix --- --- --- --- --- --- ---
+\cleardoublepage
+\appendix
+% Add `Appendix` to TOC
+\addcontentsline{toc}{part}{\appendixname}
+% must be _input_, otherwise the TOC entry is at the wrong place
+\input{content/Z-Appendix.tex}
+
+% -- only in phd thesis --->
+\input{content/Z-Publications.tex}
+\input{content/Z-CV.tex}
+% <------------------------
+
+%% -- Index --
+% _Remove_ Index unless you really want to invest a large amount
+% of time and effort to create a good index!
+\IfDefined{printindex}{%
+  \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
+  \printindex%
+}% end of index
+
+\input{content/Z-Thanks.tex}
+
+% add todo list (remove for final document!)
+% \input{content/Z-Todo.tex}
+
+%%% document END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

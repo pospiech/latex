@@ -1,0 +1,50 @@
+\edef\fileAcronym{demo-glossaries-acronym}	
+\begin{filecontents*}{\fileAcronym}
+% place these definitions before \begin{document}
+\newacronym{NA}{NA}{numerical Apertur}
+\newacronym{DOF}{DOF}{depth of field}
+\newacronym{PSF}{PSF}{point spread function}
+\end{filecontents*}	
+
+\edef\fileSymbolslist{demo-glossaries-Symbolslist}	
+\begin{filecontents*}{\fileSymbolslist}	
+% place these definitions before \begin{document}
+\newglossaryentry{symb:Pi}{%
+  name=$\pi$,%
+  description={mathematical constant},%
+  sort=symbolpi, type=symbolslist%
+}
+\newglossaryentry{symb:Phi}{%
+  name=$\varphi$,%
+  description={arbitrary angle},%
+  sort=symbolphi, type=symbolslist%
+}
+\newglossaryentry{symb:Lambda}{%
+  name=$\lambda$,%
+  description={wavelength},%
+  sort=symbollambda, type=symbolslist%
+}	
+\end{filecontents*}	
+
+\edef\fileGlossary{demo-glossaries-Glossary}	
+\begin{filecontents*}{\fileGlossary}	
+% place these definitions before \begin{document}
+\newglossaryentry{glos:CD}{name=Compact disc (CD),
+  description={The Compact Disc (also known as a CD) is an optical disc used
+  to store digital data. It was originally developed to store and playback sound recordings exclusively, but later expanded to encompass storage of data (Source: wikipedia)}
+}
+\newglossaryentry{glos:DVD}{name=DVD,
+  description={DVD is an optical disc storage media format, invented and
+  developed by Philips, Sony, Toshiba, and Panasonic in 1995. DVDs offer
+  higher storage capacity than Compact Discs while having the same dimensions.
+  The basis of the DVD name stems from the term \textit{digital versatile disc}. (Source: wikipedia)}
+}
+\end{filecontents*}	
+
+\IfElsePackageLoaded{glossaries}{%
+\ifcsdef{gls}{%
+  \input{\fileAcronym}
+  \input{\fileSymbolslist}
+  \input{\fileGlossary}
+}{}
+}{}

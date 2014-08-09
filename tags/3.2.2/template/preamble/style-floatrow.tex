@@ -1,0 +1,238 @@
+\IfPackageLoaded{floatrow}{%
+
+\floatsetup[table]{style=plaintop}
+
+\DeclareFloatStyle{TemplateFloatStyleBoxed}%
+   {style=Boxed,frameset={\fboxrule1pt\fboxsep12pt}}
+   
+\DeclareFloatVCode{grayruleabove}%
+   {{\color{gray}\par\rule\hsize{2.8pt}\vskip4pt\par}}
+   
+\DeclareFloatVCode{grayrulebelow}%
+   {{\color{gray}\par\vskip4pt\rule\hsize{2.8pt}}}
+   
+\DeclareColorBox{TemplateFloatColorBoxStyle}%
+   {\fcolorbox{gray}{white}}
+   
+\DeclareObjectSet{centering}{\centering}
+
+\DeclareMarginSet{center}%
+   {\setfloatmargins{\hfil}{\hfil}}
+   
+\DeclareMarginSet{hangleft}%
+   {\setfloatmargins{\hskip-\marginparwidth\hskip-\marginparsep}{\hfil}}
+   
+\DeclareFloatSeparators{marginparsep}%
+   {\hskip\marginparsep}
+
+\floatsetup{%
+   %% style
+   style={%
+      plain % Standard LaTeX
+      % plaintop % puts captions above float object's contents
+      % Plaintop % Capitalized form of plaintop
+      % ruled
+      % Ruled
+      % boxed
+      % Boxed
+      % BOXED
+      % shadowbox
+      % Shadowbox
+      % SHADOWBOX
+      % Doublebox
+      % DOUBLEBOX
+      % wshadowbox
+      % Wshadowbox
+      % WSHADOWBOX
+   },%
+   %%% --- Font --
+   % uses caption-package formats
+   % font=
+   % footfont=
+   %%% --- Position of Caption ---
+%   capposition=top, % caption above object
+%   %% caption above object and also aligned by top line in float row.
+%   capposition=TOP, 
+%   capposition=bottom, % caption below object
+%   capposition=beside, % caption beside object.
+%   %
+%   %%% --- Position of Beside Caption ---
+%   %% caption is printed to the left side of object
+%   capbesideposition=left, 
+%   %% caption is printed to the right side of object;
+%   capbesideposition=right, 
+%   % caption is printed in binding side of page if
+%   % twoside option switched on in document class and key
+%   % facing=yes is used; in oneside option of document
+%   % (or key facing=no is used), caption is printed at the left side;
+%   capbesideposition=inside,
+%   capbesideposition=outside,
+%   % least popular option: caption printed in outer side of page
+%   % if twoside option switched on in document class and key
+%   % facing=yes is used; in oneside option of document
+%   % (or key facing=no is used), caption is printed at the right side.
+%   capbesideposition=top, % caption aligned to the top of object;
+%   capbesideposition=bottom, % caption aligned to the bottom of object;
+%   capbesideposition=center, % caption aligned to the center of object.
+%   %
+%   capbesidewidth=4cm, % Defines width of beside caption.
+%   floatwidth=7cm, % Defines width of objects
+%   capbesideframe=no, % Align Caption at frame, not text
+   %
+   footposition=default, % if caption above float object foot material is placed
+                         % below float object, otherwise below caption;
+%   footposition=caption, % always placed below caption;
+%   footposition=bottom,  % always placed at the bottom of float box.
+   %
+   %%% --- Vertical Alignment of Float Elements ---
+   %% - heightadjust ----
+   heightadjust={%
+      %all, % adjust both caption and object heights
+                     % (e.g. for styles ruled, Ruled and BOXED);
+      % caption, % adjust caption heights (e.g. for Plaintop style);
+      object, % adjust object heights (e.g. for Boxed style);
+      % none, % nothing to be adjusted (the plain style);
+      % nocaption, % no adjusting for captions;
+      % noobject, % no adjusting for objects;
+   },%
+   %
+   %% - valign ---
+   % valign=t, % aligns objects by top line;
+   % valign=c, % aligns objects by center line
+   valign=b, % aligns objects by bottom line;
+   % valign=s, % stretches objects by full height (if it is possible).
+   %%% --- Facing Layout ---
+   facing=yes, % different layout for even and odd pages in if twoside is on
+   %%% --- Object Settings ---
+   %% - objectset: Defines justification of float object (float contents).
+   % objectset=justified,    %
+   objectset=centering,    %
+   % objectset=raggedright,  %
+   % objectset=RaggedRight,  %
+   %%% --- Defining Float Margins ---
+   %% - margins: ????
+   margins=centering,   %
+   % margins=raggedright, %
+   % margins=raggedleft,  %
+   %%% --- Defining Float Separators ---
+   % horizontal skip = \columnsep (default for both keys);
+    floatrowsep=columnsep, 
+   % floatrowsep=quad,  % horizontal skip = 1 em;
+   % floatrowsep=qquad, % horizontal skip = 2 em;
+   % floatrowsep=hfil,  % like \hfil
+   % floatrowsep=hfill, % like \hfill
+   % floatrowsep=none,  % empty separator
+   %
+   % horizontal skip = \columnsep (default for both keys);
+   capbesidesep=columnsep, 
+   % capbesidesep=quad,  % horizontal skip = 1 em;
+   % capbesidesep=qquad, % horizontal skip = 2 em;
+   % capbesidesep=hfil,  % like \hfil
+   % capbesidesep=hfill, % like \hfill
+   % capbesidesep=none,  % empty separator
+   %%% --- Defining Float Rules/Skips ---
+   %% - precode:     above float box
+   precode={
+      none %
+      % thickrule %
+      % rule %
+      % lowrule %
+      % captionskip
+   },%
+   %% - rowprecode:  above alone float box
+   rowprecode={
+      none %
+      % thickrule %
+      % rule %
+      % lowrule %
+      % captionskip
+   },%
+   %% - midcode:     between caption above/below and float object.
+   midcode={%
+      %none %
+      % thickrule %
+      % rule %
+      % lowrule %
+      captionskip
+   },%
+   %% - postcode:    below float box
+   postcode={%
+      none %
+      % thickrule %
+      % rule %
+      % lowrule %
+      % captionskip
+   },%
+   %% - rowpostcode: below alone float box
+   rowpostcode={%
+      none %
+      % thickrule %
+      % rule %
+      % lowrule %
+      % captionskip
+   },%
+   %%% --- Defining Float Frames ---
+%   framestyle={%
+%      % fbox %
+%      colorbox %
+%      % doublebox %
+%      % shadowbox %
+%      % wshadowbox %
+%   },
+   %% - frameset: The parameters for chosen frame
+   % frameset={\fboxrule1pt\fboxsep12pt},
+%   framearound={%
+%      object % float object contents
+%      % all % full float box
+%   },
+   framefit=yes, % fit frame to whatever is set
+   %%% --- Settings for Colored Frames ---
+   % Predefinded ColorBox (\DeclareColorBox)
+%   colorframeset=TemplateFloatColorBoxStyle,
+   %%% --- Defining Float Skips ---
+   captionskip=5pt,
+   footskip=\skip\footins,
+   %%% --- Defining Float Footnote Rule's Style ---
+   % Defines type of footnote rule for footnotes inside floating environment.
+   footnoterule={
+      normal   % standard LaTeX definition
+      % limited  % standard LaTeX definition, max width of footnote \frulemax
+      % fullsize % rule to full current text width.
+      % none     % Absent rule.
+   },
+   %%% --- Managing Floats with [H] Placement Option ---
+   % doublefloataswide=true, % ???
+   % floatHaslist=false, % only true for backward compatibility
+}
+
+
+\floatsetup[FloatStyleCaptionMargin]{
+  margins=hangleft,
+  floatwidth=\textwidth,
+  capposition=beside,
+  capbesideposition=left,
+  capbesideframe=no,
+  capbesidewidth=\marginparwidth,
+  capbesidesep=marginparsep,
+  framestyle=framefit=yes,
+}
+
+%%% Replacement of <float> Package
+%\DeclareNewFloatType{%
+%   placement={%
+%      tbh % any of t,b,h,p
+%   },%
+%   name={
+%      % Defines the name of environment in the caption label.
+%   },%
+%   fileext={
+%       % Defines extension of the file in which gathered list of floats.
+%   }
+%   within={% Reset caption within...
+%      % nothing = do not reset ever
+%      section % also section/chapter/part
+%   },%
+%   relatedcapstyle=yes % yes/no, related to \captionsetup
+%}%
+
+}% end if 

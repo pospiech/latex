@@ -1,0 +1,58 @@
+\IfPackageNotLoaded{hyperref}{
+  % Use only instead of hyperref !
+  \IfPackageNotLoaded{biblatex}{
+    % incompatible with biblatex
+    \usepackage[%
+      %ref,    % links to sections
+      pageref, % links to pages
+    ]{backref} % 
+  }
+}
+
+\IfPackageLoaded{backref}{
+\makeatletter
+	\def\pagename\@empty%
+	\def\pagensame\@empty%
+	\def\brcited\@empty%
+\makeatother
+\IfPackageLoaded{babel}{%
+	\addto\captionsgerman{%
+		\def\pagename{Seite}%
+		\def\pagesname{Seiten}%
+		\def\brcited{Zitiert auf}%
+	}%
+	\addto\captionsngerman{%
+		\def\pagename{Seite}%
+		\def\pagesname{Seiten}%
+		\def\brcited{Zitiert auf}%
+	}%
+	\addto\captionsenglish{%
+		\def\pagename{page}%
+		\def\pagesname{pages}%
+		\def\brcited{cited on}%
+	}%
+}%
+%
+% % Change Layout of Backref
+\renewcommand*{\backref}[1]{%
+  	% default interface
+  	% #1: backref list
+  	%
+  	% We want to use the alternative interface,
+  	% therefore the definition is empty here.
+}%
+\renewcommand*{\backrefalt}[4]{%
+  	% alternative interface
+  	% #1: number of distinct back references
+  	% #2: backref list with distinct entries
+  	% #3: number of back references including duplicates
+  	% #4: backref list including duplicates
+  	\mbox{(\brcited~%
+  	\ifnum#1=1 %
+\pagename~%
+\else
+  		\pagesname~%
+  	\fi
+  	#2)}%
+}
+}% end: \IfPackageLoaded{backref}

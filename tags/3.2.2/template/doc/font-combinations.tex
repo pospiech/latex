@@ -1,0 +1,114 @@
+% -> Latin Modern (LaTeX Standard)
+\usepackage{lmodern}
+\input{fonts/fonts-lmodern-sansmath.tex}
+\renewcommand{\fontdesc}{Latin Modern Family}
+% <-------------------
+
+% -> Times, Helvetica, Courier (Word Standard...)
+\usepackage{mathptmx}                 %% --- Times (incl math)
+\usepackage[scaled=.90]{helvet}       %% --- Helvetica (Arial)
+\usepackage{courier}                  %% --- Courier
+\renewcommand{\fontdesc}{Times, Arial, Courier}
+% <-------------------
+
+% -> Palantino, Helvetica, Courier
+\usepackage{mathpazo}                 %% --- Palantino (incl math)
+\usepackage[scaled=.95]{helvet}       %% --- Helvetica (Arial)
+\usepackage{courier}                  %% --- Courier
+\renewcommand{\fontdesc}{Palantino, Arial, Courier}
+% <-------------------
+
+% -> Charter, Bera Sans, Luxi Mono
+\usepackage{charter}\linespread{1.05} %% --- Charter
+\renewcommand{\sfdefault}{fvs}        %% --- Bera Sans
+\usepackage[charter]{mathdesign}      %% --- Charter (Math)
+\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
+\renewcommand{\fontdesc}{Charter, Bera Sans, Luxi Mono}
+% Note: There is a better Charter font by Linotype 
+%       called 'ITC Charter'
+% <-------------------
+
+% -> URW Garamond
+\renewcommand{\rmdefault}{ugm}        %% --- URW Garamond
+\renewcommand{\sfdefault}{fvs}        %% --- Bera Sans
+\usepackage[garamond]{mathdesign}     %% --- Garamond (Math)
+\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
+\renewcommand{\fontdesc}{Garamond, Bera Sans, Luxi Mono}
+% Note:  If you can efford it, combine with commercial 
+%        sans fonts like: Syntax, Frutiger or Thesis 
+%        (but then also use the commercial Garamond ...)
+% <-------------------
+
+% -> Fourier (Utopia), Latin Modern (Sans and Typewriter)
+\usepackage{lmodern}
+\usepackage{fourier}
+\renewcommand{\fontdesc}{Fourier (Utopia), Latin Modern (Sans and Typewriter)}
+% <-------------------
+
+
+%% -> MininPro/MyriadPro
+%\input{fonts/fonts-MinionPro.tex}  %% --- MinionPro
+%\input{fonts/fonts-MyriadPro.tex}  %% --- MyriadPro
+%\usepackage[scaled=0.85]{luximono} %% --- Luxi Mono (Typewriter)
+%\renewcommand{\fontdesc}{MyriadPro, MinionPro, Luxi Mono}
+%% <-------------------
+%
+%% -> Minion / Myriad
+%\renewcommand{\rmdefault}{pmnx}    %% ---  Minion
+%%\renewcommand{\rmdefault}{pmnj}   %% ---  Minion (oldstyle digits)
+%\renewcommand{\sfdefault}{pmy}     %% ---  Myriad
+%% Minion Math Fonts 
+%\ExecuteAfterPackage{amsmath}{\usepackage{MnSymbol}}
+%\usepackage[scaled=0.85]{luximono} %% --- Luxi Mono (Typewriter)
+%\renewcommand{\fontdesc}{Myriad, Minion, Luxi Mono}
+%% <-------------------
+
+
+%% -> Adobe Aldus, Adobe Gill Sans, Euler, Luxi Mono
+%\renewcommand{\rmdefault}{pasx}     %% --- Adobe Aldus
+%\usepackage[small]{eulervm}         %% --- Math: Euler
+%\usepackage{gillsans}               %% --- Adobe Gill Sans
+%\usepackage[scaled=0.85]{luximono}  %% --- Luxi Mono (Typewriter)
+%\renewcommand{\fontdesc}{Adobe Aldus, Adobe Gill Sans, Euler, Luxi Mono}
+%% <-------------------
+%
+%
+%% -> Adobe Garamond, Adobe Frutiger, Luxi Mono
+%\usepackage[scaled=1.05]{xagaramon} %% --- Adobe Garamond
+%\usepackage[scaled=0.90]{frutiger}  %% --- Adobe Frutiger
+%\usepackage[garamond]{mathdesign}   %% --- Garamond (Math)
+%\usepackage[scaled=0.85]{luximono}  %% --- Luxi Mono (Typewriter)
+%\renewcommand{\fontdesc}{Adobe Garamond, Adobe Frutiger, Letter Gothic}
+%% <-------------------
+%
+%% -> Adobe Stempel Garamond, Adobe Frutiger, Luxi Mono
+%\renewcommand{\rmdefault}{pegx}     %% --- Adobe Stempel Garamond
+%\usepackage[scaled=0.90]{frutiger}  %% --- Adobe Frutiger
+%\usepackage[garamond]{mathdesign}   %% --- Garamond (Math)
+%\usepackage[scaled=0.85]{luximono}  %% --- Luxi Mono (Typewriter)
+%\renewcommand{\fontdesc}{Adobe Stempel Garamond, Adobe Frutiger, Letter Gothic}
+%% <-------------------
+%
+%% -> Adobe Sabon, Syntax, Euler, Luxi Mono
+%\renewcommand{\rmdefault}{psbx}     %% --- Adobe Sabon
+%\usepackage{eulervm}                %% --- Math: Euler
+%\usepackage[scaled]{asyntax}        %% --- Syntax
+%\usepackage[scaled=0.85]{luximono}  %% --- Luxi Mono (Typewriter)
+%\renewcommand{\fontdesc}{Adobe Sabon, Syntax, Euler, Luxi Mono}
+%% <-------------------
+%
+%% -> Linotype ITC Charter, Adobe Frutiger, Luxi Mono
+%\renewcommand{\rmdefault}{lch}      %% --- Linotype ITC Charter
+%\usepackage[charter]{mathdesign}    %% --- Charter (Math)
+%\usepackage[scaled=0.90]{frutiger}  %% --- Adobe Frutiger
+%\usepackage[scaled=0.85]{luximono}  %% --- Luxi Mono (Typewriter)
+%\renewcommand{\fontdesc}{Linotype ITC Charter, Adobe Frutiger, Luxi Mono}
+%% <-------------------
+%
+%% -> Linotype Meridien, Syntax, Euler, Luxi Mono
+%\renewcommand{\rmdefault}{lmd}      %% --- Linotype Meridien
+%\usepackage{eulervm}                %% --- Math: Euler
+%\usepackage[scaled]{asyntax}        %% --- Syntax
+%\usepackage[scaled=0.85]{luximono}  %% --- Luxi Mono (Typewriter)
+%\renewcommand{\fontdesc}{Linotype Meridien, Syntax, Euler, Luxi Mono}
+%% <-------------------

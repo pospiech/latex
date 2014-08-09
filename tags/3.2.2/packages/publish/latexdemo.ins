@@ -1,0 +1,28 @@
+% See file 'latexdemo.dtx' for copyright and licence.
+
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+
+\usedir{tex/latex/latexdemo}
+
+\generate{
+  \file{latexdemo.sty}{\from{latexdemo.dtx}{latexdemo.sty}}
+}
+
+\obeyspaces
+\Msg{*************************************************************}
+\Msg{*                                                           *}
+\Msg{* To finish the installation you have to move the following *}
+\Msg{* file into a directory searched by TeX:                    *}
+\Msg{*                                                           *}
+\Msg{*     latexdemo.sty                                         *}
+\Msg{*                                                           *}
+\Msg{* To produce the documentation run the file latexdemo.dtx   *}
+\Msg{* through LaTeX.                                            *}
+\Msg{*                                                           *}
+\Msg{* Happy TeXing!                                             *}
+\Msg{*                                                           *}
+\Msg{*************************************************************}
+
+\endbatchfile

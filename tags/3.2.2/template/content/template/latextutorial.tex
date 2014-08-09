@@ -1,0 +1,332 @@
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = en-US
+
+% LaTeX Tutorial for the latexthesistemplate
+% based on 
+% - https://pangea.stanford.edu/computing/unix/formatting/latexexample.php
+% - http://sip.clarku.edu/tutorials/TeX/
+% and extended and modified by Matthias Pospiech
+
+\ifcsdef{cs}{}{\newcommand{\cs}[1]{\texttt{\textbackslash{}#1}\relax}}%
+
+% Define colors in case they are not available because style.tex was 
+% not loaded
+% table colors 
+\colorlet{tablebodycolor}{white!100}
+\colorlet{tablerowcolor}{gray!10}
+\colorlet{tablesubheadcolor}{gray!30}
+\colorlet{tableheadcolor}{gray!25}
+
+\section{LaTeX Typesetting By Example}
+\label{sec:example:tutorial}
+This section demonstrates a basic set of LaTeX formatting commands and shows how they look like in this template. For comparison of the typeset output with the input document refer to the code listing starting on page \pageref{sec:example:code}.
+
+The content presented here is based on similar text by Phil Farrell\footnote{\url{https://pangea.stanford.edu/computing/unix/formatting/latexexample.php}} and Harvey Gould\footnote{\url{http://sip.clarku.edu/tutorials/TeX/}}.
+For further reading on the possibilities of this template please refer to the documentation: \path{TemplateDocumentation.pdf}.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Plain Text}
+\label{sec:example:PlainText}
+\index{example!text}
+
+Type your text in free-format; lines can be as long
+or as short as you wish.
+        You can indent         or space out
+        your input 
+            text in 
+                any way you like to highlight the structure
+        of your manuscript and make it easier to edit.
+LaTeX fills lines and adjusts spacing between words to produce an
+aesthetically pleasing result.
+
+Completely blank lines in the input file break your text into
+paragraphs.
+Several command exist to change the font for a single character, word, or set of words. Simply enclose the word and within braces of the formating command, 
+\emph{like this}.
+A font changing command not enclosed in braces, like the change to \bfseries 
+bold here, keeps that change in effect until the end of the document or
+until countermanded by another font switch, like this change back to 
+\normalfont the default font. 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Font shapes}
+\label{sec:example:FontShapes}
+\index{example!font shapes}
+
+The default font in the template is Latin Modern (lmodern). It includes \textit{italics}, \textbf{boldface}, \textsl{slanted}, \textsc{small caps} and \texttt{monospaced} fonts as well as the corresponding sans serif variants  of the same font family \textsf{sans serif}, \textsf{\textit{italics}}, \textsf{\textbf{boldface}} and \textsf{\textsl{slanted}}. Note that for other fonts not all font shapes may be available. 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Quotation and Citations}
+\label{sec:example:QuoteCite}
+\index{example!quote}
+\index{example!cite}
+%
+LaTeX provides the \enquote{quote} and \enquote{quotation} environments for typesetting quoted material or any other text that should be slightly indented 
+and set off from the normal text.
+
+However, if the text shall not just be indented but rather be a real quotation with a citation of the origin, then the commands \enquote{enquote} for inline quotes and \enquote{blockquote} for multi line quotes are more appropriate. The first is used to highlight the commands in this section and the latter in the following text, which is a direct quotation from the documentation of the package
+ \emph{csquotes}: 
+%
+\blockquote[(csquotes.pdf)]{This command determines the length of the text. 
+If the length exceeds a certain threshold, the text will be 
+typeset in display mode, i. e., as a block quotation. 
+If not, \cs{blockquote} will behave like \cs{textquote}. 
+Depending on the threshold type option, the threshold may be based on the number
+of lines required to typeset the text or on the number of words in the text.}
+
+The standard command for citations is \texttt{\textbackslash{}cite} which may have a prenote argument for adding a page number or something similar. To show how a citation is typeset we cite here a book about LaTeX \cite[59]{companion}. Further commands such as \cs{parencite} \parencite{companion} and \cs{textcite} \textcite{companion} allow a different typeset of the citation. The resulting bibliography is printed out on \cpageref{sec:bibliography}. Refer to the biblatex manual for further details on citation commands and modifications on the printout and the section on biblatex in the template documentation.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{References}
+\label{sec:example:references}
+\index{example!references}
+
+So far, in this text chapter and section headings, paragraphs (\cref{sec:example:PlainText}), font changes (\cref{sec:example:FontShapes}) and citations (\cref{sec:example:QuoteCite}) were demonstrated ad in this section the use of references. Not that here the command \texttt{\textbackslash{}cref} was used instead of the standard \cs{ref}.
+
+The following sections show lists, tables and math.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Lists}
+\label{sec:example:lists}
+\index{example!lists}
+%
+LaTeX has three types of lists with the environment names \emph{itemize}, \emph{enumerate} and \emph{description}. All lists have a separation between each item, to improve the reading of item texts spanning several lines. 
+This item text can contain multiple paragraphs. These paragraphs are appropriately spaced and indented according to their position in the list.
+
+\begin{itemize}
+\item 
+The \enquote{itemize} sets off list items with \emph{bullets}, like this.
+%
+\item Of course, lists can be nested, each type up to at least four levels.
+One type of list can be nested within another type.
+%
+  \begin{itemize}
+  \item Nested lists of the same type will change style of numbering 
+  or \emph{bullets} as needed.
+  \end{itemize}
+\end{itemize}
+%
+\begin{enumerate}
+\item The \enquote{enumerate} environment numbers the list elements.
+
+This is a new paragraph in the item text, which is not intended as in the 
+normal text but separated from the previous paragraph.
+%
+\item The enumeration scheme changes with each nesting level
+  \begin{enumerate}
+  \item as shown in this nested enumerated list item.
+  \end{enumerate}
+\end{enumerate}  
+%
+Don't forget to close off all list environments with the 
+appropriate \verb+\end{...}+ command.
+Indenting \verb+\begin{...}+, \verb+\item+, and \verb+\end{...}+
+commands in the input document according to their nesting level can help 
+clarify the structure.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Tables}
+\label{sec:example:tables}
+\index{example!tables}
+%
+Tables are a little more difficult. One can achieve even the most complex and fancy layout, even spanning over multiple pages, but the code to create these tables is not necessarily the best readable one.
+
+Table \ref{tab:Computers} is a very simple table showing data lined up in columns, where each column width is automatically calculated by LaTeX.
+Notice that the tabular is centered with \cs{centering} and printed in a a smaller font to achieve a clear distinction to the normal text. The title is created above the tabular with \cs{captionabove}.
+
+\begin{table}[hb]
+\centering
+\small\renewcommand{\arraystretch}{1.4}  
+\captionabove{Numbers of Computers in the department, By Type.}
+\label{tab:Computers}
+\begin{tabular}{lr}
+\hline
+Mac (Apple)    & 2  \\
+Windows XP, 7  & 60 \\
+Linux (Server) & 10 \\
+\hline
+\end{tabular}
+\end{table}
+
+\Cref{tab:IsingModel} on \cpageref{tab:IsingModel} demonstrate the creation of a pleasant appearing table, which helps to read the table without attracting to much attention by the use of shaded colors. The caption uses the additional short caption in square brackets \texttt{[ ]}, which is used in the list of tables, see \cpageref{sec:lot}.
+
+\begin{table}[ht]
+\centering
+\small\renewcommand{\arraystretch}{1.4}  
+\rowcolors{1}{tablerowcolor}{tablebodycolor}
+%
+\captionabove[Mean-field predictions for the critical temperature of the Ising model]{Comparison of the mean-field predictions for the critical temperature of the Ising model with exact results and the best known estimates for different spatial dimensions $d$ and lattice symmetries.}
+\label{tab:IsingModel}
+%
+\begin{tabularx}{0.5\textwidth}{lXXX}
+\hline
+\rowcolor{tableheadcolor}
+lattice & $d$ & $q$ & $T_\text{mf}/T_c$ \\
+\hline
+square  & 2 & 4 & 1.763 \\
+%
+triangular & 2 & 6 & 1.648 \\
+%
+diamond & 3 & 4 & 1.479 \\
+%
+simple cubic & 3 & 6 & 1.330 \\
+%
+bcc & 3 & 8 & 1.260 \\
+%
+fcc & 3 & 12 & 1.225 \\
+\hline
+\end{tabularx}
+\end{table}
+
+The design and creating of complex tables is shown in much greater detail in the documentation of this template.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Mathematical Equations}
+\label{sec:example:math}
+\index{example!math}
+
+Simple equations, like $x^y$ or $x_n = \sqrt{a + b}$ can be typeset right
+in the text line by enclosing them in a pair of single dollar sign symbols.
+Don't forget that if you want a real dollar sign in your text, like \$2000,
+you have to use the \verb+\$+ command.
+
+A more complicated equation should be typeset in \emph{displayed math} mode using \texttt{\textbackslash{[} ... \textbackslash{]}}, like this:
+%
+\[
+z \left( 1 \ +\  \sqrt{\omega_{i+1} + \zeta -\frac{x+1}{\Theta +1} y + 1} 
+\ \right)
+\ \ \ =\ \ \  1
+\]
+%
+The \texttt{equation} environment displays your equations, and automatically
+numbers them consecutively within your document, like this:
+%
+We can give an equation a label so that we can refer to it later.
+\begin{equation}
+  \label{eqn:ising}
+  E = -J \sum_{i=1}^N s_i s_{i+1} ,
+\end{equation}
+Equation~\eqref{eqn:ising} expresses the energy of a configuration
+of spins in the Ising model.\footnote{It is necessary to process (typeset) a
+file twice to get the counters correct.}
+
+For more complex formulas it may be necessary to do some fine tuning by adding small amounts of horizontal spacing, 
+\begin{verbatim}
+ \, small space       \! negative space
+\end{verbatim}
+as is done in eq.~\eqref{eqn:GreenTheorem}.
+\begin{equation}
+  \underset{\mathcal{G}\quad}\iiint\!
+  \left[u\nabla^{2}v+\left(\nabla  u,\nabla  v\right)\right]\mathrm{d}^{3}V
+  =\underset{\mathcal{S}\quad}\oiint  u\,\frac{\partial v}{\partial n}
+  \,\,\mathrm{d}^{2}A
+  \label{eqn:GreenTheorem}
+\end{equation}
+We also can also align several equations
+\begin{align}
+  \dot{q}_i & = \frac{\partial H}{\partial p_i} \\
+  \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
+\end{align}
+number them as subequations
+\begin{subequations}
+\begin{align}
+  \dot{q}_i & = \frac{\partial H}{\partial p_i} \\
+  \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
+\end{align}
+\end{subequations}
+or with only a single number
+\begin{equation}
+\begin{aligned}
+  \dot{q}_i & = \frac{\partial H}{\partial p_i} \\
+  \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
+\end{aligned}
+\end{equation}
+Many further possibilities of displaying equations exist. 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsubsection{Common Greek letters}
+\label{sec:example:math:greekletters}
+These commands may be used only in math mode. Only the most common
+letters are included here.
+%
+\[\alpha, \beta, \gamma, \Gamma, \delta,\Delta,
+\epsilon, \zeta, \eta, \theta, \Theta, \kappa,
+\lambda, \Lambda, \mu, \nu, \xi, \Xi, \pi, \Pi,
+\rho, \sigma, \tau, \phi, \Phi, \chi, \psi, \Psi,
+\omega, \Omega\]
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Literal text}
+\label{sec:example:verbatim}
+\index{example!verbatim}
+%
+It is desirable to print program code exactly as it is typed in a
+monospaced font. Use \cs{begin\{lstlisting\}} and
+\cs{end\{lstlisting\}} as in the following example:
+
+\begin{lstlisting}
+double y0 = 10; // example of declaration and assignment statement
+double v0 = 0;  // initial velocity
+double t = 0;   // time
+double dt = 0.01; // time step
+double y = y0;
+\end{lstlisting}
+%
+Two styles are defined in this template: \texttt{lstStyleCpp} and \texttt{lstStyleLaTeX}.
+
+A complete file can be printed with listings using the 
+command \cs{lstinputlisting}, see \cref{sec:example:code} for an example.
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Figures}
+\label{sec:example:figures}
+\index{example!figures}
+%
+Figures with captions are included in the \texttt{figure} environment in order to position the graphic inside the text. The size should be given in relation to natural text size. It is recommended to use a percentage value of the \cs{textwidth}. This size should not exceed 80\,\%  of the text width.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/testimage.png}
+  \caption[Test image for television]{Test image for television (Origin of the image: \url{http://de.wikipedia.org/wiki/Testbild}).}
+  \label{fig:example:figure}
+\end{figure}
+
+All possibilities of grouping pictures side by side, on top or in matrices can be realized. Each subfigure is created in the same way as a graphic inside a figure, just enclosed by a figure environment, as shown in \cref{fig:example:subfigures}.
+
+\begin{figure}[htb]
+  \begin{subfigure}[b]{.45\linewidth}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/testimage.png}
+    \caption{The first subfigure.}
+    \label{fig:example:subfigures:a}
+  \end{subfigure}%
+  \begin{subfigure}[b]{.45\linewidth}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/testimage.png}
+    \caption{The second subfigure.}
+    \label{fig:example:subfigures:b}
+  \end{subfigure}
+  \caption{Demonstration of the \emph{subfigure} environment inside a figure environment}
+  \label{fig:example:subfigures}
+\end{figure}
+%
+For complex subfigure constructs and correct alignment of the subcaption the \texttt{floatrow} provides powerful commands. 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Index}
+\label{sec:example:index}
+\index{example!index}
+%
+An index is easy to create with LaTeX, but should only be done if the time is available to do it right, since it requires substantial work to create an index which is really useful for the reader.
+
+A word is added to the index with the command \cs{index\{word\}} and these indexed words can be grouped with \cs{index\{group!word\}}. Within this document some index commands are inserted below the section headers of this tutorial for the purpose of demonstrating the indexing. The resulting index is displayed on page~\pageref{sec:Index}. 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\clearpage
+\subsection{Code}
+\label{sec:example:code}
+
+\ifcsdef{lstStyleLaTeX}{%
+  \lstinputlisting[style=lstStyleLaTeX,%nolol=true,%
+     caption={LaTeX Typesetting By Example}, label=lstLaTeXExample]  
+  {content/template/latextutorial.tex}
+}{}  

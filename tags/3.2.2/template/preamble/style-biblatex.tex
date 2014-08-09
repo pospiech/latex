@@ -1,0 +1,64 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = en-US
+
+\IfPackageLoaded{biblatex}{%
+	\ExecuteBibliographyOptions{%
+%--- Sorting --- --- ---
+	sorting=nty, % Sort by name, title, year.
+	% other options: 
+	% nty        Sort by name, title, year.
+	% nyt        Sort by name, year, title.
+	% nyvt       Sort by name, year, volume, title.
+	% anyt       Sort by alphabetic label, name, year, title.
+	% anyvt      Sort by alphabetic label, name, year, volume, title.
+	% ynt        Sort by year, name, title.
+	% ydnt       Sort by year (descending), name, title.
+	% none       Do not sort at all. All entries are processed in citation order.
+	% debug      Sort by entry key. This is intended for debugging only.
+	%
+	sortcase=true,
+	sortcites=true, % do/do not sort citations according to bib	
+%--- Dates --- --- ---
+	date=comp,  % (short, long, terse, comp, iso8601)
+%	origdate=
+%	eventdate=
+%	urldate=
+%	alldates=
+	datezeros=true, %
+	dateabbrev=true, %
+%--- General Options --- --- ---
+%	maxnames=1,
+%	minnames=1,
+	maxbibnames=15,%
+	maxcitenames=1,%
+	uniquename=true,% (biber only)
+	maxalphanames=1,% (biber only)
+%	autocite= % (plain, inline, footnote, superscript) 
+	autopunct=true,
+	language=auto,
+	block=none, % (none, space, par, nbpar, ragged)
+	notetype=foot+end, % (foot+end, footonly, endonly)
+	hyperref=true, % (true, false, auto)
+	backref=true,
+	backrefstyle=three, % (none, three, two, two+, three+, all+)
+	backrefsetstyle=setonly, %
+	indexing=false, % 
+	% options:
+	% true       Enable indexing globally.
+	% false      Disable indexing globally.
+	% cite       Enable indexing in citations only.
+	% bib        Enable indexing in the bibliography only.
+	refsection=none, % (part, chapter, section, subsection)
+	refsegment=none, % (none, part, chapter, section, subsection)
+	abbreviate=true, % (true, false)
+	defernumbers=true, % 
+	punctfont=false, % 
+	arxiv=abs, % (ps, pdf, format)	
+%--- Style Options --- --- ---	
+% The following options are provided by the standard styles
+	isbn=false,%
+	url=false,%
+	doi=false,%
+	eprint=false,%	
+	}%	
+}% \IfPackageLoaded{biblatex}

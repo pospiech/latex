@@ -1,0 +1,42 @@
+%\colorlet{colorlstStringCpp}{green!40!black!100}
+\colorlet{colorlstCommentCpp}{green!50!black!100}
+\colorlet{colorlstBackgroundCpp}{white!100}
+\definecolor{colorlstStringCpp}{rgb}{0,0.47,0.80}
+
+%% \colorlet{colorlstStringCpp}{green!100!black!100}
+%% \colorlet{commencolor}{green!100!red!50!black!100}
+%\definecolor{commencolor}{rgb}{0.0,0.5,0.0}
+\definecolor{colorlstKeywordCpp}{rgb}{0.4,0.4,0.0}
+
+% define useless command for checking the
+% existens of this style
+\newcommand{\lstStyleCpp}{\relax}
+% define style
+ \lstdefinestyle{lstStyleCpp}{%
+   ,style=lstStyleBase
+%%% Numbers
+   ,,stepnumber=1%
+%%% colors
+   ,keywordstyle=\textbf\ttfamily\color{colorlstKeywordCpp}%
+   ,identifierstyle=\ttfamily%
+   ,commentstyle=\color{colorlstCommentCpp}%
+   ,stringstyle=\ttfamily\color{colorlstStringCpp} %\color[rgb]{0,0.5,0},
+   ,backgroundcolor=\color{colorlstBackgroundCpp}%
+%%% Frames
+   ,frame=single%
+   ,%frameround=tttt
+   ,%framesep = 10pt
+   ,%framerule = 0pt
+%%% language
+   ,language = C++%
+   ,otherkeywords={string},
+%%% Comments
+   ,morecomment=[l][\color{colorlstCommentCpp}]{//},%
+   ,morecomment=[s][\color{colorlstCommentCpp}]{/*}{*/}%
+}
+ 
+\lstloadlanguages{
+   ,C++
+   ,[Visual]C++
+   ,[ISO]C++
+}

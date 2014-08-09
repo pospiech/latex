@@ -1,0 +1,30 @@
+\colorlet{lstcolorStringLatex}{green!40!black!100}
+\colorlet{lstcolorCommentLatex}{green!50!black!100}
+\definecolor{lstcolorKeywordLatex}{rgb}{0,0.47,0.80}
+
+% define useless command for checking the
+% existens of this style
+\newcommand{\lstStyleLaTeX}{\relax}
+% define style
+\lstdefinestyle{lstStyleLaTeX}{%
+   ,style=lstStyleBase
+%%% colors
+   ,stringstyle=\color{lstcolorStringLatex}%
+   ,keywordstyle=\color{lstcolorKeywordLatex}%
+   ,commentstyle=\color{lstcolorCommentLatex}%
+   ,% backgroundcolor=\color{codebackcolor}%
+%%% Frames
+   ,frame=single%
+   ,%frameround=tttt%
+   ,%framesep = 10pt%
+   ,%framerule = 0pt%
+   ,rulecolor = \color{black}%
+%%% language
+   ,language = [LaTeX]TeX%
+%%% commands
+% moved to: listings-latex-texcs.tex
+}
+
+\input{preamble/listings-latex-texcs.tex}
+
+\lstloadlanguages{[LaTeX]TeX}

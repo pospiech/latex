@@ -1,0 +1,739 @@
+%% -- style section selections -->
+\DefineCodeSection[true]{StyleColors}
+\DefineCodeSection[true]{StyleMath}
+\DefineCodeSection[true]{StyleDiagrams}
+\DefineCodeSection[true]{StyleScience}
+\DefineCodeSection[true]{StyleText}
+\DefineCodeSection[true]{StyleFootnote}
+\DefineCodeSection[true]{StyleQuotes}
+\DefineCodeSection[true]{StyleCiteBib}
+\DefineCodeSection[true]{StyleFigures}
+\DefineCodeSection[true]{StyleCaptions}
+\DefineCodeSection[true]{StyleTables}
+\DefineCodeSection[true]{StyleIndexes}
+\DefineCodeSection[true]{StyleVerbatim}
+\DefineCodeSection[true]{StyleFancy}
+\DefineCodeSection[true]{StyleParagraph}
+\DefineCodeSection[true]{StyleLineSpacing}
+\DefineCodeSection[true]{StylePageLayout}
+\DefineCodeSection[true]{StyleTitlepage}
+\DefineCodeSection[true]{StyleHeadFoot}
+\DefineCodeSection[true]{StyleHeadings}
+\DefineCodeSection[true]{StyleHeadingsFonts}
+\DefineCodeSection[true]{StyleHeadingsLayout}
+\DefineCodeSection[true]{StyleLayoutTOC}
+\DefineCodeSection[true]{StylePdf}
+\DefineCodeSection[true]{StyleFixProblems}
+%% <--------------------------------
+ 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Colors
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleColors}
+\IfMultDefined{definecolor,colorlet}{%
+
+% color of headings
+%\definecolor{sectioncolor}{RGB}{0, 51, 153} % blue
+%\definecolor{sectioncolor}{RGB}{0, 25, 152} % darker blue
+\definecolor{sectioncolor}{RGB}{0, 0, 0}     % black
+%
+% Farbe fuer grau hinterlegte Boxen (fuer Paket framed.sty)
+\definecolor{frameshadecolor}{gray}{0.90}
+
+\definecolor{pdfanchorcolor}{named}{black}
+\definecolor{pdfmenucolor}{named}{red}
+\definecolor{pdfruncolor}{named}{cyan}
+
+\SetTemplateDefinition{Target}{Web}{%
+  \IfDefined{definecolor}{
+    \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
+    \definecolor{pdffilecolor}{rgb}{0.7,0,0}
+    \definecolor{pdflinkcolor}{rgb}{0,0,0.6}
+    \definecolor{pdfcitecolor}{rgb}{0,0,0.6}
+  }
+}%
+\SetTemplateDefinition{Target}{Print}{%
+  \IfDefined{definecolor}{
+    \definecolor{pdfurlcolor}{rgb}{0,0,0}
+    \definecolor{pdffilecolor}{rgb}{0,0,0}
+    \definecolor{pdflinkcolor}{rgb}{0,0,0}
+    \definecolor{pdfcitecolor}{rgb}{0,0,0}
+  }
+}%
+
+% Execute color definition defined by Target->Web
+\UseDefinition{Target}{Web}
+
+% table colors 
+\colorlet{tablebodycolor}{white!100}
+\colorlet{tablerowcolor}{gray!10}
+\colorlet{tablesubheadcolor}{gray!30}
+\colorlet{tableheadcolor}{gray!25}
+
+}{} % End: \IfMultDefined{definecolor}
+\EndCodeSection{StyleColors}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Math Settings
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleMath}
+
+%%% print vector in bold
+%\let\oldvec\vec
+%\def\vec#1{{\boldsymbol{#1}}} % bold vector
+%\newcommand{\ve}{\vec} %
+
+%%% exchange greek symbols
+\let\ORGvarepsilon=\varepsilon
+\let\varepsilon=\epsilon
+\let\epsilon=\ORGvarepsilon
+%
+% \let\ORGvarrho=\varrho
+% \let\varrho=\rho
+% \let\rho=\ORGvarrho
+%
+% \let\ORGvartheta=\vartheta
+% \let\vartheta=\theta
+% \let\theta=\ORGvartheta
+%
+% \let\ORGvarphi=\varphi
+% \let\varphi=\phi
+% \let\phi=\ORGvarphi
+\EndCodeSection{StyleMath}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Science Settings
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleScience}
+
+% style setup of siunitx
+\input{preamble/style-siunitx.tex}
+
+\EndCodeSection{StyleScience}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% diagrams
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleDiagrams}
+
+% setup of package pgfplots
+\input{preamble/style-pgfplots.tex}
+
+\EndCodeSection{StyleDiagrams}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% text related 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleText}
+
+%% style of URL
+\IfDefined{urlstyle}{
+  \urlstyle{tt} %sf
+}
+
+% font used in margins by package marginnote
+\IfDefined{marginfont}{
+  \IfDefined{color}{
+    \renewcommand*{\marginfont}{\color{red}\sffamily}
+  }
+}
+
+% Options of enumitem
+\IfDefined{setlist}{%
+  \setlist{itemsep=0pt}
+}%
+
+\EndCodeSection{StyleText}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Footnotes
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleFootnote}
+
+% separation text to footnote
+\addtolength{\skip\footins}{\baselineskip}
+
+% printed text between multible footnotes
+\renewcommand*{\multfootsep}{,\nobreakspace}
+
+% removed because of warning - requires more documentation
+%\KOMAoptions{%   
+%   footnotes=multiple% nomultiple
+%}
+
+% standard superscript numbers in footnotes
+%\deffootnote%
+%   [1em]% width of marker
+%   {1.5em}% indentation (general)
+%   {1em}% indentation (par)
+%   {\textsubscript{\thefootnotemark}}%
+
+% remove superscript numbers in footnotes
+\deffootnote
+  {1.5em}% indentation (general)
+  {1em}% indentation (par)
+  {\makebox[1.5em][l]{\thefootnotemark}}
+
+%% Change intendation of footnote
+%\setlength\footnotemargin{10pt}
+
+% Limit space of footnotes to 10 lines
+\setlength{\dimen\footins}{10\baselineskip}
+
+% prevent continuation of footnotes 
+% at facing page
+\interfootnotelinepenalty=10000 
+
+\EndCodeSection{StyleFootnote}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Quotes
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleQuotes}
+\IfPackageLoaded{csquotes}{
+
+% All facilities which take a 'cite' argument will not insert
+% it directly. They pass it to an auxiliary command called \mkcitation
+% which  may be redefined to format the citation.
+\renewcommand*{\mkcitation}[1]{{\,}#1}
+\renewcommand*{\mkccitation}[1]{ #1}
+
+\SetBlockThreshold{2} % Number of Lines at which a blockquote is separated
+                      % from the text.
+
+\newenvironment{myquote}%
+  {\begin{quote}\small}%
+  {\end{quote}}%
+\SetBlockEnvironment{myquote}
+%\SetCiteCommand{} % Changes citation command
+
+} %end: \IfPackageLoaded{csquotes}
+\EndCodeSection{StyleQuotes}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Citations / Style of Bibliography
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleCiteBib}
+
+% biblatex bibliography options
+\input{preamble/style-biblatex.tex}
+% modifications for an alpha style
+\input{preamble/style-biblatex-alpha.tex}
+
+\KOMAoptions{%
+   % bibliography=oldstyle%
+   bibliography=openstyle%
+}%
+\EndCodeSection{StyleCiteBib}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% figures, placement and floats
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleFigures}
+\IfPackageLoaded{float} {
+% \floatplacement{figure}{H} % default placement
+}
+
+\IfPackageLoaded{wrapfig} {
+%\setlength{\wrapoverhang}{\marginparwidth} 
+%\addtolength{\wrapoverhang}{\marginparsep} 
+\setlength{\intextsep}{0.5\baselineskip} % space above and below the image
+% \intextsep ignored with draft ???
+%\setlength{\columnsep}{1em} % separation to the text
+}
+
+% Make float placement easier
+\renewcommand{\floatpagefraction}{.75} % previous: .5
+\renewcommand{\textfraction}{.1}       % previous: .2
+\renewcommand{\topfraction}{.8}        % previous: .7
+\renewcommand{\bottomfraction}{.5}     % previous: .3
+\setcounter{topnumber}{3}        % previous: 2
+\setcounter{bottomnumber}{2}     % previous: 1
+\setcounter{totalnumber}{5}      % previous: 3
+
+\EndCodeSection{StyleFigures}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Captions
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleCaptions}
+
+\IfPackageLoaded{amsmath}{
+% Numbering of figures and table in each chapter
+% \numberwithin{figure}{chapter}
+% \numberwithin{table}{chapter}
+}
+
+% Style of captions and subcaptions (and subfig)
+\input{preamble/style-caption.tex}
+
+% Style of figure placement with floatrow
+\input{preamble/style-floatrow.tex}
+
+\EndCodeSection{StyleCaptions}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% table packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleTables}
+
+% for Package tabu
+\IfDefined{tabulinesep}{%
+  \tabulinesep=5pt
+}
+
+% Define new column types only if they are not yet defined
+\IfDefined{RaggedLeft}{
+  %% centered (Z):
+  \IfColumntypeDefined{Z}{}
+    {\newcolumntype{Z}{>{\Centering\arraybackslash\hspace{0pt}}X}}
+  %% right (X):
+  \IfColumntypeDefined{Y}{}
+    {\newcolumntype{Y}{>{\RaggedLeft\arraybackslash\hspace{0pt}}X}}
+  %% left (X):
+  \IfColumntypeDefined{W}{}
+    {\newcolumntype{W}{>{\RaggedRight\arraybackslash\hspace{0pt}}X}}
+  %% left (p):
+  \IfColumntypeDefined{L}{}
+    {\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash\hspace{0pt}}p{#1}}}
+  %% right (p):
+  \IfColumntypeDefined{R}{}
+    {\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash\hspace{0pt}}p{#1}}}
+  %% centered (p):
+  \IfColumntypeDefined{C}{}
+    {\newcolumntype{C}[1]{>{\Centering\arraybackslash\hspace{0pt}}p{#1}}}
+}
+
+\EndCodeSection{StyleTables}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Index and other lists
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleIndexes}
+
+\input{preamble/style-index.tex}
+\input{preamble/style-glossaries.tex}
+
+\EndCodeSection{StyleIndexes}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% verbatim packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleVerbatim}
+
+\input{preamble/style-listings.tex}
+
+\EndCodeSection{StyleVerbatim}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% fancy packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleFancy}
+\IfPackageLoaded{lettrine}{
+  \setcounter{DefaultLines}{2}
+  \renewcommand{\DefaultLoversize}{0}
+  \renewcommand{\DefaultLraise}{0}
+  \renewcommand{\DefaultLhang}{0}
+  \LettrineImagefalse
+  \setlength{\DefaultFindent}{0pt}
+  \setlength{\DefaultNindent}{0.5em}
+  \setlength{\DefaultSlope}{0pt}
+}
+
+\IfPackageLoaded{framed}{
+  \renewcommand\FrameCommand{\fcolorbox{black}{frameshadecolor}}
+}
+\EndCodeSection{StyleFancy}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% layout:  Paragraph
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleParagraph}
+%\nonfrenchspacing     % provides extra space after sentence endings 
+                       % Must be switched of for german and english text!
+
+%% Paragraph Separation =================================
+\KOMAoptions{%
+   % parskip=relative, % _not_ compatible with tikz! othwise recommanded
+   parskip=absolute, % do not change indentation according to fontsize
+   parskip=false    % indentation of 1em
+   % parskip=true   % parksip of 1 line - with free space in last line of 1em
+   % parskip=full-  % parksip of 1 line - no adjustment
+   % parskip=full+  % parksip of 1 line - with free space in last line of 1/4
+   % parskip=full*  % parksip of 1 line - with free space in last line of 1/3
+   % parskip=half   % parksip of 1/2 line - with free space in last line of 1em
+   % parskip=half-  % parksip of 1/2 line - no adjustment
+   % parskip=half+  % parksip of 1/2 line - with free space in last line of 1/3
+   % parskip=half*  % parksip of 1/2 line - with free space in last line of 1em
+}%
+\EndCodeSection{StyleParagraph}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% layout:  line spacing
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%
+\BeginCodeSection{StyleLineSpacing}
+\IfPackageLoaded{setspace}{
+  %\onehalfspacing    % 1,5-times spacing
+  %\doublespacing     % 2-times spacing
+}
+\EndCodeSection{StyleLineSpacing}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% layout:  page layout
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%
+\BeginCodeSection{StylePageLayout}
+
+\raggedbottom     % allow variable (ragged) site heights
+
+% Layout with 'geometry'
+\IfPackageLoaded{geometry}{%
+  \input{preamble/style-geometry.tex}
+} % Endif
+
+
+%%% === Page Layout Options ===
+\KOMAoptions{% 
+   %
+   headlines=2.1,%
+   % headheight=2em,%
+   cleardoublepage=empty %plain, headings
+}%
+
+% Layout with 'typearea'
+%%% Doc: scrguide.pdf
+\IfPackageLoaded{typearea}{% If typearea is loaded
+   \IfPackageNotLoaded{geometry}{% and geometry is not loaded
+     % Koma Script text area layout
+     \KOMAoptions{%
+        DIV=12,% (Size of Text Body, higher values = greater textbody)
+        % DIV=calc % (also areaset/classic/current/default/last) 
+        % -> after setting of spacing necessary!   
+        BCOR=10mm% (binding correction)
+     }%
+ 
+     \KOMAoptions{% (most options are for package typearea)
+       twoside=true, % two side layout (alternating margins, standard in books)
+       % twoside=false, % single side layout 
+       % twoside=semi,  % two side layout (non alternating margins!)
+       %
+       twocolumn=false, % (true)
+       %
+       headinclude=false,%
+       footinclude=false,%
+       mpinclude=false,%    
+       headsepline=true,%
+       footsepline=false,%
+     }%
+     % reloading of typearea, necessary if setting of spacing changed 
+     \typearea[current]{last}      
+%
+% BCOR
+%    current  % Recalculate type-area with the currently valid BCOR value.
+%
+% DIV
+%    areaset  % Recalculate page layout.
+%
+%    calc     % Recalculate type-area including choice of appropriate DIV
+%             % value.
+%
+%    classic  % Recalculate type-area using Middle Age book design canon
+%             % (circle-based calculation).
+%
+%    current  % Recalculate type-area using current DIV value.
+%
+%    default  % Recalculate type-area using the standard value for the current
+%             % page format and current font size. If no standard value
+%             % exists, calc is used.
+%
+%    last     % Recalculate type-area using the same DIV argument as was used
+%             % in the last call.
+%
+   } % \IfPackageNotLoaded{geometry}
+} % \IfPackageLoaded{typearea}
+\EndCodeSection{StylePageLayout}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Titlepage
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleTitlepage}
+\KOMAoptions{%
+   titlepage=true % % separate page for title
+   %titlepage=false %
+}%
+\EndCodeSection{StyleTitlepage}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% head and foot lines
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleHeadFoot}
+
+\input{preamble/style-scrpage2.tex}
+
+\EndCodeSection{StyleHeadFoot}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% headings / page opening
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleHeadings}
+
+% depth of sections numbering
+\setcounter{secnumdepth}{2}
+% 0 - chapter
+% 1 - section
+% 2 - subsection and so on ...
+
+\KOMAoptions{%
+%%%% headings
+   headings=small  % Small Font Size, thin spacing above and below
+   % headings=normal % Medium Font Size, medium spacing above and below
+   % headings=big % Big Font Size, large spacing above and below
+   %
+%%% Add/Dont/Auto Dot behind section numbers 
+%%% (see DUDEN as reference)
+   % ,numbers=autoenddot
+   % ,numbers=enddot
+   ,numbers=noenddot
+}%
+
+\IfDefined{chapter}{
+   \KOMAoptions{%
+      headings=noappendixprefix % chapter in appendix as in body text
+      ,headings=nochapterprefix  % no prefix at chapters
+      % ,headings=appendixprefix   % inverse of 'noappendixprefix'
+      % ,headings=chapterprefix    % inverse of 'nochapterprefix'
+      % ,headings=openany   % Chapters start at any side
+      % ,headings=openleft  % Chapters start at left side
+      ,headings=openright % Chapters start at right side      
+   }%
+}%
+
+% headings left aligned and ragged
+\renewcommand*{\raggedsection}{\raggedright} 
+
+\EndCodeSection{StyleHeadings}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% fonts of headings
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleHeadingsFonts}
+
+
+% Default font for sections
+\newcommand\SectionFontStyle{\sffamily}
+
+\IfDefined{chapter}{%
+   \setkomafont{chapter}{\Large\SectionFontStyle}    % Chapter
+}
+
+\setkomafont{sectioning}{\SectionFontStyle}
+%\setkomafont{section}{\usekomafont{sectioning}}
+%\setkomafont{subsection}{\usekomafont{sectioning}}
+%\setkomafont{subsubsection}{\usekomafont{sectioning}}
+\setkomafont{paragraph}{\rmfamily\itshape} 
+\setkomafont{subparagraph}{\rmfamily}
+
+\setkomafont{descriptionlabel}{\itshape}
+
+%\setkomafont{dictum}{}
+%\setkomafont{dictumauthor}{}
+%\setkomafont{dictumtext}{}
+%\setkomafont{disposition}{}
+%\setkomafont{footnote}{}
+%\setkomafont{footnotelabel}{}
+%\setkomafont{footnotereference}{}
+%\setkomafont{minisec}{}
+
+\setkomafont{part}{\usekomafont{sectioning}\LARGE}
+\setkomafont{partnumber}{\usekomafont{sectioning}\Huge}
+
+\setkomafont{pageheadfoot}{\normalfont\normalcolor\small\sffamily}
+% \setkomafont{pagenumber}{\bfseries\usekomafont{sectioning}}
+\setkomafont{pagenumber}{\normalfont\sffamily\fontshape{b}\selectfont}
+
+%%% --- Titlepage ---
+%\setkomafont{subject}{}
+%\setkomafont{subtitle}{}
+%\setkomafont{title}{}
+
+% colors of headings
+\IfDefined{color}{%
+  \IfColorDefined{sectioncolor}{%
+    \addtokomafont{sectioning}{\color{sectioncolor}}%
+    \IfDefined{chapter}{%
+      \addtokomafont{chapter}{\color{sectioncolor}}%
+    }%
+  }{}%
+}
+
+\EndCodeSection{StyleHeadingsFonts}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% layout of headings 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleHeadingsLayout}
+%%% Remove Space above Chapter.
+%%% (NOT recommanded!)
+%% Space above Chapter Title
+% \renewcommand*{\chapterheadstartvskip}{\vspace{1\baselineskip}}%
+%% Space below Chapter Title
+% \renewcommand*{\chapterheadendvskip}{\vspace{0.5\baselineskip}}%
+
+% setup of package titlesec
+\input{preamble/style-titlesec.tex}
+
+\EndCodeSection{StyleHeadingsLayout}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% settings and layout of TOC, LOF 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleLayoutTOC}
+%%% === Table of Contents ==============================
+
+\setcounter{tocdepth}{3} % Depth of TOC Display
+
+\KOMAoptions{%
+   %%% Setting of 'Style' and 'Content' of TOC
+   % toc=left, %
+   toc=indented,%
+}%  
+
+% setup of package titletoc
+\input{preamble/style-titletoc.tex}
+
+% Setup using tocstyle
+\IfPackageLoaded{tocstyle}{
+% predefined styles
+% \usetocstyle{standard} % A style similar to the standard classes. 
+%                        % \setkomafont has no effect!
+\usetocstyle{KOMAlike} % A style similar to the KOMA-Script classes.  
+%%            % This is almost the same like standard, but instead 
+%%            % of bold face \usekomafont { disposition } will be used if 
+%%            % \usekomafont was defined and sans serif, bold face
+%%            % (\sffamily\bfseries) if not.
+%%            %
+%\usetocstyle{classic}  % Like KOMAlike but all page numbers are set 
+%%                      % using normal font.
+%\usetocstyle{allwithdot}  % Like classic but dots between entry text 
+%%                         % and page numbers are used at all depths.
+%\usetocstyle{noonewithdot} % Like classic but not dots between entry 
+%%                          % text and page numbers are used.
+%\usetocstyle{nopagecolumn} % Like noonewithdot but also the gap between 
+%                           % text and page numbersis omited.  
+}
+
+% \newcommand{\fontTOC}{\sffamily}
+\newcommand{\fontTOC}{\rmfamily}
+
+
+\IfPackageNotLoaded{tocloft}{ % inkompatible
+   % apply style of TOC using koma script
+   \setkomafont{partentry}{\fontTOC\bfseries\large}
+   \setkomafont{partentrypagenumber}{\fontTOC\bfseries}
+   \IfElseDefined{chapter}{%
+      \setkomafont{chapterentry}{\bfseries\fontTOC}
+      \setkomafont{chapterentrypagenumber}{\bfseries\fontTOC}
+   }{%
+      \setkomafont{sectionentry}{\bfseries\fontTOC}
+      \setkomafont{sectionentrypagenumber}{\bfseries\fontTOC}
+   }
+}
+
+
+%%% === Appereance of Lists of figures, tables etc.  ===
+\KOMAoptions{%
+   %%% Setting of 'Style' and 'Content' of Lists 
+   %%% (figures, tables etc)
+   % --- General List Style ---
+   % listof=left, % tabular styles
+   listof=indented, % hierarchical style
+   % --- Appearance of Lists in TOC
+   listof=notoc, % Lists are not part of the TOC
+   % listof=totoc, % add Lists to TOC without number
+   % listof=totocnumbered, % add Lists to TOC with number
+%%% index in toc
+   index=nottotoc, % index is not part of the TOC
+   % index=totoc, % add index to TOC without number
+%%% bib in toc
+   % bibliography=nottotoc, % Bibliography is not part of the TOC
+   % bibliography=totocnumbered, % add Bibliography to TOC with number
+   bibliography=totoc % add Bibliography to TOC without number
+}%  
+
+%\IfDefined{chapter}{%
+% \KOMAoptions{%
+%   % --- chapter highlighting ---
+%   % listof=chapterentry, % ??? Chapter starts are marked in figure/table
+%   % listof=chaptergapline, % New chapter starts are marked by a gap 
+%                            % of a single line
+%   listof=chaptergapsmall, % New chapter starts are marked by a gap 
+%                            % of a smallsingle line
+%   % listof=nochaptergap, % No Gap between chapters
+%   %
+%   % listof=leveldown, % lists are moved one level down ???
+% }
+%}
+
+% Subfigures text in List of Figures
+\IfPackageLoaded{subfig}{
+   \setcounter{lofdepth}{1}  %1 = only figures, 2 = figures and subfigures
+}
+
+\EndCodeSection{StyleLayoutTOC}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% pdf packages
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StylePdf}
+
+\input{preamble/style-hyperref.tex}
+
+\IfPackageLoaded{bookmark}{
+   \bookmarksetup{%
+   %%% Action options
+      ,page=1    % 
+      %,view     %
+      ,open=true %
+      ,openlevel=2 % level to which bookmarks are open
+      ,depth=4   % level to which bookmarks are generated
+      ,numbered=true
+   }%
+}
+
+%% disable compression of images in pdf
+% \ifpdf
+%    \pdfcompresslevel=0
+% \fi
+
+% Make figure and not only the number to a link
+\input{preamble/style-references.tex}
+
+\EndCodeSection{StylePdf}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% fix remaining problems
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\BeginCodeSection{StyleFixProblems}
+% ------------------------------------------------------------------
+% Define frontmatter, mainmatter and backmatter if not defined
+% because this template shall compile in any koma script class
+\makeatletter
+\@ifundefined{frontmatter}{%
+   \newcommand{\frontmatter}{%
+      % (i, ii, iii)
+      \pagenumbering{roman}
+   }
+}{}
+\@ifundefined{mainmatter}{%
+   % scrpage2 benoetigt den folgenden switch
+   % wenn \mainmatter definiert ist.
+   \newif\if@mainmatter\@mainmattertrue
+   \newcommand{\mainmatter}{%
+      %  (1,2,3)
+      \pagenumbering{arabic}%
+      \setcounter{page}{1}%
+   }
+}{}
+\@ifundefined{backmatter}{%
+   \newcommand{\backmatter}{
+      % (i, ii, iii)
+      \pagenumbering{roman}
+   }
+}{}
+\makeatother
+
+% fix Problem with onlyamsmath active $ char 
+% together with the tabu package
+\input{preamble/fix-tabu-onlyamsmath.tex}
+
+% fix Problem with onlyamsmath active $ char 
+% together with the tikz package
+\input{preamble/fix-tikz-onlyamsmath.tex}
+
+
+% fix problems with framed and marginnote
+\input{preamble/fix-framed-marginnote.tex}
+
+
+
+% ------------------------------------------------------------------
+\EndCodeSection{StyleFixProblems}

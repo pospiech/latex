@@ -1,0 +1,49 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = en-US
+
+%% This list is from the phd publication 
+%% of Matthias Pospiech
+%% 
+\chapter*{Publications}
+\markboth{Publications}{Publications}
+
+\IfPackageLoaded{hyperref}{
+	\phantomsection
+	\addcontentsline{toc}{chapter}{Publications}
+}
+
+%% In these lists the publications are numbered by date of publications
+%% and the author of the thesis can be printed in bold.
+
+\section*{Scientific publications}
+% \section*{Wissenschaftliche Veröffentlichungen}
+\begin{refsection}
+\nocite{Siegel2007, Palmer2010, Pospiech2009, Pospiech2010, Pospiech2011}
+% print all combinations in this list bold (makes name of author bold)
+\forcsvlist{\listadd\bibboldnames}
+  {{Pospiech, Matthias}, {Pospiech, M.}}
+\printbibliography[env=numbered+bold, heading=none, sorting=ynt, resetnumbers=true]
+\end{refsection}
+
+\section*{Submissions to international conferences}
+% \section*{Beiträge auf internationalen Konferenzen}
+\begin{refsection}
+\nocite{Morgner2008, Palmer2008a, Siegel2008,Pospiech2009a,Pospiech2010b,Pospiech2010a}
+% print all combinations in this list bold (makes name of author bold)
+\forcsvlist{\listadd\bibboldnames}
+  {{Pospiech, Matthias}, {Pospiech, M.}}
+\printbibliography[env=numbered+bold, heading=none, sorting=ynt, resetnumbers=true]
+\end{refsection}
+
+\section*{Submissions to national conferences}
+% \section*{Beiträge auf nationalen Konferenzen}
+\begin{refsection}
+\nocite{EmonsDPG2009, HoffmannDPG2008, LangDPG2008, VaeckenstedtDPG2010, PospiechDPG2009, PospiechDPG2010, PospiechDPG2011}
+% print all combinations in this list bold (makes name of author bold)
+\forcsvlist{\listadd\bibboldnames}
+  {{Pospiech, Matthias}, {Pospiech, M.}}
+\printbibliography[env=numbered+bold, heading=none, sorting=ynt, resetnumbers=true]
+\end{refsection}
+%
+% standard style
+\renewcommand*{\bibboldnames}{}

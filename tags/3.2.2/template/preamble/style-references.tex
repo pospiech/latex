@@ -1,0 +1,49 @@
+\IfPackageLoaded{babel}{
+  % if babel loaded not necessary
+  %\providecommand*{\figurename}{Abbildung}
+  %\providecommand*{\tablename}{Tabelle}
+  %\providecommand*{\chaptername}{Kapitel}
+  % not defined by babel
+  \iflanguage{ngerman}{%
+    \providecommand*{\secrefname}{Abschnitt}%
+    \providecommand*{\eqnrefname}{Gleichung}%
+  }{}%
+  \iflanguage{english}{%
+    \providecommand*{\secrefname}{section}%
+    \providecommand*{\eqnrefname}{equation}%
+  }{}%
+  %
+  \IfElsePackageLoaded{hyperref}{
+    \newcommand*{\eqnref}[1]{%
+        \hyperref[{#1}]{\eqnrefname~(\ref*{#1}})%
+    }%
+    \newcommand*{\figref}[1]{%
+      \hyperref[{#1}]{\figurename~\ref*{#1}}%
+    }%
+    \newcommand*{\tabref}[1]{%
+      \hyperref[{#1}]{\tablename~\ref*{#1}}%
+    }%
+    \newcommand*{\secref}[1]{%
+      \hyperref[{#1}]{\secrefname~\ref*{#1}}%
+    }%
+    \newcommand*{\chapref}[1]{%
+      \hyperref[{#1}]{\chaptername~\ref*{#1}}%
+    }%
+  }{% hyperref not loaded
+    \newcommand*{\eqnref}[1]{%
+      \eqnrefname~(\ref*{#1})%
+    }%
+    \newcommand*{\figref}[1]{%
+      \figurename~\ref*{#1}%
+    }%
+    \newcommand*{\tabref}[1]{%
+      \tablename~\ref*{#1}%
+    }%
+    \newcommand*{\secref}[1]{%
+      \secrefname~\ref*{#1}%
+    }%
+    \newcommand*{\chapref}[1]{%
+      \chaptername~\ref*{#1}%
+    }%
+  }% end: hyperref not loaded
+}% \IfPackageLoaded{babel}

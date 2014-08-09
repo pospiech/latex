@@ -1,0 +1,61 @@
+\IfPackageLoaded{titlesec}{
+
+%% -> Section with rule below
+% --------------------------------
+% \titleformat{\section}
+%   [hang]%[frame]display
+%   {\usekomafont{sectioning}\Large}
+%  {\thesection}
+%   {6pt}
+%   {}
+%   [\titlerule \vspace{0.5\baselineskip}]
+% --------------------------------
+
+%--> chapter with 'chapter' + number boxed, name below centered
+% --------------------------------
+% \titleformat{\chapter}[display]     % {command}[shape]
+%   {\usekomafont{chapter}\filcenter} % format
+%   {                                 % label
+%   {\fcolorbox{black}{frameshadecolor}{
+%   {\huge\chaptertitlename\mbox{\hspace{1mm}}\thechapter}
+%   }}}
+%   {1pc}                             % sep (from chapternumber)
+%   {\vspace{1pc}}                    % {before}[after] (before chaptertitle and after)
+%% --------------------------------
+
+%--> chapter with 'chapter' + number + rule + name + rule
+% --------------------------------
+\titleformat{\chapter}[display]               % {command}[shape]
+  {\usekomafont{chapter}\Large \color{black}} % format
+  {\LARGE\MakeUppercase{\chaptertitlename}%   % label
+   \Huge~\thechapter \filright}%  
+  {1pt}										  % sep (from chapternumber)
+  {%
+   \titlerule \vspace{0.9pc} % 
+   \filright 
+   \IfColorDefined{sectioncolor}{\color{sectioncolor}}{}   
+  }                                           % (before chaptertitle and after)
+  [\color{black} \vspace{0.9pc} \filright {\titlerule}] %
+% --------------------------------
+
+%--> part with 'PART' + number at frame and name inside frame
+% --------------------------------
+\titleformat{\part}[frame]
+  {\usekomafont{part}\Large\color{black}\centering}    % format
+  % label: PART I
+  {\enspace \LARGE\MakeUppercase{\partname}%           
+     \centering \Huge~\thepart \enspace }%  
+  % sep (from partnumber)
+  {1.5\baselineskip}
+  % (before chaptertitle and after)
+  {\IfColorDefined{sectioncolor}{\color{sectioncolor}}{}%
+  \filcenter}          
+
+% --------------------------------
+
+% spacing before and after sections
+\titlespacing*{\section}{0pt}{*2.0}{*0.5}
+\titlespacing*{\subsection}{0pt}{*1.5}{*0.5}
+\titlespacing*{\subsubsection}{0pt}{*1.5}{*0.5}
+
+}% end: \IfPackageLoaded{titlesec}

@@ -1,0 +1,137 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = en-US
+
+\IfPackageLoaded{biblatex}{%
+% the number is not used in the bibliography, nor
+% the citations, but for the list of publications
+% we want numbers to be available.
+\ExecuteBibliographyOptions{labelnumber}
+
+% change alpha label to be without +	
+\renewcommand*{\labelalphaothers}{}
+
+% change 'In: <magazine>" to "<magazine>"
+\renewcommand*{\intitlepunct}{}
+\DefineBibliographyStrings{german}{in={}}
+\DefineBibliographyStrings{english}{in={}}
+
+% make names capitalized \textsc{}
+\renewcommand{\mkbibnamefirst}{\textsc}
+\renewcommand{\mkbibnamelast}{\textsc}
+
+% make volume and number look like 
+% 'Bd. 33(14): '
+\renewbibmacro*{volume+number+eid}{%
+\setunit{\addcomma\space}%
+\bibstring{volume}% 
+\setunit{\addspace}%
+\printfield{volume}%
+\iffieldundef{number}{}{% 
+ \printtext[parens]{%
+   \printfield{number}%
+ }%
+}%
+\setunit{\addcomma\space}%
+\printfield{eid}
+%\setunit{\addcolon\space}%
+}	
+
+% <authors>: <title>
+\renewcommand*{\labelnamepunct}{\addcolon\space}
+% make ': ' before pages
+\renewcommand*{\bibpagespunct}{\addcolon\space}
+% names delimiter ';' instead of ','
+%\renewcommand*{\multinamedelim}{\addsemicolon\space}
+
+% move date before issue
+\renewbibmacro*{journal+issuetitle}{%
+\usebibmacro{journal}%
+\setunit*{\addspace}%
+\iffieldundef{series}
+ {}
+ {\newunit
+  \printfield{series}%
+  \setunit{\addspace}}%
+%
+\usebibmacro{issue+date}%
+\setunit{\addcolon\space}%
+\usebibmacro{issue}%
+\setunit{\addspace}%
+\usebibmacro{volume+number+eid}%
+\newunit}
+
+% print all names, even if maxnames = 1
+\DeclareCiteCommand{\citeauthors}
+{
+\defcounter{maxnames}{1000}
+\boolfalse{citetracker}%
+\boolfalse{pagetracker}%
+\usebibmacro{prenote}}
+{\ifciteindex
+  {\indexnames{labelname}}
+  {}%
+\printnames{labelname}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+%% create a new style for an enumerated publication list
+%% this code is taken from http://tex.stackexchange.com/questions/187181/independent-publication-list-with-numbered-list-using-biblatex-and-refsection
+
+%% Emphasize own name in References with boldface
+
+% Doc: xpatch.pdf
+\usepackage{xpatch}% 
+
+% \bibboldnames: etoolbox-list of names to typeset bold in \printbibliography
+\newcommand*{\bibboldnames}{}
+
+\newbibmacro*{name:bold}[2]{%
+  \def\do##1{\ifstrequal{#1, #2}{##1}{\bfseries\listbreak}{}}%
+  \dolistloop{\bibboldnames}}
+
+%% # can not be used in patch command because the command is wrapped in another macro.
+%% Therefore we mus play around with cat codes.
+%%   see http://tex.stackexchange.com/questions/188188/loop-macro-fails-if-wrapped-in-conditional
+%%   for a better explaination.
+\begingroup\lccode`?=`#\lowercase{\endgroup
+  \xpretobibmacro{name:last}{\begingroup\usebibmacro{name:bold}{?1}{?2}}{}{}
+  \xpretobibmacro{name:first-last}{\begingroup\usebibmacro{name:bold}{?1}{?2}}{}{}
+  \xpretobibmacro{name:last-first}{\begingroup\usebibmacro{name:bold}{?1}{?2}}{}{}
+}%
+\xpretobibmacro{name:delim}{\begingroup\normalfont}{}{}
+\xapptobibmacro{name:last}{\endgroup}{}{}
+\xapptobibmacro{name:first-last}{\endgroup}{}{}
+\xapptobibmacro{name:last-first}{\endgroup}{}{}
+\xapptobibmacro{name:delim}{\endgroup}{}{}
+
+\DeclareNameAlias{default}{last-first/first-last}
+
+
+
+% Define an new 'defbibenvironment'
+% that includes numbers for use in extra refsections
+\DeclareFieldFormat{labelnumberwidth}{#1\adddot}
+\newlength{\periodwidth}
+\settowidth{\periodwidth}{.}
+
+\defbibenvironment{numbered+bold}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{prefixnumber}%
+        \printfield{labelnumber}%
+        }%
+     }%
+  {
+   \setlength{\labelwidth}{\labelnumberwidth}%
+   \setlength{\leftmargin}{\labelwidth}%
+   \setlength{\labelsep}{\biblabelsep}%
+   \addtolength{\labelsep}{1em}
+   \addtolength{\leftmargin}{\labelsep}%
+   \setlength{\itemsep}{\bibitemsep}%
+   \setlength{\parsep}{\bibparsep}}%
+   \renewcommand*{\makelabel}[1]{\hss##1}%
+  }
+  {\endlist}
+  {\item}%\hskip-\periodwidth
+  
+}% \IfPackageLoaded{biblatex}

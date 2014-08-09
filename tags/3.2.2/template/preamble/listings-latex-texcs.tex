@@ -1,0 +1,52 @@
+\ifcsdef{addmoretexcs}{%
+% LaTeX programming
+\addmoretexcs[LaTeX]{setlength,usepackage,newcommand,renewcommand,providecommand,RequirePackage,SelectInputMappings,ifpdftex,ifpdfoutput,AtBeginEnvironment,ProvidesPackage}
+% other commands
+\addmoretexcs[LaTeX]{maketitle,text,includegraphics,chapter,section,subsection,
+subsubsection,paragraph,textmu,enquote,blockquote,ding,mathds,ifcsdef,Bra,Ket,Braket,subcaption,lettrine,mdfsetup,captionof,listoffigures,listoftables,tableofcontents,appendix,url}
+% tables
+\addmoretexcs[LaTeX]{newcolumntype,rowfont,taburowcolors,rowcolor,rowcolors,bottomrule,toprule,midrule}
+% hyperref
+\addmoretexcs[LaTeX]{hypersetup}
+% glossaries
+\addmoretexcs[LaTeX]{gls,printglossary,glsadd,newglossaryentry,newacronym}
+% Koma
+\addmoretexcs[LaTeX]{mainmatter,frontmatter,geometry,KOMAoptions,setkomafont,addtokomafont}
+% SI, unit
+\addmoretexcs[LaTeX]{si,SI,sisetup,unit,unitfrac,micro}
+% biblatex package
+\addmoretexcs[LaTeX]{newblock,ExecuteBibliographyOptions,addbibresource}
+% math packages
+\addmoretexcs[LaTeX]{operatorname,frac,sfrac,dfrac,DeclareMathOperator,mathcal,underset}
+% demo package
+\addmoretexcs[LaTeX]{democodefile,package,cs,command,env,DemoError,PrintDemo}  
+% tablestyles
+\addmoretexcs[LaTeX]{theadstart,tbody,tsubheadstart,tsubhead,tend}
+% code section package
+\addmoretexcs[LaTeX]{DefineCodeSection,SetCodeSection,BeginCodeSection,EndCodeSection}
+% template tools package
+\addmoretexcs[LaTeX]{IfDefined,IfUndefined,IfElseDefined,IfElseUndefined,IfMultDefined,IfNotDraft,IfNotDraftElse,IfDraft,IfPackageLoaded,IfElsePackageLoaded,IfPackageNotLoaded,IfPackagesLoaded,IfPackagesNotLoaded,ExecuteAfterPackage,ExecuteBeforePackage,IfTikzLibraryLoaded,IfColumntypeDefined,IfColumntypesDefined,IfColorDefined,IfColorsDefined,IfMathVersionDefined,SetTemplateDefinition,UseDefinition,IfFileExists,iflanguage}
+% tablestyles
+\addmoretexcs[LaTeX]{setuptablefontsize,tablefontsize,setuptablestyle,tablestyle,setuptablecolor,tablecolor,disablealternatecolors,tablealtcolored,tbegin,tbody,tend,thead,theadstart,tsubheadstart,tsubhead,theadrow,tsubheadrow,resettablestyle,theadend,tsubheadend,tableitemize,PreserveBackslash}
+% todonotes
+\addmoretexcs[LaTeX]{todo,missingfigure}
+% listings
+\addmoretexcs[LaTeX]{lstloadlanguages,lstdefinestyle,lstset}
+% index
+\addmoretexcs[LaTeX]{indexsetup}
+% glossaries
+\addmoretexcs[LaTeX]{newglossarystyle,glossarystyle,deftranslation,newglossary}
+% tikz
+\addmoretexcs[LaTeX]{usetikzlibrary}
+% color
+\addmoretexcs[LaTeX]{definecolor,colorlet}
+% caption
+\addmoretexcs[LaTeX]{captionsetup,DeclareCaptionStyle}
+% floatrow
+\addmoretexcs[LaTeX]{floatsetup}
+% doc.sty
+\addmoretexcs[LaTeX]{EnableCrossrefs,DisableCrossrefs,PageIndex,CodelineIndex,CodelineNumbered}
+% refereces
+\addmoretexcs[LaTeX]{cref,Cref,vref,eqnref,figref,tabref,secref,chapref}
+%
+}{} % end of \ifcsdef
