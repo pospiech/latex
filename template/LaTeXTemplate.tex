@@ -31,6 +31,7 @@
 % packages to allow more \write outputs
 \input{preamble/packages-SolutionsNoRoomForNewWrite.tex}
 % packages required for the template
+\usepackage{atveryend} % must be loaded before etoolbox. (bugfix for pageslts)
 \usepackage{codesection}
 \usepackage{templatetools}
 
@@ -218,7 +219,7 @@
 \IfDefined{lstlistoflistings}{\cleardoublepage\lstlistoflistings}
 
 % --- Appendix --- --- --- --- --- --- ---
-\cleardoublepage
+\cleardoublepage\IfDefined{phantomsection}{\phantomsection}
 \appendix
 % Add `Appendix` to TOC
 \addcontentsline{toc}{part}{\appendixname}

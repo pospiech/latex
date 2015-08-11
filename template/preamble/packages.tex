@@ -87,7 +87,8 @@
 
 % Description: Fix known LaTeX2e bugs
 % Doc: fixltx2e.pdf
-\usepackage{fixltx2e}
+%% Removed: fixltx2e is not required with releases after 2015
+%%          All fixes are now in the LaTeX kernel.
 
 % Description: This package implements a workaround for the LaTeX bug that
 %              marginpars sometimes appear on the wrong margin.
@@ -519,12 +520,21 @@
 %% APA Style
 %  style=apa
 %
+% if apa style is loaded
+%\DeclareLanguageMapping{german}{german-apa}
+\DeclareLanguageMapping{british}{british-apa}
 
 \EndCodeSection{PackagesCitation}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % figures, placement, floats and captions
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginCodeSection{PackagesFigures}
+
+%% Description: A package like "pst-pdf" for processing PostScript graphics
+%%              with psfrag labels within pdfLaTeX documents.
+%% Doc: pstool.pdf
+%% DOES Not work together with the template!
+%\usepackage[crop=pdfcrop]{pstool}
 
 %% Description: provides new floats and enables H float modifier option
 %%             (in future incompatible with Koma Script)
@@ -893,6 +903,7 @@
 % Doc: titlesec.pdf
 % load before: hyperref
 % consumes \write
+% usage: % Define partial toc for part pages \PartialToc
 \usepackage{titletoc}
 
 % Description: apply different styles for the formating of the 
