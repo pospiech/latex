@@ -10,11 +10,13 @@
 %[]      % below code
 
 % Define partial toc for part pages
-\newcommand{\PartialToc}[1]{%
+\IfDefined{part}{
+  \newcommand{\PartialToc}[1]{%
     \thispagestyle{plain}
     \startcontents[part]
     \section*{\contentsname}
     \printcontents[part]{}{0}{\setcounter{tocdepth}{#1}}
+  }
 }
 
 % Thanks to egreg, for providing this code at
