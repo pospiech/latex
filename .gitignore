@@ -1,0 +1,9 @@
+/template/latexthesistemplate
+/scripts/__pycache__
+/template/*.zip
+*.log
+*.pdf
+/template/content/longtable.tex
+/template/doc/demo/democode.tex
+/template/doc/doc-code-filled.tex
+/template/bib/demo.bib

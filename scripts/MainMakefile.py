@@ -8,7 +8,7 @@
 # Copyright:   (c) Matthias Pospiech 2013
 # Licence:     GPL
 #-------------------------------------------------------------------------------
-
+import sys
 import os
 import shutil
 import datetime
@@ -25,6 +25,7 @@ def main():
     tex.cleanupAuxFiles(texfile)
     texfile = '../template/TemplateDocumentation.'
     tex.cleanupAuxFiles(texfile)
+    sys.exit()
 
     print ("--- Creation of Packages ---")
     # importCreatePackages.main()
@@ -33,7 +34,7 @@ def main():
     # copyPackages()
 
     print ("--- Create Font Examaples ---")
-    # importFontExamples.main()
+    importFontExamples.main()
 
     print ("--- fill doc-code.tex ---")
     importInsertPrintCode.main()
