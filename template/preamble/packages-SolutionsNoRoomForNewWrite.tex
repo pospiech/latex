@@ -1,3 +1,12 @@
+% Description: see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom
+%   short summery: The e-TeX extensions do not help with the 
+%                  "no room for a new \write" problem, but in other cases
+%                  of "no room for a new <thing> "
+%                  "It is essential that you load etex before any other packages, 
+%                  and reserve any extra inserts immediately:"
+\usepackage{etex} 
+\reserveinserts{28}
+
 % Description: Package scrwfile provides a general change of the LaTeX kernel, 
 %              that solve problems with the 
 %              error "no room for a new \write"
@@ -5,7 +14,7 @@
 % Doc: scrguien.pdf
 %
 %% If titletoc is not required, the usage of this package is recommended!
-% \usepackage{scrwfile}
+\usepackage{scrwfile}
 
 % Description: This package is meant to be a solution for the 
 %              error "no room for a new \write"
@@ -14,10 +23,5 @@
 \usepackage{morewrites}
 
 
-% Description: see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom
-%   short summery: The e-TeX extensions do not help with the 
-%                  "no room for a new \write" problem, but in other cases
-%                  of "no room for a new <thing> "
-\usepackage{etex} 
-\reserveinserts{28}
+
 

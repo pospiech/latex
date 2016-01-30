@@ -8,7 +8,6 @@
 % of the template.
 
 %% Bug fixes and other packages to be loaded before the class
-\RequirePackage[l2tabu, orthodox]{nag} % check for mistakes in the code
 \RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
 %
 %% Document Class (Koma Script) -----------------------------------------
@@ -35,6 +34,7 @@
 % packages to allow more \write outputs
 \input{preamble/packages-SolutionsNoRoomForNewWrite.tex}
 % packages required for the template
+\usepackage{atveryend} % must be loaded before etoolbox. (bugfix for pageslts)
 \usepackage{codesection}
 \usepackage{templatetools}
 \usepackage{latexdemo}

@@ -668,11 +668,13 @@
   % sanitizesort, % This is a boolean option that determines whether or not
                 % to sanitize the sort value when writing to the external glossary
                 % file.          
-  % savewrites, % This is a boolean option to minimise the number of
+  savewrites, % This is a boolean option to minimise the number of
               % write registers used by the glossaries package. 
               % (Default is savewrites=false.)
-              % WARNING: does not work in this template, 
-              % Error "\glswritefiles undefined."
+              % savewrites
+			  % Note!: This option can significantly slow document compilation. 
+			  % As an alternative, you can use the scrwfile package and not use this option.
+			  % -> scrwfile disabled because of incompatibility with titletoc.
   translate=true, % If babel has been loaded and the translator package
                   % is installed, translator will be loaded and the translations
                   % will be provided by the translator package interface.
@@ -728,6 +730,11 @@
 \usepackage{glossary-longragged}
 % Create a new list of symbols
 \newglossary[slg]{symbolslist}{syi}{syg}{List of Symbols}
+% Simplest and easiest sorting method, but it's
+% inefficient and the sorting is done according to the English alphabet. To
+% use this method, add \makenoidxglossaries to the preamble and put
+% \printnoidxglossaries at the place where you want your glossary
+%\makenoidxglossaries
 }
 
 \EndCodeSection{PackagesIndexes}

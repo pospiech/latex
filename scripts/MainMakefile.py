@@ -26,17 +26,17 @@ def main():
     texfile = '../template/TemplateDocumentation.'
     tex.cleanupAuxFiles(texfile)
 
-    # print ("--- Creation of Packages ---")
+    print ("--- Creation of Packages ---")
     # importCreatePackages.main()
 
-    # print ("--- Copy Packages ---")
+    print ("--- Copy Packages ---")
     # copyPackages()
 
     print ("--- Create Font Examaples ---")
     # importFontExamples.main()
 
     print ("--- fill doc-code.tex ---")
-    # importInsertPrintCode.main()
+    importInsertPrintCode.main()
 
     print ("--- compiling LaTeXTemplate.tex ---")
     texfile = '../template/LaTeXTemplate.tex'
