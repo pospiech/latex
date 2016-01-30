@@ -1,9 +1,9 @@
-/template/latexthesistemplate
-/scripts/__pycache__
-/template/*.zip
+/latexthesistemplate/template/latexthesistemplate
+/latexthesistemplate/scripts/__pycache__
+/latexthesistemplate/template/*.zip
 *.log
 *.pdf
-/template/content/longtable.tex
-/template/doc/demo/democode.tex
-/template/doc/doc-code-filled.tex
-/template/bib/demo.bib
+/latexthesistemplate/template/content/longtable.tex
+/latexthesistemplate/template/doc/demo/democode.tex
+/latexthesistemplate/template/doc/doc-code-filled.tex
+/latexthesistemplate/template/bib/demo.bib
