@@ -25,7 +25,7 @@ def main():
     tex.cleanupAuxFiles(texfile)
     texfile = '../template/TemplateDocumentation.'
     tex.cleanupAuxFiles(texfile)
-    sys.exit()
+    # sys.exit()
 
     print ("--- Creation of Packages ---")
     # importCreatePackages.main()
