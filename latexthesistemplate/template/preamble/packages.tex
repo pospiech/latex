@@ -911,7 +911,9 @@
 % load before: hyperref
 % consumes \write
 % usage: % Define partial toc for part pages \PartialToc
-\usepackage{titletoc}
+\ifcsdef{chapter}
+	{\usepackage{titletoc}}
+	{}
 
 % Description: apply different styles for the formating of the 
 %              table of contents and lists of floats.
