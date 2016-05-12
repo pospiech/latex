@@ -891,10 +891,11 @@
 % Description: The titlesec package is essentially a replacement - partial or
 %              total-for the LaTeX macros related with sections - namely
 %              titles, headers and contents.
+% incompatible: with KOMA script, NOT Recommended!
 %%% Doc: titlesec.pdf
-\ifcsdef{chapter}
-	{\usepackage{titlesec}}
-	{\usepackage{titlesec} \csundef{chapter}}
+%\ifcsdef{chapter}
+%	{\usepackage{titlesec}}
+%	{\usepackage{titlesec} \csundef{chapter}}
 
 
 \EndCodeSection{PackagesHeadings}

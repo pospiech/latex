@@ -17,14 +17,10 @@ In the next \cref{chap:doc:faq} you will find a list of typical questions and an
 
 These changes were introduced in the latest release:
 
-\minisec{2014/07 v3.2.2} %
-Bug fixes, Improvements and other changes
+\minisec{2015/08 v3.2.4} %
+Minor bug fixes and other changes
 \begin{itemize}
-\item The template failed to compile with TeX Live 2014. The error was in the definition of \cs{addmoretexcs}. 
-\item The options of \package{geometry} were not well thought out. If a spacing factor was introduced this could lead to an ugly page layout. All options of \package{geometry} are now such that the page layout is similar to the one of \package{typearea} with DIV12. 
-\item The publications lists are now bibliography lists create with \cs{printbibliography}. Previously these needed to be created completely manual.
-\item New magic comment for the bibliography tool added.
-\item Removed packages. These are now available from CTAN or better the distribution package manager. 
+\item The template failed to compile with latest package \package{titlesec} in combination with KOMA-script. Since both are not compatible and can be used only with workarounds within KOMA-Script the package \package{titlesec} was removed and the style changes applied using different commands.
 \end{itemize}
 
 See \cref{appendix:doc:changes} for all full list of the previous development process of this template.
@@ -200,7 +196,7 @@ Note that all previous packages for bibliographies are incompatible because all 
 %
 \item Head and Foot have automatic generated content which can be customized together with the layout of the header and footer (\package{scrpage2}).
 %
-\item The Heading can be fully customized. In this template by default the chapter layout is changed with the provided functions (\package{titlesec}).
+\item The Heading can be fully customized. In this template by default the chapter layout is changed with the provided functions of KOMA-script.
 %
 \item The page size can be calculated automatically (\package{typearea}) or defined in every tiny detail (\package{geometry}).
 %
@@ -474,7 +470,7 @@ glossaries & \file{preamble/style-glossaries.tex} \\
 listings & \file{preamble/style-listings.tex} \\
 geometry & \file{preamble/style-geometry.tex} \\
 scrpage2 & \file{preamble/style-scrpage2.tex} \\
-titlesec & \file{preamble/style-titlesec.tex} \\
+%titlesec & \file{preamble/style-titlesec.tex} \\
 hyperref & \file{preamble/style-hyperref.tex} \\
 %
 \end{longtabu}
@@ -750,28 +746,28 @@ This chapter provides a collection a known warnings and possible errors with an 
 % -------------------------------------------------------------------------
 \section{Warnings}
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{scrbook: Usage of package `titlesec' together with a KOMA-Script class is not recommended}
-
-The \package{titlesec} is not compatible with KOMA-Script classes as in
-detail described in the warning message. Unless these features of KOMA-Script
-are not required it should cause no problem to load both together. 
-
-\package{titlesec} is used in this template to redefine the appearance of 
-chapter and part headings as well as the spacing before and after 
-sections in different levels.
-
-\begin{verbatim}
-Class scrbook Warning: Usage of package `titlesec' together
-(scrbook)              with a KOMA-Script class is not recommended.
-(scrbook)              I'd suggest to use the package only
-(scrbook)              if you really need it, because it breaks several
-(scrbook)              KOMA-Script features, i.e., option `headings' and
-(scrbook)              the extended optional argument of the section
-(scrbook)              commands .
-(scrbook)              Nevertheless, using requested
-(scrbook)              package `titlesec' on input line 824.
-\end{verbatim}
+%% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\subsection{scrbook: Usage of package `titlesec' together with a KOMA-Script class is not recommended}
+%
+%The \package{titlesec} is not compatible with KOMA-Script classes as in
+%detail described in the warning message. Unless these features of KOMA-Script
+%are not required it should cause no problem to load both together. 
+%
+%\package{titlesec} is used in this template to redefine the appearance of 
+%chapter and part headings as well as the spacing before and after 
+%sections in different levels.
+%
+%\begin{verbatim}
+%Class scrbook Warning: Usage of package `titlesec' together
+%(scrbook)              with a KOMA-Script class is not recommended.
+%(scrbook)              I'd suggest to use the package only
+%(scrbook)              if you really need it, because it breaks several
+%(scrbook)              KOMA-Script features, i.e., option `headings' and
+%(scrbook)              the extended optional argument of the section
+%(scrbook)              commands .
+%(scrbook)              Nevertheless, using requested
+%(scrbook)              package `titlesec' on input line 824.
+%\end{verbatim}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

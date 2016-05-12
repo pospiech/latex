@@ -483,9 +483,9 @@
 \IfDefined{chapter}{
    \KOMAoptions{%
       headings=noappendixprefix % chapter in appendix as in body text
-      ,headings=nochapterprefix  % no prefix at chapters
+      % ,headings=nochapterprefix  % no prefix at chapters
       % ,headings=appendixprefix   % inverse of 'noappendixprefix'
-      % ,headings=chapterprefix    % inverse of 'nochapterprefix'
+      ,headings=chapterprefix    % inverse of 'nochapterprefix'
       % ,headings=openany   % Chapters start at any side
       % ,headings=openleft  % Chapters start at left side
       ,headings=openright % Chapters start at right side      
@@ -561,8 +561,76 @@
 %% Space below Chapter Title
 % \renewcommand*{\chapterheadendvskip}{\vspace{0.5\baselineskip}}%
 
-% setup of package titlesec
-\input{preamble/style-titlesec.tex}
+%% code taken from 
+%% http://tex.stackexchange.com/questions/307522/convert-titlesec-code-to-something-koma-script-like
+%% by user >esdd<
+
+% part and chapter
+\RedeclareSectionCommand[
+  style=chapter,
+  beforeskip=-1sp,
+  afterskip=1sp,
+  innerskip=0pt,
+  font=\mdseries\Large,
+  prefixfont=\LARGE,
+]{part}
+
+\RedeclareSectionCommand[
+  innerskip=1pt,
+  font=\mdseries\Large,
+  prefixfont=\LARGE,
+]{chapter}
+
+\renewcommand*{\partformat}{%
+  \raisebox{-.5\dp\strutbox}{%
+    \makebox[0pt]{%
+      \setlength\fboxsep{.5em}%
+      \colorbox{white}{%
+        \partname\nobreakspace{\Huge\thepart\autodot}%
+}}}}
+
+\renewcommand*{\chapterformat}{%
+  \mbox{\MakeUppercase{%
+    \chapappifchapterprefix{\nobreakspace}}{\Huge\thechapter\autodot}%
+    \IfUsePrefixLine{}{\enskip}}%
+}
+
+\renewcommand\chapterlineswithprefixformat[3]{%
+  \ifstr{#1}{chapter}{%
+    #2\nobreak%
+    \vspace*{\dimexpr-\ht\strutbox}%
+    \rule[-\dp\strutbox]{\textwidth}{.4pt}\\*[.9pc]%
+    {\IfColorDefined{sectioncolor}{\color{sectioncolor}}{}#3}%
+    \vspace*{\dimexpr-\ht\strutbox-\dp\strutbox+.9pc}\nobreak%
+    \rule[-\dp\strutbox]{\textwidth}{.4pt}%
+    \par\nobreak%
+  }{%
+    \ifstr{#1}{part}{%
+      \null\vfil
+      \fbox{%
+        \parbox[t][\dimexpr\height+3\normalbaselineskip][c]
+          {\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+          {\centering \IfColorDefined{sectioncolor}{\color{sectioncolor}}{}#3}%
+      }\nolinebreak%
+      \ifnumbered{part}{\hspace*{-.5\textwidth}#2}{}%
+      \vfil\newpage\partheademptypage
+    }{%
+      #2#3%
+    }%
+  }%
+}
+
+% other section levels
+\RedeclareSectionCommand[
+  beforeskip=-2ex plus -.6ex minus -0.12ex,
+  afterskip=.5ex plus .05ex
+]{section}
+
+\RedeclareSectionCommands[
+  beforeskip=-1.5ex plus -.45ex minus -0.09ex,
+  afterskip=.5ex plus .05ex
+]{subsection,subsubsection}
+
 
 \EndCodeSection{StyleHeadingsLayout}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

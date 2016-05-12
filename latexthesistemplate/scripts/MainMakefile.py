@@ -34,7 +34,7 @@ def main():
     # copyPackages()
 
     print ("--- Create Font Examaples ---")
-    importFontExamples.main()
+    # importFontExamples.main()
 
     print ("--- fill doc-code.tex ---")
     importInsertPrintCode.main()
