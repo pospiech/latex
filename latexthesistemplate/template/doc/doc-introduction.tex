@@ -17,11 +17,21 @@ In the next \cref{chap:doc:faq} you will find a list of typical questions and an
 
 These changes were introduced in the latest release:
 
-\minisec{2015/08 v3.2.4} %
+\minisec{2018/09 v3.2.5} %
 Minor bug fixes and other changes
 \begin{itemize}
-\item The template failed to compile with latest package \package{titlesec} in combination with KOMA-script. Since both are not compatible and can be used only with workarounds within KOMA-Script the package \package{titlesec} was removed and the style changes applied using different commands.
+	\item The template failed to compile the biblatex code in the publication list correct. This was due to a change in the code base of biblatex.
+	\item Examples for glossaries were added to the template.
 \end{itemize}
+Planed for the next release is a change of packages that are obsolete, such as screpage2. 
+A switch to luatex is currently not planed. This would mean a major change and would be Version 3.3
+
+
+%\minisec{2015/08 v3.2.4} %
+%Minor bug fixes and other changes
+%\begin{itemize}
+%\item The template failed to compile with latest package \package{titlesec} in combination with KOMA-script. Since both are not compatible and can be used only with workarounds within KOMA-Script the package \package{titlesec} was removed and the style changes applied using different commands.
+%\end{itemize}
 
 See \cref{appendix:doc:changes} for all full list of the previous development process of this template.
 % -------------------------------------------------------------------------

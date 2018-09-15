@@ -321,6 +321,42 @@ An index is easy to create with LaTeX, but should only be done if the time is av
 
 A word is added to the index with the command \cs{index\{word\}} and these indexed words can be grouped with \cs{index\{group!word\}}. Within this document some index commands are inserted below the section headers of this tutorial for the purpose of demonstrating the indexing. The resulting index is displayed on page~\pageref{sec:Index}. 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Glossary}
+\label{sec:example:glossary}
+\index{example!glossary}
+% use the symbols in a document.
+Glossary entries are used with \cs{gls\{entry\}}. The following text uses the entrys for CD and DVD:  \cs{gls\{glos:CD\}}, \cs{gls\{glos:DVD\}}:
+
+The \gls{glos:CD} was originally developed to play sound recordings, but later
+extended to data storage. Later the \gls{glos:DVD} replaced the CD for the usage
+of data storage.
+
+
+The following text uses definitions of acronyms in a document:
+
+The \gls{NA} of an microscope objective is defined by
+$\mathrm{NA} = n \sin(\alpha)$, where and $\alpha$ is the
+half-angle of the maximum cone of light that can exit the lens
+The $z$-length under which the objective displays the probe with a sharp
+picture is named \gls{DOF} and the distribution of a single light point in the
+focal area through the whole imaging system is termed \gls{PSF}. Both, the
+\gls{DOF} and the \gls{PSF} are dependent on the \gls{NA}.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Symbols}
+\label{sec:example:symbol}
+
+% use the symbols in a document.
+Calculations with \gls{symb:Pi} always give an inaccurate result,
+because \gls{symb:Pi} is an irrational number.
+
+% Add symbols not used in the text
+\glsadd{symb:Phi}
+\glsadd{symb:Lambda}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \clearpage
 \subsection{Code}
 \label{sec:example:code}

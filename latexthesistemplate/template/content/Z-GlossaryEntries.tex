@@ -3,34 +3,48 @@
 
 %%% --- Acronym definitions
 \IfDefined{newacronym}{%
-\newacronym{MFD}{MFD}{mode field diameter}
-\newacronym{CPA}{CPA}{chirped pulse amplification}
-\newacronym{NA}{NA}{numerical apertur}
-\newacronym{MMI}{MMI}{multi-mode interference}
-\newacronym{SLM}{SLM}{spatial light modulator}
-\newacronym{LCD}{LCD}{liquid crystal display}
-\newacronym{px}{px}{Pixel}
-\newacronym{DNA}{DNA}{deoxyribonucleic acid}
-\newacronym{DOF}{DOF}{depth of focus}
+% place these definitions before \begin{document}
+\newacronym{NA}{NA}{numerical Apertur}
+\newacronym{DOF}{DOF}{depth of field}
 \newacronym{PSF}{PSF}{point spread function}
-\newacronym{SNOM}{SNOM}{scanning nearfield optical microscope}
-\newacronym{FWHM}{FWHM}{full width at half maximum}
 }%
 
+
 %%% --- Symbol list entries
-
-%\newglossaryentry{symb:Pi}{%
-%  name=$\pi$,%
-%  description={mathematical constant},%
-%  sort=symbolpi, type=symbolslist%
-%}
-
+\IfDefined{newglossaryentry}{%
+% place these definitions before \begin{document}
+\newglossaryentry{symb:Pi}{%
+	name=$\pi$,%
+	description={mathematical constant},%
+	sort=symbolpi, type=symbolslist%
+}
+\newglossaryentry{symb:Phi}{%
+	name=$\varphi$,%
+	description={arbitrary angle},%
+	sort=symbolphi, type=symbolslist%
+}
+\newglossaryentry{symb:Lambda}{%
+	name=$\lambda$,%
+	description={wavelength},%
+	sort=symbollambda, type=symbolslist%
+}	
+}%
 
 %%% --- Glossary entries
 
-%\newglossaryentry{glos:DVD}{name=DVD,
-%  description={DVD is an optical disc storage media format, invented and
-%  developed by Philips, Sony, Toshiba, and Panasonic in 1995. DVDs offer
-%  higher storage capacity than Compact Discs while having the same dimensions.
-%  The basis of the DVD name stems from the term \textit{digital versatile disc}. (Source: wikipedia)}
-%}
+% place these definitions before \begin{document}
+\IfDefined{newglossaryentry}{%
+\newglossaryentry{glos:CD}{name=Compact disc (CD),
+	description={The Compact Disc (also known as a CD) is an optical disc used
+		to store digital data. It was originally developed to store and playback sound
+		recordings exclusively, but later expanded to encompass storage of data (Source:
+		wikipedia)}
+}%
+\newglossaryentry{glos:DVD}{name=DVD,
+	description={DVD is an optical disc storage media format, invented and
+		developed by Philips, Sony, Toshiba, and Panasonic in 1995. DVDs offer
+		higher storage capacity than Compact Discs while having the same dimensions.
+		The basis of the DVD name stems from the term \textit{digital versatile disc}.
+		(Source: wikipedia)}
+}%
+}%

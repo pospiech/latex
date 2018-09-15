@@ -9,7 +9,7 @@
 %% Document Class (Koma Script) -----------------------------------------
 %% Doc: scrguien.pdf
 \documentclass[%
-   %draft=true,     % draft mode (no images, layout errors shown)
+   %draft,     % draft mode (no images, layout errors shown)
    draft=false,     % final mode 
 %%% --- Paper Settings ---
    paper=a4,% [Todo: add alternatives]
@@ -172,7 +172,7 @@
 \IfPackageLoaded{hyperref}{\pdfbookmark[1]{\contentsname}{toc}}
 \tableofcontents
 
-\IfPackagesLoaded{glossaries,longtable,tabu}{%
+\IfPackagesLoaded{glossaries,longtable,tabu}{%  
   \clearpage
   % print out acronym list   
   \IfGlossariesStyleDefined{longtabuFancyHeader}%
@@ -184,7 +184,7 @@
   \printglossary[style=altlist]
 } % end of glossaries
 
-% --- Main Document --- --- --- --- --- --- ---
+%%% --- Main Document --- --- --- --- --- --- ---
 \mainmatter
 %
 % (files loaded with include must not have the prefix .tex)
