@@ -62,6 +62,7 @@
 \input{preamble/packages.tex}
 %% apply style settings
 \input{preamble/style.tex}
+%\input{preamble/style-scrpage2.tex}
 %% new commands / definitions (required by the template!)
 \input{preamble/commands.tex}
 
@@ -143,6 +144,7 @@
 % content/4-Summery,
 %} % end includeonly
 
+
 %%% document start %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -164,7 +166,7 @@
 \input{content/Z-Declaration.tex}
 
 \frontmatter
-\IfPackageLoaded{scrpage2}{\pagestyle{scrheadings}}
+\IfPackageLoaded{scrlayer-scrpage}{\pagestyle{scrheadings}}
 
 % -- table of contents --
 %

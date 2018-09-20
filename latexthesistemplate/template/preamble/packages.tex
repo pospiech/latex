@@ -472,8 +472,8 @@
 % Description: Advanced features for clever quotations
 % Doc: csquotes.pdf
 \usepackage[%
-   babel,            % the style of all quotation marks will be adapted
-                     % to the document language as chosen by 'babel'
+   autostyle,        % the style of all quotation marks will be adapted
+                     % to the document language as chosen by 'babel' or 'polyglossia'
    german=quotes,    % Styles of quotes in each language
    english=british,
    french=guillemets
@@ -851,27 +851,22 @@
 
 %%% Doc: scrguide.pdf
 \usepackage[%
-%%% Lines
-   % headtopline,
-   % plainheadtopline,
-   % headsepline,
-   % plainheadsepline,
-   % footsepline,
-   % plainfootsepline,
-   % footbotline,
-   % plainfootbotline,
-   % ilines,
-   % clines,
-   % olines,
-% column titles (content, style)
-   automark,
-   % autooneside,% ignore optional argument in automark at oneside
-   komastyle,
-   % standardstyle,
-   % markuppercase,
-   % markusedcase,
-   nouppercase,
-]{scrpage2}
+%% column titles (content, style)
+automark,
+autooneside,% ignore optional argument in automark at oneside
+pagestyleset=KOMA-Script, % default, used with koma-script
+% other options
+% - standard : style as defined by standard classes
+markcase=ignoreuppercase,
+% other options
+% - lower % redefines \MakeMarkcase to convert the automatic running heads into lower-case
+%         % letters using \MakeLowercase (lower case typesetting).
+% - upper % redefines \MakeMarkcase to convert the automatic running heads into upper-case
+%         % letters using \MakeUppercase (upper case typesetting).
+% - used  % redefines \MakeMarkcase to use automatic running heads without any case changes.
+% - ignoreuppercase % redefines not only \MakeMarkcase but also \MakeUppercase and \uppercase locally
+%         % to the running heads to leave the automatic running heads unchanged.
+]{scrlayer-scrpage}
 
 
 % Description: provides total number of pages (ie. page 7 of 19)

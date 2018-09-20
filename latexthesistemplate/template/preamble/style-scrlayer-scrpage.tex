@@ -1,4 +1,4 @@
-\IfPackageLoaded{scrpage2}{%
+\IfPackageLoaded{scrlayer-scrpage}{%
 
 \IfElseDefined{chapter}{%
    \pagestyle{scrheadings} % pages with header
@@ -46,17 +46,32 @@
    \automark[subsection]{section} %[right]{left}
 }
 %
-% Lines
+%% -- Lines --
+% list of all lines
+% - headtopline,
+% - plainheadtopline,
+% - headsepline,
+% - plainheadsepline,
+% - footsepline,
+% - plainfootsepline,
+% - footbotline,
+% - plainfootbotline,
+% - ilines,
+% - clines,
+% - olines,
+% set as \KOMAoptions{footsepline = true}, or with thickness
+% as set here:
 \IfDefined{chapter}{%
-   % \setheadtopline{} % configures the line above the header
-   \setheadsepline{.4pt}[\color{black}] % configures the line below the header
-   % \setfootsepline{} % configures the line above the footer
-   % \setfootbotline{} % configures the line below the footer
+	% width of head, thickness 0.4pt (true = default thickness)
+	\KOMAoptions{headsepline=.4pt} 	
+	% change color of line
+	\addtokomafont{headsepline}{\color{black}}
 }
 
 %% width of head and foot
-\setheadwidth[0pt]{text}
-\setfootwidth[0pt]{text}
+% option definition: width:offset:offset
+\KOMAoptions{headwidth=text:0pt:0pt} % 
+\KOMAoptions{footwidth=text:0pt:0pt} % 
 %   paper % width of paper
 %   page  % width of page (paper - BCOR)
 %   text  % \textwidth
@@ -65,10 +80,10 @@
 %   foot  % current width of foot
 
 % set chapter pages with heading (or other) style
-%\renewcommand*{\chapterpagestyle}{scrheadings}
+% \renewcommand*{\chapterpagestyle}{scrheadings}
 
 %\renewcommand*{\partpagestyle}{empty}
 %\renewcommand*{\titlepagestyle}{empty}
 %\renewcommand*{\indexpagestyle}{empty}
 
-} % end: \IfPackageLoaded{scrpage2}
+} % end: \IfPackageLoaded{scrlayer-scrpage}
