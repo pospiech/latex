@@ -193,7 +193,7 @@ The front pages of a thesis typically contain the table of contents followed by 
 These lines only setup the page style and the line numbering for the front pages. The first line sets up as pages with headings defined by \texttt{srcheadings} and the line numbering is applied by the command \cs{frontmatter} in the second line.
 %%?  file: LaTeXTemplate.tex
 %%? start: \frontmatter
-%%?   end: \IfPackageLoaded{scrpage2}
+%%?   end: \IfPackageLoaded{scrlayer-scrpage}{\pagestyle{scrheadings}}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Table of contents}
@@ -744,14 +744,14 @@ for package \package{geometry} in file \file{preamble/style-geometry.tex}.
 \label{sec:packages:headfoot}
 
 The content in the header and footer of a page is defined with package 
-\package{scrpage2}, with the settings defined in file 
-\file{preamble/style-scrpage2.tex}.
+\package{scrlayer-scrpage}, with the settings defined in file 
+\file{preamble/style-scrlayer-scrpage.tex}.
 
 The total number of page is provided by package \package{pageslts}.
 
 \begin{itemize}[noitemsep]
-\item \package{scrpage2}
-\item \package{pageslts}
+	\item \package{scrlayer-scrpage}
+	\item \package{pageslts}
 \end{itemize}
 
 %%?  file: preamble/packages.tex
@@ -1151,19 +1151,19 @@ Configuration for the title page.
 \subsection{Header and footer lines}
 \label{sec:style:headfoot}
 
-Configuration of the (automatic) content in header and footer for \package{scrpage2} defined in file \file{preamble/style-scrpage2.tex}.
+Configuration of the (automatic) content in header and footer for \package{scrlayer-scrpage} defined in file \file{preamble/style-scrlayer-scrpage.tex}.
 
 %%?  file: preamble/style.tex
 %%? start: % ~~~~~~~~~~~
 %%?   end: \EndCodeSection{StyleHeadFoot}
 
 % .........................................................................
-\subsubsection{preamble/style-scrpage2.tex}
-\labelfile{preamble/style-scrpage2.tex}
+\subsubsection{preamble/style-scrlayer-scrpage.tex}
+\labelfile{preamble/style-scrlayer-scrpage.tex}
 
-Configuration of header and footer defined by package \package{scrpage2}. 
+Configuration of header and footer defined by package \package{scrlayer-scrpage}. 
 
-\printCodeFromFile[1]{1000}{preamble/style-scrpage2.tex}
+\printCodeFromFile[1]{1000}{preamble/style-scrlayer-scrpage.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Headings: numbering, sizes and page opening}
