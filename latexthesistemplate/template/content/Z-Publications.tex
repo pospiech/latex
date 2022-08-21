@@ -20,11 +20,13 @@
 \begin{refsection}
 \nocite{Siegel2007, Palmer2010, Pospiech2009, Pospiech2010, Pospiech2011}
 % print all combinations in this list bold (makes name of author bold)
-\forcsvlist{\listadd\bibboldnames}
-  {{Pospiech, Matthias}, {Pospiech, M.}}
-\begin{refcontext}[sorting=nyt]  
-	\printbibliography[env=numbered+bold, heading=none, resetnumbers=true]
-\end{refcontext}
+\IfDefinedBibEnvironment{numbered+bold}{%
+	\forcsvlist{\listadd\bibboldnames}
+	  {{Pospiech, Matthias}, {Pospiech, M.}}
+	\begin{refcontext}[sorting=nyt]  
+		\printbibliography[env=numbered+bold, heading=none, resetnumbers=true]
+	\end{refcontext}
+}{Error: environment numbered+bold not defined}
 \end{refsection}
 
 \section*{Submissions to international conferences}
@@ -32,12 +34,13 @@
 \begin{refsection}
 \nocite{Morgner2008, Palmer2008a, Siegel2008,Pospiech2009a,Pospiech2010b,Pospiech2010a}
 % print all combinations in this list bold (makes name of author bold)
-\forcsvlist{\listadd\bibboldnames}
-  {{Pospiech, Matthias}, {Pospiech, M.}}
-%\printbibliography[env=numbered+bold, heading=none, sorting=ynt, resetnumbers=true]
-\begin{refcontext}[sorting=nyt]  
-	\printbibliography[env=numbered+bold, heading=none, resetnumbers=true]
-\end{refcontext}
+\IfDefinedBibEnvironment{numbered+bold}{%
+	\forcsvlist{\listadd\bibboldnames}
+	{{Pospiech, Matthias}, {Pospiech, M.}}
+	\begin{refcontext}[sorting=nyt]  
+		\printbibliography[env=numbered+bold, heading=none, resetnumbers=true]
+	\end{refcontext}
+}{Error: environment numbered+bold not defined}
 \end{refsection}
 
 \section*{Submissions to national conferences}
@@ -45,13 +48,15 @@
 \begin{refsection}
 \nocite{EmonsDPG2009, HoffmannDPG2008, LangDPG2008, VaeckenstedtDPG2010, PospiechDPG2009, PospiechDPG2010, PospiechDPG2011}
 % print all combinations in this list bold (makes name of author bold)
-\forcsvlist{\listadd\bibboldnames}
-  {{Pospiech, Matthias}, {Pospiech, M.}}
-%\printbibliography[env=numbered+bold, heading=none, sorting=ynt, resetnumbers=true]
-\begin{refcontext}[sorting=nyt]  
-	\printbibliography[env=numbered+bold, heading=none, resetnumbers=true]
-\end{refcontext}
+\IfDefinedBibEnvironment{numbered+bold}{%
+	\forcsvlist{\listadd\bibboldnames}
+	{{Pospiech, Matthias}, {Pospiech, M.}}
+	\begin{refcontext}[sorting=nyt]  
+		\printbibliography[env=numbered+bold, heading=none, resetnumbers=true]
+	\end{refcontext}
+}{Error: environment numbered+bold not defined}
 \end{refsection}
 %
-% standard style
-\renewcommand*{\bibboldnames}{}
+% delete list
+\IfDefined{bibboldnames}{\renewcommand*{\bibboldnames}{}}
+

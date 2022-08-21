@@ -1,3 +1,9 @@
+% --| conditional |---------------------------------------------------
+
+\newcommand{\IfDefinedBibEnvironment}[1]{\ifcsdef{blx@env@#1}}
+\IfUndefined{phantomsection}{\phantomsection}{\providecommand\phantomsection{}}
+
+
 % --| Index |---------------------------------------------------------
 
 % prints 1st argument emphasized and indexes it

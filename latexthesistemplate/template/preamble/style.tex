@@ -152,11 +152,6 @@
 % printed text between multible footnotes
 \renewcommand*{\multfootsep}{,\nobreakspace}
 
-% removed because of warning - requires more documentation
-%\KOMAoptions{%   
-%   footnotes=multiple% nomultiple
-%}
-
 % standard superscript numbers in footnotes
 %\deffootnote%
 %   [1em]% width of marker
@@ -214,6 +209,29 @@
 \input{preamble/style-biblatex.tex}
 % modifications for an alpha style
 \input{preamble/style-biblatex-alpha.tex}
+
+% Other styles that can be loaded instead of the custom 'biblatex-alpha'
+\IfPackageNotLoaded{biblatex}{%
+	%%% Bibliography styles with natbib support
+	%\bibliographystyle{plainnat} % Numeric Labels, alphabatical order
+	%\bibliographystyle{abbrvnat} % same as plain, but shorter names
+	%\bibliographystyle{unsrtnat} % same as plain, but appeariance in order of citation
+	%\bibliographystyle{alpha}    % labels are formed by author and year
+	
+	%%% Bibliography styles according to DIN
+	%%% get from: http://www.ctan.org/tex-archive/biblio/bibtex/contrib/german/din1505/
+	%\bibliographystyle{alphadin}
+	%\bibliographystyle{abbrvdin}
+	%\bibliographystyle{plaindin}
+	%\bibliographystyle{unsrtdin}
+	
+	%%% Bibliography styles created with custombib
+	%%% Doc: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/custom-bib/makebst.pdf
+	% \bibliographystyle{...}
+	
+}% end: \IfPackageNotLoaded{biblatex}
+
+% other BibTeX styles: http://www.cs.stir.ac.uk/~kjt/software/latex/showbst.html
 
 \KOMAoptions{%
    % bibliography=oldstyle%
@@ -596,7 +614,7 @@
 }
 
 \renewcommand\chapterlineswithprefixformat[3]{%
-  \ifstr{#1}{chapter}{%
+  \Ifstr{#1}{chapter}{%
     #2\nobreak%
     \vspace*{\dimexpr-\ht\strutbox}%
     \rule[-\dp\strutbox]{\textwidth}{.4pt}\\*[.9pc]%
@@ -605,7 +623,7 @@
     \rule[-\dp\strutbox]{\textwidth}{.4pt}%
     \par\nobreak%
   }{%
-    \ifstr{#1}{part}{%
+    \Ifstr{#1}{part}{%
       \null\vfil
       \fbox{%
         \parbox[t][\dimexpr\height+3\normalbaselineskip][c]
@@ -649,27 +667,6 @@
 
 % setup of package titletoc
 \input{preamble/style-titletoc.tex}
-
-% Setup using tocstyle
-\IfPackageLoaded{tocstyle}{
-% predefined styles
-% \usetocstyle{standard} % A style similar to the standard classes. 
-%                        % \setkomafont has no effect!
-\usetocstyle{KOMAlike} % A style similar to the KOMA-Script classes.  
-%%            % This is almost the same like standard, but instead 
-%%            % of bold face \usekomafont { disposition } will be used if 
-%%            % \usekomafont was defined and sans serif, bold face
-%%            % (\sffamily\bfseries) if not.
-%%            %
-%\usetocstyle{classic}  % Like KOMAlike but all page numbers are set 
-%%                      % using normal font.
-%\usetocstyle{allwithdot}  % Like classic but dots between entry text 
-%%                         % and page numbers are used at all depths.
-%\usetocstyle{noonewithdot} % Like classic but not dots between entry 
-%%                          % text and page numbers are used.
-%\usetocstyle{nopagecolumn} % Like noonewithdot but also the gap between 
-%                           % text and page numbersis omited.  
-}
 
 % \newcommand{\fontTOC}{\sffamily}
 \newcommand{\fontTOC}{\rmfamily}
@@ -772,7 +769,7 @@
    }
 }{}
 \@ifundefined{mainmatter}{%
-   % scrlayer-scrpage benoetigt den folgenden switch
+   % scrpage2 benoetigt den folgenden switch
    % wenn \mainmatter definiert ist.
    \newif\if@mainmatter\@mainmattertrue
    \newcommand{\mainmatter}{%
@@ -791,17 +788,25 @@
 
 % fix Problem with onlyamsmath active $ char 
 % together with the tabu package
-\input{preamble/fix-tabu-onlyamsmath.tex}
+% -> switches $ back to its original definition
+\IfPackagesLoaded{onlyamsmath,tabu}{%
+	\RequirePackage{etoolbox}
+	\AtBeginEnvironment{tabu}{\catcode`$=3 } 
+}{}
+% thanks to egreg for providing this fix.
+% The discussion on why this is necessary can be read at
+% http://tex.stackexchange.com/questions/35139/restore-original-definition-of
 
 % fix Problem with onlyamsmath active $ char 
 % together with the tikz package
-\input{preamble/fix-tikz-onlyamsmath.tex}
-
-
-% fix problems with framed and marginnote
-\input{preamble/fix-framed-marginnote.tex}
-
-
+% fix incompatibilty problems with tikz and onlyamsmath
+\IfPackagesLoaded{onlyamsmath,tikz}{%
+	\AtBeginDocument{\catcode`\$=3}
+}{}
+% thanks to Peter Grill and Christian Feuersänger for providing this fix.
+% The discussion on why this is necessary can be read at
+% http://tex.stackexchange.com/questions/31860/conflict-onlyamsmath-and-tikz
+% http://tex.stackexchange.com/questions/99526/bug-in-pgfplots-or-other-packages
 
 % ------------------------------------------------------------------
 \EndCodeSection{StyleFixProblems}

@@ -1,5 +1,5 @@
 % !TeX encoding=utf8
-% !TeX program = pdflatex
+% !TeX program = lualatex
 % !TeX spellcheck = en-US
 
 %% -- package section selections -->
@@ -41,10 +41,6 @@
 % Description: Multi Language support for LaTeX
 % Doc: babel.pdf
 \usepackage{babel}
-% Description: support automatic translations
-% Doc: beameruserguide.pdf
-\usepackage{translator}
-
 
 % Description: Color support with color mixing modells
 % Doc: xcolor.pdf
@@ -85,19 +81,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginCodeSection{PackagesBugfixes}
 
-% Description: Fix known LaTeX2e bugs
-% Doc: fixltx2e.pdf
-%% Removed: fixltx2e is not required with releases after 2015
-%%          All fixes are now in the LaTeX kernel.
-
-% Description: This package implements a workaround for the LaTeX bug that
-%              marginpars sometimes appear on the wrong margin.
-% \usepackage{mparhack}
-% BUG: in some case this causes an error in the index together with package
-%      pdfpages the reason is unkown. Therefore I recommend to use the
-%      margins of marginnote
-% incompatible: marginfix
-
 % Description: marginnote allows a margin note, where \marginpar fails 
 % Doc: marginnote.pdf
 \usepackage{marginnote}
@@ -109,7 +92,7 @@
 
 %% Description: changes the \marginpar commands, such
 %%              that long margin notes work.
-%% Doc: marginfix.pdf (TODO: why not used)
+%% Doc: marginfix.pdf 
 \usepackage{marginfix}
 
 % Description: Used to define commands that don't eat spaces.
@@ -125,7 +108,14 @@
 
 %% Description: Set the font size relative to the current font size
 %% Doc: relsize-doc.pdf
-\usepackage{relsize}
+% \usepackage{relsize}
+
+%% Description: Font selection for LuaLaTeX
+%% Doc: fontspec.pdf
+% Allows LuaTeX to load OpenType fonts. No special font installation is necessary,
+% fonts only need to be available in the operating system.
+% Classic LaTeX font selection is disabled by loading this package!
+\usepackage{fontspec}
 
 \EndCodeSection{PackagesFonts}
 
@@ -161,24 +151,25 @@
 ]{amsmath} %
 
 \IfPackageLoaded{amsmath}{
-
-% Description: The mathtools package is an extension package to amsmath. 
-%              Furthermore it corrects various bugs
-% Doc: mathtools.pdf
-\usepackage[fixamsmath,disallowspaces]{mathtools}
-
-% Description: Inhibits the usage of plain TeX and 
-%              of standard LaTeX math environments
-% Doc: onlyamsmath.pdf
-\usepackage[
-  all,
-  % warning
-  error
-]{onlyamsmath}
-% Note that many other packages have problems with the change of the 
-% catcode of the $-char. Therefore workarounds/fixes for tikz and tabu
-% are provided (loaded in style.tex)
-
+	
+	% Description: The mathtools package is an extension package to amsmath. 
+	%              Furthermore it corrects various bugs
+	% Doc: mathtools.pdf
+	% mathtools must be loaded before unicode-math
+	\usepackage[fixamsmath,disallowspaces]{mathtools}
+	
+	% Description: Inhibits the usage of plain TeX and 
+	%              of standard LaTeX math environments
+	% Doc: onlyamsmath.pdf
+	\usepackage[
+	  all,
+	  % warning
+	  error
+	]{onlyamsmath}
+	% Note that many other packages have problems with the change of the 
+	% catcode of the $-char. Therefore workarounds/fixes for tikz and tabu
+	% are provided (loaded in style.tex)
+	
 } % end: IfPackageLoaded{amsmath}
 
 % Description: Macros for Dirac bra-ket notation and sets.
@@ -199,22 +190,29 @@
    \usepackage{exscale} 
 }
 
-% Description: fixes for the default Computer Modern math fonts
-% Doc: fixmath.pdf
-\IfPackageLoaded{lmodern}{%
-  \usepackage{fixmath}
-}
 
 % Description: Enables the correct use of the comma as 
 %              a decimal separator in math mode
 % Doc: icomma.pdf
-\usepackage{icomma}
+% must be loaded after uncode-math, since both define \mathcomma, see
+% https://tex.stackexchange.com/questions/653983/lualatex-fails-with-package-icomma-and-font-tex-gyre-termes-math#653983
+\ExecuteAfterPackage{unicode-math}{\usepackage{icomma}}
 
 % Description: LaTeX 3 Package for nice inline fractions
 % Provides: \sfrac{1}{2}
 % Replaces: nicefrac
 % Doc: xfrac.pdf 
 \usepackage{xfrac} 
+
+% Description: implementation of Unicode maths for LATEX using LuaTEX typesetting engines
+% - It should be loaded after any other maths or font-related package 
+%   in case it needs to overwrite their definitions.
+% -  Once the package is loaded, traditional TFM-based maths fonts are no longer
+%    supported; you can only switch to a different OpenType maths font using the
+%    \setmathfont command.
+% - amsmath should be loaded before unicode-math to avoid conflicts
+\usepackage{unicode-math}
+
 
 \EndCodeSection{PackagesMath}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -236,33 +234,12 @@
 \usetikzlibrary{pgfplots.polar}
 \usetikzlibrary{pgfplots.units}
 
-\input{preamble/fix-pgfplots.tex} % fix bug in pgfplots with \directlua
-
 \EndCodeSection{PackagesDiagrams}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % science packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginCodeSection{PackagesScience}
  
-% Description: upright symbols from euler package
-%              [Euler] or Adobe Symbols [Symbol]
-% Provides:    \upmu
-% Doc: upgreek.pdf
-%\usepackage[Symbolsmallscale]{upgreek} 
-% --> Use only if the original font does not provide
-%     the necessary upright symbols
-
-% Description: Commands/symbols for both math and text mode
-% Provides:    \degree, \celsius, \perthousand, \ohm, \micro
-% Incompatible: siunitx
-% Requires: Command \upmu
-% \IfDefined{upmu}{\usepackage[upmu]{gensymb}}
-
-% Description:  package for setting units in a 
-%               typographically correct way.
-% Incompatible: siunitx
-%\usepackage{units}
-
 % Description: siunitx aims to provide a unified method to
 %              typeset numbers and units correctly and easily.
 % Incompatible: gensymb, units
@@ -278,29 +255,20 @@
 \BeginCodeSection{PackagesSymbols}
 %%% General Doc: symbols-a4.pdf
 %
-%% Math symbols
-\IfPackagesNotLoaded{mathdesign,MnSymbol,MdSymbol}{
-  \usepackage{dsfont}   %% Double Stroke Fonts
-  \usepackage{amssymb}
-}{}
-% Futher Math symbols and script fonts
-\IfPackagesNotLoaded{MnSymbol,MdSymbol}{
-  \usepackage{esint} % generate missing integrals for lmodern
-  %
-  % provides further symbols of the Text Companion (TC) fonts
-  % such as \tcmu, \tcperthousand, \tcdegree
-  \usepackage{mathcomp} 
-  \usepackage[mathcal]{euscript} %% adds euler mathcal font
-  \IfPackagesNotLoaded{mdbch}{
-    \usepackage{mathrsfs} % script font (\mathscr)
-  }{}
+%%% Math symbols
+\IfPackagesNotLoaded{mathdesign}{
+   \usepackage{dsfont}   %% Double Stroke Fonts
+   % \usepackage{amssymb} - must not be loaded together with unicode-math which must be loaded
 }{}
 
-%\usepackage[integrals]{wasysym}
+%% Futher Math symbols and script fonts
+
+% Description: generate missing integrals 
+% Load after: amslatex
+\usepackage{esint} 
 
 %% The European Currency Symbol
 \usepackage[gen]{eurosym}
-
 
 %% Common Symbols
 \usepackage{pifont}   %% ZapfDingbats
@@ -333,13 +301,20 @@
 %              It is more flexible than tabular, tabular*, tabularx and array
 %              and extends the possibilities.
 % Doc: tabu.pdf
-\usepackage{tabu}
+% The package has not been updated for years and bugs have not been fixed.
+% The auther can not be contacted and does not respond.
+% It is thus NOT RECOMMENDED to use this package.
+% \usepackage{tabu}
 
-% tablestyles
+% tablestyles: Package from me (Matthias Pospiech) with 
+% simple interface, but very limited style possibilities.
 \IfFileExists{tablestyles.sty}{
   \IfDefined{rowcolors}{\usepackage{tablestyles}}%
 }{}
 
+% Description: tcolorbox provides an environment for colored 
+%              and framed text boxes with a heading line.
+\usepackage{tcolorbox}
 
 \EndCodeSection{PackagesTables}
 
@@ -402,21 +377,6 @@
 %% Doc: chngcntr.pdf
 % \usepackage{chngcntr}
 % \counterwithout{footnote}{chapter}
-
-%% Description: provides the command \tablefootnote to be used in
-%%              a table or sidewaystable environment, 
-%%              where \footnote will not work.
-%% Doc: tablefootnote.pdf
-%% Bug: does not work as expected, bug not found so far 
-%% tablefootnote must be loaded after rotating
-%\ExecuteAfterPackage{rotating}{%
-% % and after hyperref
-% \IfPackageNotLoaded{hyperref}{%
-%  \ExecuteAfterPackage{hyperref}{%
-%   \usepackage{tablefootnote}%
-%  }%
-% }{}%
-%}%
 
 %%% References ============================================
 %
@@ -530,17 +490,11 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginCodeSection{PackagesFigures}
 
-%% Description: A package like "pst-pdf" for processing PostScript graphics
-%%              with psfrag labels within pdfLaTeX documents.
-%% Doc: pstool.pdf
-%% DOES Not work together with the template!
-%\usepackage[crop=pdfcrop]{pstool}
 
 %% Description: provides new floats and enables H float modifier option
 %%             (in future incompatible with Koma Script)
 %% Doc: float.pdf
 %% ---> replaced by floatrow package!
-% \usepackage{float} 
 
 % Description: enables typesetting a narrow float at the edge of the text,
 %              and making the text wrap around it. 
@@ -562,11 +516,6 @@
   section    % "\section" command will be redefined with "\FloatBarrier"
 ]{placeins}
 %
-
-%% Description: Floating figures as in wrapfloat
-%%              (old LaTeX2e package from 1996)
-%% Doc: floatflt.pdf
-% \usepackage{floatflt}
 
 \EndCodeSection{PackagesFigures}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -590,12 +539,6 @@
 \usepackage{caption}[2011/08/06]
 
 %% subfig ist NOT recommended, use subcaption instead
-%% Incompatible: 
-%% - loads package capt-of. Loading of 'capt-of' afterwards will fail therefor
-%% - subcaption
-%% loads: caption
-%% Doc: subfig.pdf
-%\usepackage{subfig} 
 
 % Description: subcaption supports typesetting of sub-captions
 %             (by using the the sub-caption feature of the caption package).
@@ -783,8 +726,8 @@
 % Description: Create framed, shaded, or differently highlighted 
 %              regions that can break across pages. 
 % Doc: framed.pdf
-% --> replaced by mdframed (take out ???)
-\usepackage{framed}
+% --> replaced by mdframed  or tcolorbox
+% \usepackage{framed}
 
 % Description: defines new environments where the user may choose 
 %              between several individual designs.
@@ -874,6 +817,9 @@ markcase=ignoreuppercase,
 % load after: hyperref
 % Doc: pageslts.pdf
 \ExecuteAfterPackage{hyperref}{\usepackage{pageslts}}
+% The Warning can be ignored:
+% Package pageslts Warning: Package pdfpages detected
+% see: https://tex.stackexchange.com/questions/73767/warning-about-pdfpages-with-hyperref
 
 \EndCodeSection{PackagesHeadFoot}
 
@@ -888,10 +834,6 @@ markcase=ignoreuppercase,
 %              titles, headers and contents.
 % incompatible: with KOMA script, NOT Recommended!
 %%% Doc: titlesec.pdf
-%\ifcsdef{chapter}
-%	{\usepackage{titlesec}}
-%	{\usepackage{titlesec} \csundef{chapter}}
-
 
 \EndCodeSection{PackagesHeadings}
 
@@ -907,48 +849,31 @@ markcase=ignoreuppercase,
 % load before: hyperref
 % consumes \write
 % usage: % Define partial toc for part pages \PartialToc
-\ifcsdef{chapter}
-	{\usepackage{titletoc}}
-	{}
+\IfDefined{chapter}{\usepackage{titletoc}}
 
-% Description: apply different styles for the formating of the 
-%              table of contents and lists of floats.
-%%% Doc: tocstyle.pdf (Koma Script)
-%% Alpha package, uses koma fonts (\setkomafont{}{}) only if KOMAlike is selected
-%
-\usepackage[%
-%%% toc width calculation 
-  tocindentauto,     % all widths at the TOCs are calculated by tocindentauto
-%  tocindentmanual,  % opposite of auto
-%%% indentation of toc
-  tocgraduated,      % standard
-%  tocflat,          % no intendation, text aligned
-%  tocfullflat,      % no intendation, no alignment
-%%%  page breaking rules
-  tocbreaksstrict,   % sets a lot of penalties before and after TOC entries 
-                     % to avoid page break between a TOC entry and it's parent. 
-%  tocbreakscareless,% allow more page breaks.  
-%%%  indentation of unnumbered TOC entries
-% toctextentriesindented, % unnumbered TOC entrie are indented only as wide 
-%                         % as the number of numbered TOC entries of the same 
-%                         % level. 
-  toctextentriesleft,   % indented as if they have an empty number.
-]{tocstyle}
+% usage of functions from tocbasic (from koma-script)
+% Is loaded by koma-script automatically.
+% see: 
+%https://tex.stackexchange.com/questions/557571/what-should-i-use-instead-of-tocstyle
+%https://tex.stackexchange.com/questions/653373/move-from-tocstyle-to-tocbasic
 
-% Description: The appendix package provides some facilities for 
-%              modifying the typesetting of appendix titles.
-% Doc: appendix.pdf
-%\usepackage[
-% ,toc   % Put a header (e.g., 'Appendices') into the Table of Contents
-% %,page  % Puts a title  (e.g.,  'Appendices') into the document at the 
-%        % beginning of the appendices environment
-% %,title % Adds a name (e.g., 'Appendix') before each appendix title in
-%        % the body of the document.
-% %,titletoc % Adds a name (e.g., 'Appendix') before each appendix listed 
-%        % in the ToC
-% %,header% Adds a name (e.g., 'Appendix') before each appendix in page headers.
-%]{appendix}
-%\renewcommand{\appendixtocname}{\appendixname}
+% Declare common style
+\DeclareTOCStyleEntries[
+raggedentrytext,
+linefill=\hfill,
+numwidth=0pt,
+numsep=1ex,
+dynnumwidth
+]{tocline}{chapter,section,subsection,subsubsection,paragraph,subparagraph}
+
+% declare different style for everthing except chapter
+\DeclareTOCStyleEntries[
+linefill=\TOCLineLeaderFill,
+indent=0pt,
+dynindent
+]{tocline}{section,subsection,subsubsection,paragraph,subparagraph}
+% set Chapter font to bold
+\setkomafont{chapterentry}{\bfseries}
 
 \EndCodeSection{PackagesTOC}
 
@@ -957,6 +882,10 @@ markcase=ignoreuppercase,
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \BeginCodeSection{PackagesPDF}
+
+% Make PDF files searchable and copyable
+% load before: fontenc (fontenc must not be loaded with lualatex!)
+\usepackage{cmap} 
 
 % Description: Include pages from external PDF documents in LaTeX documents
 % Doc: pdfpages.pdf
@@ -1029,7 +958,7 @@ markcase=ignoreuppercase,
 
 \usepackage[NoDate]{currvita}
 
-% \usepackage{nicefilelist}
+\usepackage{nicefilelist}
 
 \EndCodeSection{PackagesAdditional}
 

@@ -2,81 +2,87 @@
 % Fonts Fonts Fonts
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-% Make PDF files searchable and copyable
-% load before: fontenc
-\usepackage{cmap} 
-
-% T1 Schrift Encoding
-\usepackage[T1]{fontenc} 
-
-% Description: Additional Symbols (Text Companion font extension)
-% Doc: encguide.pdf
-\usepackage{textcomp}   
-
-% DO NOT LOAD ae Package as a font !
 
 %% ==== Font Families / Font Combinations  (Sans + Serif) ================
 
-%% - Latin Modern (LaTeX Standard)
-\usepackage{lmodern}
-%% sans math, use with '\mathversion{sans}'
-\IfPackageLoaded{lmodern}{\input{fonts/fonts-lmodern-sansmath.tex}}
+% -> Latin Modern (LaTeX Standard)
+% is loaded automatically with \usepackage{unicode-math}
+% Manual setting is done by 
+%\setmainfont{Latin Modern Roman}
+%\setsansfont{Latin Modern Sans}
+%\setmonofont{Latin Modern Mono}
+%\setmathfont{Latin Modern Math}
 
-%% -------------------
-%
-%% - Times, Helvetica, Courier (Word Standard...)
-%\usepackage{mathptmx}                 %% --- Times (incl math)
-%\usepackage[scaled=.90]{helvet}       %% --- Helvetica (Arial)
-%\usepackage{courier}                  %% --- Courier
-%% -------------------
-%%
-%% - Palantino , Helvetica, Courier
-%\usepackage{mathpazo}                 %% --- Palantino (incl math)
-%\usepackage[scaled=.95]{helvet}       %% --- Helvetica (Arial)
-%\usepackage{courier}                  %% --- Courier
-%% -------------------
-%
-%% - Charter, Bera Sans
-%\usepackage{charter}\linespread{1.05} %% --- Charter
-%\renewcommand{\sfdefault}{fvs}        %% --- Bera Sans
-%\usepackage[charter]{mathdesign}      %% --- Charter (Math)
-%\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
-%% Note: There is a better Charter font by Linotype 
-%%       called 'ITC Charter'
-%% -------------------
+%% -> Times, Helvetica, Courier (Old Word Standard...)
+%\setmainfont{TeX Gyre Termes}         % Times like font
+%\setmathfont{TeX Gyre Termes Math}    % Times Like font - math version
+%\setsansfont{TeX Gyre Heros}          % Helvetica (Arial) Like font
+%[Scale=MatchLowercase]
+%\setmonofont{TeX Gyre Cursor}         % Courier Like font
+%[Scale=MatchLowercase]
 
-%% - URW Garamond
-%\renewcommand{\rmdefault}{ugm}         %% --- URW Garamond
-%\renewcommand{\sfdefault}{fvs}         %% --- Bera Sans
-%%%\usepackage[small]{eulervm}            %% --- EulerVM (MATH)
-%\usepackage[garamond]{mathdesign}    %% --- Garamond (Math)
-%\usepackage[scaled=0.85]{luximono}    %% --- Luxi Mono (Typewriter)
-%% Note:  If you can efford it, combine with commercial 
-%%        sans fonts like: Syntax, Frutiger or Thesis 
-%%        (but then also use the commercial Garamond ...)
-%% -------------------
+%% -> Palantino, Helvetica, Courier
+%\setmainfont{TeX Gyre Pagella}        % Palatino Like font
+%\setmathfont{TeX Gyre Pagella Math}   % Palatino Like font - math version
+%\setsansfont{TeX Gyre Heros}          % Helvetica (Arial) Like font
+%[Scale=MatchLowercase]
+%\setmonofont{TeX Gyre Cursor}         % Courier Like font
+%[Scale=MatchLowercase]
+
+%% -> Charter, Bera Sans, Luxi Mono
+%\setmainfont{XCharter}           % Charter
+%\setmathfont{XCharter-Math.otf}  % Charter - math version
+%\setsansfont{Cabin}              % Bera Sans like font
+%[Scale=MatchLowercase]
+%\setmonofont{Luxi Mono}          % Luxi Mono
+%[Scale=MatchLowercase]           % font is not installed by tex!
+%\linespread{1.05} % for main font
+
+%% -> Garamond, Fira Sans, Luxo Mono
+%\usepackage{ebgaramond}         % Garamond
+%\setmathfont{Garamond-Math}     % Math version
+%\setsansfont{Fira Sans}         % Fira Sans
+%[Scale=MatchLowercase]
+%\setmonofont{Luxi Mono}         % Luxi Mono 
+%[Scale=MatchLowercase]          % font is not installed by tex!
+
+%% -> MininPro/MyriadPro
+%% Serif Font: Minion Pro (OTF)
+%\setmainfont{MinionPro}         % font must be installed by user
+%% Sans Font: MyriadPro (OTF)
+%\setsansfont{MyriadPro}         % font must be installed by user
+%% Math font is missing for Minion Pro (not available for free)
+%% This is a workaround.
+%\usepackage[italic]{mathastext}
+%\MTsetmathskips {f}{3mu}{0mu}
+%% Mono Font: Luxi Mono 
+%\setmonofont{Luxi Mono}         
+%[Scale=MatchLowercase]          % font is not installed by tex!
+
+%% -> Cambria, Calibri, Consolas
+%% Serif Font: Microsoft Calibri (TTF)
+%\setmainfont{Cambria}
+%\setmathfont{Cambria Math}
+%% Sans Font: Microsoft Calibri (TTF)
+%\setsansfont{Calibri}
+%% Mono Font: Microsoft Consolas (TTF)
+%\setmonofont{Consolas}[Scale=MatchLowercase]
+%%\setmonofont{Lucida Console}[Scale=MatchLowercase]
 
 
 %%%% =========== Typewriter =============
 
-%\usepackage{courier}                   %% --- Courier
-%\renewcommand{\ttdefault}{cmtl}        %% --- CmBright Typewriter Font
-%\usepackage[scaled=0.9]{luximono}      %% --- Luxi Mono (Typewriter)
-%\usepackage{ulgothic}                  %% --- Letter Gothic 
+\setmonofont{Consolas}[Scale=MatchLowercase]         %% Consolas
+\setmonofont{Lucida Console}[Scale=MatchLowercase]   %% Lucida Console
+\setmonofont{Luxi Mono}[Scale=MatchLowercase]        %% Luxi Mono
+\setmonofont{TeX Gyre Cursor}                        %% Courier Like font
+\setmonofont{Latin Modern Mono}
 
 %%%% =========== Math fonts ================
 
-%% Recommanded to use with fonts: Aldus, Garamond, Melior, Sabon
-%\usepackage[                           %% --- EulerVM (MATH)
-%   small,       %for smaller Fonts
-%  euler-digits % digits in euler fonts style
-%]{eulervm}
-
-%% combine with utopia, garamond or charter font
-%\usepackage[
-%%   utopia,
-%%   garamond,
-%%   charter
-%]{mathdesign}
-
-
+\setmathfont{Latin Modern Math}
+\setmathfont{Cambria Math}
+\setmathfont{Garamond-Math}
+\setmathfont{XCharter-Math.otf}
+\setmathfont{TeX Gyre Pagella Math}   % Palatino Like font - math version
+\setmathfont{TeX Gyre Termes Math}    % Times Like font - math version

@@ -1,4 +1,4 @@
-%% Copyright: Copyright (C) 2013 Matthias Pospiech.
+%% Copyright: Copyright (C) 2022 Matthias Pospiech.
 %% 
 %%            This template (latexthesistemplate) and all its files 
 %%            may be distributed and/or modified under

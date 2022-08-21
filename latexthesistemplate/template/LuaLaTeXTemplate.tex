@@ -1,11 +1,8 @@
 % !TeX encoding=utf8
-% !TeX program = pdflatex
+% !TeX program = lualatex
 % !TeX spellcheck = en-US
 % !BIB = biber
 
-%% Bug fixes and other packages to be loaded before the class
-\RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
-%
 %% Document Class (Koma Script) -----------------------------------------
 %% Doc: scrguien.pdf
 \documentclass[%
@@ -27,8 +24,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Must be loaded first!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% packages to allow more \write outputs
-\input{preamble/packages-SolutionsNoRoomForNewWrite.tex}
 % packages required for the template
 \usepackage{atveryend} % must be loaded before etoolbox. (bugfix for pageslts)
 \usepackage{codesection}
@@ -37,33 +32,22 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % encoding
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-% automatic selection of encoding
-% insert chars for umlaut a and sz
-\usepackage{selinput}
-\SelectInputMappings{adieresis={ä},germandbls={ß},Euro={€}} 
-
-% Encoding of _files and directories_
-% (ensures that any file can be loaded without problems)
-\usepackage[%
-   extendedchars, encoding, multidot, space,
-   filenameencoding=latin1, % Windows XP, Vista, 7
-   % filenameencoding=utf8,   % Linux, OS X
-]{grffile}
+% lualtex expects utf8 by default
+% no package or option required
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % preamble
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-%% select/load fonts
-\input{fonts/fonts.tex}
-%\input{fonts/font-commercial.tex}
 %% load packages
 \input{preamble/packages.tex}
 %% apply style settings
 \input{preamble/style.tex}
 %% new commands / definitions (required by the template!)
 \input{preamble/commands.tex}
+%% select/load fonts
+\input{fonts/fonts.tex}
+
 
 %% Test the page layout
 % display the layout
@@ -202,16 +186,16 @@
 % (must be placed _before_ appendix)
 \IfPackageLoaded{biblatex}{
   \cleardoublepage
-  \IfDefined{phantomsection}{\phantomsection}\label{sec:bibliography}
+  \phantomsection\label{sec:bibliography}
   \printbibliography[%
     heading=bibintoc, % (bibintoc, bibnumbered)
   ]	
 }% end of bibliography
 
 %% -- list of figures and tables --
-\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lof}
+\cleardoublepage\phantomsection\label{sec:lof}
 \listoffigures
-\cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:lot}
+\cleardoublepage\phantomsection\label{sec:lot}
 \listoftables
 
 %% -- List of Listings --
@@ -219,7 +203,7 @@
 \IfDefined{lstlistoflistings}{\cleardoublepage\lstlistoflistings}
 
 % --- Appendix --- --- --- --- --- --- ---
-\cleardoublepage\IfDefined{phantomsection}{\phantomsection}
+\cleardoublepage\phantomsection
 \appendix
 % Add `Appendix` to TOC
 \addcontentsline{toc}{part}{\appendixname}
@@ -235,7 +219,7 @@
 % _Remove_ Index unless you really want to invest a large amount
 % of time and effort to create a good index!
 \IfDefined{printindex}{%
-  \cleardoublepage\IfDefined{phantomsection}{\phantomsection}\label{sec:index}%
+  \cleardoublepage\phantomsection\label{sec:index}%
   \printindex%
 }% end of index
 
@@ -243,7 +227,6 @@
 
 % add todo list (remove for final document!)
 % \input{content/Z-Todo.tex}
-
 %%% document END %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
