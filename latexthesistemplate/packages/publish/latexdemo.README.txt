@@ -10,9 +10,9 @@ the result inside a conditional sequence. This allows to print the
 result only if it would compile, which can be done with code such
 as:
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \so{letterspacing}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{so}{%
 Commands of package \package{soul}:

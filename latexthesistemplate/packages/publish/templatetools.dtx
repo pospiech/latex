@@ -32,7 +32,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{templatetools}
 %<*package>
-    [<*date*> v0.1 Collection of conditional commands useful inside templates]
+    [<*date*> v0.2 Collection of conditional commands useful inside templates]
 %</package>
 %
 %<*driver>
@@ -92,7 +92,8 @@
 %   Right brace   \}     Tilde         \~}
 %
 %
-% \changes{v0.1}{<*date*>}{Converted to DTX file}
+% \changes{v0.1}{2017-10-12}{Converted to DTX file}
+% \changes{v0.2}{<*date*>}{Added checking of bib environments}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -358,6 +359,9 @@ text which is considerably longer than the width of the column \\
 % \DescribeMacro{\IfGlossariesStyleDefined} 
 % \marg{style name}\marg{is defined} \AfterLastParam
 %
+% \subsection{Bib environments}
+% \DescribeMacro{\IfBibEnvironmentDefined} 
+% \marg{environment name}\marg{is defined} \AfterLastParam
 %
 % \subsection{Template Definitions}
 % The following commands in principle define only macros, but in contrast to 
@@ -406,12 +410,12 @@ text which is considerably longer than the width of the column \\
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
 \ProvidesPackage{templatetools}
-          [<*date*> v0.1 Collection of conditional commands useful inside templates]
+          [<*date*> v0.2 Collection of conditional commands useful inside templates]
 %    \end{macrocode}
 %    \begin{macrocode}
 %%% --- Necessary Packages
 %%% ------------------------------------------------------------------
-\RequirePackage{ifpdf}
+\RequirePackage{iftex}
 \RequirePackage{etoolbox}
 \RequirePackage{ltxcmds}
 \RequirePackage{array} % for column types
@@ -544,7 +548,7 @@ text which is considerably longer than the width of the column \\
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\IfElsePackageLoaded\}
+% \begin{macro}{\IfElsePackageLoaded}
 % Wrapper to \cs{ltx@ifpackageloaded}
 %    \begin{macrocode}
 \let\IfElsePackageLoaded\ltx@ifpackageloaded
@@ -813,8 +817,24 @@ text which is considerably longer than the width of the column \\
 % Thanks to \person{cgnieder} on 
 %\href{http://tex.stackexchange.com/questions/95639/test-if-a-listings-or-glossaries-style-is-valid}{tex.stackexchange.com}
 % for the help to implement the command.
-
-
+%
+% \subsection{BibLaTeX Enivronemnts}
+%
+% \iffalse
+% ------------------------------------------------------------------
+% tests the existens of a bib environment
+% ------------------------------------------------------------------
+% \fi
+%
+% \begin{macro}{\IfBibEnvironmentDefined}
+% Checks if a bib environment is defined.  
+%    \begin{macrocode}
+\newcommand{\IfBibEnvironmentDefined}[1]{\ifcsdef{blx@env@#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% Thanks to \person{egreg} on \href{https://tex.stackexchange.com/questions/451911/check-if-a-bib-environment-is-defined}{tex.stackexchange.com} for the help to implement the command.
+%
 % \subsection{Template definitions}
 %
 % \iffalse

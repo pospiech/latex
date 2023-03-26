@@ -2,7 +2,7 @@
 % !TeX spellcheck = en-US
 %   
 % File:      latexdemo.sty
-% Version:   <*date*> v0.1
+% Version:   <*date*> v0.2
 % Author:    Matthias Pospiech
 % Email:     <matthias@pospiech.eu>
 %
@@ -32,7 +32,7 @@
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{latexdemo}
 %<*package>
-   [<*date*> v0.1 typeset code and resulting output]
+   [<*date*> v0.2 typeset code and resulting output]
 %</package>
 %
 %<*driver>
@@ -116,7 +116,7 @@
 % code must be written to an external file.
 %
 % The commands provided by this package are based on the packages 
-% \package{listings}, \package{mdframed} and \package{filecontents}. 
+% \package{listings}, \package{mdframed} and the enviroment \environment{filecontents}. 
 %
 % \section{Basic example}
 % \label{sec:example:basic}
@@ -127,12 +127,12 @@
 % \iffalse
 %<*example>
 % \fi
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \so{letterspacing}, \\
 \ul{underlining},   \\
 \st{overstriking}   \\
 and \hl{highlighting}. 
-\end{filecontents*}
+\end{DefineCode}
 % \iffalse
 %</example>
 % \fi
@@ -146,12 +146,12 @@ and \hl{highlighting}.
 %<*example>
 % \fi
 \begin{lstlisting}[style=demostyle]
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \so{letterspacing}, \\
 \ul{underlining},   \\
 \st{overstriking}   \\
 and \hl{highlighting}. 
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{so}{%
 %
@@ -173,15 +173,15 @@ and \hl{highlighting}.
 % \subsection{Define code}
 % This package requires the example code to be written to an external file. The
 % filename is saved in the command sequence \cs{democodefile}. The output is done
-% with the \environment{filecontents} environment:
+% with the \environment{DefineCode} environment:
 %
 % \iffalse
 %<*example>
 % \fi
 \begin{lstlisting}[style=demostyle]
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 ... code ...
-\end{filecontents*}
+\end{DefineCode}
 \end{lstlisting}
 % \iffalse
 %</example>
@@ -228,14 +228,14 @@ and \hl{highlighting}.
 %<*example>
 % \fi
 \begin{lstlisting}[style=demostyle]
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 This code shows some basic math: $a^2 + b^2 = c^2$.
-\end{filecontents*}
+\end{DefineCode}
 \end{lstlisting}
 %
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 This code shows some basic math: $a^2 + b^2 = c^2$.
-\end{filecontents*}
+\end{DefineCode}
 % \iffalse
 %</example>
 % \fi
@@ -341,8 +341,6 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %% Programming
 \RequirePackage{xspace}
 \RequirePackage{etoolbox}
-%% Write contents to files
-\RequirePackage{filecontents}
 %% Packages for frames
 \RequirePackage{mdframed}
 \RequirePackage{framed}
@@ -457,6 +455,16 @@ This code shows some basic math: $a^2 + b^2 = c^2$.
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{environment}{DefineCode}
+% Define code for demonstration using the enviroment \environment{DefineCode} which is based on the enviroment \environment{filecontents*}.
+%    \begin{macrocode}
+	\newenvironment{DefineCode}{%
+	\csname filecontents*\endcsname[overwrite]{\democodefile}%
+}{%
+	\csname endfilecontents*\endcsname%
+}
+%    \end{macrocode}
+% \end{environment}
 %
 % \begin{macro}{\PrintDemo}
 % Print code and result using the key-value syntax
