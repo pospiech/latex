@@ -56,7 +56,7 @@ def insertSelectionInTemplate(fontSelectionList, fontTemplateFile, outputFile):
         for line in fontSelectionEntries:
             # search for \fontdesc and change its string, if necessary
             # Example: \renewcommand{\fontdesc}{Charter, Bera Sans, Luxi Mono}
-            match = re.search(r"\\renewcommand{\\fontdesc}{(.+)}", line)
+            match = re.search(r"\\newcommand{\\fontdesc}{(.+)}", line)
             if match:
                 fontString = match.group(1)
                 fontString = fontString.replace(', ', '-')
@@ -85,12 +85,13 @@ def insertSelectionInTemplate(fontSelectionList, fontTemplateFile, outputFile):
                                     outputFileHandle.write(fontline)
                     else:
                         outputFileHandle.write(lineParse)
+        
         # get path and file of full file name
         newPath, filename = os.path.split(outputFileChanged)
         # compile file in folder of file
         oldPath = os.getcwd()
         os.chdir(newPath)
-        tex.callSystemCommand(['pdflatex', '-interaction=nonstopmode', '-shell-escape', filename])
+        tex.callSystemCommand(['lualatex', '-interaction=nonstopmode', '-shell-escape', filename])
         # executeCode = 'pdflatex.exe -interaction=nonstopmode  -shell-escape "' \
         #              + filename + '"'
         # os.system(executeCode)

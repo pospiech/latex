@@ -1,5 +1,5 @@
 % !TeX encoding=utf8
-% !TeX program = pdflatex
+% !TeX program = lualatex
 % !TeX spellcheck = en-US
 % !BIB = biber
 
@@ -7,8 +7,6 @@
 % latex-thesis-template. It not meant to be used by the users
 % of the template.
 
-%% Bug fixes and other packages to be loaded before the class
-\RequirePackage{fix-cm} % permit Computer Modern fonts at arbitrary sizes.
 %
 %% Document Class (Koma Script) -----------------------------------------
 %% Doc: scrguien.pdf
@@ -26,13 +24,11 @@
 %%% --- Global Package Options ---
    english, % language (passed to babel and other packages)
             % (ngerman, english, french, ...)
- ]{scrbook} % Classes: scrartcl, scrreprt, scrbook
+]{scrbook} % Classes: scrartcl, scrreprt, scrbook
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Must be loaded first!
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% packages to allow more \write outputs
-\input{preamble/packages-SolutionsNoRoomForNewWrite.tex}
 % packages required for the template
 \usepackage{atveryend} % must be loaded before etoolbox. (bugfix for pageslts)
 \usepackage{codesection}
@@ -42,33 +38,32 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % encoding
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-% automatic selection of encoding
-% insert chars for umlaut a and sz
-\usepackage{selinput}
-\SelectInputMappings{adieresis={ä},germandbls={ß}} 
-
-% Encoding of _files and directories_
-% (ensures that any file can be loaded without problems)
-\usepackage[%
-   extendedchars, encoding, multidot, space,
-   filenameencoding=latin1, % Windows XP, Vista, 7
-   % filenameencoding=utf8,   % Linux, OS X
-]{grffile}
+% lualtex expects utf8 by default
+% no package or option required
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % preamble
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-%% select/load fonts
-\input{fonts/fonts.tex}
-%\input{fonts/font-commercial.tex}
 %% load packages
 \input{preamble/packages.tex}
 %% apply style settings
 \input{preamble/style.tex}
 %% new commands / definitions (required by the template!)
 \input{preamble/commands.tex}
+%% select/load fonts
+\input{fonts/fonts.tex}
+
+\setmathfont{TeX Gyre Termes Math}[version=Termes]
+\setmathfont{TeX Gyre Pagella Math}[version=Pagella]
+\setmathfont{XCharter-Math.otf}[version=XCharter]
+\setmathfont{Garamond-Math}[version=Garamond]
+\setmathfont{Cambria Math}[version=Cambria]	
+\setmathfont{TEX Gyre Bonum Math}[version=Bonum]
+\setmathfont{TEX Gyre Schola Math}[version=Schola]
+\setmathfont{XITS Math}[version=XITS]
+\setmathfont{Libertinus Math}[version=Libertinus]
+\setmathfont{Fira Math}[version=Fira]
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Configurations
@@ -78,7 +73,7 @@
 \IfDefined{UseDefinition}{%
   %\UseDefinition{Target}{Print}
   \UseDefinition{Target}{Web}
-}%
+}% end of UseDefinition
 
 \IfPackageLoaded{hyperref}{%
 %%% set layout of PDF pages
@@ -92,7 +87,7 @@
   %                 odd-numbered pages to the right.
   %  TwoPageLeft    Displays two pages, odd-numbered pages to the left 
   %  TwoPageRight   Displays two pages, odd-numbered pages to the right 
-}%
+}% (end of hyperref)
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % custom definitions
@@ -179,6 +174,10 @@
 %
 \include{doc/doc-introduction}
 
+\ifcsdef{PartialToc}{
+	\stopcontents[part]
+}{}
+
 % #########################################################################
 %% demonstration of the template
 \KOMAoptions{headings=openany} 
@@ -201,6 +200,11 @@
 \KOMAoptions{headings=openright}
 %
 \include{doc/doc-code-filled}
+
+\ifcsdef{PartialToc}{
+	\stopcontents[part]
+}{}
+
 % #########################################################################
 
 % -- bibliography --

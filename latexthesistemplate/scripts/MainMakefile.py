@@ -17,18 +17,21 @@ import insertPrintCode as importInsertPrintCode
 import fontexamples as importFontExamples
 import createPackages as importCreatePackages
 
-def main():
-    print ("--- clean up main folder before compilation ---")
-    tex.unfailingRemoveFile('../template/TemplateDocumentation-figure*.log')
-    tex.cleanupRecursiveAuxFiles('../template/', '*.aux')
-    texfile = '../template/LaTeXTemplate.'
-    tex.cleanupAuxFiles(texfile)
-    texfile = '../template/TemplateDocumentation.'
-    tex.cleanupAuxFiles(texfile)
+
+def main():        
+
+    # print ("--- clean up main folder before compilation ---")
+    #tex.unfailingRemoveFile('../template/TemplateDocumentation-figure*.log')
+    #tex.cleanupRecursiveAuxFiles('../template/', '*.aux')
+    #texfile = '../template/LaTeXTemplate.'
+    #tex.cleanupAuxFiles(texfile)
+    #texfile = '../template/TemplateDocumentation.'
+    #tex.cleanupAuxFiles(texfile)
     # sys.exit()
 
     print ("--- Creation of Packages ---")
-    # importCreatePackages.main()
+    importCreatePackages.main()
+    sys.exit()
 
     print ("--- Copy Packages ---")
     # copyPackages()
@@ -38,6 +41,7 @@ def main():
 
     print ("--- fill doc-code.tex ---")
     importInsertPrintCode.main()
+    sys.exit()
 
     print ("--- compiling LaTeXTemplate.tex ---")
     texfile = '../template/LaTeXTemplate.tex'
@@ -52,8 +56,6 @@ def main():
     tex.unfailingRemoveFile('../template/content/demo/democode.tex')
     tex.unfailingRemoveFile('../template/content/longtable.tex')
     tex.unfailingRemoveFile('../template/demo-glossaries-*')
-
-
 
     copyFile('bib/BibtexDatabase.bib', 'bib')
     copyFile('bib/publications.bib', 'bib')
@@ -74,13 +76,12 @@ def main():
 
 
     # zip publish folder
-
     oldPath = os.getcwd()
     os.chdir('../template/')
 
     currentDateStr = datetime.datetime.now().strftime("%Y-%m-%d")
     filename = 'latexthesistemplate-' + currentDateStr + '.zip'
-    executeCode = 'zip -r ' +  filename + ' latexthesistemplate/*'
+    executeCode = 'zip -r ' + filename + ' latexthesistemplate/*'
     print (executeCode)
     result = os.system(executeCode)
 
@@ -101,7 +102,6 @@ def copyTeXFile(texfile):
     tex.ensureDirectoryExists(strTargetDir)
     shutil.copy(texfile, strTargetDir)
     shutil.copy(texfile.replace('.tex', '.pdf'), strTargetDir)
-
 
 
 

@@ -6,8 +6,8 @@
 \DefineCodeSection[true]{PackagesBase}
 \DefineCodeSection[true]{PackagesBugfixes}
 \DefineCodeSection[true]{PackagesFonts}
-\DefineCodeSection[true]{PackagesDiagrams}
 \DefineCodeSection[true]{PackagesMath}
+\DefineCodeSection[true]{PackagesDiagrams}
 \DefineCodeSection[true]{PackagesScience}
 \DefineCodeSection[true]{PackagesSymbols}
 \DefineCodeSection[true]{PackagesTables}
@@ -52,6 +52,13 @@
   fixinclude, % Prevent dvips color reset before .eps file inclusion
 ]{xcolor}
 
+% Description: 
+% This package carefully selects and defines 9 colors for 13 hues each. 
+% All colors with the same suffix number have equal luminance level. 
+% Also the color black is of level 0, and the color white is of level 10
+% Required for colors used in tables in this template
+\usepackage{ninecolors}
+
 % Description: Support for graphics in LaTeX
 % Doc: grfguide.pdf
 \usepackage[%
@@ -68,12 +75,18 @@
   \usepackage{epstopdf}
 }
 
-
 % Description:  environments for setting ragged text 
 %               which allow hyphenation.
 % Provides: \Centering, \RaggedLeft, and \RaggedRight, ... 
 % Doc: ragged2e.pdf
 \usepackage{ragged2e}
+
+% Description: The varwidth environment is superficially similar to minipage, 
+%              but the specified width is just a maximum value — the box may 
+%              get a narrower “natural” width
+% Required for itemize lists in tables!
+\usepackage{varwidth}
+
 
 \EndCodeSection{PackagesBase}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -109,6 +122,11 @@
 %% Description: Set the font size relative to the current font size
 %% Doc: relsize-doc.pdf
 % \usepackage{relsize}
+
+% Make PDF files searchable and copyable
+% load before: fontenc (fontenc must not be loaded with lualatex!)
+% fontspec loads fontenc - therefore must be loaded before fontspec
+\usepackage{cmap} 
 
 %% Description: Font selection for LuaLaTeX
 %% Doc: fontspec.pdf
@@ -273,6 +291,9 @@
 %% Common Symbols
 \usepackage{pifont}   %% ZapfDingbats
 
+%% Old Package for symbols, required in the documentation for \Box
+\usepackage{latexsym}
+
 \EndCodeSection{PackagesSymbols}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -306,11 +327,11 @@
 % It is thus NOT RECOMMENDED to use this package.
 % \usepackage{tabu}
 
-% tablestyles: Package from me (Matthias Pospiech) with 
-% simple interface, but very limited style possibilities.
-\IfFileExists{tablestyles.sty}{
-  \IfDefined{rowcolors}{\usepackage{tablestyles}}%
-}{}
+% Under the premise of being compatible with the basic syntax of LATEX2 tables, 
+% this macro package will completely separate the content and style of the table, 
+% and the style of the table can be completely set in keyval way.
+% Recommended Package!
+\usepackage{tabularray}
 
 % Description: tcolorbox provides an environment for colored 
 %              and framed text boxes with a heading line.
@@ -339,8 +360,7 @@
 
 % Description: commands for for emphasis
 % Provides: \so, \ul, \st, ...
-% Doc: soulutf8.pdf (loads soul.sty)
-\usepackage{soulutf8}
+\usepackage{soul}
 
 % Description: enable linebreaks for URLs
 % Provides: \url{}
@@ -536,7 +556,7 @@
 %              figure and table and cooperates with many 
 %              other packages.
 % Doc: caption.pdf (Required v3.2 or newer)
-\usepackage{caption}[2011/08/06]
+\usepackage{caption}
 
 %% subfig ist NOT recommended, use subcaption instead
 
@@ -851,29 +871,21 @@ markcase=ignoreuppercase,
 % usage: % Define partial toc for part pages \PartialToc
 \IfDefined{chapter}{\usepackage{titletoc}}
 
-% usage of functions from tocbasic (from koma-script)
-% Is loaded by koma-script automatically.
-% see: 
-%https://tex.stackexchange.com/questions/557571/what-should-i-use-instead-of-tocstyle
-%https://tex.stackexchange.com/questions/653373/move-from-tocstyle-to-tocbasic
+% Description: The appendix package provides some facilities for 
+%              modifying the typesetting of appendix titles.
+% Doc: appendix.pdf
+%\usepackage[
+% ,toc   % Put a header (e.g., 'Appendices') into the Table of Contents
+% %,page  % Puts a title  (e.g.,  'Appendices') into the document at the 
+%        % beginning of the appendices environment
+% %,title % Adds a name (e.g., 'Appendix') before each appendix title in
+%        % the body of the document.
+% %,titletoc % Adds a name (e.g., 'Appendix') before each appendix listed 
+%        % in the ToC
+% %,header% Adds a name (e.g., 'Appendix') before each appendix in page headers.
+%]{appendix}
+%\renewcommand{\appendixtocname}{\appendixname}
 
-% Declare common style
-\DeclareTOCStyleEntries[
-raggedentrytext,
-linefill=\hfill,
-numwidth=0pt,
-numsep=1ex,
-dynnumwidth
-]{tocline}{chapter,section,subsection,subsubsection,paragraph,subparagraph}
-
-% declare different style for everthing except chapter
-\DeclareTOCStyleEntries[
-linefill=\TOCLineLeaderFill,
-indent=0pt,
-dynindent
-]{tocline}{section,subsection,subsubsection,paragraph,subparagraph}
-% set Chapter font to bold
-\setkomafont{chapterentry}{\bfseries}
 
 \EndCodeSection{PackagesTOC}
 
@@ -882,10 +894,6 @@ dynindent
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \BeginCodeSection{PackagesPDF}
-
-% Make PDF files searchable and copyable
-% load before: fontenc (fontenc must not be loaded with lualatex!)
-\usepackage{cmap} 
 
 % Description: Include pages from external PDF documents in LaTeX documents
 % Doc: pdfpages.pdf

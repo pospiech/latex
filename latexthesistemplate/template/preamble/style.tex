@@ -67,7 +67,7 @@
 % table colors 
 \colorlet{tablebodycolor}{white!100}
 \colorlet{tablerowcolor}{gray!10}
-\colorlet{tablesubheadcolor}{gray!30}
+\colorlet{tablesubheadcolor}{azure3!30}
 \colorlet{tableheadcolor}{gray!25}
 
 }{} % End: \IfMultDefined{definecolor}
@@ -287,11 +287,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \BeginCodeSection{StyleTables}
 
-% for Package tabu
-\IfDefined{tabulinesep}{%
-  \tabulinesep=5pt
-}
-
 % Define new column types only if they are not yet defined
 \IfDefined{RaggedLeft}{
   %% centered (Z):
@@ -312,6 +307,11 @@
   %% centered (p):
   \IfColumntypeDefined{C}{}
     {\newcolumntype{C}[1]{>{\Centering\arraybackslash\hspace{0pt}}p{#1}}}
+}
+
+% tcolobox library
+\IfDefined{tcbuselibrary}{
+	\tcbuselibrary{skins}
 }
 
 \EndCodeSection{StyleTables}
@@ -630,7 +630,7 @@
           {\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
           {\centering \IfColorDefined{sectioncolor}{\color{sectioncolor}}{}#3}%
       }\nolinebreak%
-      \ifnumbered{part}{\hspace*{-.5\textwidth}#2}{}%
+      \Ifnumbered{part}{\hspace*{-.5\textwidth}#2}{}%
       \vfil\newpage\partheademptypage
     }{%
       #2#3%
@@ -725,6 +725,33 @@
    \setcounter{lofdepth}{1}  %1 = only figures, 2 = figures and subfigures
 }
 
+
+% usage of functions from tocbasic (from koma-script)
+% Is loaded by koma-script automatically.
+% see: 
+%https://tex.stackexchange.com/questions/557571/what-should-i-use-instead-of-tocstyle
+%https://tex.stackexchange.com/questions/653373/move-from-tocstyle-to-tocbasic
+
+% Declare common style
+\DeclareTOCStyleEntries[
+raggedentrytext,
+linefill=\hfill,
+numwidth=0pt,
+numsep=1ex,
+dynnumwidth
+]{tocline}{chapter,section,subsection,subsubsection,paragraph,subparagraph}
+
+% declare different style for everthing except chapter
+\DeclareTOCStyleEntries[
+linefill=\TOCLineLeaderFill,
+indent=0pt,
+dynindent
+]{tocline}{section,subsection,subsubsection,paragraph,subparagraph}
+% set Chapter font to bold
+\setkomafont{chapterentry}{\bfseries}
+
+
+
 \EndCodeSection{StyleLayoutTOC}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % pdf packages
@@ -803,7 +830,7 @@
 \IfPackagesLoaded{onlyamsmath,tikz}{%
 	\AtBeginDocument{\catcode`\$=3}
 }{}
-% thanks to Peter Grill and Christian Feuers‰nger for providing this fix.
+% thanks to Peter Grill and Christian Feuers√§nger for providing this fix.
 % The discussion on why this is necessary can be read at
 % http://tex.stackexchange.com/questions/31860/conflict-onlyamsmath-and-tikz
 % http://tex.stackexchange.com/questions/99526/bug-in-pgfplots-or-other-packages

@@ -140,6 +140,11 @@ def callSystemCommand(command):
     except OSError as e:
         print("Execution failed:", e, file=sys.stderr)
 
+
+def latexCommand(texfile):
+    #callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texfile])
+    callSystemCommand(['lualatex', '--interaction', 'nonstopmode', '-shell-escape', texfile])
+
 def compileLatexDocument(texfile):
     # move to path of tex file
     newPath, filename = os.path.split(texfile)
@@ -154,8 +159,8 @@ def compileLatexDocument(texfile):
     cleanupRecursiveAuxFiles(newPath, '*.aux')
 
     print ('--- creating document ' + texName + ' ---' )
-    # call pdflatex
-    callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texName + '.tex'])
+    # call latex
+    latexCommand(texfile)
 
     # call makeglossaries
     callSystemCommand(['makeglossaries', texName])
@@ -168,18 +173,18 @@ def compileLatexDocument(texfile):
     # executeCode = 'makeindex "' + texName + '.ist"'
     # result = os.system(executeCode)
 
-    # call pdflatex
-    callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texName + '.tex'])
+    # call flatex
+    latexCommand(texfile)
 
     logfile = texName + '.log'
     outputFile = texName + '-FileList' + '.txt'
     extractFileList(logfile, outputFile)
 
-    # call pdflatex
-    callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texName + '.tex'])
+    # call flatex
+    latexCommand(texfile)
 
-    # call pdflatex
-    callSystemCommand(['pdflatex', '--interaction', 'nonstopmode', '-shell-escape', texName + '.tex'])
+    # call flatex
+    latexCommand(texfile)
 
     # clean up temp files
     print ('cleaning up temp files')

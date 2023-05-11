@@ -160,7 +160,7 @@
     ,/tikz/draw=black % stroke color (box of plot)
     %,/tikz/fill=red % fill color, when used ?
 %%%% 4.6.6 Color Maps
-    ,colormap name=jet % (hot, hot2, jet, blackwhite, bluered, cool, 
+    %,colormap name=jet % (hot, hot2, jet, blackwhite, bluered, cool, 
                        %  greenyellow, redyellow, violet)
 	% ,cycle list name=colorseries-office
 %%%% 4.6.8 Axis Background                       
@@ -372,7 +372,7 @@
   \addplot table [
 	y expr=-\coordindex, % Use negative coordinate index as y coordinate
     x index=1 % Use first column as x coordinate
-  ] {\compilationtimes};
+  ] {\compilationtimes};	
 
   \end{axis}
 

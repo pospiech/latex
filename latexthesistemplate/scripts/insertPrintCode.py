@@ -46,6 +46,7 @@ def findLinesInInputFile(inputFileName,
     #
     with open(inputFileName, 'r', encoding="utf8") as inputFileHandle:
         for lineInput in inputFileHandle:
+            print(lineInput + "\n")
             lineNumber = lineNumber + 1
             if lineNumber > minimumLineNumber:
                 if lineStart < 1:

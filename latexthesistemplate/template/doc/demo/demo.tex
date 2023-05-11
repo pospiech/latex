@@ -1,5 +1,6 @@
 % !TeX encoding=utf8
 % !TeX spellcheck = en-US
+% !TeX root = TemplateDocumentation.tex
 
 \DefineCodeSection[true]{DemoText}
 \DefineCodeSection[true]{DemoFigures}
@@ -45,8 +46,7 @@ All examples are presented together with the creation code side by side or on to
 The code can be copied directly from the pdf document and inserted in the content files of this template. The basic \latex code example may also work in any other \latex template. However, most examples require a special package or even some code defined only in this template. 
 Therefore it is only guaranteed that the examples work in this template. If this should not be the case it should be reported as a bug. 
 
-All the examples are designed not to raise an error if some functionality is not available, but instead to display why they were not included in the document. 
-One example for this is the code for package \package{subfloat} in \cref{sec:demo:figures:subfloat}, which was intentionally removed because of incompatibilities and better alternatives. Therefore these `error´ messages do not indicate an error of the template. They only inform why an example could not be included. 
+All the examples are designed not to raise an error if some functionality is not available, but instead to display why they were not included in the document. These `error´ messages do not indicate an error of the template. They only inform why an example could not be included. 
 
 This document (\path{content/demo/demo.tex}) could also be used in other templates provided that all depending packages\footnote{\package{codesection}, \package{templatetools} and \package{latexdemo}} are loaded. In the case of \package{glossaries} some definitions need to be loaded from an extra file \path{content/demo/glossariesEntries.tex}.
 All users and package authors are encouraged to extend and improve the examples as well as use this file for testing of their own commands and packages.
@@ -59,7 +59,7 @@ All users and package authors are encouraged to extend and improve the examples 
 % ------------------------------------------------------------
 \subsection{\latex{} standard commands}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 The standard commands for font attributes:  
 \textbf{bold}, \textit{italic}, \textsl{slanted},
 \textsf{sans serif}, \textsc{small caps} and
@@ -70,7 +70,7 @@ And any combination of them:
 \textsf{\textbf{bold sans serif}},
 \textsc{\textbf{bold small caps}}
 \textsl{\textsf{sans serif slanted}}. 
-\end{filecontents*}
+\end{DefineCode}
 
 \PrintDemo{style=stacked}%
 %
@@ -81,12 +81,12 @@ defaults substituted.' is printed out.
 % ------------------------------------------------------------
 \subsection{package: soul}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \so{letterspacing}, \\
 \ul{underlining},   \\
 \st{overstriking}   \\
 and \hl{highlighting}. 
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{so}{%
 % ------------------------------------------------------------
@@ -99,13 +99,13 @@ Commands of package \package{soul}:
 % ------------------------------------------------------------
 \subsection{package: ulem}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \uline{single underlining}, \\
 \uuline{double underlining}, \\
 \uwave{waved underlining}, \\
 \sout{crossed out} and \\
 \xout{emphasized crossed out}.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{uuline}{%
 
@@ -117,9 +117,9 @@ Commands of package \package{ulem}:
 % ------------------------------------------------------------
 \subsection{package: url}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \url{http://www.dante.de}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{url}{%
 
@@ -140,13 +140,13 @@ The font used for this command can be set up in the preamble.
 % ------------------------------------------------------------
 \subsection{quote}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{quote}
 The \LaTeX{} document preparation system is a special version of Donald
 Knuth's \TeX{} program. \TeX{} is a sophisticated program designed to 
 produce high-quality typesetting, especially for mathematical text.
 \end{quote}
-\end{filecontents*}
+\end{DefineCode}
 
 This standard environment can be used for quotes. Its text is indented from both sides. For quotes with citations the \env{blockquote} environment of packages \package{csquotes} is much better suited.
 
@@ -155,7 +155,7 @@ This standard environment can be used for quotes. Its text is indented from both
 % ------------------------------------------------------------
 \subsection{enquote and blockquote (csquotes)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 Normal quotes inside a sentence: \enquote{This sentence contains a second
 quote \enquote{with different quotation marks}}. The style of
 quotations can be set up and is depended on the language setting. 
@@ -165,7 +165,7 @@ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
 veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
 commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
 esse cillum dolore eu fugiat nulla pariatur.}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{enquote}{%
 
@@ -181,20 +181,20 @@ The \package{csquotes} package provides advanced facilities for inline (\command
 \label{sec:references}
 
 % ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 Some text with a normal reference 
 to section~\ref{sec:references}.
-\end{filecontents*}
+\end{DefineCode}
 
 \PrintDemo{style=parallel}%
 
 % ------------------------------------------------------------
 \subsection{variable references using vref}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 Some text with a vref reference 
 to section~\vref{sec:references}.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{vref}{%
 
@@ -208,7 +208,7 @@ if the reference is not on the same page.
 % ------------------------------------------------------------
 \subsection{variable references with the cleveref package}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 Some math formulas to reference:
 \begin{equation}
 a = b + c \label{eqn:abc}
@@ -220,7 +220,7 @@ z = y + x\,. \label{eqn:zyx}
 \Cref{sec:references} contains a reference to a section
 whereas the formulars \cref{eqn:abc,eqn:zyx} 
 reference equations.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{cref}{%
 
@@ -232,14 +232,14 @@ reference equations.
 
 The template provides the commands \cs{eqnref}, \cs{figref}, \cs{tabref}, \cs{secref} and \cs{chapref} which print out the name of the object to reference to (similar) to \package{cleveref} and include this name in the hyperlink.
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 Some math formulas to reference:
 \begin{equation}
 q = w + s \label{eqn:qws}
 \end{equation}
 %
 The \eqnref{eqn:qws} shows how to add variables.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{eqnref}{%
 
@@ -253,7 +253,7 @@ The \eqnref{eqn:qws} shows how to add variables.
 %% ------------------------------------------------------------
 \subsection{\env{abstract} environment}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{abstract}
 \LaTeX{} is a document markup language and document preparation 
 system for the \TeX{} typesetting program.
@@ -261,7 +261,7 @@ system for the \TeX{} typesetting program.
 The \LaTeX{} document preparation system is a special version of Donald
 Knuth's \TeX{} program. \TeX{} is a sophisticated program designed to 
 produce high-quality typesetting, especially for mathematical text.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{endabstract}{%
 
@@ -274,13 +274,13 @@ produce high-quality typesetting, especially for mathematical text.
 \label{sec:EnvAddmargin}
 
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{addmargin*}[0cm]{-0.5\marginwidth}
 The \LaTeX{} document preparation system is a special version of Donald
 Knuth's \TeX{} program. \TeX{} is a sophisticated program designed to 
 produce high-quality typesetting, especially for mathematical text.
 \end{addmargin*}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{endaddmargin}{%
 
@@ -292,11 +292,11 @@ The \env{addmargin}-environment allows to enlarge or shrink the textwidth in bot
 }{\DemoError{Environment \env{addmargin} not available}}%
 
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \newlength{\marginwidth}
 \setlength{\marginwidth}{\marginparwidth}
 \addtolength{\marginwidth}{\marginparsep}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{endaddmargin}{%
 \ifbool{isMarginWidthDefined}{}{
@@ -314,14 +314,14 @@ The \env{addmargin}-environment allows to enlarge or shrink the textwidth in bot
 %% ------------------------------------------------------------
 \subsection{\latex{} standard alignment}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 The \LaTeX{} document preparation 
 system is a special version of Donald
 Knuth's \TeX{} program. \TeX{} is a 
 sophisticated program designed to 
 produce high-quality typesetting, 
 especially for mathematical text.
-\end{filecontents*}
+\end{DefineCode}
 
 \PrintDemo{style=parallel}%%
 %
@@ -330,7 +330,7 @@ If the alignment was not intentionally changed \latex{} prints text as justified
 % ------------------------------------------------------------
 \subsection{centered text}
 %
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
 The \LaTeX{} document preparation 
 system is a special version of Donald
@@ -339,7 +339,7 @@ sophisticated program designed to
 produce high-quality typesetting, 
 especially for mathematical text.
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 %
 Environment for centering of text. Not to be used with floating environments such as \env{table} or \env{figure}!
 
@@ -355,7 +355,7 @@ and \bs{}raggedright) it includes hyphenation. Each environment is also availabl
 
 }{\DemoError{Package \package{ragged2e} not loaded}}%
 % ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{FlushLeft}
 The \LaTeX{} document preparation 
 system is a special version of Donald
@@ -364,7 +364,7 @@ sophisticated program designed to
 produce high-quality typesetting, 
 especially for mathematical text.
 \end{FlushLeft}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{FlushLeft}{%
 % .............................................................
@@ -374,7 +374,7 @@ especially for mathematical text.
 
 }{}
 % ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{FlushRight}
 The \LaTeX{} document preparation 
 system is a special version of Donald
@@ -383,7 +383,7 @@ sophisticated program designed to
 produce high-quality typesetting, 
 especially for mathematical text.
 \end{FlushRight}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{FlushRight}{%
 % .............................................................
@@ -393,7 +393,7 @@ especially for mathematical text.
 
 }{}
 % ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Centering}
 The \LaTeX{} document preparation 
 system is a special version of Donald
@@ -402,7 +402,7 @@ sophisticated program designed to
 produce high-quality typesetting, 
 especially for mathematical text.
 \end{Centering}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{FlushLeft}{%
 % .............................................................
@@ -415,7 +415,7 @@ especially for mathematical text.
 % .............................................................
 \subsection{Multiple columns (multicol)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{multicols}{3}[Text with three columns created with package multicol]
 Suspendisse ac nibh vitae nunc iaculis accumsan. Vivamus venenatis, orci vitae
 interdum tristique, nisl lectus fermentum arcu, sed vehicula pede orci et
@@ -432,7 +432,7 @@ sodales et, vestibulum ut, auctor ac, sem. Vivamus nisi lectus, consectetuer
 eget, congue at, feugiat et, elit. Praesent sem. Curabitur interdum placerat
 odio.
 \end{multicols}
-\end{filecontents*}
+\end{DefineCode}
 %
 \ifcsdef{multicols}{%
 
@@ -469,7 +469,7 @@ odio.
 %% ------------------------------------------------------------
 \subsection{itemize}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{itemize}
    \item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
    eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -480,7 +480,7 @@ odio.
    \item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
    eiusmod tempor incididunt ut labore et dolore magna aliqua.
 \end{itemize}
-\end{filecontents*}
+\end{DefineCode}
 
 This is the standard list of \latex{}. It has a separation between each item, to improve the reading of texts spanning several lines.
 
@@ -488,7 +488,7 @@ This is the standard list of \latex{}. It has a separation between each item, to
 %
 These lists can also be nested (list within list)
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{itemize}
    \item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
    eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -515,7 +515,7 @@ These lists can also be nested (list within list)
       eiusmod tempor incididunt ut labore et dolore magna aliqua.
    \end{itemize}
 \end{itemize}
-\end{filecontents*}
+\end{DefineCode}
 
 \PrintDemo{style=stacked}%%
 
@@ -524,7 +524,7 @@ These lists can also be nested (list within list)
 
 Same as the itemize list, but enumerated.
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{enumerate}
    \item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 %
@@ -549,20 +549,20 @@ Same as the itemize list, but enumerated.
       eiusmod tempor incididunt ut labore et dolore magna aliqua.
    \end{enumerate}
 \end{enumerate}
-\end{filecontents*}
+\end{DefineCode}
 
 \PrintDemo{style=stacked}%%
 
 
 %% ------------------------------------------------------------
 %%
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{itemize}[noitemsep]
   \item This environment
   \item should only be used in the
   \item case of single line items
 \end{itemize}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{enumitem}{
 \subsection{Compact lists (with \package{enumitem} package)}
@@ -575,13 +575,13 @@ The \package{enumitem} package provides many options to change the layout of a l
 %% ------------------------------------------------------------
 \subsection{Arbitrary labels (enumitem package)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{enumerate}[label=(\alph{enumi})]
   \item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   %
   \item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 \end{enumerate}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{enumitem}{
 
@@ -594,12 +594,12 @@ Furthermore labels can be changed using \package{enumitem}, here for example usi
 %% ------------------------------------------------------------
 \subsection{\env{description} environment}
 %
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{description}
   \item[Rivers] Elbe, Rhine
   \item[Seas]  Indian Ocean, Pacific Ocean, Mediterranean Sea
 \end{description}
-\end{filecontents*}
+\end{DefineCode}
 
 
 The \env{description} environment is used to describe items.
@@ -609,12 +609,12 @@ The \env{description} environment is used to describe items.
 %% ------------------------------------------------------------
 \subsection{\env{labeling} environment (Koma Script)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{labeling}[ --]{Rivers}
   \item[Rivers] Elbe, Rhine
   \item[Seas]  Indian Ocean, Pacific Ocean,  Mediterranean Sea
 \end{labeling}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{endlabeling}{%
 
@@ -637,7 +637,7 @@ width of the largest element as a parameter.
 \label{sec:demo:figures}
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.3\textwidth]{images/testimage.png}
@@ -645,7 +645,7 @@ width of the largest element as a parameter.
   in the document.}
   \label{fig:figures:1}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 
@@ -657,12 +657,12 @@ width of the largest element as a parameter.
 }{\DemoError{Package \package{graphicx} not loaded}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
   \includegraphics[width=0.3\textwidth]{images/testimage.png}
   \captionof{figure}{An example for a caption without a figure environment}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 
@@ -678,13 +678,13 @@ width of the largest element as a parameter.
 }{}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
   \captionsetup{type=figure}
   \includegraphics[width=0.3\textwidth]{images/testimage.png}
   \caption{Another example for a caption without a figure environment}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{caption without figure environment using captionsetup (caption)}
@@ -698,7 +698,7 @@ width of the largest element as a parameter.
 }{}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
   \IfDefined{RawFloats}{\RawFloats} % required if floatrow is loaded
   \begin{minipage}[b]{.5\linewidth}
@@ -715,7 +715,7 @@ width of the largest element as a parameter.
     \label{fig:figures:3}
   \end{minipage}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 
@@ -730,7 +730,7 @@ However if the \package{floatrow} package is loaded the standard \latex{} behavi
 }{\DemoError{Package \package{graphicx} not loaded}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
   \begin{minipage}[b]{.5\linewidth}
     \centering
@@ -744,7 +744,7 @@ However if the \package{floatrow} package is loaded the standard \latex{} behavi
   \end{minipage}
   \caption{A figure}\label{fig:1}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \ifcsdef{subcaption}{%
@@ -760,7 +760,7 @@ The \cs{subcaption} command allows to define subfigure captions independent of t
 }{} % end if 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
   \begin{subfigure}[b]{.5\linewidth}
     \centering
@@ -774,51 +774,11 @@ The \cs{subcaption} command allows to define subfigure captions independent of t
   \end{subfigure}
   \caption{A figure}\label{fig:2}
 \end{figure}
-\end{filecontents*}
-
-\IfElsePackageLoaded{graphicx}{%
-\ifcsdef{endsubfigure}{%
-
-\subsection{subfigure environment (caption)}
-\label{sec:demo:figures:subfigure}
-
-The \env{subfigure} environment has a syntax equal to the normal figure environment, enhanced with the width and positioning arguments of a minipage environment.
-
-\PrintDemo{style=stacked}%
-
-}{\DemoError{Environment \env{subfigure} not available}}%
-}{} % end if 
+\end{DefineCode}
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{figure}[H]
-  \centering
-  \subfloat[first picture]{%
-    \includegraphics[width=0.3\textwidth]%
-    {images/testimage.png}}
-    \hspace{0.1\textwidth}
-  \subfloat[second picture]{%
-    \includegraphics[width=0.3\textwidth]%
-    {images/testimage.png}}
-  \caption{An example for subfigures with subfloat}
-\end{figure}
-\end{filecontents*}
-
-\IfElsePackageLoaded{graphicx}{%
-
-\subsection{subcaption with subfloat command (subfig)}
-\label{sec:demo:figures:subfloat}
-
-\ifcsdef{subfloat}{%
-
-\PrintDemo{style=stacked}%
-
-}{\DemoError{Command \package{subfloat} not available}}%
-}{}%
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \begin{floatrow}
 \ffigbox[\FBwidth]
@@ -832,7 +792,7 @@ The \env{subfigure} environment has a syntax equal to the normal figure environm
  \label{fig:floatrow:example:3:b}}
 \end{floatrow}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 
@@ -849,7 +809,7 @@ The \package{floatrow} package provides many ways to layout pictures and tables 
 }{}
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \begin{floatrow}
 \floatbox{figure}[0.3\textwidth][\FBheight][t]
@@ -868,7 +828,7 @@ The \package{floatrow} package provides many ways to layout pictures and tables 
 {\includegraphics[width=0.15\textwidth]{images/testimage.png}}
 \end{floatrow}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{parallel figures with vertical alignment (floatrow)}
@@ -885,7 +845,7 @@ The general \cs{floatbox} command allows vertical alignment in the third optiona
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \ffigbox[\FBwidth]
 {
@@ -902,7 +862,7 @@ The general \cs{floatbox} command allows vertical alignment in the third optiona
 {\caption{subcaptions using subfloatrow environment}
  \label{fig:floatrow:example:5}}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{subfigures with subfloatrow environment (floatrow)}
@@ -918,7 +878,7 @@ The figure placement and layout of \package{floatrow} can be changed to subfigur
 }{}
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \floatbox[{\capbeside}]{figure}[\FBwidth]
 {\caption[caption beside the figure]{caption beside the figure with some more 
@@ -926,7 +886,7 @@ text and a bit more text and a little more text to fill space}
  \label{fig:floatrow:example:6:a}}
 {\includegraphics[width=0.3\textwidth]{images/testimage.png}}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{caption beside the figure (floatrow)}
@@ -942,7 +902,7 @@ Using the first optional argument of \cs{floatbox} one can define a caption whic
 }{}
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \KOMAoptions{captions=bottombeside} % topbeside
 \begin{figure}[H]
 \IfDefined{RawFloats}{\RawFloats} % required if floatrow is loaded
@@ -955,7 +915,7 @@ Using the first optional argument of \cs{floatbox} one can define a caption whic
 \end{captionbeside}
 \label{fig:captionbeside:example}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{caption beside the figure with captionbeside (koma script)}
@@ -972,14 +932,14 @@ If the \package{floatrow} package is loaded the standard \latex{} behaviour must
 
 %% ------------------------------------------------------------
 \clearpage
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{wrapfigure}{r}{0.3\textwidth}
   \includegraphics[width=0.8\linewidth]{images/testimage.png}
   \caption{A wrapfigure example}
    %\vspace{-2\baselineskip}
 \end{wrapfigure}
 ...
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{figure inside the paragraph (wrapfigure)}
@@ -1025,14 +985,14 @@ Donec luctus.
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{wrapfloat}{figure}{r}{0.3\textwidth}
   \includegraphics[width=0.8\linewidth]{images/testimage.png}
   \caption{A wrapfloat example}
    %\vspace{-2\baselineskip}
 \end{wrapfloat}
 ...
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{floating figure (or table) inside the paragraph (wrapfigure)}
@@ -1077,57 +1037,8 @@ Donec luctus.
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{floatingfigure}[r]{0.3\textwidth}
-   \includegraphics[width=0.25\textwidth]{images/testimage.png}
-   \caption{A floatingfigure example}
-\end{floatingfigure}
-...
-\end{filecontents*}
-
-\IfElsePackageLoaded{graphicx}{%
-\subsection{floating figure inside the paragraph (floatflt)}
-\label{sec:demo:figures:floatflt}
-
-\ifcsdef{endfloatingfigure}{%
-
-The \env{floatingfigure} environment is a non-floating environment and can be used only for figures. It has however some layout problems compared to wrapfloat, for example the caption is larger than the image and the image size must be chosen smaller than the free space.
-
-\nopagebreak[4]
-\vspace*{0.5em}\par\noindent
-\printlatexcode%
-\demoresultprefix
-\begin{framed}%
-
-\begin{floatingfigure}[r]{0.3\textwidth}
-   \includegraphics[width=0.25\textwidth]{images/testimage.png}
-   \caption{A floatingfigure example}
-\end{floatingfigure}
-Suspendisse vel felis. Ut lorem lorem, interdum
-eu, tincidunt sit amet, laoreet vitae, arcu. Aenean faucibus pede eu
-ante. Praesent enim elit, rutrum at, molestie non, nonummy vel,
-nisl. Ut lectus eros, malesuada sit amet, fermentum eu, sodales
-cursus, magna. Donec eu purus. Quisque vehicula, urna sed ultricies
-auctor, pede lorem egestas dui, et convallis elit erat sed nulla.
-Donec luctus. Curabitur et nunc. Aliquam dolor odio, commodo
-pretium, ultricies non, pharetra in, velit. Integer arcu est,
-nonummy in, fermentum faucibus, egestas vel, odio.
-Suspendisse vel felis. Ut lorem lorem, interdum
-eu, tincidunt sit amet, laoreet vitae, arcu. Aenean faucibus pede eu
-ante. Praesent enim elit, rutrum at, molestie non, nonummy vel,
-nisl. Ut lectus eros, malesuada sit amet, fermentum eu, sodales
-cursus, magna. Donec eu purus. Quisque vehicula, urna sed ultricies
-auctor, pede lorem egestas dui, et convallis elit erat sed nulla.
-Donec luctus.
-
-\end{framed}
-
-}{\DemoError{Environment \env{floatingfigure} not available}}%
-}{}
-%
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\captionsetup{parboxrestore=default}
+\begin{DefineCode}
+%\captionsetup{parboxrestore=default}
 
 Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing 
 nisi eu metus. Proin viverra odio ac lorem consequat condimentum. 
@@ -1153,13 +1064,13 @@ Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing
 nisi eu metus. Proin viverra odio ac lorem consequat condimentum. 
 Suspendisse bibendum tellus.
 
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{Koma Script: addmargin (default)}
 \label{sec:demo:figures:addmargin}
 
-In this example the caption is as wide as the figure, which means that the caption spans into the margin.
+In this example the caption is as wide as the figure. The caption however does not span into the margin.
 
 \ifcsdef{addmargin}{%
 
@@ -1169,46 +1080,45 @@ In this example the caption is as wide as the figure, which means that the capti
 
 }{\DemoError{Environment \env{addmargin} not available}}%
 }{}%
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\captionsetup{parboxrestore=full}
-
-Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing 
-nisi eu metus. Proin viverra odio ac lorem consequat condimentum. 
-Suspendisse bibendum tellus.
-
-\begin{figure}[H]
-\begin{addmargin*}[0pt]{-0.6\marginwidth}%
-\centering
-\includegraphics[width=0.22\linewidth]{images/testimage} \hfill
-\includegraphics[width=0.22\linewidth]{images/testimage} \hfill
-\includegraphics[width=0.22\linewidth]{images/testimage} \hfill
-\includegraphics[width=0.22\linewidth]{images/testimage}
-\caption[pictures extended into the margin]{pictures extended into the margin -- Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi eu metus. Proin viverra odio ac lorem consequat condimentum. Suspendisse bibendum tellus. }
-\label{fig:maincls.addmargin.full}
-\end{addmargin*}
-\end{figure}
+%%% ------------------------------------------------------------
+%\begin{DefineCode}
 %
-Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing 
-nisi eu metus. Proin viverra odio ac lorem consequat condimentum. 
-Suspendisse bibendum tellus.
-\end{filecontents*}
+%Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing 
+%nisi eu metus. Proin viverra odio ac lorem consequat condimentum. 
+%Suspendisse bibendum tellus.
+%
+%\begin{figure}[H]
+%\begin{addmargin*}[0pt]{-0.6\marginwidth}%
+%\centering
+%\includegraphics[width=0.22\linewidth]{images/testimage} \hfill
+%\includegraphics[width=0.22\linewidth]{images/testimage} \hfill
+%\includegraphics[width=0.22\linewidth]{images/testimage} \hfill
+%\includegraphics[width=0.22\linewidth]{images/testimage}
+%\caption[pictures extended into the margin]{pictures extended into the margin -- Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi eu metus. Proin viverra odio ac lorem consequat condimentum. Suspendisse bibendum tellus. }
+%\label{fig:maincls.addmargin.full}
+%\end{addmargin*}
+%\end{figure}
+%%
+%Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing 
+%nisi eu metus. Proin viverra odio ac lorem consequat condimentum. 
+%Suspendisse bibendum tellus.
+%\end{DefineCode}
 
-\IfElsePackageLoaded{graphicx}{%
-\subsection{Koma Script: addmargin (with parboxrestore)}
-\label{sec:demo:figures:addmargin:b}
-
-Here the caption is only as wide as the textwidth, which is corrected using
-the code \texttt{\bs{}captionsetup\{parboxrestore=full\}}.
-
-\IfMultDefined{addmargin,captionsetup}{%
-
-\PrintDemo{style=lines}%
-
-}{\DemoError{Environment \env{addmargin} not available}}%
-}{}%
+%\IfElsePackageLoaded{graphicx}{%
+%\subsection{Koma Script: addmargin (with parboxrestore)}
+%\label{sec:demo:figures:addmargin:b}
+%
+%Here the caption is only as wide as the textwidth, which is corrected using
+%the code \texttt{\bs{}captionsetup\{parboxrestore=full\}}.
+%
+%\IfMultDefined{addmargin,captionsetup}{%
+%
+%\PrintDemo{style=lines}%
+%
+%}{\DemoError{Environment \env{addmargin} not available}}%
+%}{}%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi
 eu metus. Proin viverra odio ac lorem consequat condimentum. Suspendisse
 bibendum tellus. Duis non diam. Aliquam sodales sapien in mauris. Sed euismod
@@ -1229,7 +1139,7 @@ Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi
 eu metus. Proin viverra odio ac lorem consequat condimentum. Suspendisse
 bibendum tellus. Duis non diam. Aliquam sodales sapien in mauris. Sed euismod
 adipiscing lorem. Pellentesque nulla augue, nonummy vel, tincidunt at, blandit 
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \subsection{caption inside the margin (mcaption)}
@@ -1285,12 +1195,10 @@ This section about tables is organized as follows:
 \begin{itemize}
 \item In section~\ref{sec:tableStylesIntro} different styles to create a table are shown: 
   \begin{itemize}
-  \item using booktabs line commands (\ref{sec:tableStyleBooktabs1} and
+  \item Basic tables using booktabs line commands (\ref{sec:tableStyleBooktabs1} and
         \ref{sec:tableStyleBooktabs2}),
   \item with custom commands for the style and the colors
         (\ref{sec:tableStyleCustom}), 
-  \item and with the package \package{tablestyles}
-        (\ref{sec:tableStylePackage}).
   \end{itemize}
 %
 \item Section \ref{sec:tableColumnTypes} is about
@@ -1302,10 +1210,10 @@ This section about tables is organized as follows:
 \item Section \ref{sec:tableitemlists} shows how to correct the indentation
       for itemize lists.
 %
-\item Section \ref{sec:tablecolors} demonstrates the coloring of rows.
+\item Section \ref{sec:tablecolors} and \ref{sec:tablecolorstabularray} demonstrates the coloring of rows.
 %
-\item Section \ref{sec:tableTabuPackage} 
-      introduces the creation of tables with the \package{tabu} package.
+%\item Section \ref{sec:tableTabuPackage} 
+%      introduces the creation of tables with the \package{tabu} package.
 %
 \item How to create and present very large tables is introduced in section~\ref{sec:TableLarge}.
 \end{itemize}
@@ -1318,7 +1226,7 @@ There a many ways to design a table in terms of its lines (grid), sizes, fonts a
 Here some of the most common approaches to style a table are presented.
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{table}[H]
 % style
 \small\sffamily\renewcommand{\arraystretch}{1.4}
@@ -1334,7 +1242,7 @@ Here some of the most common approaches to style a table are presented.
 \bottomrule
 \end{tabular}
 \end{table}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsubsection{Booktabs package}
 \label{sec:tableStyleBooktabs1}
@@ -1345,9 +1253,9 @@ Here some of the most common approaches to style a table are presented.
 
 }{\DemoError{Package \package{booktabs} or \package{caption} not loaded}}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \small\sffamily\renewcommand{\arraystretch}{1.4}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{toprule}{%
 \noindent
@@ -1357,7 +1265,7 @@ Note that here the style of the table was further changed by the commands:
 }{}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{table}[H]
 \small\sffamily\renewcommand{\arraystretch}{1.4}
 \begin{tabular}{lll}
@@ -1371,7 +1279,7 @@ Note that here the style of the table was further changed by the commands:
 \bottomrule
 \end{tabular}
 \end{table}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsubsection{Cmidrule (booktabs)}
 \label{sec:tableStyleBooktabs2}
@@ -1385,7 +1293,7 @@ Note that here the style of the table was further changed by the commands:
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{table}[H]
 % style
 \small\sffamily\centering\renewcommand{\arraystretch}{1.4}
@@ -1406,7 +1314,7 @@ Note that here the style of the table was further changed by the commands:
 \hline
 \end{tabular}
 \end{table}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsubsection{Custom style with alternating row colors}
 \label{sec:tableStyleCustom}
@@ -1415,7 +1323,7 @@ Note that here the style of the table was further changed by the commands:
 \IfMultDefined{captionabove,rowcolors}{%
 \IfColorsDefined{tablebodycolor,tablerowcolor,tableheadcolor}{%
 
-Here a custom style is applied
+Here a custom style is applied. Note however that the modern way of package \package{tabularray} is more recommended.
 \begin{itemize}
 \item \cs{small} \hfill tables are more compact.
 \item \cs{renewcommand}\{\cs{arraystretch}\}\{1.4\} \hfill better readibility of rows.
@@ -1429,47 +1337,44 @@ Here a custom style is applied
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{table}[H]
 %
-\tablestyle[sansbold]
-%
-\captionabove{table with bold header font using the styles by this package}
-\begin{tabular}{*{2}{p{0.45\textwidth}}}
-\theadstart
-    \thead header &
-    \thead header \\
-\tbody
-%
- content  & content \\
- content  & content \\
- content  & content \\
- content  & content \\
- content  & content \\
-%
-\tsubheadstart
- \tsubhead subhead &
- \tsubhead subhead \\
-%
- content  & content \\
- content  & content \\
-\tend
-\end{tabular}
-\end{table} 
-\end{filecontents*}
+\captionabove{table with bold header font using the tabularray package}
+\begin{tblr}{
+		colspec = {XX},colsep = 4mm,
+		row{odd} = {azure8},		
+		row{1} = {azure2,fg=white,2em, font=\large\bfseries\sffamily},
+		row{even} = {gray8},		  		
+		hlines = {white}
+	}
+	% header = row{1}
+	header & header \\
+	% Body
+	content  & content \\
+	content  & content \\
+	content  & content \\
+	content  & content \\
+	content  & content \\
+	% sub header
+	\SetRow{bg=azure4,fg=white,font=\bfseries\sffamily} 
+	subhead & subhead \\
+	%
+	content  & content \\
+	content  & content \\
+\end{tblr}
+\end{table}
+\end{DefineCode}
 
-\subsubsection{Tablestyles package}
-\label{sec:tableStylePackage}
+\subsubsection{tabularray package}
+\label{sec:tabularrayPackage}
 
-This package unifies the application of a style to a table. The following styles are predefined: \texttt{default}, \texttt{roman} (serif instead of sans fonts), \texttt{sansbold} (bold header), \texttt{sansboldbw} (white text on black background)
-
-\IfMultDefined{captionabove,rowcolors,theadstart}{%
+This package can style the whole tabular using a section with style definitions. 
+\IfMultDefined{captionabove,rowcolors,SetRow}{%
 
 \PrintDemo{style=stacked}%
 
-One should note, that these commands do not work together with the package \package{tabu}, since in that package most row color command do not work as expected or need to be replaced by color commands from the tabu package, see section~\ref{sec:tabletabucolor}.
-
-}{\DemoError{Packages \package{xcolor}, \package{caption} or \package{tablestyles} not loaded}}%
+}{\DemoError{Packages \package{xcolor}, \package{caption} or \package{tabularray} not loaded}}%
 
 
 
@@ -1478,12 +1383,12 @@ One should note, that these commands do not work together with the package \pack
 \label{sec:tableColumnTypes}
 %% ------------------------------------------------------------
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{tabular}{lcr} 
 left  &  center  &  right  \\  % or \tabularnewline
 A     &  B       &  C  \\
 \end{tabular}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsubsection{Simple table (only alignment)}
 \label{sec:simpletable}
@@ -1492,7 +1397,7 @@ A     &  B       &  C  \\
 %% ------------------------------------------------------------
 \subsubsection{Column types: p}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
 % Style changes
 \small\renewcommand{\arraystretch}{1.4}
@@ -1508,7 +1413,7 @@ text which is considerably longer than the width of the column
 \newline with a line break included \\ \hline
 \end{tabular}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfColumntypeDefined{p}{%
 
@@ -1525,7 +1430,7 @@ It is here only to demonstrate the size of the columns.
 %% ------------------------------------------------------------
 \subsubsection{Column types: p, m, b}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
 % Style changes
 \small\renewcommand{\arraystretch}{1.4}
@@ -1543,7 +1448,7 @@ text which is considerably longer than the width of the column
 \hline
 \end{tabular}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfColumntypeDefined{p}{%
 
@@ -1564,15 +1469,15 @@ It is here only to demonstrate the alignment.
 }{\DemoError{Column types \env{p,m,b} not defined}}%
 
 %% ------------------------------------------------------------
-\subsubsection{Column types: X (tabularx)}
+\subsubsection{Column types: X (Tabularray)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
 % Style changes
 \small\renewcommand{\arraystretch}{1.4}
 % tabular
 \small
-\begin{tabularx}{0.9\textwidth}{llXX}
+\begin{tblr}{width=0.9\textwidth, colspec={llXX}}
 \hline
 l & l & X & X \\\hline
 %
@@ -1580,15 +1485,17 @@ left column & left column &
 text which is considerably longer than the width of the column & 
 text which is considerably longer than the width of the column \\
 \hline
-\end{tabularx}
+\end{tblr}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfColumntypeDefined{X}{%
-\ifcsdef{tabularx}{
+\ifcsdef{tblr}{
 
-The package \package{tabularx} defines a new tabular environment, which requires the total width of the tabular as a mandatory argument. The new X-columns take the remaining space to fill the tabular. 
-Each column is aligned as justified.
+The package \package{Tabularray} allows to define the width of a table and to define a column (X) that takes the remaining space to fill the tabular. 
+Each column is aligned as justified. Note that this is also available with the old package \package{tabularx} which introduced this type of column.
+
+The X Column can be defined with additional widht specs and alignment such as \texttt{X[2,l]X[3,r]}. For further information use the documentation of \package{Tabularray}.
 
 \PrintDemo{style=stacked}%
 
@@ -1596,87 +1503,55 @@ Each column is aligned as justified.
 Note, that such a grid should not be applied to a table.
 It is here only to demonstrate the size of the columns.
 
-}{\DemoError{Package \package{tabularx} not loaded}}%
+}{\DemoError{Package \package{tabularray} not loaded}}%
 }{\DemoError{Column types \env{X} not defined}}%
 
 %% ------------------------------------------------------------
-\subsubsection{Custom column types: L, C, R}
-\label{sec:tablecolumnsLCR}
+\subsubsection{Columns with large texts using \cs{RaggedLeft}}
+\label{sec:tablecolumnsRagged}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
+{% start group
+
+% redefine the alignment macros (here in a group to 
+% ensure that these commands are not used document-wide)
+\RenewDocumentCommand\TblrAlignLeft{}{\RaggedRight}
+\RenewDocumentCommand\TblrAlignCenter{}{\Centering}
+\RenewDocumentCommand\TblrAlignRight{}{\RaggedLeft}	
+	
 \begin{center}
 % Style changes
 \small\renewcommand{\arraystretch}{1.4}
 % tabular
 \small
-\begin{tabular}{|L{0.3\linewidth}|C{0.3\linewidth}|R{0.3\linewidth}|}
+\begin{tblr}{width=0.9\textwidth, colspec={|X[l]|X[c]|X[r]|}}
 \hline
-fixed width (L: left)   & 
-fixed width (C: center) &
-fixed width (R: right)  \\ \hline
+variable (left)   & 
+variable (center) &
+variable (right)  \\ \hline
 %
 text which is considerably longer than the width of the column & 
 text which is considerably longer than the width of the column & 
 text which is considerably longer than the width of the column \\
 \hline
-\end{tabular}
+\end{tblr}
 \end{center}
-\end{filecontents*}
+}% end group
+\end{DefineCode}
 
-\IfColumntypesDefined{L,C,R}{%
+\ifcsdef{tblr}{
 
-The predefined custom column types L, C and R all have a fixed width (they are based on the p-columns) but are aligned as left (L), centered (C) and right (R). All columns include hyphenation.
-
+The left an right alignment can be modified using the tblr macros
 \PrintDemo{style=stacked}%
 
 \noindent
 Note, that such a grid should not be applied to a table.
 It is here only to demonstrate the size and alignment of the columns.
 
-}{\DemoError{Column types \env{L,C,R} not defined}}%
+}{\DemoError{Package \package{tabularray} not loaded}}%
 
 %% ------------------------------------------------------------
-\subsubsection{Custom column types: W, Y, Z}
-\label{sec:tablecolumnsWYZ}
-
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\renewcommand{\arraystretch}{1.4}
-% tabular
-\small
-\begin{tabularx}{\textwidth}{|W|Z|Y|}
-\hline
-variable (W: left)   & 
-variable (Z: center) &
-variable (Y: right)  \\ \hline
-%
-text which is considerably longer than the width of the column & 
-text which is considerably longer than the width of the column & 
-text which is considerably longer than the width of the column \\
-\hline
-\end{tabularx}
-\end{center}
-\end{filecontents*}
-
-\ifcsdef{tabularx}{
-\IfColumntypesDefined{W,Y,Z}{%
-
-The predefined custom column types W, Y and Z all have a variable width (they are based on the X-columns) but are aligned as left (W), centered (Z) and right (Y). All columns include hyphenation. The standard X column is left aligned but justified.
-
-The choice of the character W, Y and Z is only based on the available characters. There is no hidden meaning behind them.
-
-\PrintDemo{style=stacked}%
-
-\noindent
-Note, that such a grid should not be applied to a table.
-It is here only to demonstrate the size and alignment of the columns.
-
-}{\DemoError{Column types \env{W,Y,Z} not defined}}%
-}{\DemoError{Package \package{tabularx} not loaded}}%
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
 % Style changes
 \small\renewcommand{\arraystretch}{1.4}
@@ -1692,7 +1567,7 @@ transmission    &  \multicolumn{2}{c}{185 - 2500\,\si{nm}} \\
 \hline
 \end{tabular}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsubsection{Usage of special column specifiers (>\{...\}, !\{...\})}
 \label{sec:tableColumnSpecifiers}
@@ -1705,19 +1580,8 @@ In this code the \texttt{!\{...\}} specifier is used to replace the cell separat
 
 }{\DemoError{Package \package{siunitx} not loaded}}%
 
-\begin{filecontents*}{\democodefile}
-\small\renewcommand{\arraystretch}{1.4}
-\end{filecontents*}
-
-\ifcsdef{si}{%
-\noindent
-Note that here the style of the table was further changed by the commands:
-\lstinputlisting[style=demostyle,nolol=true]{\democodefile}%
-
-}{}%
-
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
 % Style changes
 \small\renewcommand{\arraystretch}{1.4}
@@ -1741,7 +1605,7 @@ Note that here the style of the table was further changed by the commands:
 \hline
 \end{tabular}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{sisetup}{%
 \IfColumntypesDefined{S}{%
@@ -1764,7 +1628,7 @@ It is here only to demonstrate the size and alignment of the columns.
 \subsection{Multicolumn and multirow cells}
 \label{sec:tableMultiColumnRow}
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
 \renewcommand{\arraystretch}{1.4}
 \begin{tabular}{|l|c|r|}  
@@ -1772,206 +1636,54 @@ It is here only to demonstrate the size and alignment of the columns.
 left  &  center  &  right       \\ \hline
 \multicolumn{3}{|c|}{3 columns} \\ \hline
 1     &  2       &  3           \\ \hline
+\multirow{2}{*}{two  cells}  
+&  b         &  c      \\ \cline{2-3}
+&  2         &  3      \\ \hline
 \end{tabular}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
-\subsubsection{Multicolumn}
+\subsubsection{Multicolumn and multirow (old style)}
 \label{sec:multicolumn}
 
 \ifcsdef{multicolumn}{%
 
-\PrintDemo{style=parallel}%
+The standard tables and old environments provide the commands \cs{multicolumn} and \cs{multirow} to span multiple cells in one column or row.
 
-\noindent
-Note, that such a grid should not be applied to a table.
-It is here only to demonstrate the usage of \cs{multicolumn}
+\PrintDemo{style=parallel}%
 
 }{\DemoError{Command \cs{multicolumn} not available}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{|l|c|r|}  \hline
-left   &  centered  &  right  \\ \hline
-\multirow{2}{*}{two  cells}  
-       &  b         &  c      \\ \cline{2-3}
-       &  2         &  3      \\ \hline
-\end{tabular}
-\end{center}
-\end{filecontents*}
+\begin{DefineCode}
+	\renewcommand{\arraystretch}{1.4}
+\begin{tblr}{|l|c|r|}  
+	\hline
+	left  &  center  &  right  \\ \hline
+	\SetCell[c=3]{c} 3 columns \\ \hline
+	1     &  2       &  3      \\ \hline
+	\SetCell[r=2]{c} 2 rows 
+	&  2         &  3      \\ \cline{2-3}
+	&  2         &  3      \\ \hline
+	1 	 & \SetCell[r=2,c=2]{c} 2 rows 2 columns \\ \hline
+	1	 & 2 & 3 \\ \hline
+\end{tblr}
+\end{DefineCode}
 
-\subsubsection{Multirow}
-\label{sec:multirow}
+\subsubsection{tabularray multi column and rows}
+\label{sec:SetCell}
 
-\ifcsdef{multirow}{%
+\ifcsdef{SetCell}{%
 
-\PrintDemo{style=parallel}%
-\noindent
-Note, that such a grid should not be applied to a table.
-It is here only to demonstrate the usage of \cs{multicolumn}
-
-}{\DemoError{Command \cs{multirow} not available}}%
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{|c|c|c|}  \hline
-1  &  2  &  3  \\  \hline
-\multicolumn{2}{|c|}{\multirow{2}{*}{2x2  cells}}
-         &  6  \\  \cline{3-3}
-\multicolumn{2}{|c|}{}  
-         &  9  \\  \hline
-\end{tabular}
-\end{center}
-\end{filecontents*}
-
-\subsubsection{Multirow and multicolumn combined}
-
-\ifcsdef{multirow}{%
-
-\PrintDemo{style=parallel}%
-\noindent
-Note, that such a grid should not be applied to a table.
-It is here only to demonstrate the usage of \cs{multicolumn}
-
-}{\DemoError{Command \cs{multirow} not available}}%
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{|c|c|}
-\hline
-\multirow{4}{2cm}{text} 
-  & Column a \\
-  & Column b \\
-  & Column c \\
-  & Column d \\
-\hline
-\multirow{3}[6]*{text} 
-  & Column a \bigstrut \\ \cline{2-2}
-  & Column b \bigstrut \\ \cline{2-2}
-  & Column c \bigstrut \\
-\hline
-\multirow{4}[8]{1in}{text} 
-  & Column a \bigstrut \\ \cline{2-2}
-  & Column b \bigstrut \\ \cline{2-2}
-  & Column c \bigstrut \\ \cline{2-2}
-  & Column d \bigstrut \\
-\hline
-\multirow{4}*{%
-  \begin{tabular}{c} 
-     row a \\ row b 
-  \end{tabular}
-} 
-  & Column a \\
-  & Column b \\
-  & Column c \\
-  & Column d \\
-\hline
-\end{tabular}
-\end{center}
-\end{filecontents*}
-
-% .............................................................
-\subsubsection{Multirow usage in a complex example}
-\label{sec:multirowcomplex}
-
-\ifcsdef{multirow}{%
+The new package \package{tabularray} provides a different and more flexible approach with \cs{SetCell}.
 
 \PrintDemo{style=parallel}%
 
-}{\DemoError{Command \cs{multirow} not available}}%
+}{\DemoError{Command \cs{SetCell} not available}}%
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\centering\renewcommand{\arraystretch}{1.4}  
-% tabular
-\begin{tabularx}{1\textwidth}{|X|X|X|}
-\hline
-   \centering header X &
-   \centering header items (X) &   
-   \centering header enums (X) \tabularnewline
-\hline
-%
-The \LaTeX{} document preparation system is a special version of Donald
-Knuth's \TeX{} program. \TeX{} is a sophisticated program designed to 
-produce high-quality typesetting, especially for mathematical text.
-&
-\tableitemize
-\begin{itemize}
-\item The \LaTeX{} document preparation system is a special version of Donald
-Knuth's \TeX{} program.
-\item \TeX{} is a sophisticated program designed to produce high-quality typesetting,
-\item especially for mathematical text.
-\end{itemize}
-&
-\tableitemize
-\begin{enumerate}
-\item The \LaTeX{} document preparation system is a special version of Donald
-Knuth's \TeX{} program.
-\item \TeX{} is a sophisticated program designed to produce high-quality typesetting,
-\item especially for mathematical text.
-\end{enumerate}
-\tabularnewline
-\hline
-\end{tabularx}
-\end{center}
-\end{filecontents*}
-
-\subsection{Item lists inside tabular cells}
-\label{sec:tableitemlists}
-List require a special correction to be not, or rather to be intended correct in a tabular cell. The same commands work in tabu tables, see section~\ref{sec:tableitemliststabu}.
-
-\IfMultDefined{tabularx,tableitemize}{%
-
-\PrintDemo{style=stacked}%
-
-\noindent
-Note, that the grid lines should not be applied to a table.
-It is here only to demonstrate the size and alignment of the columns.
-
-}{\DemoError{Command \cs{tableitemize} not available or package \package{tabularx} not loaded}}%
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\centering\renewcommand{\arraystretch}{1.4}  
-% tabular
-\begin{tabularx}{\textwidth}{|X|}
-\hline
-   \centering header \tabularnewline
-\hline
-%
-The \LaTeX{} document preparation system is a special version of Donald
-Knuth's \TeX{} program\tablefootnote{first footnote in table}. 
-\TeX{} is a sophisticated program designed to produce high-quality
-typesetting, especially for mathematical text\tablefootnote{second footnote in table}.
-\tabularnewline
-\hline
-\end{tabularx}
-\end{center}
-\end{filecontents*}
-
-\subsection{Footnotes in tables (tablefootnote)}
-\label{sec:tableFootnotes}
-
-\ifcsdef{tablefootnote}{%
-
-\PrintDemo{style=stacked}%
-
-}{\DemoError{Command \cs{tablefootnote} not available}}%
-
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{center}
 % Style changes
 \small\sffamily\renewcommand{\arraystretch}{1.4}  
@@ -1988,9 +1700,9 @@ content & content & content \\
 \hline
 \end{tabular}
 \end{center}	
-\end{filecontents*}
+\end{DefineCode}
 
-\subsection{Colors in tables: rowcolor(s)}
+\subsection{Colors in tables: using rowcolor(s)}
 \label{sec:tablecolors}
 The alternating row colors (zebra table style) is created by the \cs{rowcolors} commmand. A single row is colored with \cs{tableheadcolor}.
 
@@ -2002,404 +1714,170 @@ The alternating row colors (zebra table style) is created by the \cs{rowcolors} 
 }{\DemoError{Colors not defined}}%
 }{\DemoError{Command \cs{rowcolor} not available}}%
 
-%% ------------------------------------------------------------
-\subsection{Tables with the tabu package}
-\label{sec:tableTabuPackage}
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\sffamily\renewcommand{\arraystretch}{1.4}  
-% tabu
-\begin{tabu}{|l|r|c|}
-\hline
-left & right & center \\ \hline
-1    & 2     & 3 \\ \hline
-4    & 5     & 6 \\ \hline
-\end{tabu}
-\end{center}	
-\end{filecontents*}
-
-\subsubsection{Simple table}
-\label{sec:tabletabusimple}
-
-\ifcsdef{tabu}{%
-
-The tabu environment from the tabu-package provides an alternative method for the creation of tables. This table is a very simple example where only the environment is exchanged.
-
-\PrintDemo{style=stacked}%
-
-\noindent
-Note, that the grid lines should not be applied to a table.
-It is here only to demonstrate the size and alignment of the columns.
-
-}{\DemoError{Package \package{tabu} not loaded}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\sffamily\renewcommand{\arraystretch}{1.4}  
-% tabu
-\begin{tabu} to 0.6\textwidth{|l|X[r]|X[l]|}
-\hline
-left &  X (right) &  X (left)  \\ \hline
-1    & 2     & 3 \\ \hline
-4    & 5     & 6 \\ \hline
-\end{tabu}
-\end{center}	
-\end{filecontents*}
+\begin{DefineCode}
+	\begin{center}
+		% Style changes
+		\small\sffamily\renewcommand{\arraystretch}{1.4}  
+		% tabular
+		\begin{tblr}{
+				colspec = {ccc},
+				row{odd} = {tablerowcolor},		
+				row{1} = {tableheadcolor},
+				row{even} = {tablebodycolor},		  		
+			}
+			\hline
+			head & head & head \\
+			\hline
+			content & content & content \\
+			content & content & content \\
+			content & content & content \\
+			\hline
+		\end{tblr}
+	\end{center}	
+\end{DefineCode}
 
-\subsubsection{X columns}
+\subsection{Colors in tables: using tabularray}
+\label{sec:tablecolorstabularray}
+The alternating row colors (zebra table style) and head color is define in the configuration of the table. 
 
-Tabu provides X-type columns which have an additional horizontal alignment as an argument.
-
-\ifcsdef{tabu}{%
-
-\PrintDemo{style=stacked}%
-
-\noindent
-Note, that the grid lines should not be applied to a table.
-It is here only to demonstrate the size and alignment of the columns.
-
-}{\DemoError{Package \package{tabu} not loaded}}%
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\sffamily\renewcommand{\arraystretch}{1.4}  
-% tabu
-\begin{tabu}  to  0.6\textwidth
-{|X[1,l]|X[2,c]|X[3,c]|X[1,r]|}
-\hline
-1x    &  2x     &  3x     &  1x    \\ \hline
-left  &  center &  center &  right \\ \hline
-text  &  text   &  text   &  text  \\ \hline
-\end{tabu}
-\end{center}	
-\end{filecontents*}
-
-\subsubsection{X columns (multiples)}
-The X-columns can also be stretched using a multiplier.
-
-\ifcsdef{tabu}{%
-
-\PrintDemo{style=stacked}%
-
-\noindent
-Note, that the grid lines should not be applied to a table.
-It is here only to demonstrate the size and alignment of the columns.
-
-}{\DemoError{Package \package{tabu} not loaded}}%
+\ifcsdef{tblr}{%
+	\IfColorsDefined{tablerowcolor,tablebodycolor,tableheadcolor}{
+		
+		\PrintDemo{style=stacked}%
+		
+	}{\DemoError{Colors not defined}}%
+}{\DemoError{Command \cs{tblr} not available}}%
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\sffamily\renewcommand{\arraystretch}{1.4}  
-% tabu
-\begin{tabu}  to  0.9\textwidth{|X[2,Lp]|X[2,Cm]|X[2,Rb]|X[2,J]|}
-\hline
-left  (p)  &  left  (m)  &  left  (b)  &  justified  (p)  \\  \hline
-text which is considerably longer than the width of the column &
-text which is considerably longer than the width of the column &
-text which is considerably longer than the width of the column &
-text which is considerably longer than the width of the column \\
-\hline
-\end{tabu}
-\end{center}	
-\end{filecontents*}
-
-\subsubsection{Vertical and horizontal alignment}
-
-The X-columns further take the alignment as an option. Possible values are L,C,R and J (justified) and in the vertical direction p,m and b.
-
-\ifcsdef{tabu}{%
-
-\PrintDemo{style=stacked}%
-
-\noindent
-Note, that the grid lines should not be applied to a table.
-It is here only to demonstrate the size and alignment of the columns.
-
-}{\DemoError{Package \package{tabu} not loaded}}%
-
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\sffamily\renewcommand{\arraystretch}{1.4}  
-% tabu
-\begin{tabu} to 0.9\textwidth {X[1,l]X[1,c]X[1,c]X[1,c]}
-\hline
-\rowfont[c]{\bfseries}
-\taburowcolors 1{tableheadcolor .. tableheadcolor}
-head    & head    & head    & head    \\
-\hline
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-content & content & content & content \\
-content & content & content & content\\
-content & content & content & content\\
-content & content & content & content\\
-\hline
-\end{tabu}
-\end{center}	
-\end{filecontents*}
-
-\subsubsection{Colors in tabu tables}
-\label{sec:tabletabucolor}
-
-The color commands from the xcolor package (\cs{rowcolor}) can not be used in tabu-tables. For this purpose the commands from the tabu package need to be applied, such as \cs{taburowcolors}.
-
-\ifcsdef{tabu}{%
-\ifcsdef{rowcolor}{%
-
-\PrintDemo{style=stacked}%
-
-}{\DemoError{Command \cs{rowcolor} not available}}%
-}{\DemoError{Package \package{tabu} not loaded}}%
-
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{center}
-% Style changes
-\small\centering\renewcommand{\arraystretch}{1.4}  
-% tabular
-\begin{tabu} to 1.0\textwidth {X[1,l]X[1,l]X[1,l]}
-\hline
-   \centering header X &
-   \centering header items (X) &   
-   \centering header enums (X) \tabularnewline
-\hline
-%
+\begin{DefineCode}
+	\begin{center}
+	% Style changes
+	\small\centering\renewcommand{\arraystretch}{1.4}  
+	% tabular
+	\begin{tblr}{width=0.9\textwidth, colspec={|X|X|X|}}
+		\hline
+		header X &
+		header items (X) &   
+		header enums (X) \\
+		\hline
+		%
 The \LaTeX{} document preparation system is a special version of Donald
 Knuth's \TeX{} program. \TeX{} is a sophisticated program designed to 
 produce high-quality typesetting, especially for mathematical text.
-&
-\tableitemize
-\begin{itemize}
-\item The \LaTeX{} document preparation system is a special version of Donald
-Knuth's \TeX{} program.
+
+		&
+		\begin{varwidth}[t]{\linewidth}
+			\begin{itemize}[topsep=0pt, parsep=0pt,leftmargin=8pt]
+\item The \LaTeX{} document preparation system is a special version of Donald Knuth's \TeX{} program.
 \item \TeX{} is a sophisticated program designed to produce high-quality typesetting,
 \item especially for mathematical text.
-\end{itemize}
-&
-\tableitemize
-\begin{enumerate}
-\item The \LaTeX{} document preparation system is a special version of Donald
-Knuth's \TeX{} program.
+			\end{itemize}
+		\end{varwidth}
+		&
+		\begin{varwidth}[t]{\linewidth}
+			\begin{enumerate}[topsep=0pt, parsep=0pt,leftmargin=12pt]
+\item The \LaTeX{} document preparation system is a special version of Donald Knuth's \TeX{} program.
 \item \TeX{} is a sophisticated program designed to produce high-quality typesetting,
 \item especially for mathematical text.
-\end{enumerate}
-\tabularnewline
-\hline
-\end{tabu}
+			\end{enumerate}
+		\end{varwidth}
+		\\ \hline
+	\end{tblr}
 \end{center}
-\end{filecontents*}
+\end{DefineCode}
 
-\subsubsection{Item lists inside tabu tables}
-\label{sec:tableitemliststabu}
-List require a special correction to intended correct in a tabu cell.
+\subsubsection{Item lists inside tables}
+\label{sec:tableitemlists}
+List require a box (using \environment{varwidth}) around the list to be displayed correct and 
+to enable an error free compilation.
 
-\IfMultDefined{tabu,tableitemize}{%
+\IfMultDefined{varwidth,tblr}{%
 
 \PrintDemo{style=stacked}%
 
-}{\DemoError{Command \cs{tableitemize} not available or package \package{tabu} not loaded}}%
+}{\DemoError{Environment \cs{varwidth} not available or package \package{tabularray} not loaded}}%
 
 %% ------------------------------------------------------------
 \subsection{Large tables}
 \label{sec:TableLarge}
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-% Creation of the table in a separate file
-\begin{filecontents}{content/longtable.tex}
-\begin{longtable}{>{\itshape}l*{5}{Z}}
-\captionabove{longtable tabular with tabularx columns} \\
-  \hline
-  \rowcolor{tableheadcolor}
-  \upshape
-  \bfseries title &
-  \bfseries title &
-  \bfseries title &
-  \bfseries title &
-  \bfseries title &
-  \bfseries title \\ \hline
-\endfirsthead
-  \hline
-\upshape
-  title &
-  title &
-  title &
-  title &
-  title &
-  title \\ \hline
-\endhead
-  \hline 
-  \multicolumn{6}{r}{\emph{continued on next page \ldots}}
-\endfoot
-  \hline
-\endlastfoot
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-\end{longtable}
-\end{filecontents}
+\begin{DefineCode}
+\DeclareTblrTemplate{contfoot-text}{templatedoc}{Continued on next page \ldots}
+\SetTblrTemplate{contfoot-text}{templatedoc}
 
-% Loading of the table from the separate file
-{
-  \small\renewcommand{\arraystretch}{1.4}\sffamily
-  % required if floatrow is loaded
-  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
-  \rowcolors{1}{tablebodycolor}{tablerowcolor}
-  \LTXtable{\textwidth}{content/longtable.tex}
-}
-\end{filecontents*}
+\begin{longtblr}[
+	caption = {longtable with longtblr},
+	label = {tab:doc:longtblr}]
+	{
+		colspec = {>{\itshape}X[1,l]X[1,l]X[1,l]X[1,l]X[1,l]},
+		width = 1.0\textwidth,
+		row{odd} = {bg=azure9},
+		row{1}   = {bg=azure3, fg=white, font=\sffamily\upshape},
+		rowhead = 1,
+		rowfoot = 0,
+	}		
+	\hline
+	\upshape title &
+	title &
+	title &
+	title &
+	title &
+	title \\ \hline
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\
+	description   & content & content & content & content & content \\ \hline
+\end{longtblr}
+\end{DefineCode}
 
-\subsubsection{Longtable}
+\subsubsection{Long tables (longtblr)}
 \label{sec:tableLargeLongtable}
 
 This code demonstrates how to create columns which span over more than one page.
 
-\IfMultDefined{longtable,rowcolors}{%
+\IfMultDefined{longtblr,rowcolors}{%
 
 \PrintDemo{style=none}%
 
-}{\DemoError{Packages \package{xcolor} or \package{longtable} not loaded}}%
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-  { % start a group 
-  % style
-  \small\renewcommand{\arraystretch}{1.4}\sffamily
-  % required if floatrow is loaded
-  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
-  % the table
-  \begin{longtabu} to \textwidth{>{\itshape}l*5{X[c]}}
-\captionabove{longtabu tabular with X columns} \\
-  \hline
-  \taburowcolors 1{tableheadcolor .. tableheadcolor}
-  \upshape
-  \bfseries title &
-  \bfseries title &
-  \bfseries title &
-  \bfseries title &
-  \bfseries title &
-  \bfseries title \\ \hline
-\endfirsthead
-  \hline
-\upshape
-  title &
-  title &
-  title &
-  title &
-  title &
-  title \\ \hline
-\endhead
-  \hline 
-  \taburowcolors 1{white .. white}
-  \multicolumn{6}{r}{\emph{continued on next page \ldots}}
-\endfoot
-  \hline
-\endlastfoot
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-description   & content & content & content & content & content \\
-\end{longtabu}
-} % close the group
-\end{filecontents*}
-
-\subsubsection{longtabu (tabu package)}
-\label{sec:tableLargeLongtabu}
-
-This code demonstrates how to create columns which span over more than one page using the \package{longtable} and the \package{tabu} package.
-
-The advantage here is, that no extra file needs to be created and X columns
-can be used with the additional possibilities of the \package{tabu}
-package.
-
-\IfMultDefined{longtable,rowcolors,longtabu}{%
-
-\PrintDemo{style=none}%
-
-}{\DemoError{Packages \package{xcolor}, \package{longtable} or \package{tabu} not loaded}}%
+}{\DemoError{Packages \package{xcolor} or \package{tabularray} not loaded}}%
 
 %% ------------------------------------------------------------
 \subsubsection{Wide tables (addmargin)}
@@ -2410,7 +1888,7 @@ extend the textwidth into the margin. The usage is demonstrate in section~\ref{s
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{table}[H]
   \centering\small\renewcommand{\arraystretch}{1.4}\sffamily
   \captionabove{very wide table (sideways)}
@@ -2443,7 +1921,7 @@ text which is considerably longer than the width of the column \\
 \end{tabularx}	
 \end{sideways}
 \end{table}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsubsection{landscape orientated tables (sideways)}
 \label{sec:tableLargeSideways}
@@ -2459,7 +1937,7 @@ The table orientated in landscape created by the environment \env{sideways} is f
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 
 \begin{sidewaystable}
 \begin{center}
@@ -2494,7 +1972,7 @@ text which is considerably longer than the width of the column \\
 \end{tabularx}	
 \end{center}
 \end{sidewaystable}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsubsection{landscape orientated tables (sidewaystable)}
 \label{sec:tableLargeSidewaystable}
@@ -2507,6 +1985,40 @@ The table orientated in landscape created by the environment \cs{sidewaystable} 
 
 }{\DemoError{Packages \package{xcolor} or \package{rotating} not loaded}}%
 
+\clearpage
+%% ------------------------------------------------------------
+\subsection{Fancy tables}
+\label{sec:TablesFancy}
+%% ------------------------------------------------------------
+\begin{DefineCode}
+\tcbset{tab2/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+		colback=yellow!10!white,colframe=red!50!black,colbacktitle=Salmon!40!white,
+		coltitle=black,center title}}
+
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+	
+\begin{tcolorbox}[tab2,tabularx={X||Y|Y|Y|Y||Y},title=My table,boxrule=0.5pt]
+	Group & One     & Two     & Three    & Four     & Sum      \\\hline\hline
+	Red   & 1000.00 & 2000.00 &  3000.00 &  4000.00 & 10000.00 \\
+	Green & 2000.00 & 3000.00 &  4000.00 &  5000.00 & 14000.00 \\
+	Blue  & 3000.00 & 4000.00 &  5000.00 &  6000.00 & 18000.00 \\\hline\hline
+	Sum   & 6000.00 & 9000.00 & 12000.00 & 15000.00 & 42000.00
+\end{tcolorbox}	
+
+\end{DefineCode}
+
+\subsubsection{tcolorbox Tables}
+\label{sec:tabletcolorbox}
+
+The \package{tcolorbox} allows fancy tables. Here a simple examples that was posted on stackoverflow. 
+
+\IfMultDefined{tcolorbox,tabularx}{%
+	
+	\PrintDemo{style=stacked}%
+	
+}{\DemoError{Packages \package{tcolorbox} or \package{tabularx} not loaded}}%
+
+
 %
 \EndCodeSection{DemoTables}
 %% ============================================================
@@ -2517,7 +2029,7 @@ The table orientated in landscape created by the environment \cs{sidewaystable} 
 For all math environments and commands the \url{mathmode.pdf} script by Herbert Voss is a very good reference.
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 Green's theorem
 \begin{equation}
   \underset{\mathcal{G}\quad}\iiint
@@ -2532,7 +2044,7 @@ Jacobian matrix
          := \left(\frac{\partial f_i(a)}{\partial x_j}\right)_{i=1,\ldots,m;\
              j=1,\ldots,n}
 \end{equation}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Math formulas}
 \label{sec:mathformulars}
@@ -2549,12 +2061,12 @@ Examples taken from \url{wikipedia.org}
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{align}
   \dot{q}_i & = \frac{\partial H}{\partial p_i} \\
   \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
 \end{align}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Multiline equations (align)}
 
@@ -2566,14 +2078,14 @@ Examples taken from \url{wikipedia.org}
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{equation}
 \begin{aligned}
   \dot{q}_i & = \frac{\partial H}{\partial p_i} \\
   \dot{p}_i & = -\frac{\partial H}{\partial q_i} 
 \end{aligned}
 \end{equation}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Multiline equations with only one number (aligned)}
 
@@ -2584,12 +2096,12 @@ Examples taken from \url{wikipedia.org}
 }{\DemoError{Command \cs{aligned} not available.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{alignat}{3}
   a & = b + c     && = d - c \\
   m & = n + k + w && = l - f
 \end{alignat}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Multiline equations with multiple alignments (alignat)}
 Here the number of alignment specifiers must be declared.
@@ -2601,7 +2113,7 @@ Here the number of alignment specifiers must be declared.
 }{\DemoError{Command \cs{alignat} not available.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \[ 
 \operatorname{rect}(t) =
 \begin{cases} 
@@ -2610,7 +2122,7 @@ Here the number of alignment specifiers must be declared.
   1 &           \text{if } |t| < \frac{1}{2}
 \end{cases} 
 \] 
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{special environments: cases}
 
@@ -2621,12 +2133,12 @@ Here the number of alignment specifiers must be declared.
 }{\DemoError{Command \cs{operatorname} or environment \env{cases} not available.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 The determinant of the matrix
 \[ A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \]
 is written as 
 \[ \det A  = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad-bc. \] 
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{amsmath}{
 
@@ -2640,12 +2152,12 @@ is written as
 }{\DemoError{Package \package{amsmath} not loaded}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{equation}
    \text{bra:} \Bra{a} \qquad \text{ket:} \Ket{a} \qquad \text{braket:}
    \Braket{a|b} \qquad \Braket{a|A|b}
 \end{equation}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{special commands: braket}
 
@@ -2655,11 +2167,11 @@ is written as
 
 }{\DemoError{Package \package{braket} not loaded}}%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{equation}
   f(x) = \frac{\cancel{(a+1)}x}{(x-1)\cancel{(a+1)}}
 \end{equation}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{special commands: cancel}
 
@@ -2669,11 +2181,11 @@ is written as
 
 }{\DemoError{Package \package{cancel} not loaded}}%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{empheq}[box=\fbox]{align}
   f(x) & = e^{-E/kT}
 \end{empheq}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{special commands: empheq}
 
@@ -2684,14 +2196,14 @@ is written as
 }{\DemoError{Package \package{empheq} not loaded}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \[
 \mathbb{N}\subset\mathbb{Z}
           \subset\mathbb{Q}
           \subset\mathbb{R}
           \subset\mathbb{C}
 \]
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Double stroke math font (mathbb)}
 
@@ -2701,14 +2213,14 @@ is written as
 
 }{\DemoError{Command \cs{mathbb} not available.}}%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \[
 \mathds{N}\subset\mathds{Z}
           \subset\mathds{Q}
           \subset\mathds{R}
           \subset\mathds{C}
 \]
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Double stroke math font (mathds)}
 
@@ -2718,13 +2230,13 @@ is written as
 
 }{\DemoError{Command \cs{mathds} not available.}}%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \[
   \mathcal{A} \quad \mathcal{B} \quad 
   \mathcal{C} \quad \mathcal{D} \quad 
   \mathcal{E} \quad \mathcal{F}
 \]
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Euler script symbols in math mode (mathcal)}
 
@@ -2734,9 +2246,9 @@ is written as
 
 }{\DemoError{Command \cs{mathcal} not available.}}%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 You take \sfrac{1}{2} cup of sugar, \ldots
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{split level fractions}
 
@@ -2747,7 +2259,7 @@ You take \sfrac{1}{2} cup of sugar, \ldots
 }{\DemoError{Command \cs{sfrac} not available.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 New commands (absolute, norm, trace):
 \begin{equation}
 \abs{-x} + \Abs{(x-3)^2} + \norm{\vec a - \vec b}
@@ -2777,7 +2289,7 @@ Characters for: complex, real, hamiltonian, probability, unity
 %
 New operators
 \begin{equation}
-\rot \vec{a} + \grad \vec{a} + \div \vec{a} + \rect f(x) + \e^{-\i x} = \const
+\rot \vec{a} + \grad \vec{a} + \divf \vec{a} + \rect f(x) + \e^{-\i x} = \const
 \end{equation} 
 %
 New Symbols (laplace, dalembert)
@@ -2786,7 +2298,7 @@ New Symbols (laplace, dalembert)
 \dalembert = \frac{\partial ^2}{c^2\partial t^2} - \laplace
 \end{gather} 
 %
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Math and Physics symbols defined in the template}
 
@@ -2805,41 +2317,19 @@ This section is mainly about packages that are useful for special professions,
 and the use of units in text is demonstrated.
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{tabular}{ll}
 Micrometer in text mode:          & 33\,\textmu m \\
-and in math mode with units:      & $1,23\,\si{\micro m/s}$ \\
-and with formating of the number: & $\SI{0,25e-11}{m/s^2}$ \\
-and finally with an uncertainty:  & $\SI{1,7(5)e-11}{m/s^2}$ \\
+and in math mode with units:      & $1,23\,\unit{\micro m/s}$ \\
+and with formatting of the number: & $\qty{0,25e-11}{m/s^2}$ \\
+and finally with an uncertainty:  & $\qty{1,7(5)e-11}{m/s^2}$ \\
 \end{tabular}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{units with siunitx}
 
 
 \ifcsdef{si}{%
-
-\PrintDemo{style=stacked}%
-
-}{\DemoError{Package \cs{siunitx} not loaded.}}%
-
-%% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
-\begin{tabular}{ll}
-units: & $1.23\,\unit{\micro m/s}$ \\
-units: & $\unit[2.34]{\micro m/s}$ \\
-unitfrac: & $1.23\,\unitfrac{\micro m}{s}$ \\
-unitfrac: & $\unitfrac[2.34]{\micro m}{s}$ \\
-\end{tabular}
-\end{filecontents*}
-
-\subsection{compatible commands for units}
-
-The old \package{units} package defines the commands \cs{unit} and \cs{nicefrac}. The following commands are defined to provide some compatibility while the basic packages is switched to siunitx.
-
-Note that the numbers must be provided in the siunitx format.
-
-\IfMultDefined{unit,si}{%
 
 \PrintDemo{style=stacked}%
 
@@ -2851,10 +2341,10 @@ Note that the numbers must be provided in the siunitx format.
 \clearpage
 \section{Symbols}
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
   \ding{52} \quad \ding{222}
             \quad \ding{237} 
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{Zapf Dingbats Symbols}
 
@@ -2863,6 +2353,31 @@ Note that the numbers must be provided in the siunitx format.
 \PrintDemo{style=parallel}%
 
 }{\DemoError{Command \cs{ding} not available.}}%
+
+
+%% ------------------------------------------------------------
+\begin{DefineCode}
+	\mho 
+	\Join 
+	\Box 
+	\Diamond 
+	\sqsubset 
+	\sqsupset
+	\leadsto 
+	\unlhd 
+	\unrhd
+\end{DefineCode}
+
+\subsection{latexsym Symbols}
+
+\ifcsdef{Box}{%
+	
+	\PrintDemo{style=parallel}%
+	
+}{\DemoError{Package \package{latexsym} not loaded}}%
+
+
+
 
 \EndCodeSection{DemoSymbols}
 %% ============================================================
@@ -2983,19 +2498,19 @@ Note that the numbers must be provided in the siunitx format.
 }
 \end{filecontents*}
 
-%% ------------------------------------------------------------
+% ------------------------------------------------------------
 \subsection{biblatex}
 \label{sec:demo:biblatex}
 The text of this example is taken from the original biblatex examples.
 
 \subsubsection{Standard citation examples}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \cite{companion}
 \cite[59]{companion}
 \cite[see][]{companion}
 \cite[see][59--63]{companion}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=parallel}%
@@ -3008,12 +2523,12 @@ The \cs{parencite} command is similar to \cs{cite} at
 first glance, but the placement of the prenote argument is
 different.
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 This is just filler text \parencite{companion}.
 This is just filler text \parencite[59]{companion}.
 This is just filler text \parencite[see][]{companion}.
 This is just filler text \parencite[see][59--63]{companion}.
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=stacked}%
@@ -3022,12 +2537,12 @@ This is just filler text \parencite[see][59--63]{companion}.
 
 \subsubsection{Examples using \cs{textcite}}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \textcite{companion} show that this is just filler text.
 \textcite[59]{companion} show that this is just filler text.
 \textcite[see][]{companion} show that this is just filler text.
 \textcite[see][59--63]{companion} show that this is just filler text.
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=stacked}%
@@ -3037,9 +2552,9 @@ This is just filler text \parencite[see][59--63]{companion}.
 
 By default, the \cs{autocite} command works like \cs{parencite}.
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 This is just filler text \autocite{companion}.
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=stacked}%
@@ -3050,9 +2565,9 @@ This is just filler text \autocite{companion}.
 By default, a list of multiple citations is not sorted. You can
 enable sorting by setting the `sortcites' package option.
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \cite{companion,augustine,bertram,cotton,hammond,massa,murray}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=stacked}%
@@ -3060,12 +2575,12 @@ enable sorting by setting the `sortcites' package option.
 
 \subsubsection{Citations details}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \cite{companion} \\
 \citetitle{companion} \\
 \citeyear{companion} \\
 \citeauthor{companion} \\
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{biblatex}{
   \PrintDemo{style=parallel}%
@@ -3085,14 +2600,14 @@ enable sorting by setting the `sortcites' package option.
 The result of the index is not displayed here, but is shown in the appendix of the document on page~\pageref{sec:Index}.
 
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 Lorem\index{example!Lorem} ipsum\index{example!ipsum} 
 dolor\index{example!dolor} sit amet, consectetuer adipiscing 
 elit Nam dui ligula, fringilla a, euismod sodales, 
 sollicitudin vel, wisi.
 
 The resulting index is printed on page~\pageref{sec:Index}.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{index}{
   \PrintDemo{style=stacked}%
@@ -3114,7 +2629,7 @@ You can also execute makeindex directly. See the documentation of the glossaries
 %% ------------------------------------------------------------
 \subsubsection{List of acronyms (glossaries)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 % use the acronyms in a document.
 The \gls{NA} of an microscope objective is defined by
 $\mathrm{NA} = n \sin(\alpha)$, where and $\alpha$ is the
@@ -3126,7 +2641,7 @@ focal area through the whole imaging system is termed \gls{PSF}. Both, the
 
 % print out acronym list (style can be modified)
 \printglossary[type=\acronymtype]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3141,7 +2656,7 @@ focal area through the whole imaging system is termed \gls{PSF}. Both, the
 %% ------------------------------------------------------------
 \subsubsection{List of symbols (glossaries)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 % use the symbols in a document.
 Calculations with \gls{symb:Pi} always give an inaccurate result,
 because \gls{symb:Pi} is an irrational number.
@@ -3152,7 +2667,7 @@ because \gls{symb:Pi} is an irrational number.
 
 % print out symbol list (style can be modified)
 \printglossary[type=symbolslist]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3164,13 +2679,13 @@ because \gls{symb:Pi} is an irrational number.
 %% ------------------------------------------------------------
 \subsubsection{Glossary (package glossaries)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 % use the symbols in a document.
 The \gls{glos:CD} was originally developed to play sound recordings, but later extended to data storage. Later the \gls{glos:DVD} replaced the CD for the usage of data storage.
 
 % print out glossary
 \printglossary[style=altlist]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3184,9 +2699,9 @@ The \gls{glos:CD} was originally developed to play sound recordings, but later e
 
 The glossaries packages allows to print out its lists (symbols, acronmys, glossaries) using styles. The package itself defines more than 20 styles. Here only a selections is shown using the symbol list defined before.
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \printglossary[type=symbolslist,style=list, title=list]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3195,9 +2710,9 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 }{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \printglossary[type=symbolslist,style=altlist, title=altlist]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3206,9 +2721,9 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 }{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \printglossary[type=symbolslist,style=long, title=long]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3217,9 +2732,9 @@ The glossaries packages allows to print out its lists (symbols, acronmys, glossa
 }{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \printglossary[type=symbolslist,style=longheader, title=longheader]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3233,9 +2748,9 @@ This template defines the following styles
 }{}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \printglossary[type=symbolslist,style=longFancy,title=longFancy]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3244,9 +2759,9 @@ This template defines the following styles
 }{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \printglossary[type=symbolslist,style=longFancyHeader,title=longFancyHeader]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3255,10 +2770,10 @@ This template defines the following styles
 }{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \printglossary[type=symbolslist,style=longtabuFancy, 
                title=longtabuFancy]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3269,10 +2784,10 @@ This template defines the following styles
 }{\DemoError{Package \package{glossaries} not loaded.}}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \printglossary[type=symbolslist,style=longtabuFancyHeader,
                title=longtabuFancyHeader]
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{glossaries}{%
 \ifcsdef{gls}{%
@@ -3286,7 +2801,7 @@ This template defines the following styles
 
 \subsection{Todo notes (package todonotes)}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 The most common usage this package is to insert clearly visible todo notes in 
 a latex\todo{Should be written as LaTeX} document in the margin or inline 
 in the text. An example of its usage is the command \emph{todo}, which 
@@ -3301,7 +2816,7 @@ of placing them in the margin. This is recommended if the text too large for
 printing it to the margin. However this also means that the placement of 
 paragraphs, figures and tables in the the normal text is influenced.
 \todo[inline]{A todo note placed in the text}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{todonotes}{%
 
@@ -3311,9 +2826,9 @@ The \package{todonotes} package provides the commands \cs{todo} and \cs{missingf
 
 }{\DemoError{Package \package{todonotes} not loaded.}}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \missingfigure{Description or Caption of the missing figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{todonotes}{%
 
@@ -3335,47 +2850,47 @@ The \cs{missingfigure} command is supposed to indicate missing figures. It can b
 
 Different styles of frames and line numbering:
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Verbatim}[fontfamily=helvetica]
 Verbatim line.
 \end{Verbatim}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
 }{\DemoError{Package \package{fancyvrb} not loaded.}}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Verbatim}[frame=lines]
 Verbatim line.
 \end{Verbatim}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Verbatim}[frame=single]
 Verbatim line.
 \end{Verbatim}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Verbatim}[frame=single,framesep=5mm]
 Verbatim line.
 \end{Verbatim}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Verbatim}[%
   frame=single,
   framerule=1mm,
@@ -3384,48 +2899,48 @@ Verbatim line.
   fillcolor=\color{yellow}]
 Verbatim line.
 \end{Verbatim}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Verbatim}[frame=single,label=My text]
 First verbatim line.
 Second verbatim line.
 \end{Verbatim}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Verbatim}[frame=topline,
   framesep=4mm,
   label=\fbox{\Large\emph{The code}}]
 First verbatim line.
 Second verbatim line.
 \end{Verbatim}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{Verbatim}[numbers=left]
 First verbatim line.
 Second verbatim line.
 \end{Verbatim}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 % Make all odd lines uppercase
 \renewcommand{\FancyVerbFormatLine}[1]{%
    \ifodd\value{FancyVerbLine}%
@@ -3441,7 +2956,7 @@ Third verbatim line.
 \end{Verbatim}
 
 \renewcommand{\FancyVerbFormatLine}{}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{fancyvrb}{
   Formating of the code depending on the line number:
@@ -3453,7 +2968,7 @@ Third verbatim line.
 \subsection{listings}
 \label{sec:demo:listings}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{lstlisting}[style=lstStyleCpp]
 // interface
 class Person
@@ -3470,14 +2985,14 @@ private:
    int m_age;
 };
 \end{lstlisting}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{listings}{
   \subsubsection{C++ code example}
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{lstlisting}[style=lstStyleLaTeX,
    caption={[LaTeX Listings] Lines of code in a typical LaTeX document},
    label=lstLaTeXLinesOfCode]
@@ -3495,7 +3010,7 @@ Some text ...
 ...
 \end{document}
 \end{lstlisting}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{listings}{
   \subsubsection{LaTeX code example}
@@ -3515,55 +3030,55 @@ Some text ...
 % ------------------------------------------------------------
 \subsection{lettrine}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \lettrine{A}{} first example shows the default behavior of lettrine.
 It will produce an initial two lines, followed by the text between
 the curly brackets, which is set in small caps. The following text flows
  around the initial.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{lettrine}{
   \PrintDemo{style=stacked}%
 }{\DemoError{Command \cs{lettrine} not available.}}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \lettrine[lines=3]{A}{} second example where the initial is printed across
 three lines. Note the indentation of the second and third line. This may be
 influenced by the parameter \texttt{nindent}. The indent of the first line is set with the parameter \texttt{findent}.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{lettrine}{
   \PrintDemo{style=none}%
 }{}%
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \lettrine[lhang=1, nindent=0pt, lines=3]{W}{e} move now in the third example,
 the initial in the margin area. This behavior is controlled by the
 \texttt{lhang} parameter.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{lettrine}{
   \PrintDemo{style=none}%
 }{}%
 
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \lettrine[lines=4, loversize=-.1, lraise=.1]{Q}{uality} has its price. And if
 it's just the time to learn how such gimmicks can be achieved. But the
 results show that the effort is worthwhile. As you can see, the underscore
 of the Q does not protrude into the text.
-\end{filecontents*}
+\end{DefineCode}
 
 \ifcsdef{lettrine}{
   \PrintDemo{style=none}%
 }{}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{boxedminipage}{0.5\textwidth}
 Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi eu metus. Proin viverra odio ac lorem consequat condimentum. Suspendisse bibendum tellus. Duis non diam. Aliquam sodales sapien in mauris. Sed euismod adipiscing lorem. Pellentesque nulla augue, nonummy vel, tincidunt at, blandit 
 \end{boxedminipage}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{boxedminipage}
 
@@ -3575,7 +3090,7 @@ Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi eu 
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{framed}
 Pellentesque mollis nunc sed mauris tempor molestie.
 Aliquam adipiscing nisi eu metus. Proin viverra odio ac
@@ -3584,7 +3099,7 @@ Duis non diam. Aliquam sodales sapien in mauris. Sed
 euismod adipiscing lorem. Pellentesque nulla augue, 
 nonummy vel, tincidunt at, blandit 
 \end{framed}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{framed}
 
@@ -3596,7 +3111,7 @@ Framed boxes with text width, which can span over more than one page.
 
 }{\DemoError{Command \cs{framed} not available.}}%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 % setup for all frames
 \mdfsetup{skipabove=\topskip,skipbelow=\topskip}
 % style definition
@@ -3612,7 +3127,7 @@ Duis non diam. Aliquam sodales sapien in mauris. Sed
 euismod adipiscing lorem. Pellentesque nulla augue, 
 nonummy vel, tincidunt at, blandit 
 \end{mdframed}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{mdframed}
 
@@ -3634,7 +3149,7 @@ be defined in every detail.
 \label{sec:demo:diagram}
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[scale=2.5]
@@ -3652,7 +3167,7 @@ be defined in every detail.
       (v0) -- (v5);
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \subsection{tikz/pgf}
 \IfElsePackageLoaded{graphicx}{%
@@ -3666,7 +3181,7 @@ be defined in every detail.
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 % code origin: 
@@ -3693,7 +3208,7 @@ be defined in every detail.
   }
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
@@ -3707,7 +3222,7 @@ be defined in every detail.
 }{}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 % code origin: pgf/tikz manual
@@ -3727,7 +3242,7 @@ be defined in every detail.
   \draw (-.5,.25) parabola bend (0,0) (2,4) node[below right] {$x^2$};
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
@@ -3737,9 +3252,9 @@ be defined in every detail.
 
 }{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
-
+%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 % code origin: pgf/tikz manual
@@ -3794,7 +3309,7 @@ be defined in every detail.
                        to (right contact 5);
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
@@ -3808,7 +3323,7 @@ be defined in every detail.
 }{}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 % code origin: pgf/tikz manual
@@ -3821,7 +3336,7 @@ be defined in every detail.
            lindenmayer system -- cycle;
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
@@ -3837,7 +3352,7 @@ be defined in every detail.
 }{}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 % code origin: pgf/tikz manual
@@ -3865,7 +3380,7 @@ be defined in every detail.
     child[concept color=orange] { node[concept] {theoretical} };
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
@@ -3879,7 +3394,7 @@ be defined in every detail.
 }{}%
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 % code origin: pgf/tikz manual
@@ -3889,7 +3404,7 @@ be defined in every detail.
   (0,0) rectangle (3,2);
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
@@ -3904,7 +3419,7 @@ be defined in every detail.
 }{}%
 %
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 % code origin: pgf/tikz manual
@@ -3919,7 +3434,7 @@ be defined in every detail.
             (q_1) edge node [above] {1} (q_2);
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{tikz}{%
@@ -3934,12 +3449,12 @@ be defined in every detail.
 }{\DemoError{tikz library `automata' not loaded}}%
 }{\DemoError{Package \package{tikz} not loaded}}%
 }{}%
-
+%
 %% ------------------------------------------------------------
 \clearpage
 \subsection{pgfplots}
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \pgfplotsset{width=0.8\textwidth, height=0.6\textwidth}
 \centering
@@ -3953,7 +3468,7 @@ be defined in every detail.
 \end{axis}
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{pgfplots}{%
@@ -3966,7 +3481,7 @@ be defined in every detail.
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \pgfplotsset{width=0.8\textwidth, height=0.6\textwidth}
 \pgfplotsset{samples=2000}
@@ -3989,7 +3504,7 @@ be defined in every detail.
 \end{axis}
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{pgfplots}{%
@@ -3999,9 +3514,9 @@ be defined in every detail.
 
 }{\DemoError{Package \package{pgfplots} not loaded}}%
 }{}%
-
+%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \pgfplotsset{width=0.8\textwidth, height=0.6\textwidth}
 \centering
@@ -4018,7 +3533,7 @@ be defined in every detail.
   \end{semilogyaxis}
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{pgfplots}{%
@@ -4031,7 +3546,7 @@ be defined in every detail.
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \pgfplotsset{width=0.8\textwidth, height=0.6\textwidth}
 \centering
@@ -4045,12 +3560,12 @@ be defined in every detail.
                    ymin=-1,ymax=1},
    colormap/jet
 ]
-\addplot3[surf,domain=0:360,samples=20]
+\addplot3[surf,domain=0:360,samples=100]
   {sin(x)*sin(y)};
 \end{axis}
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{pgfplots}{%
@@ -4063,7 +3578,7 @@ be defined in every detail.
 
 
 %% ------------------------------------------------------------
-\begin{filecontents*}{plotdata.txt}
+\begin{filecontents*}[overwrite]{plotdata.txt}
 0	0
 0.15787	0.18867
 0.31574	0.37913
@@ -4266,7 +3781,7 @@ be defined in every detail.
 31.416	31.416
 \end{filecontents*}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \pgfplotsset{width=0.8\textwidth, height=0.6\textwidth}
 \centering
@@ -4278,7 +3793,7 @@ be defined in every detail.
 \end{axis}
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{pgfplots}{%
@@ -4288,9 +3803,9 @@ be defined in every detail.
 
 }{\DemoError{Package \package{pgfplots} not loaded}}%
 }{}%
-
+%
 %% ------------------------------------------------------------
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \pgfplotsset{width=0.8\textwidth, height=0.6\textwidth}
 \centering
@@ -4325,7 +3840,7 @@ be defined in every detail.
 \end{axis}
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{pgfplots}{%
@@ -4339,7 +3854,7 @@ be defined in every detail.
 
 %% ------------------------------------------------------------
 \subsubsection{plotting multiple lines from single file}
-\begin{filecontents*}{plotdata.txt}
+\begin{filecontents*}[overwrite]{plotdata.txt}
 x1	y1	y2	y3	y4
 0	0.05754	4.858e-016	4.5469e-063	2.4067e-174
 0.31733	0.085313	2.9249e-015	5.5675e-061	5.5022e-170
@@ -4443,7 +3958,7 @@ x1	y1	y2	y3	y4
 31.416	5.0385e-028	1.3906e-035	2.5193e-028	1.7452e-011
 \end{filecontents*}
 
-\begin{filecontents*}{\democodefile}
+\begin{DefineCode}
 \begin{figure}[H]
 \centering
 \pgfplotsset{width=0.8\textwidth, height=0.6\textwidth}
@@ -4465,7 +3980,7 @@ x1	y1	y2	y3	y4
 \end{axis}
 \end{tikzpicture}
 \end{figure}
-\end{filecontents*}
+\end{DefineCode}
 
 \IfElsePackageLoaded{graphicx}{%
 \IfElsePackageLoaded{pgfplots}{%

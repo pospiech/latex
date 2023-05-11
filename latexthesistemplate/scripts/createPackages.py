@@ -7,14 +7,12 @@ import texBuildFunctions as tex
 
 def main():
     strTargetDir = "CTAN"
-    createPackage('doctools', strTargetDir)
-    createPackage('latexdemo', strTargetDir)
-    return
-    createPackage('lastpackage', strTargetDir)
-    createPackage('tablestyles', strTargetDir)
-    createPackage('codesection', strTargetDir)
+    #createPackage('doctools', strTargetDir)
+    #createPackage('latexdemo', strTargetDir)    
+    #createPackage('lastpackage', strTargetDir)    
+    #createPackage('codesection', strTargetDir)
     createPackage('templatetools', strTargetDir)
-
+    return
 
 def compileDTXPackage(package):
     # move to path of package
@@ -36,7 +34,14 @@ def compileDTXPackage(package):
     result = os.system(executeCode)
 
     # call makeindex
+    # makeindex -s gind.ist -o hpackagei.ind hpackagei.idx
     executeCode = 'makeindex -s gind.ist "' + packageName + '.idx"'
+    print (executeCode)
+    result = os.system(executeCode)
+
+    # call makeindex for changes
+    # makeindex -s gglo.ist -o hpackagei.gls hpackagei.glo
+    executeCode = 'makeindex -s gglo.ist -o "' + packageName + '.gls"' + '"' + packageName + '.glo"'
     print (executeCode)
     result = os.system(executeCode)
 

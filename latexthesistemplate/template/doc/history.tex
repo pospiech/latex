@@ -11,6 +11,22 @@ Version 3.2.0 is thus a huge change from 3.1.0 with both compatible for version 
 %a new template version was released that was the third one and later there was little reason
 %to change this version number scheme.
 
+\minisec{2023/02 v3.3.0} %
+Huge changes to adapt the code for post 2020 packages and make it ready for LuaLaTeX. PDFLateX is not supported anymore.
+\begin{itemize}
+	\item removed fix-cm which cannot be used together with luatex.
+	\item removed all package for no room for new write problem.
+	\item removed all packages for encoding.
+	\item Changed the order of packages loading and fonts. Previously the fonts were loaded first.
+	However, with lualatex packages for fonts must be loaded before the actual fonts. Therefore the fonts configuration is loaded at the end.
+	\item removed all font loading classes such as lmodern and replaced the code by font loading commands.
+	\item removed package fixmath.
+	\item added package fontspec and unicode-math.
+	\item removed package tabu.
+	\item added packages tabularray and tcolorbox.
+	\item removed package tocstyle. This package was discontinued 2020 and removed from all distributions.
+\end{itemize}
+
 
 \minisec{2018/09 v3.2.5} %
 Minor bug fixes and other changes
@@ -19,6 +35,7 @@ Minor bug fixes and other changes
 	\item Examples for \package{glossaries} were added to the template.
 	\item replaced \package{scrpage2} by \package{scrlayer-scrpage}
 \end{itemize}
+A switch to luatex is currently not planed. This would mean a major change and would be Version 3.3
 
 \minisec{2015/08 v3.2.4} %
 Minor bug fixes and other changes

@@ -1,3 +1,4 @@
+% !TeX root = TemplateDocumentation.tex
 % !TeX encoding=utf8
 % !TeX spellcheck = en-US
 % =========================================================================
@@ -6,39 +7,16 @@
 This chapter gives a general introduction to the usage of this template and enables the user to start with the actual work. 
 In the subsequent chapters and other parts of this documentation you will find a wide variety of further information. However, there is no need to read them all. Instead you might find it useful to look at individual sections later, when you are looking specifically for a solution to a problem.
 
-The latest changes in the template are shortly presented in the first \cref{sec:doc:changes}. The full history can be found in \cref{appendix:doc:changes}.
+The changes in the template are can be found in \cref{appendix:doc:changes}.
 
 In the second \cref{sec:doc:targetusers} you find a general discussion on the typical user of this template followed by a tutorial (\cref{sec:doc:start}) on how to start working with this template. The chapter ends with the introduction of magic comments in \cref{sec:doc:magiccomments}.
 
 In the next \cref{chap:doc:faq} you will find a list of typical questions and answers that are specific for this template followed by a list of known problems in this template (\cref{chap:doc:problems}). For those who want to change the font in the template there is a short overview on fonts provided in \cref{chap:doc:fonts}.
 % -------------------------------------------------------------------------
-\section{Changes in the latest release}
-\label{sec:doc:changes}
-
-These changes were introduced in the latest release:
-
-\minisec{2018/09 v3.2.5} %
-Minor bug fixes and other changes
-\begin{itemize}
-	\item The template failed to compile the \package{biblatex} code in the publication list correct. This was due to a change in the code base of \package{biblatex}.
-	\item Examples for \package{glossaries} were added to the template.
-	\item replaced \package{scrpage2} by \package{scrlayer-scrpage}
-\end{itemize}
-A switch to luatex is currently not planed. This would mean a major change and would be Version 3.3
-
-
-%\minisec{2015/08 v3.2.4} %
-%Minor bug fixes and other changes
-%\begin{itemize}
-%\item The template failed to compile with latest package \package{titlesec} in combination with KOMA-script. Since both are not compatible and can be used only with workarounds within KOMA-Script the package \package{titlesec} was removed and the style changes applied using different commands.
-%\end{itemize}
-
-See \cref{appendix:doc:changes} for all full list of the previous development process of this template.
-% -------------------------------------------------------------------------
 \section{Target Users}
 \label{sec:doc:targetusers}
 
-This template was developed with all sorts of structured documents in mind that require a good citation and reference framework with a customizable layout. It has so far been used for bachelor, master and phd-thesis as well as the thesis of teachers in their practical year. These theses had all a natural science background, which means that also this template is optimized for the needs of people in natural sciences. Nevertheless it should be easily adaptable to topics in humanities, linguistics or even arts.
+This template was developed with all sorts of structured documents in mind that require a good citation and reference framework with a customizable layout. It has so far been used for bachelor, master and phd-thesis as well as the thesis of teachers in their practical year. These had all a natural science background, which means that this template is optimized for the needs of people in natural sciences. Nevertheless it should be easily adaptable to topics in humanities, linguistics or even arts.
 
 Since the code is rather complex one might have objections against this template. Here is a list why there is nevertheless a benefit for all sorts of users.
 
@@ -106,11 +84,11 @@ It may happen that a bug fix in this template has become obsolete because it was
 \label{sec:doc:features:doc}
 This template provides all methods (commands, environments, work flows) that are required for a complex scientific document. This is realized by loading a large number of relevant and modern packages of \latex. It is difficult to provide a complete list of the resulting features therefore the following lists include only a subset of the most interesting ones.
 
-% .........................................................................
-\subsubsection*{General}
+%% .........................................................................
+\subsubsection*{Fonts}
 \begin{itemize}
-\item Automatic detection of document encoding (\package{selinput}).
-\item Support for files with multiple dots, special characters and other pitfalls (\package{grffile}).
+\item Font loading and handling (\package{fontspec}).
+\item Math Fonts using \package{unicode-math}.
 \end{itemize}
 
 % .........................................................................
@@ -129,7 +107,7 @@ This template provides all methods (commands, environments, work flows) that are
 %
 \item Customizable item and enumeration lists (\package{enumitem})
 %
-\item Multiple highlighting possibilities (\package{ulem}, \package{soul})
+\item Multiple highlighting possibilities (\package{ulem}, \package{soulutf8})
 %
 \item Correct and save display of urls and file path (\package{url})
 \end{itemize}
@@ -165,12 +143,15 @@ This template provides all methods (commands, environments, work flows) that are
 
 % .........................................................................
 \subsubsection*{Tables}
+The recommended class to create tables is the new \package{tabularray}. This replaces all other packages listed here. Packages like \package{booktabs} and \package{tabularx} are only loaded since many code was written using these commands. The package \package{tabu} is not loaded, because it is unmaintained and fails to compile the document due to bugs in the code.
 \begin{itemize}
-\item Tables with the ability to create them with a professional design (\package{booktabs}, \package{tabu}, \package{xcolor}),
+\item Tables with the ability to create them with a professional design (\package{booktabs}, \package{tabularray}, \package{xcolor}),
 %
-\item Table columns with variable width (so called \enquote{X} columns) and line break support (\package{tabularx}, \package{tabu}),
+\item Table columns with variable width (so called \enquote{X} columns) and line break support (\package{tabularx}, \package{tabularray}),
 %
-\item Multi page tables (\package{tabu}, \package{ltxtable}),
+\item Multi page tables (\package{tabularray}, \package{ltxtable}),
+%
+\item Fancy Tables using \package{tcolorbox}.
 \end{itemize}
 
 % .........................................................................
@@ -204,7 +185,7 @@ Note that all previous packages for bibliographies are incompatible because all 
 %
 \item The line spacing can be adjusted in one-half, double or custom spacing (\package{setspace}).
 %
-\item Head and Foot have automatic generated content which can be customized together with the layout of the header and footer (\package{scrpage2}).
+\item Head and Foot have automatic generated content which can be customized together with the layout of the header and footer (\package{scrlayer-scrpage}).
 %
 \item The Heading can be fully customized. In this template by default the chapter layout is changed with the provided functions of KOMA-script.
 %
@@ -249,14 +230,9 @@ If you want to use this template for your work you should follow these three ste
 \subsection{Configure Editor and System Settings}
 \label{sec:doc:config:editor}
 
-The template needs to be configured for editor and system specific settings such as the encoding of the documents and the encoding of the file system. Both are configured in the main file in the section called \emph{encoding}.
-These settings must be configured to ensure that special characters such as: äüößêì are shown correct in the editor and the output pdf-file.
+The encoding needs to be configured to ensure that special characters such as: äüößêì are shown correct in the editor and the output pdf-file. The encoding of the editor must be configured in the editor its self or be set up with magic comments, see \cref{sec:doc:magiccomments:encoding}. The settings must be \texttt{utf8}.
 
-The encoding of the editor must be configured in the editor its self or be set up with magic comments, see \cref{sec:doc:magiccomments:encoding}. Anyway, the setting should typically be set up as \texttt{utf8}.
-
-\latex detects the correct encoding with encoding specific characters (ä, ß, €) in the line with \cs{SelectInputMappings}. If you find that these characters are not printed correct in the editor reenter these characters. If your keyboard does not allow to enter ä and ß try at least if the euro character € is sufficient to detect an encoding. 
-
-If file names may have encoding specific characters the encoding of the operating system must be defined as well. Therefore the option \option{filenameencoding} should be configured for either \texttt{latin1} or \texttt{utf8}. Both should cover most demands.
+%If file names may have encoding specific characters the encoding of the operating system must be defined as well. Therefore the option \option{filenameencoding} should be configured for either \texttt{latin1} or \texttt{utf8}. Both should cover most demands.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Configure the document}
@@ -333,142 +309,124 @@ The following tables \ref{tab:doc:configurationlinks} and \ref{tab:doc:configura
 
 Most question of the kind \enquote{how do I change the layout of \ldots} can be solved by locating the relevant settings in these tables and playing with their values.
 % .........................................................................
- { % start a group 
- \colorlet{tabledarkheadcolor}{black!60}
-  % style  
-  \small\renewcommand{\arraystretch}{1.4}\sffamily
-  % required if floatrow is loaded
-  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
-  % the table
-  \begin{longtabu} to \textwidth%
-  {X[2,l]>{\ttfamily}X[2,l]X[2,l]}
-\captionabove{Links to locations for configurations of the document layout}
-\label{tab:doc:configurationlinks}
- \\
-  \hline
-  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
-  \upshape
-  \sffamily\textcolor{white}{Setting} &
-  \sffamily\textcolor{white}{Option/Value}  &
-  \sffamily\textcolor{white}{Location} \\ \hline
-\endfirsthead
-  \hline
-  \upshape
-  \sffamily\textcolor{white}{Setting} &
-  \sffamily\textcolor{white}{Option/Value}  &
-  \sffamily\textcolor{white}{Location} \\ \hline
-\endhead
-  \hline 
-  \taburowcolors 1{white .. white}
-  \multicolumn{3}{r}{\emph{continued on next page \ldots}}
-\endfoot
-  \hline
-\endlastfoot
-%
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Options in file: \file{LaTeXTemplate.tex}} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-%
-paper size & paper=a4 & 
-	option of \hyperref[sec:main:class]{\cs{documentclass}} \\
-language   & english  & 
-	option of \hyperref[sec:main:class]{\cs{documentclass}} \\
-font size  & fontsize=11pt & 
-	option of \hyperref[sec:main:class]{\cs{documentclass}} \\
-color of hyperlinks & \bs{}UseDefinition\arg{Target}\arg{Web} & 		
-	Section: \hyperref[sec:preamble:configuration]{Configurations} \\
-page layout in the pdf view & pdfpagelayout	& 
-	Section: \hyperref[sec:preamble:configuration]{Configurations} \\
-%
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Options in file: \file{preamble/packages.tex}} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-%
-equation position & fleqn & 
-	Section: \hyperref[sec:packages:math]{PackagesMath} \\
-quotation style   & german=quotes & 
-	Section: \hyperref[sec:packages:quotes]{PackagesQuotes} \\
-citation style    & style=alphabetic & 
-	Section: \hyperref[sec:packages:bibliography]{PackagesCitation} \\
-bibliography backend & backend=biber & 
-	Section: \hyperref[sec:packages:bibliography]{PackagesCitation} \\
-header and footer & automark,komastyle &
-	Section: \hyperref[sec:packages:headfoot]{PackagesHeadFoot} \\
-backlinks in the bibliography & backref=page & 
-	Section: \hyperref[sec:packages:pdf]{PackagesPDF} \\
-%
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Settings and options in file: \file{preamble/style.tex}} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-%
-url font 		& \cs{urlstyle}\arg{tt} &  
-	Section: \hyperref[sec:style:text]{StyleText} \\
-threshold for \cs{blockquote} & \cs{SetBlockThreshold}\arg{2} &
-	Section: \hyperref[sec:style:quotes]{StyleQuotes} \\
-numbering of figures & \cs{numberwithin}\arg{figure} & 
- 	Section:  \hyperref[sec:style:captions]{StyleCaptions} \\
-paragraph skip or indentation & parskip=false &  
-	Section: \hyperref[sec:style:layout:paragraph]{StyleParagraph} \\
-line spacing 	& \cs{onehalfspacing} &  
-	Section: \hyperref[sec:style:layout:linespacing]{StyleLineSpacing} \\
-size of text body 	& DIV=11 & 
-	Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
-binding correction 	& BCOR=10mm & 
-	Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
-single/two side layout & twoside=true & 
-	Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
-separate title page & titlepage=true & 
-	Section: \hyperref[sec:style:titlepage]{StyleTitlepage} \\
-sections numbering depth & \cs{setcounter}\arg{secnumdepth}\arg{2} & 
- 	Section: \hyperref[sec:style:headings]{StyleHeadings} \\
-headings size 	& headings=small &  
-	Section: \hyperref[sec:style:headings]{StyleHeadings} \\
-chapter prefix 	& headings=nochapterprefix & 
-	Section: \hyperref[sec:style:headings]{StyleHeadings} \\
-heading fonts  	& \cs{setkomafont}\arg{sectioning} & 
-	Section: \hyperref[sec:style:headings:fonts]{StyleHeadingsFonts} \\
-toc numbering depth & \cs{setcounter}\arg{tocdepth}\arg{3} & 
-	Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
-bibliography in TOC & bibliography=totoc & 
-	Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
-index in TOC 	& index=nottotoc & 
-	Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
-LOF in TOC 	& listof=notoc & 
-	Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
-%
-\end{longtabu}
-} % close the group
+\DeclareTblrTemplate{contfoot-text}{templatedoc}{Continued on next page \ldots}
+\SetTblrTemplate{contfoot-text}{templatedoc}
+% start a group 
+\begingroup 	
+% style  
+\small\renewcommand{\arraystretch}{1.4}\sffamily
+% required if floatrow is loaded
+%\IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
+% the table
+%%  \begin{longtabu} to \textwidth%
+	%%  {X[2,l]>{\ttfamily}X[2,l]X[2,l]}
+	%%\captionabove{Links to locations for configurations of the document layout}
+	%%\label{tab:doc:configurationlinks}
+	\begin{longtblr}[
+		caption = {Links to locations for configurations of the document layout},
+		label = {tab:doc:configurationlinks}]
+		{
+			colspec = {X[1,l]>{\ttfamily}X[1,l]X[1,l]},
+			width = 1.0\textwidth,
+			row{odd} = {bg=tablerowcolor},
+			row{1}   = {bg=azure3, fg=white, font=\sffamily\upshape},
+			rowhead = 1,
+			rowfoot = 0,
+		}		
+		%% \\
+		\hline % Table Header
+		Setting & Option/Value & Location \\ 
+		\hline
+		% multicolumn line
+		\SetCell[c=3]{l,bg=tablesubheadcolor} Options in file: \file{LaTeXTemplate.tex} \\
+		%
+		paper size & paper=a4 & 
+		option of \hyperref[sec:main:class]{\cs{documentclass}} \\
+		language   & english  & 
+		option of \hyperref[sec:main:class]{\cs{documentclass}} \\
+		font size  & fontsize=11pt & 
+		option of \hyperref[sec:main:class]{\cs{documentclass}} \\
+		color of hyperlinks & \bs{}UseDefinition\arg{Target}\arg{Web} & 		
+		Section: \hyperref[sec:preamble:configuration]{Configurations} \\
+		page layout in the pdf view & pdfpagelayout	& 
+		Section: \hyperref[sec:preamble:configuration]{Configurations} \\
+		%
+		\SetCell[c=3]{l,bg=tablesubheadcolor} Options in file: \file{preamble/packages.tex} \\
+		%
+		equation position & fleqn & 
+		Section: \hyperref[sec:packages:math]{PackagesMath} \\
+		quotation style   & german=quotes & 
+		Section: \hyperref[sec:packages:quotes]{PackagesQuotes} \\
+		citation style    & style=alphabetic & 
+		Section: \hyperref[sec:packages:bibliography]{PackagesCitation} \\
+		bibliography backend & backend=biber & 
+		Section: \hyperref[sec:packages:bibliography]{PackagesCitation} \\
+		header and footer & automark,komastyle &
+		Section: \hyperref[sec:packages:headfoot]{PackagesHeadFoot} \\
+		backlinks in the bibliography & backref=page & 
+		Section: \hyperref[sec:packages:pdf]{PackagesPDF} \\
+		%
+		\SetCell[c=3]{l,bg=tablesubheadcolor} Options in file: \file{preamble/style.tex} \\
+		%
+		url font 		& \cs{urlstyle}\arg{tt} &  
+		Section: \hyperref[sec:style:text]{StyleText} \\
+		threshold for \cs{blockquote} & \cs{SetBlockThreshold}\arg{2} &
+		Section: \hyperref[sec:style:quotes]{StyleQuotes} \\
+		numbering of figures & \cs{numberwithin}\arg{figure} & 
+		Section:  \hyperref[sec:style:captions]{StyleCaptions} \\
+		paragraph skip or indentation & parskip=false &  
+		Section: \hyperref[sec:style:layout:paragraph]{StyleParagraph} \\
+		line spacing 	& \cs{onehalfspacing} &  
+		Section: \hyperref[sec:style:layout:linespacing]{StyleLineSpacing} \\
+		size of text body 	& DIV=11 & 
+		Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
+		binding correction 	& BCOR=10mm & 
+		Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
+		single/two side layout & twoside=true & 
+		Section: \hyperref[sec:style:layout:page]{StylePageLayout} \\
+		separate title page & titlepage=true & 
+		Section: \hyperref[sec:style:titlepage]{StyleTitlepage} \\
+		sections numbering depth & \cs{setcounter}\arg{secnumdepth}\arg{2} & 
+		Section: \hyperref[sec:style:headings]{StyleHeadings} \\
+		headings size 	& headings=small &  
+		Section: \hyperref[sec:style:headings]{StyleHeadings} \\
+		chapter prefix 	& headings=nochapterprefix & 
+		Section: \hyperref[sec:style:headings]{StyleHeadings} \\
+		heading fonts  	& \cs{setkomafont}\arg{sectioning} & 
+		Section: \hyperref[sec:style:headings:fonts]{StyleHeadingsFonts} \\
+		toc numbering depth & \cs{setcounter}\arg{tocdepth}\arg{3} & 
+		Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
+		bibliography in TOC & bibliography=totoc & 
+		Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
+		index in TOC 	& index=nottotoc & 
+		Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
+		LOF in TOC 	& listof=notoc & 
+		Section: \hyperref[sec:style:toc]{StyleLayoutTOC} \\
+		%
+		\hline
+	\end{longtblr}
+	\endgroup
+% close the group
 % .........................................................................
 { % start a group 
- \colorlet{tabledarkheadcolor}{black!60}
   % style  
   \small\renewcommand{\arraystretch}{1.4}\sffamily
-  % required if floatrow is loaded
-  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
   % the table
-  \begin{longtabu} to \textwidth%
-  {X[2,l]X[3,l]}
-\captionabove{Links to files for package configurations}
-\label{tab:doc:configurationfiles} \\
-  \hline
-  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
-  \upshape
-  \sffamily\textcolor{white}{Package / Topic} &
-  \sffamily\textcolor{white}{File}  \\ \hline
-\endfirsthead
-  \hline
-  \upshape
-  \sffamily\textcolor{white}{Package / Topic} &
-  \sffamily\textcolor{white}{File}  \\ \hline
-\endhead
-  \hline 
-  \taburowcolors 1{white .. white}
-  \multicolumn{2}{r}{\emph{continued on next page \ldots}}
-\endfoot
-  \hline
-\endlastfoot
-%
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
+	\begin{longtblr}[
+	caption = {Links to files for package configurations},
+	label = {tab:doc:configurationfiles}]
+	{
+		colspec = {X[2,l]X[3,l]},
+		width = 1.0\textwidth,
+		row{odd} = {bg=tablerowcolor},
+		row{1}   = {bg=azure3, fg=white, font=\sffamily\upshape},
+		rowhead = 1,
+		rowfoot = 0,
+	}		
+	%% \\
+	\hline % Table Header
+	Package / Topic & File \\ 
+	\hline
 siunitx & \file{preamble/style-siunitx.tex} \\
 pgfplots & \file{preamble/style-pgfplots.tex} \\
 biblatex & \file{preamble/style-biblatex.tex} \\
@@ -482,8 +440,9 @@ geometry & \file{preamble/style-geometry.tex} \\
 scrlayer-scrpage & \file{preamble/style-scrlayer-scrpage.tex} \\
 %titlesec & \file{preamble/style-titlesec.tex} \\
 hyperref & \file{preamble/style-hyperref.tex} \\
+	\hline
 %
-\end{longtabu}
+\end{longtblr}
 } % close the group
 % .........................................................................
 
@@ -519,12 +478,12 @@ Defines the main file for typesetting (often called the \emph{master file}). Thi
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Program}
 \begin{latexcode}
-% !TeX program = pdflatex
+% !TeX program = lualatex
 \end{latexcode}
 %
 Chooses the engine for compilation. Possible values are \texttt{pdflatex}, \texttt{LuaLaTeX}, \texttt{XeTeX}, \texttt{LaTeX} (and possibly others). Note that the engine name inserted is case-insensitive.
 
-Unless your code is set up for a different engine and the selection of packages and fonts loaded is adapted for that engine the default should be kept as \texttt{pdflatex}. 
+Unless your code is set up for a different engine and the selection of packages and fonts loaded is adapted for that engine the default should be kept as \texttt{lualatex} for this template. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Spell checking}
@@ -598,7 +557,7 @@ The hyperlinks are introduced by package \package{hyperref}. The colors are conf
 % -------------------------------------------------------------------------
 \section{Generation of tables}
 \label{sec:doc:faq:tables}
-See the large list of examples in \cref{sec:demo:tables} on using the environments \env{tabular}, \env{tabularx}, \env{tabu}, \env{table} and further for printing tabular material in principle and how to print beautiful tables.
+See the large list of examples in \cref{sec:demo:tables} on using the environments \env{tabular}, \env{tabularx}, \env{tabularray}, \env{table} and further for printing tabular material in principle and how to print beautiful tables.
 
 % -------------------------------------------------------------------------
 \section{Include, align and position graphics}
@@ -756,30 +715,6 @@ This chapter provides a collection a known warnings and possible errors with an 
 % -------------------------------------------------------------------------
 \section{Warnings}
 
-%% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\subsection{scrbook: Usage of package `titlesec' together with a KOMA-Script class is not recommended}
-%
-%The \package{titlesec} is not compatible with KOMA-Script classes as in
-%detail described in the warning message. Unless these features of KOMA-Script
-%are not required it should cause no problem to load both together. 
-%
-%\package{titlesec} is used in this template to redefine the appearance of 
-%chapter and part headings as well as the spacing before and after 
-%sections in different levels.
-%
-%\begin{verbatim}
-%Class scrbook Warning: Usage of package `titlesec' together
-%(scrbook)              with a KOMA-Script class is not recommended.
-%(scrbook)              I'd suggest to use the package only
-%(scrbook)              if you really need it, because it breaks several
-%(scrbook)              KOMA-Script features, i.e., option `headings' and
-%(scrbook)              the extended optional argument of the section
-%(scrbook)              commands .
-%(scrbook)              Nevertheless, using requested
-%(scrbook)              package `titlesec' on input line 824.
-%\end{verbatim}
-
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{biblatex: No file \texorpdfstring{\argument{filename}}{filename}.bbl}
 
@@ -802,22 +737,6 @@ No file <filename>.bbl.
 %\end{verbatim}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{tocstyle: This is an alpha version}
-
-Package \package{tocstyle} prints out the following warning:
-%
-\begin{verbatim}
-Package tocstyle Warning: THIS IS AN ALPHA VERSION!
-(tocstyle)                USAGE OF THIS VERSION IS ON YOUR OWN RISK!
-(tocstyle)                EVERYTHING MAY HAPPEN!
-(tocstyle)                EVERYTHING MAY CHANGE IN FUTURE!
-(tocstyle)                THERE IS NO SUPPORT, IF YOU USE THIS PACKAGE!
-(tocstyle)                Maybe it would be better, not to load this package.
-\end{verbatim}
-%
-This package is now in use with this template for several years (of development of the template before its release) and so far no problem has been found. Therefore I do not expect any problem because of this package and consider this warning to be ignorable.
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{hypennat: You have used the htt option}
 
 Package \package{hypennat} prints out the following warning:
@@ -833,53 +752,81 @@ Package hyphenat Warning: *******************************
 It can be ignored as already stated by the package warning.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{pageslts: Package pdfpages detected.}
-
-Package \package{hypennat} warns about the use of package \package{pdfpages}:
+%\subsection{pageslts: Package pdfpages detected.}
 %
-\begin{verbatim}
-Package pageslts Warning: Package pdfpages detected.
-(pageslts)                Using hyperref with pdfpages can cause problems. See
-(pageslts)                ftp://ftp.ctan.org/tex-archive/
-(pageslts)                macros/latex/contrib/pax/
-(pageslts)                for project pax (PDFAnnotExtractor)..
-\end{verbatim}
-%
-This can be savely ignored, see \url{http://tex.stackexchange.com/questions/73767/warning-about-pdfpages-with-hyperref} for a discussion.
-
-% -------------------------------------------------------------------------
-\section{Errors}
+%Package \package{hypennat} warns about the use of package \package{pdfpages}:
+%%
+%\begin{verbatim}
+%Package pageslts Warning: Package pdfpages detected.
+%(pageslts)                Using hyperref with pdfpages can cause problems. See
+%(pageslts)                ftp://ftp.ctan.org/tex-archive/
+%(pageslts)                macros/latex/contrib/pax/
+%(pageslts)                for project pax (PDFAnnotExtractor)..
+%\end{verbatim}
+%%
+%This can be savely ignored, see \url{http://tex.stackexchange.com/questions/73767/warning-about-pdfpages-with-hyperref} for a discussion.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{No room for new write}
-\label{sec:problems:write}
+\subsection{unicode-math: Using commands from `mathtools' package.}
 
-TeX uses output registers to write to files. Unfortunately TeX was designed to use only 16 of such registers of which the output registers 0, 1 and 2 are already used by (La)TeX itself. The remaining registers are consumed by additional packages that need to write to external files.
+\begin{verbatim}
+Package unicode-math Warning: Using \overbracket and \underbracket from
+(unicode-math)                `mathtools' package.
+(unicode-math)                 
+(unicode-math)                 Use \Uoverbracket and \Uunderbracket for
+(unicode-math)                original `unicode-math' definition.
+\end{verbatim}
+These warnings can be ignored.
 
-If you come across this error you have reached a fixed limitation of the TeX engine and there is nothing that can directly be done about this error, as you cannot extend the number of available registers without extending TeX itself.
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{unicode-math: Overwriting commands from `mathtools' package.}
 
-Typical packages that consume output registers are:
-\begin{itemize}
-\item glossaries (acronym list, symbol list, glossary)
-\item biblatex (bibliography)
-\item listings (list of listings)
-\item imakeidx (index)
-\item fancyvrb 
-\item pgf/tikz
-\item pgf/tikz with \texttt{external} option
-\item titletoc
-\end{itemize}
+\begin{verbatim}
+Package unicode-math Warning: I'm going to overwrite the following commands
+(unicode-math)                from the `mathtools' package: 
+(unicode-math)                 
+(unicode-math)                     \dblcolon, \coloneqq, \Coloneqq, \eqqcolon.
+(unicode-math)                
+(unicode-math)                 
+(unicode-math)                 Note that since I won't overwrite the other
+(unicode-math)                colon-like commands, using them will lead to
+(unicode-math)                inconsistencies.
+\end{verbatim}
+These warnings can be ignored.
 
-The most promising solution about this problem is to reduce the number of used output registers. So for example if no index is required (package imakeidx) and the package fancyvrb is not needed both could be commented out and instead the list of listings could be activated.
+% -------------------------------------------------------------------------
+%\section{Errors}
 
-The approach of this template is to use either the package \package{morewrites} or \package{scrwfile}, which hook at the lowest level (\TeX primitives) to solve this problem. These packages however might cause problems since they modify \LaTeX at a very basic level and can thus cause incompatibilities. For \package{scrwfile} it is know to that \package{titletoc} does no longer work. If however \package{titletoc} is not required \package{scrwfile} is recommended.
-These packages are loaded in \file{preamble/packages-SolutionsNoRoomForNewWrite.tex}.
-
-Further information about this issue can be found at
-\begin{itemize}
-\item \href{http://tex.stackexchange.com/questions/15665/making-efficient-use-of-writes}{tex.stackexchange.com}
-\item \href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom}{UK FAQ List}
-\end{itemize}
+%% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\subsection{No room for new write}
+%\label{sec:problems:write}
+%
+%TeX uses output registers to write to files. Unfortunately TeX was designed to use only 16 of such registers of which the output registers 0, 1 and 2 are already used by (La)TeX itself. The remaining registers are consumed by additional packages that need to write to external files.
+%
+%If you come across this error you have reached a fixed limitation of the TeX engine and there is nothing that can directly be done about this error, as you cannot extend the number of available registers without extending TeX itself.
+%
+%Typical packages that consume output registers are:
+%\begin{itemize}
+%\item glossaries (acronym list, symbol list, glossary)
+%\item biblatex (bibliography)
+%\item listings (list of listings)
+%\item imakeidx (index)
+%\item fancyvrb 
+%\item pgf/tikz
+%\item pgf/tikz with \texttt{external} option
+%\item titletoc
+%\end{itemize}
+%
+%The most promising solution about this problem is to reduce the number of used output registers. So for example if no index is required (package imakeidx) and the package fancyvrb is not needed both could be commented out and instead the list of listings could be activated.
+%
+%The approach of this template is to use either the package \package{morewrites} or \package{scrwfile}, which hook at the lowest level (\TeX primitives) to solve this problem. These packages however might cause problems since they modify \LaTeX at a very basic level and can thus cause incompatibilities. For \package{scrwfile} it is know to that \package{titletoc} does no longer work. If however \package{titletoc} is not required \package{scrwfile} is recommended.
+%These packages are loaded in \file{preamble/packages-SolutionsNoRoomForNewWrite.tex}.
+%
+%Further information about this issue can be found at
+%\begin{itemize}
+%\item \href{http://tex.stackexchange.com/questions/15665/making-efficient-use-of-writes}{tex.stackexchange.com}
+%\item \href{http://www.tex.ac.uk/cgi-bin/texfaq2html?label=noroom}{UK FAQ List}
+%\end{itemize}
 
 %% =========================================================================
 \chapter{Short fonts overview}
@@ -887,267 +834,200 @@ Further information about this issue can be found at
 
 The information given here is only a subset of the whole story. A more complete catalogue on \latex fonts can be found at \href{http://www.tug.dk/FontCatalogue/}{http://www.tug.dk/FontCatalogue/}.
 
-The fonts listed in the following sections are not only a list of very common fonts, but also those that are supported within this template. If this should not be the case the commands that are necessary to load the font is provided, so that the font loading can be integrated in this template. The first section (\ref{sec:doc:fonts:free}) lists most free fonts, which can be expected to be installed in a complete modern \latex distribution. The second section (\ref{sec:doc:fonts:commercial}) is about packages for commercial fonts. These packages are available for free, however the fonts itself are not. The last section (\ref{sec:doc:fonts:math}) is about fonts with math support.
+The font loading mechanism in LuaLaTeX is described in the manual of \package{fontspec}. For math fonts the documentation of \package{unicode-math} is a good starting point. In contrast to the old font mechanism of pdflatex the new mechanism loads only OTF and TTF fonts found in the system standard font location and in the texmf tree.
 
-% -------------------------------------------------------------------------
-\section{Free fonts}
-\label{sec:doc:fonts:free}
+The default font \strong{Latin Modern} is loaded automatically with package \package{unicode-math}.
+For all other fonts the required code is listed here. The Code can be found in the file \path{fonts\fonts.tex}.
 
  { % start a group 
- \colorlet{tabledarkheadcolor}{black!60}
-  % style  
   \small\renewcommand{\arraystretch}{1.4}\sffamily
-  % required if floatrow is loaded
-  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
-  % the table
-  \begin{longtabu} to \textwidth{X[1,l]>{\ttfamily}X[2,l]X[1,l]}
-% \captionabove{longtabu tabular with X columns} \\
-  \hline
-  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
-  \upshape
-  \sffamily\textcolor{white}{Font} &
-  \sffamily\textcolor{white}{Loading command} &
-  \sffamily\textcolor{white}{Family} \\ \hline
-\endfirsthead
-  \hline
-\upshape
-  \sffamily\textcolor{white}{Font} &
-  \sffamily\textcolor{white}{Loading command} &
-  \sffamily\textcolor{white}{Family} \\ \hline
-\endhead
-  \hline 
-  \taburowcolors 1{white .. white}
-  \multicolumn{3}{r}{\emph{continued on next page \ldots}}
-\endfoot
-  \hline
-\endlastfoot
+% the table
+\begin{longtblr}[
+	caption = {Links to files for package configurations},
+	label = {tab:doc:configurationfiles}]
+	{
+		colspec = {X[1,l]>{\ttfamily}X[2,l]X[1,l]},
+		width = 1.0\textwidth,
+		row{odd} = {bg=tablerowcolor},
+		row{1}   = {bg=azure3, fg=white, font=\sffamily\upshape},
+		rowhead = 1,
+		rowfoot = 0,
+	}		
+	%% \\
+	\hline % Table Header
+	Font & Loading command & comment \\ 
+	\hline
 %
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Font families} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
+\SetCell[c=3]{l,bg=tablesubheadcolor} Latin Modern font family \\
 %
-Latin Modern   & \bs{}usepackage\arg{lmodern}  & (see below) \\
-Bera           & \bs{}usepackage\arg{bera}     & (see below) \\
-CM-Bright      & \bs{}usepackage\arg{cmbright} & (see below) \\
+Roman   & \cs{setmainfont}\arg{Latin Modern Roman} & \\
+Sans    & \cs{setsansfont}\arg{Latin Modern Sans}  & \\
+Mono    & \cs{setmonofont}\arg{Latin Modern Mono}  & \\
+Math 	& \cs{setmathfont}\arg{Latin Modern Math}  & \\
 %
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Latin Modern font family} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
+\SetCell[c=3]{l,bg=tablesubheadcolor} Roman Fonts \\
 %
-LM Roman   & \bs{}renewcommand\arg{\bs{}rmdefault}\arg{lmr}  & lmr  \\
-LM Sans    & \bs{}renewcommand\arg{\bs{}sfdefault}\arg{lmss} & lmss \\
-LM Mono    & \bs{}renewcommand\arg{\bs{}ttdefault}\arg{lmtt} & lmtt \\
+TeX Gyre Termes 	 & \cs{setmainfont}\arg{TeX Gyre Termes}         & Times like font \\
+TeX Gyre Termes Math & \cs{setmathfont}\arg{TeX Gyre Termes Math}    & math version \\
 %
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Bera font family} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
 %
-Bera Serif	& \bs{}usepackage\arg{beraserif} & fve \\
-Bera Sans	& \bs{}usepackage\arg{berasans}	 & fvs \\
-Bera Mono	& \bs{}usepackage\arg{beramono}	 & fvm \\
+TeX Gyre Pagella		& \cs{setmainfont}\arg{TeX Gyre Pagella}        & Palatino Like font \\
+TeX Gyre Pagella Math	& \cs{setmathfont}\arg{TeX Gyre Pagella Math}   & math version \\
 %
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{CmBright font family} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
+Charter					& \cs{setmainfont}\arg{XCharter}           & \\ 
+Charter - math version  & \cs{setmathfont}\arg{XCharter-Math.otf}  & math version \\
 %
-CmBright Mono	& \bs{}renewcommand\arg{\bs{}ttdefault}\arg{cmtl} & cmtl \\
-CmBright Sans	& \bs{}renewcommand\arg{\bs{}sfdefault}\arg{cmbr} & cmbr \\
+Garamond	& \cs{usepackage}\arg{ebgaramond}         				& \\
+Garamond math version	& \cs{setmathfont}\arg{Garamond-Math}     	& math version \\
 %
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Fonts in the PSNFSS collection (Type 1 postscript fonts)} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
+%% Serif Font: Microsoft Cambria (TTF)
+Cambria & \cs{setmainfont}\arg{Cambria}	& \\
+Cambria Math & \cs{setmathfont}\arg{Cambria Math} & math version \\
 %
-Times		& \bs{}usepackage\arg{mathptmx}	& ptm \\
-Helvetica	& \bs{}usepackage\arg{helvet}	& phv \\
-Courier		& \bs{}usepackage\arg{courier}	& pcr \\
-Palantino	& \bs{}usepackage\arg{mathpazo}	& pplx, pplj \\
-Charter		& \bs{}usepackage\arg{charter}	& bch \\
-Bookman		& \bs{}usepackage\arg{bookman}	& pbk \\
-%Utopia		& \bs{}usepackage\arg{utopia}	& put \\
-New Century Schoolbook	& \bs{}usepackage\arg{newcent}	& pnc \\
-Avantgarde	& \bs{}usepackage\arg{avantgar}	& pag \\
-Zapf Chancery	& \bs{}usepackage\arg{chancery}	& pzc \\
 %
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Fonts supplied by the  \href{http://www.tug.org/fonts/getnonfreefonts/}{getnonfreefonts} script} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
+\SetCell[c=3]{l,bg=tablesubheadcolor} Sans Fonts \\
 %
-Arial (URW) 	& \bs{}usepackage\arg{uarial} 				& ua1 \\
-Classico (URW) 	& \bs{}renewcommand\arg{\bs{}sfdefault}\arg{uop} 	& uop \\
-DayRoman  		& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{dayrom} & dayrom\\
-GaramondNo8 (URW) 	& \bs{}renewcomamnd\arg{\bs{}rmdefault}\arg{ugm} & ugm\\
-LetterGothic (URW) 	& \bs{}usepackage\arg{ulgothic} & ulg\\
-Luxi Mono		& \bs{}usepackage\arg{luximono}		& ul9\\
+TeX Gyre Heros	& \cs{setsansfont}\arg{TeX Gyre Heros}  & Helvetica (Arial) like font \\
+Fira Sans		& \cs{setsansfont}\arg{Fira Sans} 		& \\
+Cabin			& \cs{setsansfont}\arg{Cabin}           &  Bera Sans like font \\
+Calibri			& \cs{setsansfont}\arg{Calibri} 		& \\
+
+\SetCell[c=3]{l,bg=tablesubheadcolor} Mono Fonts \\
+
+TeX Gyre Cursor	& \cs{setmonofont}\arg{TeX Gyre Cursor}  & Courier Like font \\
+Luxi Mono		& \cs{setmonofont}\arg{Luxi Mono}        & font must be added to system!\\
+
+Consolas		& \cs{setmonofont}\arg{Consolas} 		& \\
+Lucida Console	& \cs{setmonofont}\arg{Lucida Console} 	& \\
+	\hline
 %
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Other Type 1 postscript fonts} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-%
-Fourier		& \bs{}usepackage\arg{fourier}	& futm \\
-\end{longtabu}
+\end{longtblr} 	
 } % close the group
 
 % -------------------------------------------------------------------------
-\section{Commercial fonts}
-\label{sec:doc:fonts:commercial}
+\section{Font Gallery}
+\label{sec:doc:fonts:Gallery}
+The following table shows how these fonts look like.
 
-In order to use these fonts for documents that shall be published it is absolutely essential to own a license. Most fonts can only be obtained by buying these fonts; others may be installed on the computer by programs. Nevertheless its use is restricted unless a license for using these fonts is owned!
-
-If the fonts are available they need to be renamed and installed using the according manuals provided by \href{http://cq131a.de/fonts.html}{Walter Schmidt}
-
- { % start a group 
- \colorlet{tabledarkheadcolor}{black!60}
-  % style  
-  \small\renewcommand{\arraystretch}{1.4}\sffamily
-  % required if floatrow is loaded
-  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
-  % the table
-  \begin{longtabu} to \textwidth{X[1,l]>{\ttfamily}X[2,l]X[1,l]}
-% \captionabove{longtabu tabular with X columns} \\
-  \hline
-  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
-  \upshape
-  \sffamily\textcolor{white}{Font} &
-  \sffamily\textcolor{white}{Loading command} &
-  \sffamily\textcolor{white}{Family} \\ \hline
-\endfirsthead
-  \hline
-\upshape
-  \sffamily\textcolor{white}{Font} &
-  \sffamily\textcolor{white}{Loading command} &
-  \sffamily\textcolor{white}{Family} \\ \hline
-\endhead
-  \hline 
-  \taburowcolors 1{white .. white}
-  \multicolumn{3}{r}{\emph{continued on next page \ldots}}
-\endfoot
-  \hline
-\endlastfoot
-%
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Serif fonts} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-%
-Adobe Optima	& \bs{}usepackage\arg{optima}	& pop, popm \\
-Adobe Aldus		& \bs{}renewcommand{\bs{}rmdefault}\arg{pasx}	& pasx, pasj \\
-Adobe Garamond	& \bs{}usepackage\arg{xagaramon}	& padx, padj \\
-Adobe Stempel Garamond & \bs{}renewcommand\arg{\bs{}rmdefault}\arg{pegx} & 	pegx, pegj \\
-Adobe Melior	& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{pml}	& pml \\
-Adobe Minion	& \bs{}usepackage\arg{minion} &	pmnx, pmnj \\
-Adobe Sabon		& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{psbx} & psbx, psbj \\
-Adobe Times		& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{ptmx} & ptmx, ptmj \\
-Adobe Rotis Serif	& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{pro} & pro \\
-Adobe Rotis Semi-Serif	& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{pr1} & pr1 \\
-Linotype Meridien		& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{lmd} & lmd \\
-Linotype ITC Charter	& \bs{}renewcommand\arg{\bs{}rmdefault}\arg{lch} & lch \\
-%
-\taburowcolors 1{tablesubheadcolor .. tablesubheadcolor}
-\multicolumn{3}{l}{Sans serif fonts} \\
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-%
-Adobe Frutiger	& \bs{}usepackage\arg{frutiger}	& pfr \\
-Adobe Futura	& \bs{}usepackage\arg{futura}	& pfu \\
-Adobe Gill Sans	& \bs{}usepackage\arg{gillsans}	& pgs \\
-Adobe Myriad	& \bs{}renewcommand\arg{\bs{}sfdefault}\arg{pmy}	& pmy, pmyc \\
-Adobe Syntax	& \bs{}usepackage\arg{asyntax}	& psx \\
-Adobe Rotis Sans & \bs{}renewcommand\arg{\bs{}sfdefault}\arg{pr4}	& pr4 \\
-Adobe Rotis Semi-Sans & \bs{}renewcommand\arg{\bs{}sfdefault}\arg{pr3}	& pr3 \\
-Linotype ITC Officina Sans	& \bs{}renewcommand\arg{\bs{}sfdefault}\arg{lo9}	& lo9 \\
-\end{longtabu}
-} % close the group
-
-% -------------------------------------------------------------------------
-\section{Fonts with math support}
-\label{sec:doc:fonts:math}
-
-The following table lists font packages that do not only load the font but also the according math font. The only exceptions are the packages \package{mathdesign}, \package{MnSymbol} and \package{MdSymbol}, which only load a math font.
-
-Note that the package \package{MnSymbol} and \package{MdSymbol} have severe restrictions on the loading order and incompatible packages, which is taken care of in this template.
-
-The package \package{eulervm} is special in the respect that it does not provide a math font for a specific roman font, but instead provides a math font that fits well to many common (commercial) serif fonts such as Adobe Aldus, Adobe Melior, Adobe Sabon and others for which no \latex math font support exists.
+\newcommand{\fontstring}{Sphinx of black quartz, judge my vow.}
+\newcommand{\mathstring}{$f(u,v) = \iiint \left[u\nabla^{2}v+\left(\nabla  u,\nabla  v\right)\right]\symup{d}^{3}V$}
 
  { % start a group 
- \colorlet{tabledarkheadcolor}{black!60}
-  % style  
-  \small\renewcommand{\arraystretch}{1.4}\sffamily
-  % required if floatrow is loaded
-  \IfDefined{floatsetup}{\floatsetup[longtable]{font={sf,small}}} 
-  % the table
-  \begin{longtabu} to \textwidth{X[l,2]>{\ttfamily}X[l,3]}
-% \captionabove{longtabu tabular with X columns} \\
-  \hline
-  \taburowcolors 1{tabledarkheadcolor .. tabledarkheadcolor}
-  \upshape
-  \sffamily\textcolor{white}{Font} &
-  \sffamily\textcolor{white}{Loading command}\\ \hline
-\endfirsthead
-  \hline
-\upshape
-  \sffamily\textcolor{white}{Font} &
-  \sffamily\textcolor{white}{Loading command}\\ \hline
-\endhead
-  \hline 
-  \taburowcolors 1{white .. white}
-  \multicolumn{2}{r}{\emph{continued on next page \ldots}}
-\endfoot
-  \hline
-\endlastfoot
-%
-\taburowcolors 2{tablebodycolor .. tablerowcolor}
-%
-Charter (Bitstream) & \bs{}usepackage[bitstream-charter]\arg{mathdesign} \\
-% Computer Concrete	& \bs{}usepackage\arg{concmath} \\
-% Computer Modern Bright & \bs{}usepackage\arg{cmbright}\\
-Garamond (URW)		& \bs{}usepackage[urw-garamond]\arg{mathdesign} \\
-Latin Modern    	& \bs{}usepackage\arg{lmodern} \\
-New Century Schoolbook & \bs{}usepackage\arg{fouriernc} \\
-Times (Nimbus Roman (URW))& \bs{}usepackage\arg{mathptmx} \\
-Palatino			& \bs{}usepackage[sc]\arg{mathpazo} \\
-Utopia (Fourier) 	& \bs{}usepackage\arg{fourier} \\
-Adobe Minion		& \bs{}usepackage\arg{MnSymbol} \\
-Adobe Myriad		& \bs{}usepackage\arg{MdSymbol} \\
-Euler				& \bs{}usepackage\arg{eulervm} \\
-\end{longtabu}
+	\small\renewcommand{\arraystretch}{1.4}\sffamily
+	% the table
+	\begin{longtblr}[
+		caption = {Font examples},
+		label = {tab:doc:Font:Gallery}]
+		{
+			colspec = {X[2,l]X[3,l]},
+			width = 1.0\textwidth,
+			row{odd} = {bg=tablerowcolor},
+			row{1}   = {bg=azure3, fg=white, font=\sffamily\upshape},
+			rowhead = 1,
+			rowfoot = 0,
+		}		
+		\hline % Table Header
+		Font & Example \\ 
+		\hline % 		
+		%
+		\SetCell[c=2]{l,bg=tablesubheadcolor} Latin Modern Family \\
+Latin Modern Roman   & \setmainfont{Latin Modern Roman} \rmfamily \fontstring \\
+Latin Modern Sans    & \setsansfont{Latin Modern Sans}  \sffamily\fontstring \\
+Latin Modern Mono    & \setmonofont{Latin Modern Mono}  \ttfamily \fontstring \\
+		%
+		\SetCell[c=2]{l,bg=tablesubheadcolor} Roman Fonts \\
+		%
+TeX Gyre Termes (Times) 	 	& \setmainfont{TeX Gyre Termes}				\rmfamily \fontstring \\
+TeX Gyre Pagella (Palatino)	 	& \setmainfont{TeX Gyre Pagella}    		\rmfamily \fontstring \\
+TEX Gyre Bonum  (URW Bookman) 	& \setmainfont{TEX Gyre Bonum}				\rmfamily \fontstring \\
+TEX Gyre Schola (URW Century Schoolbook) & \setmainfont{TEX Gyre Schola}	\rmfamily \fontstring \\
+		%
+Charter							& \setmainfont{XCharter}           		\rmfamily \fontstring \\		
+Garamond						& \setmainfont{Garamond}         		\rmfamily \fontstring \\
+XITS (Times)	          		& \setmainfont{XITS}					\rmfamily \fontstring \\
+Cambria 						& \setmainfont{Cambria}					\rmfamily \fontstring \\
+%		%
+		\SetCell[c=2]{l,bg=tablesubheadcolor} Sans Fonts \\
+%		%
+TeX Gyre Heros (Arial)			& \setsansfont{TeX Gyre Heros}  		\sffamily\fontstring \\
+Fira Sans						& \setsansfont{Fira Sans} 				\sffamily\fontstring \\
+Cabin (Bera)					& \setsansfont{Cabin}           		\sffamily\fontstring \\
+Calibri							& \setsansfont{Calibri} 				\sffamily\fontstring \\
+%		
+		\SetCell[c=2]{l,bg=tablesubheadcolor} Mono Fonts \\
+%		
+TeX Gyre Cursor	(Courier) 		& \setmonofont{TeX Gyre Cursor}  		\ttfamily\fontstring\\
+Luxi Mono						& \setmonofont{Luxi Mono}        		\ttfamily\fontstring\\
+Consolas						& \setmonofont{Consolas} 				\ttfamily\fontstring\\
+Lucida Console					& \setmonofont{Lucida Console} 			\ttfamily\fontstring\\
+		%
+		\SetCell[c=2]{l,bg=tablesubheadcolor} Math Fonts \\
+		%
+Latin Modern Math     	& \mathversion{LM}        	\mathstring \\
+TeX Gyre Termes Math  	& \mathversion{Termes}    	\mathstring \\
+TeX Gyre Pagella Math 	& \mathversion{Pagella}   	\mathstring \\
+TEX Gyre Bonum Math     & \mathversion{Bonum}		\mathstring \\
+TEX Gyre Schola Math    & \mathversion{Schola}		\mathstring \\
+Charter Math          	& \mathversion{XCharter}  	\mathstring \\
+Garamond Math         	& \mathversion{Garamond}  	\mathstring \\
+Cambria Math          	& \mathversion{Cambria}   	\mathstring \\		
+XITS Math          		& \mathversion{XITS}		\mathstring \\
+Fira Math				& \mathversion{Fira}		\mathstring \\
+		\hline
+		%
+	\end{longtblr} 	
 } % close the group
+
 
 % -------------------------------------------------------------------------
 \section{Font examples}
 \label{sec:doc:fonts:examples}
 
 The following pages show examples of several font combinations that were created with this template code. This selection was done with care on similar x-heights and glyph widths, but since this selection was not done by a font expert the resulting combinations might still be not perfect. Further reading on the topic of typeface combinations can be found here: 
-\href{http://www.smashingmagazine.com/2010/11/04/best-practices-of-combining-typefaces/}{http://www.smashingmagazine.com/}. The clear exception is the combination of Times with Arial and Courier. This combination is shown because it is widely used but absolutely not recommendable.
+\href{http://www.smashingmagazine.com/2010/11/04/best-practices-of-combining-typefaces/}{http://www.smashingmagazine.com/}. The clear exception is the combination of Times with Arial and Courier. This is shown because it is widely used but absolutely not recommendable.
 
 \begin{itemize}
 \item \hyperref[sec:doc:fonts:Latin Modern Family]{Latin Modern Family}
-\item \hyperref[sec:doc:fonts:Charter-Bera Sans-Luxi Mono]{Charter, Bera Sans, Luxi Mono}
-\item \hyperref[sec:doc:fonts:Garamond-Bera Sans-Luxi Mono]{Garamond, Bera Sans, Luxi Mono}
-\item \hyperref[sec:doc:fonts:Fourier-Latin Modern]{Fourier (Utopia), Latin Modern (Sans and Typewriter)}
-\item \hyperref[sec:doc:fonts:Palantino-Arial-Courier]{Palantino, Arial, Courier} \\ Note that Palantino fits very well to Gill Sans, which however is a commercial font.
+\item \hyperref[sec:doc:fonts:Charter-Bera Sans-Luxi Mono]{Charter, Cabin, Luxi Mono}
+\item \hyperref[sec:doc:fonts:Garamond-Bera Sans-Luxi Mono]{Garamond, Fira Sans, Luxi Mono}
+% \item \hyperref[sec:doc:fonts:Fourier-Latin Modern]{Fourier (Utopia), Latin Modern (Sans and Typewriter)}
+\item \hyperref[sec:doc:fonts:Palantino-Arial-Courier]{Palantino, Arial, Courier}
 \item \hyperref[sec:doc:fonts:Times-Arial-Courier]{Times, Arial, Courier}
+\item \hyperref[sec:doc:fonts:Cambria-Calibri-Consolas]{Cambria, Calibri, Consolas}
+\item \hyperref[sec:doc:fonts:Minion-Myriad-Luxi Mono]{Minion, Myriad and Luxi Mono}
 \end{itemize}
 
-\cleardoublestandardpage
+\clearpage
+%\cleardoublestandardpage
 
 \phantomsection\label{sec:doc:fonts:Latin Modern Family}
-\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}]%
+\includepdf[pages=-,pagecommand=\thispagestyle{empty}]%
 	{fonts/fontsample - Latin Modern Family.pdf}
-%
+%%
 \phantomsection\label{sec:doc:fonts:Charter-Bera Sans-Luxi Mono}
-\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}]%
-	{fonts/fontsample - Charter-Bera Sans-Luxi Mono.pdf}
-%
+\includepdf[pages=-,pagecommand=\thispagestyle{empty}]%
+	{fonts/fontsample - Charter and Cabin and Luxi Mono .pdf}
+%%
 \phantomsection\label{sec:doc:fonts:Garamond-Bera Sans-Luxi Mono}
-\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
-	{fonts/fontsample - Garamond-Bera Sans-Luxi Mono.pdf}
-%
-\phantomsection\label{sec:doc:fonts:Fourier-Latin Modern}	
-\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
-	{fonts/fontsample - Fourier (Utopia)-Latin Modern (Sans and Typewriter).pdf}
-%
+\includepdf[pages=-,pagecommand=\thispagestyle{empty}] %
+	{fonts/fontsample - Garamond-Fira Sans and Luxi Mono}
+%%
+%\phantomsection\label{sec:doc:fonts:Fourier-Latin Modern}	
+%\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
+%	{fonts/fontsample - Fourier (Utopia)-Latin Modern (Sans and Typewriter).pdf}
+%%
 \phantomsection\label{sec:doc:fonts:Palantino-Arial-Courier}
-\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
-	{fonts/fontsample - Palantino-Arial-Courier.pdf}
-%
+\includepdf[pages=-,pagecommand=\thispagestyle{empty}] %
+	{fonts/fontsample - TeX Gyre fonts similar to Palantino-Arial-Courier.pdf}
+%%
 \phantomsection\label{sec:doc:fonts:Times-Arial-Courier}	
-\includepdf[pages=-,pagecommand=\thispagestyle{scrheadings}] %
-	{fonts/fontsample - Times-Arial-Courier.pdf}
+\includepdf[pages=-,pagecommand=\thispagestyle{empty}] %
+	{fonts/fontsample - TeX Gyre fonts similar to Times-Arial-Courier.pdf}
+%%
+\phantomsection\label{sec:doc:fonts:Cambria-Calibri-Consolas}	
+\includepdf[pages=-,pagecommand=\thispagestyle{empty}] %
+{fonts/fontsample - Cambria-Calibri and Consolas.pdf}
+%%
+\phantomsection\label{sec:doc:fonts:Minion-Myriad-Luxi Mono}	
+\includepdf[pages=-,pagecommand=\thispagestyle{empty}] %
+{fonts/fontsample - Minion-Myriad and Luxi Mono.pdf}
