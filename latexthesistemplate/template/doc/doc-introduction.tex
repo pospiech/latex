@@ -204,19 +204,20 @@ Note that all previous packages for bibliographies are incompatible because all 
 \item Bookmarks in the pdf document (\package{bookmark}).
 \end{itemize}
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{Speed of compilation}
-Since the preamble of this template is much longer than most other templates the compilation time of the preamble is consequently also longer. This view however is misleading. The compilation time is in the range of 2 to 4 seconds for the preamble\footnote{Measured on a Windows System (7, 64 bit) with Intel i5 processor and the file system on a SSD. The times for a standard magnetic hard disk should not differ much, since the files are in the memory cache anyway.}, however a real document (like a master thesis) with many pictures takes much longer. The templates main file takes about 7 seconds with very few pages. The template documentation with above 200 pages and many pictures takes more than 40 seconds. My own phd-thesis took minutes to compile due to many high resolution pictures. The compilation time of the preamble therefore is in reality negligible or in other words, even though this templates preamble is quote complex it compile fast enough.
-
-The concrete times of each part of the preamble are displayed in \cref{fig:doc:executiontimes}. The code was executed several times and the average of the last three runs was used. This ensures that all files are in the cache of the hard disk or system memory. The execution time was measured with a batch script based on code from \href{http://stackoverflow.com/questions/4313897/timer-in-dos-batch-file}{stackoverflow.com}. 
-
-The direct visible result of this survey is, not very surprisingly, that the most complex packages such as \package{amsmath}, \package{biblatex}, \package{glossaries}, \package{listings}, \package{hyperref} consume most of the time. The loading of \package{pgf}, \package{tikz} and \package{pgfplots} stands out with more than 1000\,ms. This can be reduced by removing unused libraries or removing these packages completely, if they are not required.
-
-\begin{figure}[p]
-\input{doc/plot.executiontimes.tex}
-\caption[Execution times of the template divided into compilation steps]{Execution times of the template divided into compilation steps. The largest execution times come from the major packages. The packages loaded in each step are listed in \cref{tab:doc:packages}. Note that these times were measured with the packages loaded by the version of January 2013.}
-\label{fig:doc:executiontimes}
-\end{figure}
+%% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\subsection{Speed of compilation}
+%Since the preamble of this template is much longer than most other templates the compilation time of the preamble is consequently also longer. This view however is misleading. The compilation time is in the range of 2 to 4 seconds for the preamble\footnote{Measured on a Windows System (7, 64 bit) with Intel i5 processor and the file system on a SSD. The times for a standard magnetic hard disk should not differ much, since the files are in the memory cache anyway.}, however a real document (like a master thesis) with many pictures takes much longer. The templates main file takes about 7 seconds with very few pages. The template documentation with above 200 pages and many pictures takes more than 40 seconds. My own phd-thesis took minutes to compile due to many high resolution pictures. The compilation time of the preamble therefore is in reality negligible or in other words, even though this templates preamble is quote complex it compile fast enough.
+%
+%The concrete times of each part of the preamble are displayed in \cref{fig:doc:executiontimes}. The code was executed several times and the average of the last three runs was used. This ensures that all files are in the cache of the hard disk or system memory. The execution time was measured with a batch script based on code from \href{http://stackoverflow.com/questions/4313897/timer-in-dos-batch-file}{stackoverflow.com}. 
+%
+%The direct visible result of this survey is, not very surprisingly, that the most complex packages such as \package{amsmath}, \package{biblatex}, \package{glossaries}, \package{listings}, \package{hyperref} consume most of the time. The loading of \package{pgf}, \package{tikz} and \package{pgfplots} stands out with more than 1000\,ms. This can be reduced by removing unused libraries or removing these packages completely, if they are not required.
+%
+%\begin{figure}[p]
+%\input{doc/plot.executiontimes.tex}
+%\caption[Execution times of the template divided into compilation steps]{Execution times of the template divided into compilation steps. The largest execution times come from the major packages. . Note that these times were measured with the packages loaded by the texlive version of Mai 2023.}
+%% old times are from January 2013 with pdflatex engine.
+%\label{fig:doc:executiontimes}
+%\end{figure}
 
 
 
@@ -338,7 +339,7 @@ Most question of the kind \enquote{how do I change the layout of \ldots} can be 
 		Setting & Option/Value & Location \\ 
 		\hline
 		% multicolumn line
-		\SetCell[c=3]{l,bg=tablesubheadcolor} Options in file: \file{LaTeXTemplate.tex} \\
+		\SetCell[c=3]{l,bg=tablesubheadcolor} Options in file: \file{LuaLaTeXTemplate.tex} \\
 		%
 		paper size & paper=a4 & 
 		option of \hyperref[sec:main:class]{\cs{documentclass}} \\
@@ -843,8 +844,8 @@ For all other fonts the required code is listed here. The Code can be found in t
   \small\renewcommand{\arraystretch}{1.4}\sffamily
 % the table
 \begin{longtblr}[
-	caption = {Links to files for package configurations},
-	label = {tab:doc:configurationfiles}]
+	caption = {font overview},
+	label = {tab:doc:fontoverview}]
 	{
 		colspec = {X[1,l]>{\ttfamily}X[2,l]X[1,l]},
 		width = 1.0\textwidth,

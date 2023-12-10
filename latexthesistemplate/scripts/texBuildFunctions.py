@@ -18,8 +18,8 @@ def extractFileList(logfile, outputFile):
     logFileListValid = False
     array = []
 
-    with open(logfile, 'r') as parseFileHandle:
-        with open(outputFile, 'w') as outputFileHandle:
+    with open(logfile, 'r', encoding="utf8") as parseFileHandle:
+        with open(outputFile, 'w', encoding="utf8") as outputFileHandle:
             for lineParse in parseFileHandle:
                 # test for string '%%?'
                 if lineParse.startswith(strEnd):

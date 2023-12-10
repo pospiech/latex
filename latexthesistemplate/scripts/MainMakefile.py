@@ -10,28 +10,31 @@
 #-------------------------------------------------------------------------------
 import sys
 import os
+import time
 import shutil
 import datetime
 import texBuildFunctions as tex
 import insertPrintCode as importInsertPrintCode
 import fontexamples as importFontExamples
 import createPackages as importCreatePackages
+import extractFileList as importextractFileList
 
 
 def main():        
 
-    # print ("--- clean up main folder before compilation ---")
-    #tex.unfailingRemoveFile('../template/TemplateDocumentation-figure*.log')
-    #tex.cleanupRecursiveAuxFiles('../template/', '*.aux')
-    #texfile = '../template/LaTeXTemplate.'
-    #tex.cleanupAuxFiles(texfile)
-    #texfile = '../template/TemplateDocumentation.'
-    #tex.cleanupAuxFiles(texfile)
+    tstart = time.time()
+    print ("--- clean up main folder before compilation ---")
+    tex.unfailingRemoveFile('../template/TemplateDocumentation-figure*.log')
+    tex.cleanupRecursiveAuxFiles('../template/', '*.aux')
+    texfile = '../template/LuaLaTeXTemplate.'
+    tex.cleanupAuxFiles(texfile)
+    texfile = '../template/TemplateDocumentation.'
+    tex.cleanupAuxFiles(texfile)
     # sys.exit()
 
     print ("--- Creation of Packages ---")
-    importCreatePackages.main()
-    sys.exit()
+    # importCreatePackages.main()
+    # sys.exit()
 
     print ("--- Copy Packages ---")
     # copyPackages()
@@ -40,13 +43,15 @@ def main():
     # importFontExamples.main()
 
     print ("--- fill doc-code.tex ---")
-    importInsertPrintCode.main()
-    sys.exit()
+    importInsertPrintCode.main()    
 
-    print ("--- compiling LaTeXTemplate.tex ---")
-    texfile = '../template/LaTeXTemplate.tex'
+    print ("--- compiling LuaLaTeXTemplate.tex ---")
+    texfile = '../template/LuaLaTeXTemplate.tex'
     tex.compileLatexDocument(texfile)
     copyTeXFile(texfile)
+    
+    print ("--- Extract Filelist ---")
+    importextractFileList.main();
 
     print ("--- compiling TemplateDocumentation.tex ---")
     texfile = '../template/TemplateDocumentation.tex'
@@ -86,7 +91,8 @@ def main():
     result = os.system(executeCode)
 
     os.chdir(oldPath)
-
+    elapsed = time.time() - tstart
+    print ("Elasped time / s: " + str(round(elapsed)))
 
 def copyFile(filename, targetFolder):
     strBaseDir = '../template/latexthesistemplate/'
